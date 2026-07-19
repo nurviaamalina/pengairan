@@ -1,0 +1,530 @@
+body{
+    margin:0;
+    font-family:Poppins,sans-serif;
+}
+
+.hero{
+
+    background:#172B63;
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    color:white;
+    padding-top:80px;
+}
+
+.motif{
+
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    opacity:.12;
+}
+
+.hero h1{
+
+    font-size:60px;
+    font-style:italic;
+    font-weight:800;
+}
+
+.hero span{
+
+    color:#FFC107;
+}
+
+.hero p{
+
+    width:700px;
+    margin:auto;
+    margin-top:20px;
+    color:#ddd;
+}
+
+.search-box{
+
+    margin-top:35px;
+}
+
+.search-box input{
+
+    width:420px;
+    border-radius:30px;
+    border:none;
+    padding:12px 25px;
+}
+
+.menu-circle{
+
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#FFC107;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin:auto;
+
+    transition:.3s;
+}
+
+.menu-circle:hover{
+
+    transform:translateY(-8px);
+}
+
+.menu-circle img{
+
+    width:55px;
+}
+
+h5{
+
+    margin-top:15px;
+    color:white;
+}
+/* ==========================
+   BERITA
+========================== */
+
+.berita-section{
+
+    background:#f7b500;
+    padding:70px 0;
+    position:relative;
+    overflow:hidden;
+}
+
+.motif-kanan{
+
+    position:absolute;
+    right:0;
+    top:0;
+    height:100%;
+    opacity:.15;
+}
+
+.judul-berita{
+
+    text-align:center;
+    font-weight:700;
+    font-style:italic;
+    color:#0b2c73;
+    margin-bottom:30px;
+}
+
+.berita-utama{
+
+    width:90%;
+    margin:auto;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+}
+
+.berita-utama img{
+
+    width:100%;
+    height:420px;
+    object-fit:cover;
+}
+
+.overlay{
+
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:180px;
+
+    background:linear-gradient(
+        transparent,
+        rgba(9,31,92,.95)
+    );
+}
+
+.slider-berita{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-top:40px;
+}
+
+.berita-item{
+
+    width:220px;
+    height:120px;
+    border-radius:8px;
+    overflow:hidden;
+}
+
+.berita-item img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.slider-btn{
+
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:white;
+    font-size:22px;
+    color:#0b2c73;
+    cursor:pointer;
+}
+
+.btn-lihat{
+
+    display:inline-block;
+    margin-top:25px;
+    background:white;
+    color:#555;
+    padding:8px 35px;
+    border-radius:30px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.btn-lihat:hover{
+
+    background:#0b2c73;
+    color:white;
+}
+
+/* ==========================
+   INFRASTRUKTUR
+========================== */
+
+.infrastruktur-section{
+    background:#ffffff;
+    padding:70px 0;
+}
+
+.judul-infrastruktur{
+    text-align:center;
+    font-size:42px;
+    font-weight:700;
+    font-style:italic;
+    color:#111;
+    margin-bottom:40px;
+}
+
+.map-container{
+    width:85%;
+    margin:0 auto;
+}
+
+.map-container img{
+    width:100%;
+    display:block;
+    border-radius:8px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+@media (max-width:768px){
+
+    .judul-infrastruktur{
+        font-size:28px;
+    }
+
+    .map-container{
+        width:95%;
+    }
+
+}
+
+.menu-shortcut{
+    background:#fff;
+    padding:25px 0 35px;
+}
+
+.shortcut-btn{
+    display:block;
+    width:135px;
+    height:65px;
+    background:#18295D;
+    border-radius:40px;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.shortcut-btn:hover{
+    background:#FDB913;
+    transform:translateY(-5px);
+}
+
+.kegiatan-section{
+    background:#16295E;
+    padding:70px 0;
+    position:relative;
+}
+
+.judul-kegiatan{
+    text-align:center;
+    color:#fff;
+    font-weight:700;
+    font-style:italic;
+    margin-bottom:30px;
+}
+
+.berita-utama{
+    width:100%;
+    max-width:900px;
+    margin:0 auto 50px;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+}
+
+.berita-utama img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+}
+
+.berita-utama .overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:120px;
+    background:linear-gradient(transparent,rgba(0,0,0,.7));
+}
+
+.slider-wrapper{
+    position:relative;
+    max-width:1000px;
+    margin:auto;
+}
+
+.card-berita{
+    display:block;
+    position:relative;
+    border-radius:10px;
+    overflow:hidden;
+    text-decoration:none;
+}
+
+.card-berita img{
+    width:100%;
+    height:130px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.card-berita:hover img{
+    transform:scale(1.08);
+}
+
+.card-berita::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:70px;
+    background:linear-gradient(transparent,rgba(0,0,0,.8));
+}
+
+.tahun{
+    position:absolute;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#fff;
+    font-size:30px;
+    font-weight:bold;
+    z-index:2;
+}
+
+.slider-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:none;
+    background:#fff;
+    color:#16295E;
+    font-size:18px;
+    z-index:10;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.slider-arrow.left{
+    left:-20px;
+}
+
+.slider-arrow.right{
+    right:-20px;
+}
+
+.btn-lihat{
+    background:#fff;
+    color:#16295E;
+    text-decoration:none;
+    padding:8px 28px;
+    border-radius:30px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-lihat:hover{
+    background:#FDB913;
+    color:#fff;
+}
+
+/*================ FOOTER ================*/
+
+.footer{
+    background:#ffffff;
+    padding:60px 0 20px;
+}
+
+.footer-logo img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+}
+
+.footer-logo h5{
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.footer-logo p{
+    color:#666;
+    font-size:15px;
+    line-height:28px;
+}
+
+.footer-contact p{
+    font-size:15px;
+    margin-bottom:18px;
+}
+
+.footer-contact i{
+    width:28px;
+    color:#1C2D66;
+}
+
+.footer-menu{
+    border-left:2px solid #444;
+    padding-left:45px;
+}
+
+.footer-menu h6{
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.footer-menu ul{
+    padding:0;
+    list-style:none;
+}
+
+.footer-menu ul li{
+    margin-bottom:18px;
+}
+
+.footer-menu ul li a{
+    color:#333;
+    text-decoration:none;
+    font-size:17px;
+}
+
+.footer-menu ul li a:hover{
+    color:#1C2D66;
+}
+
+.social-media span{
+    margin-right:20px;
+    color:#777;
+}
+
+.social-media a{
+    color:#111;
+    margin-right:18px;
+    font-size:20px;
+}
+
+.social-media a:hover{
+    color:#1C2D66;
+}
+
+.footer hr{
+    margin-top:45px;
+}
+
+.copyright{
+    text-align:center;
+    color:#666;
+    font-style:italic;
+    font-size:14px;
+}
+
+/* Responsive */
+
+@media(max-width:991px){
+
+    .footer-menu{
+        border-left:none;
+        padding-left:0;
+        margin-top:40px;
+    }
+
+}
+
+.navbar{
+    height:70px;
+}
+
+.nav-link{
+    font-size:13px;
+    font-weight:600;
+    color:#000 !important;
+    margin:0 10px;
+}
+
+.nav-link:hover{
+    color:#0047AB !important;
+}
+
+.dropdown-menu{
+    font-size:13px;
+}
+
+.form-control{
+    width:180px;
+}
+
+.garis-bawah{
+    height:8px;
+    background:#082c6c;
+}
+
+.navbar-brand img{
+    display:block;
+}
+
+.navbar-brand{
+    padding:0;
+}
+.logo-pemkab{
+    margin-right: 0px;
+}
+
+.logo-pu{
+    margin-right: 0;
+}
