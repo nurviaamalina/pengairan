@@ -165,7 +165,7 @@
 
         <div class="text-center">
 
-            <a href="#" class="btn-lihat">
+            <a href="<?= base_url('berita') ?>" class="btn-lihat">
                 Lihat Semua
             </a>
 

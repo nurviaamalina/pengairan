@@ -1,0 +1,185 @@
+/* Separator breadcrumb */
+.breadcrumb {
+    --bs-breadcrumb-divider: ">";
+}
+
+/* Link Beranda */
+.breadcrumb-item a {
+    color: #212529;      /* Hitam */
+    text-decoration: none;
+}
+
+/* Saat di-hover tetap hitam */
+.breadcrumb-item a:hover {
+    color: #212529;
+    text-decoration: none;
+}
+
+/* Halaman aktif */
+.breadcrumb-item.active {
+    color: #0d6efd;      /* Biru */
+    font-weight: 600;
+}
+
+/* Section berita */
+.berita-page {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Judul halaman */
+.judul-beritaPage {
+     margin: 0;  
+    font-size: 40px;
+    font-weight: 700;
+    color: #112250;   
+    margin-top: 16px; 
+    margin-bottom: 40px;
+}
+
+.headline-card{
+    position: relative;
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.headline-card img{
+    width: 100%;
+    height: 300px;
+    display: block;
+    object-fit: cover;
+}
+
+.overlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 25px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(
+        to top,
+        rgba(12,36,97,.9),
+        rgba(12,36,97,0)
+    );
+}
+
+.overlay h4{
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.overlay span{
+    font-size: 16px;
+    font-style: italic;
+}
+
+/* List berita */
+.berita-item{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    margin-bottom:45px;
+}
+
+.berita-image{
+    flex:0 0 360px;
+}
+
+.berita-image img{
+    width:100%;
+    height:100px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.berita-content{
+    flex:1;
+}
+
+.berita-content h2{
+    font-size:22px;
+    font-weight:700;
+    line-height:1.45;
+    margin-bottom:18px;
+    color:#111;
+}
+
+.berita-content p{
+    font-size:18px;
+    color:#555;
+    font-style:italic;
+}
+
+.berita-card{
+    background:transparent;
+}
+
+.berita-img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.berita-title{
+
+    font-size:30px;
+    font-weight:700;
+    line-height:1.35;
+    color:#111;
+
+}
+
+.berita-date{
+
+    margin-top:20px;
+
+    font-size:20px;
+
+    color:#555;
+
+    font-style:italic;
+
+}
+
+.btn-kembali{
+    background-color: #ffffff !important;
+    color: #0d6efd !important;
+    border: 2px solid #0d6efd !important;
+
+    border-radius: 50px;
+    padding: 10px 28px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    transition: all .3s ease;
+}
+
+.btn-kembali:hover{
+    background-color: #0d6efd !important;
+    color: #ffffff !important;
+    border-color: #0d6efd !important;
+}
+
+.btn-kembali:focus{
+    box-shadow: none !important;
+}
+
+.btn-kembali:active{
+    background-color: #0b5ed7 !important;
+    border-color: #0b5ed7 !important;
+}
+
+.btn-kembali i{
+    font-size: 18px;
+}
