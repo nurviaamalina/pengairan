@@ -1,4 +1,3 @@
-<?= $this->include('layout/navbar') ?>
 <?= $this->include('layout/header') ?>
 
 <section class="hero">
@@ -118,10 +117,18 @@
     <img src="<?= base_url('assets/images/batik 2.png') ?>" class="motif-kanan">
 
     <div class="container">
+        <div class="judul-section">
 
-        <h2 class="judul-berita">
-            Berita Terbaru
-        </h2>
+            <h2 class="judul-berita">
+                Berita Terbaru
+            </h2>
+
+            <p class="text-muted mt-3 mb-5">
+                Ikuti berita terbaru sebagai sumber informasi resmi mengenai kegiatan dan kebijakan Dinas Pengairan Banyuwangi.
+            </p>
+
+        </div>
+    </div>
 
         <!-- Berita Utama -->
         <div class="berita-utama">
@@ -174,45 +181,149 @@
     </div>
 
 </section>
-<!-- INFRASTRUKTUR -->
-<section class="infrastruktur-section">
+<!-- INFORMASI TERKINI -->
+<section class="info-section py-5">
 
     <div class="container">
 
-        <h2 class="judul-infrastruktur">
-            Infrastruktur Pengairan Banyuwangi
-        </h2>
+        <div class="text-center mb-5">
 
-        <div class="map-container">
+            <h2 class="fw-bold text-primary-custom">
+                Informasi Terkini
+            </h2>
 
-            <img src="<?= base_url('assets/images/peta-pengairan.jpg') ?>" alt="Peta Infrastruktur Pengairan">
+            <p class="text-muted mt-3">
+                Ikuti berbagai kegiatan dan informasi terbaru Dinas Pengairan
+                Banyuwangi yang dipublikasikan melalui media resmi kami
+            </p>
+
+            <div class="line-title"></div>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <?php foreach($berita as $item): ?>
+
+            <div class="col-lg-5 col-md-6 mb-4">
+
+                <div class="card berita-card">
+
+                    <img src="<?= base_url('assets/images/'.$item['gambar']) ?>" class="card-img-top">
+
+                    <div class="card-body">
+
+                        <small class="text-muted">
+                            <?= $item['tanggal'] ?>
+                        </small>
+
+                        <h6 class="mt-2 fw-semibold">
+                            <?= $item['judul'] ?>
+                        </h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <?php endforeach; ?>
+
+        </div>
+
+        <div class="text-center mt-3">
+
+            <a href="https://instagram.com"
+                target="_blank"
+                class="btn btn-instagram">
+
+                <i class="bi bi-instagram"></i>
+
+                Lihat Selengkapnya di Instagram
+
+                <i class="bi bi-arrow-right ms-2"></i>
+
+            </a>
 
         </div>
 
     </div>
 
 </section>
-
-<section class="menu-shortcut">
+<!-- INFRASTRUKTUR -->
+<section class="map-section py-5">
 
     <div class="container">
 
-        <div class="row justify-content-center g-4">
+        <div class="text-center mb-4">
+            <h2 class="map-title">Infrastruktur Pengairan Banyuwangi</h2>
 
-            <div class="col-auto">
-                <a href="#" class="shortcut-btn"></a>
-            </div>
+            <p class="map-subtitle">
+                Peta persebaran irigasi, bendungan, sungai, dan bangunan pengairan lainnya di Kabupaten Banyuwangi
+            </p>
+        </div>
 
-            <div class="col-auto">
-                <a href="#" class="shortcut-btn"></a>
-            </div>
+        <!-- MAP -->
+        <div class="map-wrapper">
 
-            <div class="col-auto">
-                <a href="#" class="shortcut-btn"></a>
-            </div>
+            <iframe
+                src="https://www.google.com/maps/d/embed?mid=YOUR_MAP_ID"
+                width="100%"
+                height="420"
+                style="border:0;"
+                loading="lazy">
+            </iframe>
 
-            <div class="col-auto">
-                <a href="#" class="shortcut-btn"></a>
+        </div>
+
+        <!-- KATEGORI -->
+        <div class="category-box mt-4">
+
+            <div class="row align-items-center g-3">
+
+                <div class="col-lg-3">
+                    <div class="category-title">
+                        <strong>Kategori</strong><br>
+                        Infrastruktur
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+
+                    <div class="d-flex flex-wrap gap-4 justify-content-lg-start justify-content-center">
+
+                        <div class="category-item">
+                            <span class="circle blue">
+                                <i class="bi bi-droplet-fill"></i>
+                            </span>
+                            Jaringan Irigasi
+                        </div>
+
+                        <div class="category-item">
+                            <span class="circle green">
+                                <i class="bi bi-tree-fill"></i>
+                            </span>
+                            Bendungan
+                        </div>
+
+                        <div class="category-item">
+                            <span class="circle orange">
+                                <i class="bi bi-water"></i>
+                            </span>
+                            Embung
+                        </div>
+
+                        <div class="category-item">
+                            <span class="circle purple">
+                                <i class="bi bi-building"></i>
+                            </span>
+                            Bangunan Pengairan
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
@@ -230,6 +341,9 @@
             Kegiatan Terbaru
         </h2>
 
+        <p class="text-muted mt-3 mb-5">
+             Dokumentasi kegiatan, agenda, dan berbagai aktivitas Dinas Pengairan Banyuwangi dalam mendukung pelayanan kepada masyarakat.
+        </p>
         <!-- Berita Utama -->
         <div class="berita-utama">
 
