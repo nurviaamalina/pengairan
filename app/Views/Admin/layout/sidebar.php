@@ -1,10 +1,15 @@
+<?php
+$uri = service('uri');
+?>
+
 <div class="sidebar">
 
     <ul class="sidebar-menu">
 
         <!-- Beranda -->
         <li>
-            <a href="<?= base_url('admin/dashboard') ?>" class="menu-link active">
+            <a href="<?= base_url('admin/dashboard') ?>"
+                class="menu-link <?= $uri->getSegment(2) == 'dashboard' ? 'active' : '' ?>">
                 <i class="bi bi-house-door"></i>
                 <span>Beranda</span>
             </a>
@@ -58,7 +63,10 @@
 
                 <a href="#" class="submenu">Pengaduan</a>
 
-                <a href="#" class="submenu">Korsda</a>
+                <a href="#" class="submenu">Korsda
+                    class="menu-link <?= $uri->getSegment(2) == 'dashboard' ? 'active' : '' ?>">
+                </a>
+
 
                 <a href="#" class="submenu">Live CCTV</a>
 
@@ -68,7 +76,8 @@
 
         <!-- Dokumen -->
         <li>
-            <a href="<?= base_url('admin/dokumen') ?>" class="menu-link">
+            <a href="<?= base_url('admin/dokumen') ?>"
+                class="menu-link <?= $uri->getSegment(2) == 'dokumen' ? 'active' : '' ?>">
                 <i class="bi bi-folder"></i>
                 <span>Dokumen</span>
             </a>
@@ -76,7 +85,8 @@
 
         <!-- Pengaduan -->
         <li>
-            <a href="<?= base_url('admin/pengaduan') ?>" class="menu-link">
+            <a href="<?= base_url('admin/pengaduan') ?>"
+                class="menu-link <?= $uri->getSegment(2) == 'pengaduan' ? 'active' : '' ?>">
                 <i class="bi bi-envelope"></i>
                 <span>Pengaduan</span>
             </a>
@@ -84,8 +94,9 @@
 
         <!-- Berita -->
         <li>
-            <a href="<?= base_url('admin/berita') ?>" class="menu-link">
-                <i class="bi bi-newspaper"></i>
+            <a href="<?= base_url('admin/berita') ?>"
+             class="menu-link <?= $uri->getSegment(2) == 'berita' ? 'active' : '' ?>">
+                    <i class="bi bi-newspaper"></i>
                 <span>Berita</span>
             </a>
         </li>
