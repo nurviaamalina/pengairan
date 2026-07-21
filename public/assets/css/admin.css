@@ -149,7 +149,19 @@ body{
     font-size:18px;
 }
 
-/* ==========================
+/* SUB MENU SIDEBAR ADMIN */
+.submenu.active{
+    color: #263574;
+    font-weight: 600;
+    background: #eef3ff;
+    border-left: 4px solid #263574;
+    border-radius: 8px;
+    padding-left: 12px;
+}
+
+.submenu.active:hover{
+    color: #263574;
+}/* ==========================
    SUB MENU
 ========================== */
 
