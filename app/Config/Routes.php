@@ -6,3 +6,4 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('berita', 'Berita::index');
 $routes->get('berita/detail', 'Berita::detail');
+$routes->get('tentang-kami', 'TentangKami::index');

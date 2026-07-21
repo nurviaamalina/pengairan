@@ -9,7 +9,7 @@
 
                 <div class="footer-logo d-flex">
 
-                    <img src="<?= base_url('assets/images/logo.png') ?>" alt="Logo">
+                    <img src="<?= base_url('assets/images/pu.png') ?>" alt="Logo">
 
                     <div class="ms-3">
 
@@ -28,7 +28,8 @@
 
                     <p>
                         <i class="fa-solid fa-location-dot"></i>
-                        345 Faulconer Drive, Suite 4 • Charlottesville, CA, 12345
+                        JlK.H.Agus salim, no.85, Lingkungan Cuking Mojopangung, Kec. Giri, Kabupaten Banyuwangi,
+                        jawa timur 68425
                     </p>
 
                     <div class="row">
