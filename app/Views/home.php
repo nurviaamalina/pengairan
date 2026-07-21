@@ -38,18 +38,19 @@
 
             <div class="col-lg-4 col-md-4 col-6 text-center mb-3">
 
-                <a href="#" class="menu-link">
+                <a href="https://sekardadu.dingkoding.com/home" class="menu-link">
                     <div class="menu-circle">
                         <img src="<?= base_url('assets/images/sekardadu.png') ?>" alt="">
                     </div>
                     <h5>Sekardadu</h5>
                 </a>
+                
 
             </div>
 
             <div class="col-lg-4 col-md-4 col-6 text-center mb-3">
 
-                <a href="#" class="menu-link">
+                <a href="https://mawasdiri.dingkoding.com/home" class="menu-link">
                     <div class="menu-circle">
                         <img src="<?= base_url('assets/images/mawasdiri.png') ?>" alt="">
                     </div>
@@ -60,7 +61,7 @@
 
             <div class="col-lg-4 col-md-4 col-6 text-center mb-3">
 
-                <a href="#" class="menu-link">
+                <a href="https://pubwi.dingkoding.com/home" class="menu-link">
                     <div class="menu-circle">
                         <img src="<?= base_url('assets/images/warmsystem.png') ?>" alt="">
                     </div>
@@ -82,7 +83,7 @@
 
             <div class="col-lg-4 col-md-4 col-6 text-center">
 
-                <a href="#" class="menu-link">
+                <a href="<?= base_url('korsda') ?>" class="menu-item text-decoration-none">
                     <div class="menu-circle">
                         <img src="<?= base_url('assets/images/korsda.png') ?>" alt="">
                     </div>

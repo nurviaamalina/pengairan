@@ -398,8 +398,8 @@ h5{
 }
 
 .btn-lihat{
-    background:#16295E;
-    color:#fff;
+    background:#fff;
+    color:#16295E;
     text-decoration:none;
     padding:8px 28px;
     border-radius:30px;
@@ -408,7 +408,7 @@ h5{
 }
 
 .btn-lihat:hover{
-    background:#FDB913;
+    background:#16295E;
     color:#fff;
 }
 
@@ -647,4 +647,10 @@ h5{
         font-size:30px;
     }
 
+}
+
+.menu-link{
+    position: relative;
+    z-index: 100;
+    display: block;
 }

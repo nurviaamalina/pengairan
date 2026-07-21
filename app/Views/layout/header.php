@@ -63,6 +63,7 @@
                         </a>
 
                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Sejarah Singkat</a></li>
                             <li><a class="dropdown-item" href="#">Visi Misi</a></li>
                             <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
                         </ul>
@@ -77,8 +78,12 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Pelayanan</a></li>
-                            <li><a class="dropdown-item" href="#">Perizinan</a></li>
+                            <li><a class="dropdown-item" href="https://sekardadu.dingkoding.com/home">Sekardadu</a></li>
+                            <li><a class="dropdown-item" href="https://mawasdiri.dingkoding.com/home">Mawasdiri</a></li>
+                            <li><a class="dropdown-item" href="https://pubwi.dingkoding.com/home">Warm System</a></li>
+                            <li><a class="dropdown-item" href="#">Pengaduan</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('korsda') ?>">Korsda</a></li>
+                            <li><a class="dropdown-item" href="#">Live CCTV</a></li>
                         </ul>
                     </li>
 
