@@ -1,6 +1,4 @@
-<?= $this->extend('layout/main') ?>
-
-<?= $this->section('content') ?>
+<?= $this->include('layout/header') ?>
 
 <style>
 .pengaduan-hero {
@@ -138,4 +136,5 @@
     </div>
 </div>
 
-<?= $this->endSection() ?>
+
+<?= $this->include('layout/footer') ?>
