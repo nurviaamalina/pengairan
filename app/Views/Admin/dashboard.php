@@ -1,112 +1,181 @@
-<?php
-$uri = service('uri');
-?>
+<?= $this->include('admin/layout/header') ?>
 
-<div class="sidebar">
+<div class="d-flex min-vh-100">
 
-    <ul class="sidebar-menu">
+    <?= $this->include('admin/layout/sidebar') ?>
 
-        <!-- Beranda -->
-        <li>
-            <a href="<?= base_url('admin/dashboard') ?>"
-                class="menu-link <?= $uri->getSegment(2) == 'dashboard' ? 'active' : '' ?>">
-                <i class="bi bi-house-door"></i>
-                <span>Beranda</span>
-            </a>
-        </li>
+    <div class="content flex-grow-1 d-flex flex-column bg-light">
 
-        <!-- Profil -->
-        <li class="menu-dropdown">
+        <!-- Isi Dashboard -->
+        <div class="p-4 flex-grow-1">
 
-            <a class="menu-link" data-bs-toggle="collapse" href="#profilMenu">
-                <div>
-                    <i class="bi bi-person"></i>
-                    <span>Profil</span>
+            <h5 class="mb-4 fw-bold">Layanan Unggulan</h5>
+
+            <div class="row">
+
+                <!-- Kiri -->
+                <div class="col-lg-8">
+
+                    <div class="row g-4">
+
+                        <!-- Card 1 -->
+                        <div class="col-md-3">
+                            <div class="card shadow-sm border-0 rounded-4 h-100">
+                                <div class="card-body">
+                                    <i class="bi bi-geo-alt fs-1"></i>
+
+                                    <h6 class="mt-3">
+                                        Geografis Information System
+                                    </h6>
+
+                                    <small class="text-muted">
+                                        Jelajahi peta digital jaringan sungai,
+                                        irigasi dan bendungan.
+                                    </small>
+
+                                    <div class="mt-4">
+                                        <a href="#">Selengkapnya →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="col-md-3">
+                            <div class="card shadow-sm border-0 rounded-4 h-100">
+                                <div class="card-body">
+                                    <i class="bi bi-list fs-1"></i>
+
+                                    <h6 class="mt-3">SI AIR</h6>
+
+                                    <small class="text-muted">
+                                        Monitoring sumber daya air secara terintegrasi.
+                                    </small>
+
+                                    <div class="mt-4">
+                                        <a href="#">Selengkapnya →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="col-md-3">
+                            <div class="card shadow-sm border-0 rounded-4 h-100">
+                                <div class="card-body">
+                                    <i class="bi bi-building fs-1"></i>
+
+                                    <h6 class="mt-3">Data Center</h6>
+
+                                    <small class="text-muted">
+                                        Infrastruktur pengairan dan bendungan.
+                                    </small>
+
+                                    <div class="mt-4">
+                                        <a href="#">Selengkapnya →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="col-md-3">
+                            <div class="card shadow-sm border-0 rounded-4 h-100">
+                                <div class="card-body">
+                                    <i class="bi bi-telephone fs-1"></i>
+
+                                    <h6 class="mt-3">Layanan Pengaduan</h6>
+
+                                    <small class="text-muted">
+                                        Laporkan masalah dengan mudah.
+                                    </small>
+
+                                    <div class="mt-4">
+                                        <a href="#">Selengkapnya →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- MAP -->
+                    <div class="card border-0 shadow-sm rounded-4 mt-4">
+                        <div class="card-body">
+
+                            <h5>Peta Jaringan Irigasi</h5>
+
+                            <iframe
+                                src="https://maps.google.com/maps?q=jakarta&t=&z=12&ie=UTF8&iwloc=&output=embed"
+                                width="100%"
+                                height="300"
+                                style="border:0;">
+                            </iframe>
+
+                        </div>
+                    </div>
+
                 </div>
 
-                <i class="bi bi-chevron-down"></i>
-            </a>
+                <!-- Kanan -->
+                <div class="col-lg-4">
 
-            <div class="collapse" id="profilMenu">
+                    <div class="card border-0 shadow-sm rounded-4">
+                        <div class="card-body">
 
-                <a href="<?= base_url('admin/profil/visi-misi') ?>" class="submenu">
-                    Visi & Misi
-                </a>
+                            <h5>Berita</h5>
 
-                <a href="<?= base_url('admin/profil/sejarah') ?>" class="submenu">
-                    Sejarah
-                </a>
+                            <?php for($i=1;$i<=3;$i++): ?>
 
-                <a href="<?= base_url('admin/profil/struktur') ?>" class="submenu">
-                    Struktur Organisasi
-                </a>
+                            <div class="d-flex mt-3">
+
+                                <div class="bg-secondary rounded"
+                                    style="width:80px;height:60px;"></div>
+
+                                <div class="ms-3">
+                                    <small>
+                                        Laporkan permasalahan pengairan
+                                        dengan mudah dan cepat.
+                                    </small>
+                                </div>
+
+                            </div>
+
+                            <?php endfor; ?>
+
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 mt-4">
+                        <div class="card-body">
+
+                            <h5>Gallery Kegiatan</h5>
+
+                            <div class="row mt-3">
+
+                                <?php for($i=1;$i<=3;$i++): ?>
+
+                                <div class="col-4">
+                                    <div class="bg-secondary rounded"
+                                        style="height:90px;"></div>
+                                </div>
+
+                                <?php endfor; ?>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
 
-        </li>
+        </div>
 
-        <!-- Layanan -->
-        <li class="menu-dropdown">
+        <!-- Footer -->
+        <?= $this->include('admin/layout/footer') ?>
 
-            <a class="menu-link" data-bs-toggle="collapse" href="#layananMenu">
-
-                <div>
-                    <i class="bi bi-grid"></i>
-                    <span>Layanan</span>
-                </div>
-
-                <i class="bi bi-chevron-down"></i>
-
-            </a>
-
-            <div class="collapse" id="layananMenu">
-
-                <a href="<?= base_url('admin/pengaduan') ?>"
-                class="submenu <?= $uri->getSegment(2) == 'pengaduan' ? 'active' : '' ?>">
-                    Pengaduan
-                </a>
-
-                <a href="<?= base_url('admin/korsda') ?>"
-                class="submenu <?= $uri->getSegment(2) == 'korsda' ? 'active' : '' ?>">
-                    Korsda
-                </a>
-
-                <a href="<?= base_url('admin/live-cctv') ?>"
-                class="submenu <?= $uri->getSegment(2) == 'live-cctv' ? 'active' : '' ?>">
-                    Live CCTV
-                </a>
-
-</div>
-
-        </li>
-
-        <!-- Dokumen -->
-        <li>
-            <a href="<?= base_url('admin/dokumen') ?>"
-                class="menu-link <?= $uri->getSegment(2) == 'dokumen' ? 'active' : '' ?>">
-                <i class="bi bi-folder"></i>
-                <span>Dokumen</span>
-            </a>
-        </li>
-
-        <!-- Pengaduan -->
-        <li>
-            <a href="<?= base_url('admin/pengaduan') ?>"
-                class="menu-link <?= $uri->getSegment(2) == 'pengaduan' ? 'active' : '' ?>">
-                <i class="bi bi-envelope"></i>
-                <span>Pengaduan</span>
-            </a>
-        </li>
-
-        <!-- Berita -->
-        <li>
-            <a href="<?= base_url('admin/berita') ?>"
-             class="menu-link <?= $uri->getSegment(2) == 'berita' ? 'active' : '' ?>">
-                    <i class="bi bi-newspaper"></i>
-                <span>Berita</span>
-            </a>
-        </li>
-
-    </ul>
+    </div>
 
 </div>
