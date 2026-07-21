@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\BeritaModels;
+use App\Models\BeritaModel;
 
 class Berita extends BaseController
 {
