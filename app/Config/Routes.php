@@ -15,3 +15,6 @@ $routes->group('admin', function($routes){
 
 $routes->get('/korsda', 'Korsda::index');
 $routes->get('gis', 'Gis::gis');
+$routes->get('pengaduan', 'Pengaduan::index');
+$routes->get('pengaduan/create', 'Pengaduan::create');
+$routes->post('pengaduan/save', 'Pengaduan::save');

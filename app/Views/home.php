@@ -72,7 +72,7 @@
 
             <div class="col-lg-4 col-md-4 col-6 text-center">
 
-                <a href="#" class="menu-link">
+                 <a href="<?= base_url('pengaduan') ?>" class="menu-link text-decoration-none">
                     <div class="menu-circle">
                         <img src="<?= base_url('assets/images/pengaduan.png') ?>" alt="">
                     </div>
