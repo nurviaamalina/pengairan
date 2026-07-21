@@ -53,7 +53,8 @@ class Pengaduan extends BaseController
         ];
 
         $this->pengaduanModel->insertPengaduan($data);
-        return redirect()->to('/pengaduan')->with('success', 'Pengaduan berhasil dikirim');
+        // Tampilkan view sukses setelah penyimpanan
+        return view('pengaduan/success');
     }
 
     public function edit($id)
