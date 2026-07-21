@@ -1,5 +1,5 @@
 <?= $this->include('layout/header') ?>
-<?= $this->include('layout/navbar') ?>
+
 
 <link rel="stylesheet" href="<?= base_url('assets/css/tentangkami.css') ?>">
 

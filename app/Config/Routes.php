@@ -7,3 +7,15 @@ $routes->get('/', 'Home::index');
 $routes->get('berita', 'Berita::index');
 $routes->get('berita/detail', 'Berita::detail');
 $routes->get('tentang-kami', 'TentangKami::index');
+
+$routes->group('admin', function($routes){
+
+    $routes->get('dashboard', 'Admin\Dashboard::index');
+
+});
+
+$routes->get('/korsda', 'Korsda::index');
+$routes->get('gis', 'Gis::gis');
+$routes->get('pengaduan', 'Pengaduan::index');
+$routes->get('pengaduan/create', 'Pengaduan::create');
+$routes->post('pengaduan/save', 'Pengaduan::save');

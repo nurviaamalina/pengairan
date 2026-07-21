@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
+<!-- <nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
     <div class="container">
 
         <!-- Logo -->
@@ -74,4 +74,4 @@
     </div>
 </nav>
 
-<div class="garis-bawah"></div>
+<div class="garis-bawah"></div> -->

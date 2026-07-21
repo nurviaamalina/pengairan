@@ -1,0 +1,228 @@
+/* ===========================
+   ADMIN DASHBOARD
+=========================== */
+
+body{
+    margin:0;
+    background:#f5f6fa;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* ===========================
+   TOPBAR
+=========================== */
+
+.topbar{
+    height:65px;
+    background:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 25px;
+    border-bottom:1px solid #dcdcdc;
+    box-shadow:0 2px 4px rgba(0,0,0,.08);
+}
+
+/* ===========================
+   LOGO
+=========================== */
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-area img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+}
+
+.logo-circle{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#fff;
+    border:1px solid #d8d8d8;
+    box-shadow:0 1px 3px rgba(0,0,0,.1);
+}
+
+.logo-text h5{
+    margin:0;
+    font-size:16px;
+    font-weight:700;
+    color:#32559c;
+    text-transform:uppercase;
+}
+
+.logo-text p{
+    margin:0;
+    font-size:12px;
+    color:#666;
+}
+
+/* ===========================
+   RIGHT MENU
+=========================== */
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logout{
+    color:#444;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.logout:hover{
+    color:#0d6efd;
+}
+
+.logout i{
+    margin-right:5px;
+}
+
+.status{
+    width:14px;
+    height:14px;
+    background:#d9d9d9;
+    border-radius:50%;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+    width:250px;
+    min-height:100vh;
+    background:#fff;
+    padding:25px 15px;
+    box-shadow:2px 0 10px rgba(0,0,0,.08);
+}
+
+.sidebar-menu{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.sidebar-menu li{
+    margin-bottom:10px;
+}
+
+.menu-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 16px;
+    color:#28304a;
+    text-decoration:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:500;
+}
+
+.menu-link div{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.menu-link:hover{
+    background:#f3f5ff;
+    color:#1d2b63;
+}
+
+.menu-link.active{
+    background:#1d2b63;
+    color:#fff;
+    box-shadow:0 4px 10px rgba(29,43,99,.3);
+}
+
+.menu-link i{
+    font-size:18px;
+}
+
+/* ==========================
+   SUB MENU
+========================== */
+
+.submenu{
+    display:block;
+    padding:10px 45px;
+    color:#555;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.submenu:hover{
+    color:#1d2b63;
+    background:#f7f8ff;
+}
+
+/* Animasi Collapse */
+
+.collapse{
+    margin-top:5px;
+}
+
+
+/* ==========================
+   FOOTER
+========================== */
+
+.footer{
+    background:#1d2b63;
+    color:#fff;
+    padding:25px 0 15px;
+    width:100%;
+}
+
+.footer-contact{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+}
+
+.footer-divider{
+    border-left:1px solid rgba(255,255,255,.5);
+}
+
+.social-media{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-top:10px;
+}
+
+.social-media a{
+    color:#fff;
+    font-size:18px;
+}
+
+.social-media a:hover{
+    color:#ffc107;
+}
+
+.footer-map{
+    width:140px;
+    border-radius:15px;
+}
+
+.footer hr{
+    border-color:rgba(255,255,255,.3);
+}

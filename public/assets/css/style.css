@@ -113,8 +113,21 @@ h5{
     font-weight:700;
     font-style:italic;
     color:#0b2c73;
-    margin-bottom:30px;
+    margin-bottom:0px;
 }
+
+.judul-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.judul-section p{
+    max-width: 1000px;
+    margin-top: 0px;
+}
+
 
 .berita-utama{
 
@@ -262,17 +275,33 @@ h5{
 }
 
 .kegiatan-section{
-    background:#16295E;
+    background:#FDB913;
     padding:70px 0;
     position:relative;
 }
 
 .judul-kegiatan{
     text-align:center;
-    color:#fff;
+    color:#18295D;
     font-weight:700;
     font-style:italic;
     margin-bottom:30px;
+}
+
+.kegiatan-section{
+    text-align:center;
+}
+
+.kegiatan-section p{
+    max-width:900px;
+    margin:15px auto 40px;
+}
+
+.judul-kegiatan{
+    color:#18295D;
+    font-weight:700;
+    font-style:italic;
+    margin-bottom:10px;
 }
 
 .berita-utama{
@@ -339,7 +368,7 @@ h5{
     bottom:10px;
     left:50%;
     transform:translateX(-50%);
-    color:#fff;
+    color:#18295D;
     font-size:30px;
     font-weight:bold;
     z-index:2;
@@ -353,8 +382,8 @@ h5{
     height:42px;
     border-radius:50%;
     border:none;
-    background:#fff;
-    color:#16295E;
+    background:#18295D;
+    color:#fff;
     font-size:18px;
     z-index:10;
     box-shadow:0 5px 15px rgba(0,0,0,.3);
@@ -379,7 +408,7 @@ h5{
 }
 
 .btn-lihat:hover{
-    background:#FDB913;
+    background:#16295E;
     color:#fff;
 }
 
@@ -527,4 +556,101 @@ h5{
 
 .logo-pu{
     margin-right: 0;
+}
+
+.map-section{
+    background:#16295b;
+    padding:80px 0;
+}
+
+.map-title{
+    color:#fff;
+    font-weight:700;
+    font-size:38px;
+}
+
+.map-subtitle{
+    color:#d6d9e4;
+    max-width:700px;
+    margin:auto;
+    margin-top:10px;
+    font-size:15px;
+}
+
+.map-wrapper{
+    background:#fff;
+    padding:8px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+.map-wrapper iframe{
+    border-radius:8px;
+}
+
+.category-box{
+    background:#fff;
+    border-radius:8px;
+    padding:20px 25px;
+}
+
+.category-title{
+    border-right:1px solid #d9d9d9;
+    line-height:1.4;
+}
+
+.category-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:500;
+    color:#333;
+}
+
+.circle{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:15px;
+}
+
+.blue{
+    background:#3B82F6;
+}
+
+.green{
+    background:#2E8B57;
+}
+
+.orange{
+    background:#F59E0B;
+}
+
+.purple{
+    background:#7E3ACE;
+}
+
+@media(max-width:992px){
+
+    .category-title{
+        border:none;
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    .map-title{
+        font-size:30px;
+    }
+
+}
+
+.menu-link{
+    position: relative;
+    z-index: 100;
+    display: block;
 }

@@ -1,5 +1,4 @@
 <?= $this->include('layout/header') ?>
-<?= $this->include('layout/navbar') ?>
 
 <link rel="stylesheet" href="<?= base_url('assets/css/berita.css') ?>">
 
@@ -12,7 +11,7 @@
                     <a href="<?= base_url('/') ?>">Beranda</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="<?= base_url('/berita') ?>">Berita</a>
+                    <a href="<?= base_url('berita/detail') ?>">Berita</a>
                 </li>
             
                 <li class="breadcrumb-item active" aria-current="page">
@@ -94,7 +93,7 @@
 
         <button
             type="button"
-            class="btn btn-primary btn-kembali"
+            class="btn btn-primary btn-kembali-detail"
             onclick="window.location.href='<?= base_url('/berita') ?>'">
 
             <i class="bi bi-arrow-left me-2"></i>
