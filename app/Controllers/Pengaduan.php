@@ -2,23 +2,22 @@
 
 namespace App\Controllers;
 
-use App\Models\PengaduanModels;
+use App\Models\PengaduanModel;
 
 class Pengaduan extends BaseController
 {
     protected $pengaduanModel;
 
-    public function __construct()
-    {
-        $this->pengaduanModel = new PengaduanModels();
-    }
+   public function __construct()
+{
+    $this->pengaduanModel = new PengaduanModel();
+}
 
     public function index()
     {
         $data = [
             'title' => 'Layanan Pengaduan Masyarakat',
         ];
-
         return view('Pengaduan/create', $data);
     }
 
