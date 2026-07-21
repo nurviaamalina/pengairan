@@ -238,3 +238,35 @@ body{
 .footer hr{
     border-color:rgba(255,255,255,.3);
 }
+
+
+/* ADMIN CSS BERITA 
+*/ 
+
+/* ADMIN 
+*/ 
+
+.btn-tambah{
+    background: #ffffff;
+    color: #1d2b63;
+    border: 2px solid #1d2b63;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all .3s ease;
+}
+
+.btn-tambah:hover{
+    background: #1d2b63;
+    color: #ffffff;
+    border: 2px solid #1d4ed8;
+}
+
+.card{
+
+    border:none;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
