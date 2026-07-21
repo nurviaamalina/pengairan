@@ -61,16 +61,22 @@ $uri = service('uri');
 
             <div class="collapse" id="layananMenu">
 
-                <a href="#" class="submenu">Pengaduan</a>
-
-                <a href="#" class="submenu">Korsda
-                    class="menu-link <?= $uri->getSegment(2) == 'dashboard' ? 'active' : '' ?>">
+                <a href="<?= base_url('admin/pengaduan') ?>"
+                class="submenu <?= $uri->getSegment(2) == 'pengaduan' ? 'active' : '' ?>">
+                    Pengaduan
                 </a>
 
+                <a href="<?= base_url('admin/korsda') ?>"
+                class="submenu <?= $uri->getSegment(2) == 'korsda' ? 'active' : '' ?>">
+                    Korsda
+                </a>
 
-                <a href="#" class="submenu">Live CCTV</a>
+                <a href="<?= base_url('admin/live-cctv') ?>"
+                class="submenu <?= $uri->getSegment(2) == 'live-cctv' ? 'active' : '' ?>">
+                    Live CCTV
+                </a>
 
-            </div>
+</div>
 
         </li>
 
