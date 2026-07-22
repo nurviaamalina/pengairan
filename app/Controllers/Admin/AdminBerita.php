@@ -67,7 +67,6 @@ class AdminBerita extends BaseController
 
             'publikator' => $this->request->getPost('publikator'),
 
-            'tanggal' => $this->request->getPost('tanggal'),
 
             'views' => 0
 

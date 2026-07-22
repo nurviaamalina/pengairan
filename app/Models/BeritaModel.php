@@ -24,7 +24,6 @@ class BeritaModel extends Model
         'isi',
         'gambar',
         'publikator',
-        'tanggal',
         'views'
     ];
 
@@ -39,4 +38,23 @@ class BeritaModel extends Model
     protected $createdField = 'created_at';
 
     protected $updatedField = 'updated_at';
+    
+        // Ambil semua berita terbaru
+    public function getBerita()
+{
+    return $this->orderBy('created_at', 'DESC')->findAll();
+}
+
+    // Ambil berita berdasarkan slug
+    public function getBeritaBySlug($slug)
+    {
+        return $this->where('slug', $slug)->first();
+    }
+
+    // Ambil 3 berita terbaru untuk landing page
+    public function getBeritaTerbaru($limit = 4)
+{
+    return $this->orderBy('created_at', 'DESC')
+                ->findAll($limit);
+}
 }

@@ -27,7 +27,7 @@
 
             <div class="alert alert-success">
 
-                <?= session()-d>getFlashdata('success') ?>
+                <?= session()->getFlashdata('success') ?>
 
             </div>
 

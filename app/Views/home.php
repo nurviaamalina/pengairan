@@ -131,45 +131,67 @@
         </div>
     </div>
 
-        <!-- Berita Utama -->
-        <div class="berita-utama">
+       
+        <?php if (!empty($berita)) : ?>
+ <!-- Berita Utama -->
+<div class="berita-utama">
 
-            <img src="<?= base_url('assets/images/berita1.jpg') ?>" alt="">
+    <a href="<?= base_url('berita/'.$berita[0]['slug']) ?>">
 
-            <div class="overlay"></div>
+        <img src="<?= base_url('uploads/berita/'.$berita[0]['gambar']) ?>" alt="">
+
+        <div class="overlay">
+
+            <h3><?= esc($berita[0]['judul']) ?></h3>
+
+            <span>
+                <?= date('d F Y', strtotime($berita[0]['created_at'])) ?>
+            </span>
 
         </div>
+
+    </a>
+
+</div>
 
         <!-- Slider Berita -->
         <div class="slider-berita">
 
-            <button class="slider-btn kiri">
-                &#10094;
-            </button>
+    <button class="slider-btn kiri">
+        <i class="bi bi-arrow-left"></i>
+    </button>
 
-            <div class="berita-item">
+ <?php foreach (array_slice($berita, 1) as $item): ?>
 
-                <img src="<?= base_url('assets/images/berita2.jpg') ?>">
+<div class="berita-item">
 
-            </div>
+    <a href="<?= base_url('berita/'.$item['slug']) ?>">
 
-            <div class="berita-item">
+        <img src="<?= base_url('uploads/berita/'.$item['gambar']) ?>">
 
-                <img src="<?= base_url('assets/images/berita2.jpg') ?>">
+        <div class="overlay-kecil">
 
-            </div>
+            <h6><?= esc($item['judul']) ?></h6>
 
-            <div class="berita-item">
-
-                <img src="<?= base_url('assets/images/berita2.jpg') ?>">
-
-            </div>
-
-            <button class="slider-btn kanan">
-                &#10095;
-            </button>
+            <span>
+                <?= date('d M Y', strtotime($item['created_at'])) ?>
+            </span>
 
         </div>
+
+    </a>
+
+</div>
+
+<?php endforeach; ?>
+
+    <button class="slider-btn kanan">
+        <i class="bi bi-arrow-right"></i>
+    </button>
+
+</div>
+
+<?php endif; ?>
 
         <div class="text-center">
 

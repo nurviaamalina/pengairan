@@ -2,23 +2,23 @@
 
 namespace App\Controllers;
 
+use App\Models\BeritaModel;
+
 class Home extends BaseController
 {
-    public function index()
-    {
-        $data['berita'] = [
-            [
-                'gambar' => 'berita1.jpg',
-                'tanggal' => '12 Juli 2024',
-                'judul' => 'Dinas Pengairan Kabupaten Banyuwangi Perkuat Transformasi Digital Melalui Pengembangan Website Terintegrasi'
-            ],
-            [
-                'gambar' => 'berita2.jpg',
-                'tanggal' => '12 Juli 2024',
-                'judul' => 'Dinas Pengairan Kabupaten Banyuwangi Perkuat Transformasi Digital Melalui Pengembangan Website Terintegrasi'
-            ]
-        ];
+    protected $beritaModel;
 
-        return view('home', $data);
+    public function __construct()
+    {
+        $this->beritaModel = new BeritaModel();
     }
+
+   public function index()
+{
+    $data = [
+        'berita' => $this->beritaModel->getBeritaTerbaru(4)
+    ];
+
+    return view('home', $data);
+}
 }
