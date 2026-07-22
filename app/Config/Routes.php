@@ -23,10 +23,18 @@ $routes->post('admin/berita/store', 'Admin\AdminBerita::store');
 $routes->get('admin/berita/edit/(:num)', 'Admin\AdminBerita::edit/$1');
 $routes->post('admin/berita/update/(:num)', 'Admin\AdminBerita::update/$1');
 $routes->get('admin/berita/delete/(:num)', 'Admin\AdminBerita::delete/$1');
+// Routes Admin Pengaduan
+$routes->get('admin/pengaduan', 'Admin\AdminPengaduan::index');
+$routes->get('admin/pengaduan/detail/(:num)', 'Admin\AdminPengaduan::detail/$1');
+$routes->post('admin/pengaduan/update/(:num)', 'Admin\AdminPengaduan::updateStatus/$1');
+$routes->get('admin/pengaduan/delete/(:num)', 'Admin\AdminPengaduan::delete/$1');
+
+// pengaduan publik
+$routes->get('pengaduan', 'Pengaduan::index');           
+$routes->post('pengaduan/save', 'Pengaduan::save');      
+$routes->get('pengaduan/track', 'Pengaduan::trackForm'); 
+$routes->post('pengaduan/track', 'Pengaduan::track');    
 
 
 $routes->get('/korsda', 'Korsda::index');
 $routes->get('gis', 'Gis::gis');
-$routes->get('pengaduan', 'Pengaduan::index');
-$routes->get('pengaduan/create', 'Pengaduan::create');
-$routes->post('pengaduan/save', 'Pengaduan::save');

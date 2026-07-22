@@ -8,88 +8,83 @@ class Pengaduan extends BaseController
 {
     protected $pengaduanModel;
 
-   public function __construct()
-{
-    $this->pengaduanModel = new PengaduanModel();
-}
+    public function __construct()
+    {
+        $this->pengaduanModel = new PengaduanModel();
+    }
 
+    // ===== INDEX (Form + Daftar Pengaduan + Pencarian) =====
     public function index()
     {
-        $data = [
-            'title' => 'Layanan Pengaduan Masyarakat',
-        ];
-        return view('Pengaduan/create', $data);
-    }
+        $keyword = $this->request->getGet('keyword');
 
-    public function detail($id)
-    {
-        $pengaduan = $this->pengaduanModel->getPengaduanById($id);
-        if (!$pengaduan) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Pengaduan tidak ditemukan');
+        if ($keyword) {
+            $pengaduan = $this->pengaduanModel
+                ->like('nama', $keyword)
+                ->orLike('judul', $keyword)
+                ->orLike('kategori', $keyword)
+                ->orLike('status', $keyword)
+                ->orderBy('created_at', 'DESC')
+                ->limit(5)  // ← BATASI 5 DATA
+                ->findAll();
+        } else {
+            $pengaduan = $this->pengaduanModel
+                ->orderBy('created_at', 'DESC')
+                ->limit(5)  // ← BATASI 5 DATA
+                ->findAll();
         }
 
         $data = [
-            'title' => 'Detail Pengaduan',
             'pengaduan' => $pengaduan,
+            'keyword'   => $keyword
         ];
-        return view('Pengaduan/DetailPengaduan', $data);
+
+        return view('Pengaduan/index', $data);
     }
 
-    public function create()
-    {
-        return redirect()->to('/pengaduan');
-    }
-
+    // ===== SAVE =====
     public function save()
     {
+        // Generate tracking code
+        $tracking_code = strtoupper(substr(md5(uniqid()), 0, 8));
+
         $data = [
-            'nama' => $this->request->getPost('nama'),
-            'email' => $this->request->getPost('email'),
-            'nomor_telepon' => $this->request->getPost('nomor_telepon'),
-            'judul' => $this->request->getPost('judul'),
-            'deskripsi' => $this->request->getPost('deskripsi'),
-            'kategori' => $this->request->getPost('kategori'),
-            'status' => 'pending',
+            'nama'           => $this->request->getPost('nama'),
+            'email'          => $this->request->getPost('email'),
+            'nomor_telepon'  => $this->request->getPost('nomor_telepon'),
+            'judul'          => $this->request->getPost('judul'),
+            'kategori'       => $this->request->getPost('kategori'),
+            'deskripsi'      => $this->request->getPost('deskripsi'),
+            'status'         => 'pending',
+            'tracking_code'  => $tracking_code
         ];
 
-        $this->pengaduanModel->insertPengaduan($data);
-        // Tampilkan view sukses setelah penyimpanan
-        return view('pengaduan/success');
+        $this->pengaduanModel->save($data);
+
+        session()->setFlashdata('success', 'Pengaduan Anda berhasil dikirim! Kode tracking: ' . $tracking_code);
+        return redirect()->to('pengaduan');
     }
 
-    public function edit($id)
+    // ===== TRACK FORM =====
+    public function trackForm()
     {
-        $pengaduan = $this->pengaduanModel->getPengaduanById($id);
-        if (!$pengaduan) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Pengaduan tidak ditemukan');
-        }
+        return view('Pengaduan/track');
+    }
 
-        $data = [
-            'title' => 'Edit Pengaduan',
+    // ===== TRACK =====
+    public function track()
+    {
+        $query = $this->request->getPost('query');
+
+        $pengaduan = $this->pengaduanModel
+            ->like('nama', $query)
+            ->orLike('tracking_code', $query)
+            ->orLike('judul', $query)
+            ->findAll();
+
+        return view('Pengaduan/track', [
             'pengaduan' => $pengaduan,
-        ];
-        return view('Pengaduan/edit', $data);
-    }
-
-    public function update($id)
-    {
-        $data = [
-            'nama' => $this->request->getPost('nama'),
-            'email' => $this->request->getPost('email'),
-            'nomor_telepon' => $this->request->getPost('nomor_telepon'),
-            'judul' => $this->request->getPost('judul'),
-            'deskripsi' => $this->request->getPost('deskripsi'),
-            'kategori' => $this->request->getPost('kategori'),
-            'status' => $this->request->getPost('status'),
-        ];
-
-        $this->pengaduanModel->updatePengaduan($id, $data);
-        return redirect()->to('/pengaduan')->with('success', 'Pengaduan berhasil diupdate');
-    }
-
-    public function delete($id)
-    {
-        $this->pengaduanModel->deletePengaduan($id);
-        return redirect()->to('/pengaduan')->with('success', 'Pengaduan berhasil dihapus');
+            'query' => $query
+        ]);
     }
 }
