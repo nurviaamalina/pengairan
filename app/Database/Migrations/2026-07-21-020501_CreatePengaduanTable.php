@@ -49,6 +49,12 @@ class CreatePengaduanTable extends Migration
                 'constraint' => ['pending', 'diproses', 'selesai', 'ditolak'],
                 'default'    => 'pending',
             ],
+            'tracking_code' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '50',
+                'null'       => true,
+                'unique'     => true,
+            ],
             'created_at' => [
                 'type'    => 'DATETIME',
                 'null'    => true,
@@ -60,6 +66,7 @@ class CreatePengaduanTable extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addKey('tracking_code', false, true); // unique key
         $this->forge->createTable('pengaduan', true);
     }
 

@@ -19,6 +19,7 @@ class PengaduanModel extends Model
         'kategori',
         'judul',
         'deskripsi',
+        'tracking_code',
         'status',
         'created_at',
         'updated_at',
