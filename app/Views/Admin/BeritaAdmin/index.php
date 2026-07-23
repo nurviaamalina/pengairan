@@ -6,168 +6,184 @@
 
     <div class="content flex-grow-1 p-4 bg-light">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="container-fluid">
 
-            <h4 class="fw-bold">
-                Data Berita
-            </h4>
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <small class="text-muted">
-            Kelola seluruh berita yang akan ditampilkan pada website.
-             </small>
+                <div>
+                    <h4 class="fw-bold mb-1">
+                        Data Berita
+                    </h4>
 
-            <a href="<?= base_url('admin/berita/create') ?>" class="btn btn-tambah">
-                <i class="bi bi-plus-circle"></i>
-                Tambah Berita
-            </a>
+                    <small class="text-muted">
+                        Kelola seluruh berita yang akan ditampilkan pada website.
+                    </small>
+                </div>
 
-        </div>
-
-        <?php if(session()->getFlashdata('success')) : ?>
-
-            <div class="alert alert-success">
-
-                <?= session()->getFlashdata('success') ?>
+                <a href="<?= base_url('admin/berita/create') ?>" class="btn btn-tambah">
+                    <i class="bi bi-plus-circle"></i>
+                    Tambah Berita
+                </a>
 
             </div>
 
-        <?php endif; ?>
+            <!-- Flash Message -->
+            <?php if (session()->getFlashdata('success')) : ?>
 
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
 
-        <div class="card shadow-sm">
+                    <?= session()->getFlashdata('success') ?>
 
-            <div class="card-body">
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert">
+                    </button>
 
-                <div class="table-responsive">
+                </div>
 
-                    <table class="table table-bordered table-hover align-middle">
+            <?php endif; ?>
 
-                        <thead class="table-light">
+            <!-- Card -->
+            <div class="card shadow-sm border-0">
 
-                        <tr class="text-center">
+                <div class="card-body">
 
-                            <th width="60">No</th>
+                    <div class="table-responsive">
 
-                            <th>Gambar</th>
+                        <table class="table table-bordered table-hover align-middle">
 
-                            <th>Judul</th>
+                            <thead class="table-light text-center">
 
-                            <th>Publikator</th>
+                                <tr>
 
-                            <th>Tanggal</th>
+                                    <th width="60">No</th>
 
-                            <th>Views</th>
+                                    <th width="120">Thumbnail</th>
 
-                            <th width="170">Aksi</th>
+                                    <th>Judul</th>
 
-                        </tr>
+                                    <th width="180">Publikator</th>
 
-                        </thead>
+                                    <th width="120">Tanggal</th>
 
-                        <tbody>
+                                    <th width="80">Views</th>
 
-                        <?php if(empty($berita)) : ?>
+                                    <th width="180">Aksi</th>
 
-                            <tr>
+                                </tr>
 
-                                <td colspan="7" class="text-center">
+                            </thead>
 
-                                    Belum ada data berita
+                            <tbody>
 
-                                </td>
+                                <?php if (empty($berita)) : ?>
 
-                            </tr>
+                                    <tr>
 
-                        <?php endif; ?>
+                                        <td colspan="7" class="text-center text-muted">
 
+                                            Belum ada data berita.
 
-                        <?php
+                                        </td>
 
-                        $no = 1;
-
-                        foreach($berita as $row) :
-
-                        ?>
-
-                        <tr>
-
-                            <td>
-
-                                <?= $no++ ?>
-
-                            </td>
-
-                            <td width="120">
-
-                                <?php if($row['gambar']) : ?>
-
-                                    <img
-                                            src="<?= base_url('uploads/berita/'.$row['gambar']) ?>"
-                                            width="100"
-                                            class="img-thumbnail">
+                                    </tr>
 
                                 <?php else : ?>
 
-                                    -
+                                    <?php $no = 1; ?>
+
+                                    <?php foreach ($berita as $row) : ?>
+
+                                        <tr>
+
+                                            <td class="text-center">
+
+                                                <?= $no++ ?>
+
+                                            </td>
+
+                                            <td class="text-center">
+
+                                                <?php if (!empty($row['gambar'])) : ?>
+
+                                                    <img
+                                                        src="<?= base_url('uploads/berita/' . $row['gambar']) ?>"
+                                                        class="img-thumbnail"
+                                                        width="100">
+
+                                                <?php else : ?>
+
+                                                    <span class="text-muted">
+                                                        Tidak ada gambar
+                                                    </span>
+
+                                                <?php endif; ?>
+
+                                            </td>
+
+                                            <td>
+
+                                                <strong>
+
+                                                    <?= esc($row['judul']) ?>
+
+                                                </strong>
+
+                                            </td>
+
+                                            <td>
+
+                                                <?= esc($row['publikator']) ?>
+
+                                            </td>
+
+                                            <td class="text-center">
+
+                                                <?= date('d-m-Y', strtotime($row['tanggal'])) ?>
+
+                                            </td>
+
+                                            <td class="text-center">
+
+                                                <?= $row['views'] ?>
+
+                                            </td>
+
+                                            <td class="text-center">
+
+                                                <a href="<?= base_url('admin/berita/edit/' . $row['id']) ?>"
+                                                   class="btn btn-warning btn-sm">
+
+                                                    <i class="bi bi-pencil-square"></i>
+
+                                                    Edit
+
+                                                </a>
+
+                                                <a href="<?= base_url('admin/berita/delete/' . $row['id']) ?>"
+                                                   class="btn btn-danger btn-sm"
+                                                   onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?')">
+
+                                                    <i class="bi bi-trash"></i>
+
+                                                    Hapus
+
+                                                </a>
+
+                                            </td>
+
+                                        </tr>
+
+                                    <?php endforeach; ?>
 
                                 <?php endif; ?>
 
-                            </td>
+                            </tbody>
 
-                            <td>
+                        </table>
 
-                                <?= esc($row['judul']) ?>
-
-                            </td>
-
-                            <td>
-
-                                <?= esc($row['publikator']) ?>
-
-                            </td>
-
-                            <td>
-
-                                <?= date('d-m-Y', strtotime($row['tanggal'])) ?>
-
-                            </td>
-
-                            <td>
-
-                                <?= $row['views'] ?>
-
-                            </td>
-
-                            <td>
-
-                                <a href="<?= base_url('admin/berita/edit/'.$row['id']) ?>"
-                                   class="btn btn-warning btn-sm">
-
-                                    <i class="bi bi-pencil-square"></i>
-
-                                    Edit
-
-                                </a>
-
-                                <a href="<?= base_url('admin/berita/delete/'.$row['id']) ?>"
-                                   class="btn btn-danger btn-sm"
-                                   onclick="return confirm('Yakin ingin menghapus berita ini?')">
-
-                                    <i class="bi bi-trash"></i>
-
-                                    Hapus
-
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        <?php endforeach; ?>
-
-                        </tbody>
-
-                    </table>
+                    </div>
 
                 </div>
 

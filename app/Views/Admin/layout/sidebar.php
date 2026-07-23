@@ -101,6 +101,14 @@ $uri = service('uri');
             </a>
         </li>
 
+        <li>
+            <a href="<?= base_url('admin/kegiatan') ?>"
+             class="menu-link <?= $uri->getSegment(2) == 'kegiatan' ? 'active' : '' ?>">
+                    <i class="bi bi-camera"></i>
+                <span>Kegiatan</span>
+            </a>
+        </li>
+
     </ul>
 
 </div>

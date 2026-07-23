@@ -358,86 +358,83 @@
 <!-- KEGIATAN TERBARU -->
 <section class="kegiatan-section">
 
+    <img src="<?= base_url('assets/images/batik 2.png') ?>" class="motif-kanan">
+
     <div class="container">
 
-        <h2 class="judul-kegiatan">
-            Kegiatan Terbaru
-        </h2>
+        <div class="judul-section">
 
-        <p class="text-muted mt-3 mb-5">
-             Dokumentasi kegiatan, agenda, dan berbagai aktivitas Dinas Pengairan Banyuwangi dalam mendukung pelayanan kepada masyarakat.
-        </p>
-        <!-- Berita Utama -->
-        <div class="berita-utama">
+            <h2 class="judul-berita">
+                Kegiatan Terbaru
+            </h2>
 
-            <img src="<?= base_url('assets/images/kegiatan-utama.jpg') ?>" alt="">
-
-            <div class="overlay"></div>
+            <p class="text-muted mt-3 mb-5">
+                Ikuti berbagai kegiatan terbaru Dinas Pengairan Kabupaten Banyuwangi.
+            </p>
 
         </div>
 
-        <!-- Slider -->
+        <?php if (!empty($headlineKegiatan)) : ?>
+
+            <!-- Headline Kegiatan -->
+            <a href="<?= base_url('kegiatan'.$headlineKegiatan['slug']) ?>" class="headline-kegiatan">
+
+                <img src="<?= base_url('uploads/kegiatan/thumbnail/'.$headlineKegiatan['thumbnail']) ?>" alt="<?= esc($headlineKegiatan['judul']) ?>">
+
+                <div class="overlay">
+
+                    <h3><?= esc($headlineKegiatan['judul']) ?></h3>
+
+                    <span>
+                        <?= date('d F Y', strtotime($headlineKegiatan['tanggal'])) ?>
+                    </span>
+
+                </div>
+
+            </a>
+
+        <?php endif; ?>
+
+        <!-- Slider Tahun -->
         <div class="slider-wrapper">
 
             <button class="slider-arrow left">
-                <i class="fa-solid fa-chevron-left"></i>
+                <i class="bi bi-chevron-left"></i>
             </button>
 
-            <div class="row g-3 justify-content-center">
+            <div class="slider-container">
 
-                <div class="col-lg-4 col-md-4">
+                <?php if (!empty($tahunKegiatan)) : ?>
 
-                    <a href="#" class="card-berita">
+                    <?php foreach ($tahunKegiatan as $item) : ?>
 
-                        <img src="<?= base_url('assets/images/kegiatan1.jpg') ?>" alt="">
+                        <a href="<?= base_url('kegiatan/tahun/'.$item['tahun']) ?>" class="card-berita">
 
-                        <div class="tahun">
-                            2026
-                        </div>
+                            <img src="<?= base_url('uploads/kegiatan/thumbnail/'.$item['thumbnail']) ?>" alt="<?= esc($item['tahun']) ?>">
 
-                    </a>
+                            <div class="tahun">
 
-                </div>
+                                <?= esc($item['tahun']) ?>
 
-                <div class="col-lg-4 col-md-4">
+                            </div>
 
-                    <a href="#" class="card-berita">
+                        </a>
 
-                        <img src="<?= base_url('assets/images/kegiatan2.jpg') ?>" alt="">
+                    <?php endforeach; ?>
 
-                        <div class="tahun">
-                            2025
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <div class="col-lg-4 col-md-4">
-
-                    <a href="#" class="card-berita">
-
-                        <img src="<?= base_url('assets/images/kegiatan3.jpg') ?>" alt="">
-
-                        <div class="tahun">
-                            2024
-                        </div>
-
-                    </a>
-
-                </div>
+                <?php endif; ?>
 
             </div>
 
             <button class="slider-arrow right">
-                <i class="fa-solid fa-chevron-right"></i>
+                <i class="bi bi-chevron-right"></i>
             </button>
 
         </div>
 
         <div class="text-center mt-4">
 
-            <a href="#" class="btn-lihat">
+            <a href="<?= base_url('kegiatan') ?>" class="btn-lihat">
                 Lihat Semua
             </a>
 
@@ -446,4 +443,5 @@
     </div>
 
 </section>
+
 <?= $this->include('layout/footer') ?>

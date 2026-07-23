@@ -1,0 +1,411 @@
+/* =====================================
+   BREADCRUMB
+===================================== */
+
+.breadcrumb{
+    --bs-breadcrumb-divider: ">";
+    margin-bottom:25px;
+}
+
+.breadcrumb-item a{
+    color:#212529;
+    text-decoration:none;
+}
+
+.breadcrumb-item a:hover{
+    color:#212529;
+    text-decoration:none;
+}
+
+.breadcrumb-item.active{
+    color:#0d6efd;
+    font-weight:600;
+}
+
+/* =====================================
+   HALAMAN INDEX
+===================================== */
+
+.berita-page{
+    padding:60px 0;
+}
+
+.judul-kegiatanPage{
+    margin:0 0 45px;
+    font-size:40px;
+    font-weight:700;
+    color:#212529;
+}
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero-kegiatan{
+    text-align:center;
+    padding:20px 0 40px;
+}
+
+.hero-kegiatan h1{
+    font-size:52px;
+    font-weight:700;
+    color:#112250;
+    margin-bottom:5px;
+}
+
+.hero-kegiatan h6{
+    font-size:38px;
+    font-weight:700;
+    color:#112250;
+    margin-bottom:15px;
+}
+
+.hero-kegiatan p{
+    max-width:700px;
+    margin:auto;
+    color:#666;
+}
+
+/* =====================================
+   HERO INDEX KEGIATAN
+===================================== */
+
+.hero-indexkegiatan{
+    text-align:center;
+    padding:20px 0 40px;
+    margin-top: -175px;
+}
+
+.hero-indexkegiatan h1{
+    font-size:52px;
+    font-weight:700;
+    color:#112250;
+    margin-bottom:5px;
+    line-height:1.2;
+}
+
+.hero-indexkegiatan p{
+     max-width:700px;
+    margin:auto;
+     line-height:1.7;
+    color:#666;
+    
+}
+
+/* =====================================
+   HEADLINE
+===================================== */
+
+.headline-kegiatan{
+    position:relative;
+    display:block;
+    overflow:hidden;
+    border-radius:18px;
+    margin-bottom:50px;
+    text-decoration:none;
+}
+
+.headline-kegiatan img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    display:block;
+}
+
+.overlay{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:25px;
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.75)
+    );
+    color:#fff;
+}
+
+.overlay h3,
+.overlay h4{
+    margin:0;
+    color:#fff;
+    font-size:30px;
+    font-weight:700;
+}
+
+.overlay span{
+    display:block;
+    margin-top:10px;
+    color:#fff;
+}
+
+/* =====================================
+   TAHUN AKTIF
+===================================== */
+
+.tahun-title{
+    text-align:center;
+    font-size:42px;
+    font-weight:700;
+    color:#112250;
+}
+
+.tahun-subtitle{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 50px;
+    font-size:16px;
+    color:#666;
+    line-height:1.7;
+}
+/* =====================================
+   DAFTAR KEGIATAN
+===================================== */
+
+.tahun-kegiatan{
+    padding-bottom:60px;
+}
+
+.grid-kegiatan{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card-kegiatan{
+    position:relative;
+    display:block;
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card-kegiatan:hover{
+    transform:translateY(-5px);
+}
+
+.card-kegiatan img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-kegiatan .overlay{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:15px;
+}
+
+.card-kegiatan h6{
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
+    margin:0;
+}
+
+.card-body{
+    padding:20px;
+}
+
+.card-body h3{
+    margin-bottom:10px;
+    color:#222;
+}
+
+.card-body p{
+    color:#666;
+}
+
+/* =====================================
+   DETAIL
+===================================== */
+
+.detail-thumbnail{
+    width:100%;
+    margin-bottom:30px;
+    border-radius:18px;
+}
+
+.detail-thumbnail img{
+    width:100%;
+    height:500px;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+.detail-content{
+    line-height:1.8;
+}
+
+.galeri{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:20px;
+    margin-top:40px;
+}
+
+.galeri img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+/* =====================================
+   BUTTON KEMBALI
+===================================== */
+
+.btn-kembali{
+    background:#fff !important;
+    color:#0d6efd !important;
+    border:2px solid #0d6efd !important;
+
+    border-radius:50px;
+    padding:12px 28px;
+
+    font-size:16px;
+    font-weight:600;
+
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    margin-top:40px;
+
+    transition:.3s;
+}
+
+.btn-kembali:hover{
+    background:#0d6efd !important;
+    color:#fff !important;
+}
+
+.btn-kembali:focus{
+    box-shadow:none !important;
+}
+
+.btn-kembali:active{
+    background:#0b5ed7 !important;
+    border-color:#0b5ed7 !important;
+}
+
+.btn-kembali i{
+    font-size:18px;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+    .grid-kegiatan{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero-kegiatan h1{
+        font-size:42px;
+    }
+
+    .hero-kegiatan h6{
+        font-size:30px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .grid-kegiatan{
+        grid-template-columns:1fr;
+    }
+
+    .headline-kegiatan img{
+        height:280px;
+    }
+
+    .hero-kegiatan h1{
+        font-size:34px;
+    }
+
+    .hero-kegiatan h6{
+        font-size:26px;
+    }
+
+}
+
+
+/* TAHUN LIST */
+
+.tahun-list{
+
+    padding:60px 0;
+
+}
+
+.tahun-card{
+
+    display:block;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.tahun-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.tahun-card img{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
+
+}
+
+.tahun-card .overlay{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    padding:18px;
+
+    background:linear-gradient(transparent,rgba(0,0,0,.7));
+
+}
+
+.tahun-card h5{
+
+    color:#fff;
+
+    margin:0;
+
+    text-align:center;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+}
