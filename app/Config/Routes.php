@@ -60,6 +60,13 @@ $routes->get('korsda/detail_kegiatan/(:num)', 'Korsda::detailKegiatan/$1');
 
 /*
 |--------------------------------------------------------------------------
+| TENTANG KAMI
+|--------------------------------------------------------------------------
+*/
+$routes->get('tentang-kami', 'TentangKami::index');
+
+/*
+|--------------------------------------------------------------------------
 | ADMIN
 |--------------------------------------------------------------------------
 */
@@ -156,6 +163,17 @@ $routes->group('admin', function ($routes) {
     $routes->get('korsda/kegiatan/edit/(:num)', 'Admin\KegiatanKorsda::edit/$1');
     $routes->post('korsda/kegiatan/update/(:num)', 'Admin\KegiatanKorsda::update/$1');
     $routes->get('korsda/kegiatan/delete/(:num)', 'Admin\KegiatanKorsda::delete/$1');
+
+    /*
+    | PROFIL ADMIN
+    */
+    $routes->get('profil', 'Admin\AdminProfil::index');
+    $routes->get('profil/create', 'Admin\AdminProfil::create');
+    $routes->post('profil/save', 'Admin\AdminProfil::save');
+    $routes->get('profil/edit/(:num)', 'Admin\AdminProfil::edit/$1');
+    $routes->post('profil/update/(:num)', 'Admin\AdminProfil::update/$1');
+    $routes->get('profil/delete/(:num)', 'Admin\AdminProfil::delete/$1');
+
 
     // Tambahkan jika memang ada halaman detail kegiatan admin
     // $routes->get('korsda/kegiatan/detail/(:num)', 'Admin\KegiatanKorsda::detail/$1');

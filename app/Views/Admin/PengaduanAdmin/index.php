@@ -1,6 +1,7 @@
 <?= $this->include('admin/layout/header') ?>
 
 <style>
+/* ===== PAGE HEADER ===== */
 .page-header {
     background: linear-gradient(135deg, #f7b500, #f9c840);
     padding: 20px 25px;
@@ -31,6 +32,7 @@
     color: #0a1a3a;
 }
 
+/* ===== STATISTIK ROW ===== */
 .stats-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -59,49 +61,106 @@
     letter-spacing: 0.5px;
 }
 
+/* ===== SEARCH BOX - FULL WIDTH & RESPONSIVE ===== */
 .search-box {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 20px;
     flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
 }
 
 .search-box input {
-    flex: 1;
+    flex: 1 1 0;
     min-width: 200px;
-    padding: 10px 16px;
+    padding: 12px 18px;
     border: 2px solid #e8ecf1;
-    border-radius: 10px;
-    font-size: 0.9rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    height: 50px;
+    background: #fff;
 }
 
 .search-box input:focus {
     border-color: #f7b500;
     outline: none;
+    box-shadow: 0 0 0 4px rgba(247, 181, 0, 0.15);
 }
 
+.search-box input::placeholder {
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+/* ===== TOMBOL CARI YANG LEBIH BAGUS ===== */
 .search-box .btn-search {
-    padding: 10px 24px;
-    background: #f7b500;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, #f7b500, #f9c840);
     border: none;
-    border-radius: 10px;
-    font-weight: 600;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
     color: #0a1a3a;
     cursor: pointer;
-}
-
-.search-box .btn-reset {
-    padding: 10px 20px;
-    background: #6c757d;
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    height: 50px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    box-shadow: 0 4px 15px rgba(247, 181, 0, 0.3);
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Efek shine / kilap */
+.search-box .btn-search::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) rotate(45deg);
+    transition: all 0.6s ease;
+}
+
+.search-box .btn-search:hover::before {
+    transform: translateX(100%) rotate(45deg);
+}
+
+.search-box .btn-search:hover {
+    background: linear-gradient(135deg, #e0a200, #e8b820);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(247, 181, 0, 0.4);
+}
+
+.search-box .btn-search:active {
+    transform: translateY(0px);
+    box-shadow: 0 4px 15px rgba(247, 181, 0, 0.3);
+}
+
+.search-box .btn-search i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.search-box .btn-search:hover i {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+/* ===== TABLE ===== */
 .table-card {
     background: #fff;
     border-radius: 15px;
@@ -142,6 +201,7 @@
     background: #fffbf0;
 }
 
+/* ===== BADGE STATUS ===== */
 .badge-status {
     padding: 4px 12px;
     border-radius: 50px;
@@ -213,6 +273,7 @@
     color: #fff;
 }
 
+/* ===== EMPTY STATE ===== */
 .empty-state {
     text-align: center;
     padding: 50px 20px;
@@ -232,6 +293,7 @@
     color: #6c757d;
 }
 
+/* ===== AVATAR ===== */
 .avatar {
     width: 30px;
     height: 30px;
@@ -246,6 +308,7 @@
     margin-right: 8px;
 }
 
+/* ===== INFO BAR ===== */
 .info-bar {
     display: flex;
     justify-content: space-between;
@@ -264,33 +327,209 @@
     color: #0a1a3a;
 }
 
-@media (max-width: 768px) {
+/* ================================================================ */
+/* ===== RESPONSIVE ===== */
+/* ================================================================ */
+
+/* Desktop (≥ 992px) */
+@media (min-width: 992px) {
+    .search-box input {
+        flex: 1 1 0;
+        min-width: 250px;
+    }
+    
+    .search-box .btn-search {
+        padding: 12px 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Tablet (768px - 991px) */
+@media (max-width: 991px) {
+    .search-box {
+        gap: 10px;
+    }
+    
+    .search-box input {
+        flex: 1 1 0;
+        min-width: 180px;
+        padding: 10px 16px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+    
+    .search-box .btn-search {
+        padding: 10px 24px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile (≤ 767px) */
+@media (max-width: 767px) {
+    /* Search Box Stack */
+    .search-box {
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        width: 100%;
+    }
+    
+    .search-box input {
+        flex: 1 1 auto;
+        min-width: unset;
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        border-radius: 10px;
+        height: 46px;
+        order: 1;
+    }
+    
+    .search-box .btn-search {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        border-radius: 10px;
+        justify-content: center;
+        height: 46px;
+        order: 2;
+    }
+    
+    /* Stats Row */
     .stats-row {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
-    .search-box input {
-        min-width: 100%;
+    
+    .stat-card {
+        padding: 12px 14px;
     }
+    
+    .stat-card .number {
+        font-size: 1.2rem;
+    }
+    
+    /* Page Header */
     .page-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+        padding: 15px 18px;
     }
+    
+    .page-header h5 {
+        font-size: 1.1rem;
+    }
+    
+    .badge-total {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+    }
+    
+    /* Info Bar */
     .info-bar {
         flex-direction: column;
         text-align: center;
+        font-size: 0.8rem;
+        padding: 8px 12px;
     }
+    
+    /* Table */
+    .table-card .card-body {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table-custom {
+        min-width: 600px;
+    }
+    
     .table-custom thead th,
     .table-custom tbody td {
         padding: 8px 10px;
         font-size: 0.8rem;
     }
-    .btn-action {
-        padding: 4px 8px;
-        font-size: 0.7rem;
+    
+    /* Action Buttons - hide text, show only icon */
+    .btn-action .btn-text {
+        display: none;
     }
+    
+    .btn-action {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
+    
     .action-group {
         gap: 3px;
+    }
+}
+
+/* Mobile Small (≤ 575px) */
+@media (max-width: 575px) {
+    /* Search Box */
+    .search-box {
+        padding: 12px;
+        gap: 8px;
+    }
+    
+    .search-box input {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+        height: 42px;
+        border-radius: 8px;
+    }
+    
+    .search-box .btn-search {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+        height: 42px;
+        border-radius: 8px;
+    }
+    
+    /* Stats Row */
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    
+    .stat-card {
+        padding: 10px 12px;
+        border-radius: 8px;
+    }
+    
+    .stat-card .number {
+        font-size: 1rem;
+    }
+    
+    .stat-card .label {
+        font-size: 0.65rem;
+    }
+    
+    /* Table */
+    .table-custom {
+        font-size: 0.75rem;
+    }
+    
+    .table-custom thead th,
+    .table-custom tbody td {
+        padding: 6px 8px;
+    }
+    
+    .badge-status {
+        font-size: 0.65rem;
+        padding: 2px 8px;
+    }
+    
+    .avatar {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        margin-right: 4px;
     }
 }
 </style>
@@ -335,8 +574,9 @@
             <!-- SEARCH -->
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Cari nama, judul, atau kategori..." value="<?= isset($keyword) ? esc($keyword) : '' ?>">
-                <button class="btn-search" onclick="search()">🔍 Cari</button>
-                <a href="<?= base_url('admin/pengaduan') ?>" class="btn-reset">↺ Reset</a>
+                <button class="btn-search" onclick="search()">
+                    <i class="bi bi-search"></i> Cari
+                </button>
             </div>
 
             <!-- INFO BAR -->
@@ -363,7 +603,9 @@
                             <h4><?= isset($keyword) && !empty($keyword) ? 'Pengaduan Tidak Ditemukan' : 'Belum Ada Pengaduan' ?></h4>
                             <p><?= isset($keyword) && !empty($keyword) ? 'Tidak ada hasil untuk kata kunci tersebut.' : 'Belum ada pengaduan yang masuk ke sistem.' ?></p>
                             <?php if (isset($keyword) && !empty($keyword)): ?>
-                                <a href="<?= base_url('admin/pengaduan') ?>" class="btn-reset" style="display:inline-block;margin-top:10px;">↺ Lihat Semua</a>
+                                <a href="<?= base_url('admin/pengaduan') ?>" class="btn btn-warning" style="display:inline-block;margin-top:10px;">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Lihat Semua
+                                </a>
                             <?php endif; ?>
                         </div>
                     <?php else: ?>
@@ -430,8 +672,16 @@ document.getElementById('searchInput').addEventListener('keypress', function(e) 
 
 function search() {
     const keyword = document.getElementById('searchInput').value.trim();
+    const btn = document.querySelector('.btn-search');
+    
     if (keyword) {
-        window.location.href = '<?= base_url('admin/pengaduan') ?>?keyword=' + encodeURIComponent(keyword);
+        // Efek loading
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Mencari...';
+        btn.disabled = true;
+        
+        setTimeout(() => {
+            window.location.href = '<?= base_url('admin/pengaduan') ?>?keyword=' + encodeURIComponent(keyword);
+        }, 300);
     } else {
         window.location.href = '<?= base_url('admin/pengaduan') ?>';
     }
