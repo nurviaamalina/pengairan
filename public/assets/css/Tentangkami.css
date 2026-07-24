@@ -1,0 +1,269 @@
+/* ===========================
+   HERO TENTANG KAMI
+=========================== */
+
+.hero-about{
+    height: 450px;
+    background: #0f2864;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-about::before{
+    content: "";
+    position: absolute;
+    left: -80px;
+    top: 20px;
+    width: 380px;
+    height: 380px;
+    /* background: url('../images/batik.png') no-repeat center; */
+    background-size: contain;
+    opacity: .12;
+}
+
+.hero-about h1{
+    color: #ffffff;
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-about h1 span{
+    color: #f4b400;
+}
+
+/* ===========================
+   SEJARAH
+=========================== */
+
+.sejarah-section{
+    background: #f5f5f5;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title{
+    font-size: 48px;
+    font-weight: 700;
+    color: #102866;
+    margin-bottom: 30px;
+}
+
+.section-title span{
+    color: #dc8c09;
+}
+
+.content-card{
+    background: #ebebeb;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 6px 15px rgba(0,0,0,.15);
+}
+
+.content-card p{
+    text-align: justify;
+    line-height: 1.9;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* ===========================
+   VISI MISI
+=========================== */
+
+.visi-misi-section{
+    background: #f4b400;
+    padding: 70px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.visi-misi-section::after{
+    content: "";
+    position: absolute;
+    right: -40px;
+    bottom: -20px;
+    width: 250px;
+    height: 250px;
+    background: url('../images/batik.png') no-repeat center;
+    background-size: contain;
+    opacity: .18;
+}
+
+.vm-content{
+    position: relative;
+    z-index: 2;
+}
+
+.vm-content h3{
+    color: #102866;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.vm-content p{
+    text-align: justify;
+    line-height: 1.8;
+    color: #222;
+}
+
+.vm-content ol{
+    padding-left: 20px;
+}
+
+.vm-content ol li{
+    margin-bottom: 10px;
+    line-height: 1.7;
+    color: #222;
+}
+
+/* ===========================
+   STRUKTUR ORGANISASI
+=========================== */
+
+.struktur-section{
+    background: #f5f5f5;
+    padding: 80px 0;
+}
+
+.section-title-center{
+    color: #102866;
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.section-title-center span{
+    color: #dc8c09;
+}
+
+.sub-title{
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 35px;
+}
+
+.struktur-card{
+    background: #ebebeb;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,.15);
+}
+
+.struktur-card img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ===========================
+   BUTTON KEMBALI
+=========================== */
+
+.btn-section{
+    background: #f5f5f5;
+    padding-bottom: 70px;
+}
+
+.btn-kembali{
+    display: inline-block;
+    background: #102866;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-kembali:hover{
+    background: #17377f;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 992px){
+
+    .hero-about h1{
+        font-size: 56px;
+    }
+
+    .section-title{
+        font-size: 38px;
+    }
+
+    .section-title-center{
+        font-size: 40px;
+    }
+
+    .sub-title{
+        font-size: 22px;
+    }
+
+    .vm-content h3{
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 768px){
+
+    .hero-about{
+        height: 350px;
+    }
+
+    .hero-about::before{
+        width: 250px;
+        height: 250px;
+        left: -60px;
+    }
+
+    .hero-about h1{
+        font-size: 42px;
+    }
+
+    .section-title{
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .section-title-center{
+        font-size: 32px;
+    }
+
+    .sub-title{
+        font-size: 18px;
+    }
+
+    .content-card{
+        padding: 25px;
+    }
+
+    .vm-content h3{
+        font-size: 28px;
+    }
+
+    .visi-misi-section::after{
+        width: 180px;
+        height: 180px;
+    }
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+#sejarah,
+#visi-misi,
+#struktur{
+    scroll-margin-top:100px;
+}
