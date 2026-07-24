@@ -18,7 +18,7 @@
 }
 
 .korsda-content{
-    margin-top:-70px;
+    margin-top:0px;
     padding-bottom:80px;
 }
 
@@ -63,6 +63,14 @@
     height:100%;
     transition:.3s;
 
+}
+.alert-warning h5{
+    color: #0d2d7d; /* Biru tua */
+    font-weight: 700;
+}
+.alert-warning p{
+    color: #0d2d7d; /* Biru tua */
+    font-weight: 400;
 }
 
 .korsda-card:hover{
@@ -157,5 +165,331 @@
     font-size:36px;
 
 }
+
+}
+
+/* ================= HERO ================= */
+
+.hero-korsda{
+    background:#F5B400;
+    padding:70px 0 120px;
+}
+
+.hero-korsda h1{
+    color:#062A75;
+    font-size:60px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.hero-korsda h2{
+    color:#062A75;
+    font-size:52px;
+    font-weight:700;
+}
+
+/* ================= TAB ================= */
+
+.korsda-tabs{
+
+    background:#fff;
+
+    width:100%;
+
+    margin-top:-45px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    padding:28px 30px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+.tab-link{
+
+    text-decoration:none;
+
+    color:#222;
+
+    font-size:18px;
+
+    font-weight:500;
+
+    padding-bottom:12px;
+
+    border-bottom:3px solid transparent;
+
+    transition:.3s;
+
+}
+
+.tab-link:hover{
+
+    color:#2E5BFF;
+
+}
+
+.tab-link.active{
+
+    color:#0b2c73;
+
+    font-weight:700;
+
+    border-bottom:3px solid #0b2c73;
+
+}
+
+/* ================= CONTENT ================= */
+
+.korsda-content{
+
+    padding:40px 0 80px;
+
+}
+
+.korsda-content img{
+
+    display:block;
+
+    margin:auto;
+
+    border-radius:4px;
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.hero-korsda{
+
+    padding:50px 0 90px;
+
+}
+
+.hero-korsda h1{
+
+    font-size:40px;
+
+}
+
+.hero-korsda h2{
+
+    font-size:34px;
+
+}
+
+.korsda-tabs{
+
+    overflow-x:auto;
+
+    justify-content:flex-start;
+
+    gap:35px;
+
+}
+
+.korsda-tabs::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.tab-link{
+
+    white-space:nowrap;
+
+}
+
+}
+
+.profil-korsda img{
+    width: 100%;
+    max-width: 900px; /* ukuran maksimal */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.struktur-img{
+    max-width:1000px;
+    width:100%;
+    height:auto;
+    display:block;
+    margin:auto;
+}
+
+.btn-kembali{
+    background-color: #ffffff !important;
+    color: #0d6efd !important;
+    border: 2px solid #0d6efd !important;
+    
+   
+    border-radius: 50px;
+    padding: 20px 28;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    transition: all .3s ease;
+}
+
+.btn-kembali:hover{
+    background-color: #0d6efd !important;
+    color: #ffffff !important;
+    border-color: #0d6efd !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* ======================
+HERO
+====================== */
+
+.hero-korsda{
+    background:#f7b500;
+    padding:70px 20px;
+}
+
+.hero-korsda h1{
+    font-size:64px;
+    color:#002b73;
+    font-weight:700;
+}
+
+.hero-korsda h2{
+    font-size:56px;
+    color:#002b73;
+    font-weight:700;
+}
+
+/* ======================
+TAB
+====================== */
+
+.tab-korsda{
+
+    background:#fff;
+    margin-top:-35px;
+    display:flex;
+    justify-content:center;
+    gap:120px;
+    padding:35px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.tab-korsda a{
+
+    color:#222;
+    text-decoration:none;
+    font-size:28px;
+    padding-bottom:15px;
+
+}
+
+.tab-korsda .active{
+
+    color:#1f57ff;
+    font-weight:bold;
+    border-bottom:4px solid #1f57ff;
+
+}
+
+/* ======================
+KEGIATAN
+====================== */
+
+.kegiatan{
+
+    padding:60px 0;
+
+}
+
+.kegiatan-item{
+
+    display:flex;
+    gap:50px;
+    align-items:center;
+    margin-bottom:70px;
+
+}
+
+.gambar{
+
+    width:430px;
+
+}
+
+.gambar img{
+
+    width:100%;
+    border-radius:10px;
+    object-fit:cover;
+
+}
+
+.isi{
+
+    flex:1;
+
+}
+
+.isi h2{
+
+    font-size:44px;
+    font-weight:700;
+    line-height:1.4;
+
+}
+
+.tanggal{
+
+    margin-top:25px;
+    font-size:28px;
+    color:#555;
+    font-style:italic;
+
+}
+
+/* ======================
+KEMBALI
+====================== */
+
+.btn-kembali{
+    border-radius:30px;
+    padding:10px 28px;
+}
+
+.korsda-content .mt-5{
+    margin-top:50px;
+    margin-bottom:70px;
+}
+
+.btn-kembali:hover{
+
+    background:#1f57ff;
+    color:#fff;
 
 }

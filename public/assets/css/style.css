@@ -42,14 +42,16 @@ body{
     color:#ddd;
 }
 
-.search-box{
-
+.hero .search-box{
     margin-top:35px;
+    display:flex;
+    justify-content:center;
+    width:100%;
 }
 
-.search-box input{
-
+.hero .search-box input{
     width:420px;
+    max-width:90%;
     border-radius:30px;
     border:none;
     padding:12px 25px;

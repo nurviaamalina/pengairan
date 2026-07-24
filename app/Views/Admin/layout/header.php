@@ -16,6 +16,11 @@
 
     <!-- CSS Admin -->
     <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/css/korsdaadmin.css') ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/css/dashboardkorsda.css') ?>">
+
 </head>
 
 <body>

@@ -38,12 +38,13 @@
 
             <div class="col-lg-4 col-md-4 col-6 text-center mb-3">
 
-                <a href="https://sekardadu.dingkoding.com/home" class="menu-link">
-                    <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/sekardadu.png') ?>" alt="">
-                    </div>
-                    <h5>Sekardadu</h5>
-                </a>
+            <a href="https://sekardadu.dingkoding.com/home" class="menu-link">
+                <div class="menu-circle">
+                <img src="<?= base_url('assets/images/sekardadu.png') ?>"
+                alt=""style="width: 250%; height: 250%; object-fit: contain;">
+            </div>
+        <h5>Sekardadu</h5>
+        </a>
                 
 
             </div>
@@ -52,7 +53,7 @@
 
                 <a href="https://mawasdiri.dingkoding.com/home" class="menu-link">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/mawasdiri.png') ?>" alt="">
+                       <img src="<?= base_url('assets/images/mawasdiri.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
                     </div>
                     <h5>Mawasdiri</h5>
                 </a>
@@ -63,7 +64,7 @@
 
                 <a href="https://pubwi.dingkoding.com/home" class="menu-link">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/warmsystem.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/warmsystem.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
                     </div>
                     <h5>Warm System</h5>
                 </a>
@@ -74,7 +75,7 @@
 
                 <a href="#" class="menu-link">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/pengaduan.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/pengaduan.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
                     </div>
                     <h5>Pengaduan</h5>
                 </a>
@@ -85,7 +86,7 @@
 
                 <a href="<?= base_url('korsda') ?>" class="menu-item text-decoration-none">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/korsda.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/korsda.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
                     </div>
                     <h5>KORSDA</h5>
                 </a>
@@ -96,7 +97,7 @@
 
                 <a href="#" class="menu-link">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/cctv.png') ?>" alt="">
+                       <img src="<?= base_url('assets/images/cctv.png') ?>"alt=""style="width: 200%; height: 200%; object-fit: contain;">
                     </div>
                     <h5>Live CCTV</h5>
                 </a>
@@ -268,11 +269,13 @@
         <div class="map-wrapper">
 
             <iframe
-                src="https://www.google.com/maps/d/embed?mid=YOUR_MAP_ID"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15795.284123220945!2d114.38147724999999!3d-8.22074595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd15adf979095a9%3A0x1c00c5eb5b542e20!2sKec.%20Banyuwangi%2C%20Kabupaten%20Banyuwangi%2C%20Jawa%20Timur%2068411!5e0!3m2!1sid!2sid!4v1784694141106!5m2!1sid!2sid"
                 width="100%"
-                height="420"
+                height="450"
                 style="border:0;"
-                loading="lazy">
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin">
             </iframe>
 
         </div>
