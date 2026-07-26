@@ -15,29 +15,35 @@ $uri = service('uri');
             </a>
         </li>
 
-        <!-- Profil -->
+         <!-- Profil -->
         <li class="menu-dropdown">
 
-            <a class="menu-link" data-bs-toggle="collapse" href="#profilMenu">
+            <a class="menu-link"
+                data-bs-toggle="collapse"
+                href="#profilMenu">
+
                 <div>
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-building"></i>
                     <span>Profil</span>
                 </div>
 
                 <i class="bi bi-chevron-down"></i>
+
             </a>
 
-            <div class="collapse" id="profilMenu">
+            <div
+                class="collapse <?= $uri->getSegment(2) == 'profil' ? 'show' : '' ?>"
+                id="profilMenu">
 
-                <a href="<?= base_url('admin/profil/visi-misi') ?>" class="submenu">
-                    Visi & Misi
-                </a>
-
-                <a href="<?= base_url('admin/profil/sejarah') ?>" class="submenu">
+                <a href="<?= base_url('admin/profil#sejarah') ?>" class="submenu">
                     Sejarah
                 </a>
 
-                <a href="<?= base_url('admin/profil/struktur') ?>" class="submenu">
+                <a href="<?= base_url('admin/profil#visimisi') ?>" class="submenu">
+                    Visi & Misi
+                </a>
+
+                <a href="<?= base_url('admin/profil#struktur') ?>" class="submenu">
                     Struktur Organisasi
                 </a>
 
@@ -61,10 +67,7 @@ $uri = service('uri');
 
             <div class="collapse" id="layananMenu">
 
-                <a href="<?= base_url('admin/pengaduan') ?>" class="submenu">
-                    Pengaduan
-                </a>
-
+               
                 <a href="<?= base_url('admin/korsda/dashboard') ?>" class="submenu">
                     KORSDA
                 </a>

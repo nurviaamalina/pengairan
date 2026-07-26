@@ -66,7 +66,6 @@ class CreatePengaduanTable extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addKey('tracking_code', false, true); // unique key
         $this->forge->createTable('pengaduan', true);
     }
 
