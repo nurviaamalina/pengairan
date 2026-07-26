@@ -206,68 +206,103 @@
 
 </section>
 <!-- INFORMASI TERKINI -->
-<section class="info-section py-5">
+<!-- ===========================
+     INSTAGRAM
+=========================== -->
+
+<section class="instagram-section py-5">
 
     <div class="container">
 
-        <div class="text-center mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <h2 class="fw-bold text-primary-custom">
-                Informasi Terkini
-            </h2>
+            <div>
 
-            <p class="text-muted mt-3">
-                Ikuti berbagai kegiatan dan informasi terbaru Dinas Pengairan
-                Banyuwangi yang dipublikasikan melalui media resmi kami
-            </p>
+                <h2 class="section-title">
 
-            <div class="line-title"></div>
+                    Instagram
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Dokumentasi kegiatan terbaru Dinas Pengairan Kabupaten Banyuwangi.
+
+                </p>
+
+            </div>
+
+            <a href="<?= base_url('instagram') ?>" class="btn btn-outline-primary">
+
+                Lihat Semua
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
 
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row g-4">
 
-            <?php foreach($berita as $item): ?>
+            <?php if (!empty($instagram)) : ?>
 
-            <div class="col-lg-5 col-md-6 mb-4">
+                <?php foreach ($instagram as $item) : ?>
 
-                <div class="card berita-card">
+                    <div class="col-lg-4 col-md-6">
 
-                    <img src="<?= base_url('assets/images/'.$item['gambar']) ?>" class="card-img-top">
+                        <div class="instagram-card">
 
-                    <div class="card-body">
+                            <a href="<?= esc($item['instagram_url']) ?>" target="_blank">
 
-                        <small class="text-muted">
-                            <?= $item['tanggal'] ?>
-                        </small>
+                                <img
+                                    src="<?= base_url('uploads/instagram/' . $item['thumbnail']) ?>"
+                                    class="img-fluid">
 
-                        <h6 class="mt-2 fw-semibold">
-                            <?= $item['judul'] ?>
-                        </h6>
+                            </a>
+
+                            <div class="instagram-content">
+
+                                <h5>
+
+                                    <?= esc($item['judul']) ?>
+
+                                </h5>
+
+                                <p>
+
+                                    <?= character_limiter(strip_tags($item['caption']), 90) ?>
+
+                                </p>
+
+                                <small>
+
+                                    <i class="bi bi-calendar-event"></i>
+
+                                    <?= date('d F Y', strtotime($item['tanggal_post'])) ?>
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            <?php else : ?>
+
+                <div class="col-12">
+
+                    <div class="alert alert-light text-center">
+
+                        Belum ada postingan Instagram.
 
                     </div>
 
                 </div>
 
-            </div>
-
-            <?php endforeach; ?>
-
-        </div>
-
-        <div class="text-center mt-3">
-
-            <a href="https://instagram.com"
-                target="_blank"
-                class="btn btn-instagram">
-
-                <i class="bi bi-instagram"></i>
-
-                Lihat Selengkapnya di Instagram
-
-                <i class="bi bi-arrow-right ms-2"></i>
-
-            </a>
+            <?php endif; ?>
 
         </div>
 

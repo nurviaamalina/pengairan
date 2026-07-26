@@ -58,6 +58,12 @@ $routes->get('korsda/peta/(:num)', 'Korsda::peta/$1');
 $routes->get('korsda/kegiatan/(:num)', 'Korsda::kegiatan/$1');
 $routes->get('korsda/detail_kegiatan/(:num)', 'Korsda::detailKegiatan/$1');
 
+
+/* INSTAGRAM 
+*/
+
+$routes->get('instagram', 'Instagram::index');
+
 /*
 |--------------------------------------------------------------------------
 | ADMIN
@@ -157,6 +163,18 @@ $routes->group('admin', function ($routes) {
     $routes->post('korsda/kegiatan/update/(:num)', 'Admin\KegiatanKorsda::update/$1');
     $routes->get('korsda/kegiatan/delete/(:num)', 'Admin\KegiatanKorsda::delete/$1');
 
-    // Tambahkan jika memang ada halaman detail kegiatan admin
-    // $routes->get('korsda/kegiatan/detail/(:num)', 'Admin\KegiatanKorsda::detail/$1');
+   /*
+    |--------------------------------------------------------------------------
+    | INSTAGRAM
+    |--------------------------------------------------------------------------
+    */
+
+    $routes->get('instagram', 'Admin\AdminInstagram::index');
+    $routes->get('instagram/create', 'Admin\AdminInstagram::create');
+    $routes->post('instagram/store', 'Admin\AdminInstagram::store');
+
+    $routes->get('instagram/edit/(:num)', 'Admin\AdminInstagram::edit/$1');
+    $routes->post('instagram/update/(:num)', 'Admin\AdminInstagram::update/$1');
+
+    $routes->get('instagram/delete/(:num)', 'Admin\AdminInstagram::delete/$1');
 });

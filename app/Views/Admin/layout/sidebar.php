@@ -113,6 +113,14 @@ $uri = service('uri');
             </a>
         </li>
 
+        <li>
+            <a href="<?= base_url('admin/instagram') ?>"
+               class="menu-link <?= $uri->getSegment(2) == 'instagram' ? 'active' : '' ?>">
+                <i class="bi bi-instagram"></i>
+                <span>Instagram</span>
+            </a>
+        </li>
+
     </ul>
 
 </div>
