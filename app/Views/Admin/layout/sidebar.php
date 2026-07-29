@@ -16,39 +16,12 @@ $uri = service('uri');
         </li>
 
          <!-- Profil -->
-        <li class="menu-dropdown">
-
-            <a class="menu-link"
-                data-bs-toggle="collapse"
-                href="#profilMenu">
-
-                <div>
-                    <i class="bi bi-building"></i>
-                    <span>Profil</span>
-                </div>
-
-                <i class="bi bi-chevron-down"></i>
-
+        <li>
+            <a href="<?= base_url('admin/profil') ?>"
+               class="menu-link <?= $uri->getSegment(2) == 'profil' ? 'active' : '' ?>">
+                <i class="bi bi-building"></i>
+                <span>Profil</span>
             </a>
-
-            <div
-                class="collapse <?= $uri->getSegment(2) == 'profil' ? 'show' : '' ?>"
-                id="profilMenu">
-
-                <a href="<?= base_url('admin/profil#sejarah') ?>" class="submenu">
-                    Sejarah
-                </a>
-
-                <a href="<?= base_url('admin/profil#visimisi') ?>" class="submenu">
-                    Visi & Misi
-                </a>
-
-                <a href="<?= base_url('admin/profil#struktur') ?>" class="submenu">
-                    Struktur Organisasi
-                </a>
-
-            </div>
-
         </li>
 
         <!-- Layanan -->

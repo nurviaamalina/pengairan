@@ -242,30 +242,35 @@
     color: #fff;
 }
 
-/* ===== TIMELINE ===== */
+/* ===== TIMELINE KOMPAK ===== */
 .timeline-section {
-    margin-top: 25px;
-    padding-top: 25px;
+    margin-top: 15px;
+    padding-top: 15px;
     border-top: 2px solid #f0f0f0;
 }
 
 .timeline-section .timeline-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #0a1a3a;
-    margin-bottom: 15px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .timeline-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid #f0f0f0;
+    background: #f8f9fa;
+    padding: 6px 15px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+    border: none;
 }
 
 .timeline-item:last-child {
-    border-bottom: none;
+    margin-bottom: 0;
 }
 
 .timeline-item .dot {
@@ -290,16 +295,40 @@
 
 .timeline-item .content {
     flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
 .timeline-item .content .text {
     font-size: 0.9rem;
-    color: #333;
+    color: #0a1a3a;
+    white-space: nowrap;
+}
+
+.timeline-item .content .text strong {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #0a1a3a;
+}
+
+.timeline-item .content .text .text-muted {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-left: 6px;
 }
 
 .timeline-item .content .time {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+    background: #e9ecef;
+    padding: 2px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -487,8 +516,8 @@
                         <!-- Status saat ini -->
                         <div class="timeline-item">
                             <div class="dot <?= $pengaduan['status'] ?>"></div>
-                            <div class="content">
-                                <div class="text">
+                            <div class="timeline-content">
+                                <div class="timeline-text">
                                     <strong>
                                         <?php
                                         $status_label = '';
@@ -502,11 +531,11 @@
                                         echo $status_label;
                                         ?>
                                     </strong>
-                                    <span class="text-muted ms-2">
+                                    <span class="text-muted">
                                         <?= date('d-m-Y H:i', strtotime($pengaduan['created_at'])) ?>
                                     </span>
                                 </div>
-                                <div class="time">Status saat ini</div>
+                                <div class="timeline-status">Status saat ini</div>
                             </div>
                         </div>
 
@@ -514,20 +543,18 @@
                         <!-- Status sebelumnya -->
                         <div class="timeline-item">
                             <div class="dot pending"></div>
-                            <div class="content">
-                                <div class="text">
+                            <div class="timeline-content">
+                                <div class="timeline-text">
                                     <strong>Pengaduan Baru</strong>
-                                    <span class="text-muted ms-2">
+                                    <span class="text-muted">
                                         <?= date('d-m-Y H:i', strtotime($pengaduan['created_at'])) ?>
                                     </span>
                                 </div>
-                                <div class="time">Pengaduan dibuat</div>
+                                <div class="timeline-status">Pengaduan dibuat</div>
                             </div>
                         </div>
                         <?php endif; ?>
                     </div>
-
-                </div>
             </div>
 
         </div>
