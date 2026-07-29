@@ -58,6 +58,8 @@ $routes->get('korsda/peta/(:num)', 'Korsda::peta/$1');
 $routes->get('korsda/kegiatan/(:num)', 'Korsda::kegiatan/$1');
 $routes->get('korsda/detail_kegiatan/(:num)', 'Korsda::detailKegiatan/$1');
 
+$routes->get('instagram', 'Instagram::index');
+
 /*
 |--------------------------------------------------------------------------
 | ADMIN
