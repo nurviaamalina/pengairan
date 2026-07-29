@@ -146,23 +146,41 @@ if(bounds.length > 0){
 
                             <h5>Berita</h5>
 
-                            <?php for($i=1;$i<=3;$i++): ?>
+                           <?php if (!empty($berita)) : ?>
 
-                            <div class="d-flex mt-3">
+                                    <?php foreach ($berita as $item) : ?>
 
-                                <div class="bg-secondary rounded"
-                                    style="width:80px;height:60px;"></div>
+                                        <div class="d-flex mt-3">
 
-                                <div class="ms-3">
-                                    <small>
-                                        Laporkan permasalahan pengairan
-                                        dengan mudah dan cepat.
-                                    </small>
-                                </div>
+                                            <img
+                                                src="<?= base_url('uploads/berita/' . $item['gambar']) ?>"
+                                                style="width:80px;height:60px;object-fit:cover;border-radius:8px;">
 
-                            </div>
+                                            <div class="ms-3">
 
-                            <?php endfor; ?>
+                                                <strong style="font-size:14px;">
+                                                    <?= esc($item['judul']) ?>
+                                                </strong>
+
+                                                <br>
+
+                                                <small class="text-muted">
+                                                    <?= date('d M Y', strtotime($item['created_at'])) ?>
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                    <?php endforeach; ?>
+
+                                <?php else : ?>
+
+                                    <p class="text-muted mt-3">
+                                        Belum ada berita.
+                                    </p>
+
+                                <?php endif; ?>
 
                         </div>
                     </div>
@@ -174,14 +192,33 @@ if(bounds.length > 0){
 
                             <div class="row mt-3">
 
-                                <?php for($i=1;$i<=3;$i++): ?>
+                                <?php if (!empty($kegiatan)) : ?>
 
-                                <div class="col-4">
-                                    <div class="bg-secondary rounded"
-                                        style="height:90px;"></div>
-                                </div>
+                                        <?php foreach ($kegiatan as $item) : ?>
 
-                                <?php endfor; ?>
+                                            <div class="col-4 mb-3">
+
+                                                <img
+                                                    src="<?= base_url('uploads/kegiatan/thumbnail/' . $item['thumbnail']) ?>"
+                                                    class="img-fluid rounded"
+                                                    style="height:90px;width:100%;object-fit:cover;"
+                                                    title="<?= esc($item['judul']) ?>">
+
+                                            </div>
+
+                                        <?php endforeach; ?>
+
+                                    <?php else : ?>
+
+                                        <div class="col-12">
+
+                                            <small class="text-muted">
+                                                Belum ada kegiatan.
+                                            </small>
+
+                                        </div>
+
+                                    <?php endif; ?>
 
                             </div>
 

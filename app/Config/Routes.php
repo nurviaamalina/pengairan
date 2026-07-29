@@ -62,11 +62,14 @@ $routes->get('gis', 'Gis::index');
 
 $routes->get('instagram', 'Instagram::index');
 
+
 // profil
-$routes->get('tentang-kami', 'TentangKami::index');
 
 //cctv
 $routes->get('cctv', 'Cctv::index');
+
+$routes->get('tentang-kami', 'TentangKami::index');
+
 /*
 |--------------------------------------------------------------------------
 | ADMIN

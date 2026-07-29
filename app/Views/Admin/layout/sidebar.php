@@ -15,24 +15,23 @@ $uri = service('uri');
             </a>
         </li>
 
-         <!-- Profil -->
+        <!-- Profil -->
         <li>
-    <a href="<?= base_url('admin/profil') ?>" class="menu-link">
-        <div>
-            <i class="bi bi-building"></i>
-            <span>Profil</span>
-        </div>
-    </a>
-</li>
-        <!-- Layanan -->
+            <a href="<?= base_url('admin/profil') ?>"
+               class="menu-link <?= $uri->getSegment(2) == 'profil' ? 'active' : '' ?>">
+                <i class="bi bi-building"></i>
+                <span>Profil</span>
+            </a>
+        </li>
+
+        <!-- KORSDA -->
         <li>
-    <a href="<?= base_url('admin/korsda/dashboard') ?>" class="menu-link">
-        <div>
-            <i class="bi bi-grid"></i>
-            <span>KORSDA</span>
-        </div>
-    </a>
-</li>
+            <a href="<?= base_url('admin/korsda/dashboard') ?>"
+               class="menu-link <?= $uri->getSegment(2) == 'korsda' ? 'active' : '' ?>">
+                <i class="bi bi-grid"></i>
+                <span>KORSDA</span>
+            </a>
+        </li>
 
         <!-- Dokumen -->
         <li>
@@ -70,6 +69,7 @@ $uri = service('uri');
             </a>
         </li>
 
+        <!-- Instagram -->
         <li>
             <a href="<?= base_url('admin/instagram') ?>"
                class="menu-link <?= $uri->getSegment(2) == 'instagram' ? 'active' : '' ?>">
