@@ -34,7 +34,7 @@ $routes->get('kegiatan/(:segment)', 'Kegiatan::detail/$1');
 | GIS
 |--------------------------------------------------------------------------
 */
-$routes->get('gis', 'Gis::gis');
+// $routes->get('gis', 'Gis::gis');
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +57,10 @@ $routes->get('korsda/profil/(:num)', 'Korsda::profil/$1');
 $routes->get('korsda/peta/(:num)', 'Korsda::peta/$1');
 $routes->get('korsda/kegiatan/(:num)', 'Korsda::kegiatan/$1');
 $routes->get('korsda/detail_kegiatan/(:num)', 'Korsda::detailKegiatan/$1');
+$routes->get('korsda/gis/(:num)', 'Korsda::gis/$1');
+$routes->get('gis', 'Gis::index');
+
+$routes->get('instagram', 'Instagram::index');
 
 $routes->get('tentang-kami', 'TentangKami::index');
 /*
@@ -136,12 +140,22 @@ $routes->group('admin', function ($routes) {
     /*
     | WILAYAH
     */
-    $routes->get('korsda/wilayah', 'Admin\WilayahKorsda::index');
+    $routes->get('korsda/wilayah', 'Admin\PetaKorsda::index');
+    $routes->get('peta', 'Admin\PetaKorsda::index');
+    $routes->get('wilayah', 'Admin\PetaKorsda::index');
+    $routes->get('wilayah/create', 'Admin\PetaKorsda::create');
+    $routes->post('wilayah/store', 'Admin\PetaKorsda::store');
+
+    $routes->get('wilayah/edit/(:num)', 'Admin\PetaKorsda::edit/$1');
+    $routes->post('wilayah/update/(:num)', 'Admin\PetaKorsda::update/$1');
+
+    $routes->get('wilayah/delete/(:num)', 'Admin\PetaKorsda::delete/$1');
 
     /*
     | GIS
     */
     $routes->get('korsda/gis', 'Admin\GisKorsda::index');
+
 
     /*
     | KECAMATAN

@@ -610,6 +610,13 @@ h5{
     line-height:28px;
 }
 
+.footer-text h5{
+    color: #0A4F8F;
+}
+
+.footer-text p{
+    color: #555;
+}
 .footer-contact p{
     font-size:15px;
     margin-bottom:18px;
@@ -827,75 +834,82 @@ h5{
     z-index: 100;
     display: block;
 }
+/* ======================
+   GIS MAP
+====================== */
+
+#map{
+    height:550px;
+    border-radius:15px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.category-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    padding:8px 14px;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.category-item:hover{
+    background:#eef3ff;
+}
+
+.category-item.active{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.category-item.active .circle{
+    color:#fff;
+}
 
 /* ======================
    INSTAGRAM HOME
 ====================== */
 
 .instagram-section{
-
     background:#ffffff;
-
 }
 
 .instagram-card{
-
     background:#fff;
-
     border-radius:20px;
-
     overflow:hidden;
-
     box-shadow:0 10px 25px rgba(0,0,0,.08);
-
     transition:.3s;
-
     height:100%;
-
 }
 
 .instagram-card:hover{
-
     transform:translateY(-8px);
-
 }
 
 .instagram-card img{
-
     width:100%;
-
     height:240px;
-
     object-fit:cover;
-
 }
 
 .instagram-content{
-
     padding:20px;
-
 }
 
 .instagram-content h5{
-
     font-size:20px;
-
     font-weight:700;
-
     margin-bottom:10px;
-
 }
 
 .instagram-content p{
-
     color:#666;
-
     min-height:70px;
-
 }
 
 .instagram-content small{
-
     color:#999;
-
 }
