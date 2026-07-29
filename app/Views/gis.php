@@ -2,16 +2,16 @@
 
 <link rel="stylesheet" href="<?= base_url('assets/css/gis.css') ?>">
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <section class="gis-banner">
     <div class="container text-center">
-
         <h1>GIS Kabupaten Banyuwangi</h1>
-
         <p>
             Sistem Informasi Geografis Sumber Daya Air dan
             Infrastruktur Pengairan
         </p>
-
     </div>
 </section>
 
@@ -20,111 +20,218 @@
     <div class="container">
 
         <div class="breadcrumb-box">
-
             <a href="<?= base_url() ?>">Beranda</a>
-
             >
-
             <span>GIS</span>
-
         </div>
-
 
         <div class="row mt-4">
 
             <!-- FILTER -->
-
             <div class="col-md-3">
 
-                <div class="filter-card">
+               <div class="filter-card">
 
-                    <div class="filter-header">
-                        ☰ Filter Peta
-                    </div>
+    <div class="filter-header">
+        ☰ Filter Kecamatan
+    </div>
 
-                    <div class="p-3">
+    <div class="p-3">
 
-                        <select class="form-select mb-3">
+        <!-- Filter Kecamatan -->
+        <select class="form-select" id="filterKecamatan">
 
-                            <option>Pilih Kecamatan</option>
+            <option value="">
+                Semua Kecamatan
+            </option>
 
-                            <option>Banyuwangi</option>
+            <?php foreach ($kecamatan as $k): ?>
 
-                            <option>Rogojampi</option>
+                <option value="<?= $k['id']; ?>">
+                    <?= esc($k['nama_kecamatan']); ?>
+                </option>
 
-                            <option>Genteng</option>
+            <?php endforeach; ?>
 
-                            <option>Glenmore</option>
+        </select>
 
-                        </select>
+        <!-- Filter Kategori -->
+        <select class="form-select mt-3" id="filterKategori">
 
-                        <h6>Infrastruktur Pengairan</h6>
+            <option value="">
+                Semua Infrastruktur
+            </option>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Jaringan Irigasi
-                            </label>
-                        </div>
+            <option value="jaringan irigasi">
+                Jaringan Irigasi
+            </option>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Bendungan
-                            </label>
-                        </div>
+            <option value="bendungan">
+                Bendungan
+            </option>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Embung
-                            </label>
-                        </div>
+            <option value="embung">
+                Embung
+            </option>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Bangunan Air
-                            </label>
-                        </div>
+            <option value="bangunan pengairan">
+                Bangunan Pengairan
+            </option>
 
-                        <button class="btn btn-light w-100 mt-4">
-                            Reset Filter
-                        </button>
+        </select>
 
-                    </div>
+        <button
+            class="btn btn-secondary w-100 mt-3"
+            id="resetFilter">
 
-                </div>
+            Reset Filter
+
+        </button>
+
+    </div>
+
+</div>
 
             </div>
-
 
             <!-- MAP -->
-
             <div class="col-md-9">
 
-                <div id="map"></div>
+                <div id="map"
+                     style="height:600px;border-radius:10px;"></div>
 
             </div>
-
-        </div>
-
-        <div class="legend mt-4">
-
-            <strong>Kategori Infrastruktur</strong>
-
-            <span class="badge bg-primary">Jaringan Irigasi</span>
-
-            <span class="badge bg-success">Bendungan</span>
-
-            <span class="badge bg-warning text-dark">Embung</span>
-
-            <span class="badge bg-secondary">Bangunan Air</span>
 
         </div>
 
     </div>
 
 </section>
+
+<script>
+
+const dataGIS = <?= json_encode($gis ?? []); ?>;
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const map = L.map('map').setView([-8.2192,114.3691],10);
+
+    L.tileLayer(
+'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+{
+    maxZoom:20,
+    subdomains:['mt0','mt1','mt2','mt3']
+}).addTo(map);
+
+    let markers=[];
+
+    function tampilkanMarker(){
+
+        // Hapus marker lama
+        markers.forEach(function(marker){
+            map.removeLayer(marker);
+        });
+
+        markers=[];
+
+        const idKorsda=document.getElementById('filterKecamatan').value;
+        const kategori=document.getElementById('filterKategori').value;
+
+        dataGIS.forEach(function(item){
+
+            // Filter Kecamatan
+            if(idKorsda!="" && String(item.id_korsda)!==idKorsda){
+                return;
+            }
+            if(
+    kategori != "" &&
+    (item.keterangan ?? "").toLowerCase().trim() != kategori.toLowerCase().trim()
+){
+    return;
+}
+
+            if(
+                item.latitude==null ||
+                item.longitude==null ||
+                item.latitude=="" ||
+                item.longitude==""
+            ){
+                return;
+            }
+
+            let marker=L.marker([
+                parseFloat(item.latitude),
+                parseFloat(item.longitude)
+            ]).addTo(map);
+
+            marker.bindPopup(`
+                <div style="min-width:220px">
+
+                    <h6>${item.nama_lokasi}</h6>
+
+                    <hr>
+
+                    <b>Kecamatan</b><br>
+
+                    ${item.nama_kecamatan ?? '-'}
+
+                    <br><br>
+
+                    <b>Latitude</b><br>
+
+                    ${item.latitude}
+
+                    <br><br>
+
+                    <b>Longitude</b><br>
+
+                    ${item.longitude}
+
+                    <br><br>
+
+                    <b>Keterangan</b><br>
+
+                    ${item.keterangan ?? '-'}
+
+                </div>
+            `);
+
+            markers.push(marker);
+
+        });
+
+        if(markers.length>0){
+
+            let group=L.featureGroup(markers);
+
+            map.fitBounds(group.getBounds().pad(0.2));
+
+        }
+
+    }
+
+    tampilkanMarker();
+
+    document
+        .getElementById("filterKecamatan")
+        .addEventListener("change",tampilkanMarker);
+    
+    document
+    .getElementById("filterKategori")
+    .addEventListener("change",tampilkanMarker);
+
+    document
+        .getElementById("resetFilter")
+        .addEventListener("click",function(){
+
+            document.getElementById("filterKecamatan").value="";
+            document.getElementById("filterKategori").value="";
+
+            tampilkanMarker();
+
+        });
+
+});
+</script>
 
 <?= $this->include('layout/footer') ?>

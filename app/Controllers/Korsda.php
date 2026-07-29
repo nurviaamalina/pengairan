@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\KorsdaModel;
+use App\Models\ProfilKorsdaModel;
+use App\Models\KegiatanKorsdaModel;
 
 class Korsda extends BaseController
 {
@@ -60,4 +62,20 @@ public function detailKegiatan($id)
 
     return view('korsda/detail_kegiatan', $data);
 }
+
+public function peta($id)
+{
+    $korsdaModel = new \App\Models\KorsdaModel();
+    $wilayahModel = new \App\Models\WilayahKerjaModel();
+
+    $data['korsda'] = $korsdaModel->find($id);
+
+    $data['wilayah'] = $wilayahModel
+        ->where('id_korsda', $id)
+        ->findAll();
+
+    return view('korsda/korsda_peta', $data);
+}
+
+
 }

@@ -19,29 +19,25 @@
                     <div class="row g-4">
 
                         <!-- Card 1 -->
-                        <div class="col-md-3">
-                            <div class="card shadow-sm border-0 rounded-4 h-100">
-                                <div class="card-body">
-                                    <i class="bi bi-list fs-1"></i>
+                        <div class="col-lg-4 col-md-6">
+        <a href="<?= base_url('admin/korsda/dashboard') ?>" class="text-decoration-none text-dark">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <i class="bi bi-people fs-1"></i>
 
-                                    <h6 class="mt-3">
-                                        Korsda
-                                    </h6>
+                    <h5 class="mt-3">Korsda</h5>
 
-                                    <small class="text-muted">
-                                        Jelajahi peta digital jaringan sungai,
-                                        irigasi dan bendungan.
-                                    </small>
-
-                                    <div class="mt-4">
-                                        <a href="#">Selengkapnya →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    <p class="text-muted">
+                        Jelajahi peta digital jaringan sungai,
+                        irigasi dan bendungan.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    
                         <!-- Card 2 -->
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="card shadow-sm border-0 rounded-4 h-100">
                                 <div class="card-body">
                                     <i class="bi bi-telephone fs-1"></i>
@@ -51,29 +47,21 @@
                                     <small class="text-muted">
                                         Monitoring sumber daya air secara terintegrasi.
                                     </small>
-
-                                    <div class="mt-4">
-                                        <a href="#">Selengkapnya →</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card 4 -->
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="card shadow-sm border-0 rounded-4 h-100">
                                 <div class="card-body">
-                                    <i class="bi bi-telephone fs-1"></i>
+                                    <i class="bi bi-camera-video fs-1"></i>
 
                                     <h6 class="mt-3">Live CCTV</h6>
 
                                     <small class="text-muted">
                                         Laporkan masalah dengan mudah.
                                     </small>
-
-                                    <div class="mt-4">
-                                        <a href="#">Selengkapnya →</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -82,22 +70,68 @@
 
                     <!-- MAP -->
                     <div class="card border-0 shadow-sm rounded-4 mt-4">
-                        <div class="card-body">
+    <div class="card-body">
 
-                            <h5>Peta Jaringan Irigasi</h5>
+        <h5 class="mb-3">Peta Jaringan Irigasi</h5>
 
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15795.284123220945!2d114.38147724999999!3d-8.22074595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd15adf979095a9%3A0x1c00c5eb5b542e20!2sKec.%20Banyuwangi%2C%20Kabupaten%20Banyuwangi%2C%20Jawa%20Timur%2068411!5e0!3m2!1sid!2sid!4v1784694141106!5m2!1sid!2sid"
-                                width="100%"
-                                height="450"
-                                style="border:0;"
-                                allowfullscreen
-                                loading="lazy"
-                                referrerpolicy="strict-origin-when-cross-origin">
-                            </iframe>
+        <div id="map" style="height:450px;border-radius:15px;"></div>
 
-                        </div>
-                    </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+const map = L.map('map');
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© OpenStreetMap'
+}).addTo(map);
+
+let bounds = [];
+
+<?php foreach($gis as $row): ?>
+
+    <?php if(!empty($row['latitude']) && !empty($row['longitude'])): ?>
+
+        var marker = L.marker([
+            <?= $row['latitude'] ?>,
+            <?= $row['longitude'] ?>
+        ]).addTo(map);
+
+        marker.bindPopup(`
+            <strong><?= esc($row['nama_lokasi']) ?></strong><br>
+            Kecamatan : <?= esc($row['nama_kecamatan']) ?><br>
+
+            <?php if(!empty($row['keterangan'])): ?>
+                <?= esc($row['keterangan']) ?>
+            <?php endif; ?>
+        `);
+
+        bounds.push([
+            <?= $row['latitude'] ?>,
+            <?= $row['longitude'] ?>
+        ]);
+
+    <?php endif; ?>
+
+<?php endforeach; ?>
+
+if(bounds.length > 0){
+
+    map.fitBounds(bounds,{
+        padding:[30,30]
+    });
+
+}else{
+
+    map.setView([-8.2192,114.3691],11);
+
+}
+
+</script>
 
                 </div>
 

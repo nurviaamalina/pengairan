@@ -1,4 +1,7 @@
 <?= $this->include('layout/header') ?>
+<link rel="stylesheet" href="<?= base_url('assets/css/gis.css') ?>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <section class="hero">
 
@@ -289,70 +292,60 @@
 
         <!-- MAP -->
         <div class="map-wrapper">
-
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15795.284123220945!2d114.38147724999999!3d-8.22074595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd15adf979095a9%3A0x1c00c5eb5b542e20!2sKec.%20Banyuwangi%2C%20Kabupaten%20Banyuwangi%2C%20Jawa%20Timur%2068411!5e0!3m2!1sid!2sid!4v1784694141106!5m2!1sid!2sid"
-                width="100%"
-                height="450"
-                style="border:0;"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin">
-            </iframe>
-
-        </div>
+        <div id="map"></div>
+</div>
 
         <!-- KATEGORI -->
         <div class="category-box mt-4">
 
-            <div class="row align-items-center g-3">
+    <div class="row align-items-center g-3">
 
-                <div class="col-lg-3">
-                    <div class="category-title">
-                        <strong>Kategori</strong><br>
-                        Infrastruktur
-                    </div>
+        <div class="col-lg-3">
+            <div class="category-title">
+                <strong>Kategori</strong><br>
+                Infrastruktur
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+
+            <div class="d-flex flex-wrap gap-4 justify-content-lg-start justify-content-center">
+
+                <div class="category-item" data-kategori="jaringan irigasi">
+                    <span class="circle blue">
+                        <i class="bi bi-droplet-fill"></i>
+                    </span>
+                    Jaringan Irigasi
                 </div>
 
-                <div class="col-lg-9">
+                <div class="category-item" data-kategori="bendungan">
+                    <span class="circle green">
+                        <i class="bi bi-tree-fill"></i>
+                    </span>
+                    Bendungan
+                </div>
 
-                    <div class="d-flex flex-wrap gap-4 justify-content-lg-start justify-content-center">
+                <div class="category-item" data-kategori="embung">
+                    <span class="circle orange">
+                        <i class="bi bi-water"></i>
+                    </span>
+                    Embung
+                </div>
 
-                        <div class="category-item">
-                            <span class="circle blue">
-                                <i class="bi bi-droplet-fill"></i>
-                            </span>
-                            Jaringan Irigasi
-                        </div>
-
-                        <div class="category-item">
-                            <span class="circle green">
-                                <i class="bi bi-tree-fill"></i>
-                            </span>
-                            Bendungan
-                        </div>
-
-                        <div class="category-item">
-                            <span class="circle orange">
-                                <i class="bi bi-water"></i>
-                            </span>
-                            Embung
-                        </div>
-
-                        <div class="category-item">
-                            <span class="circle purple">
-                                <i class="bi bi-building"></i>
-                            </span>
-                            Bangunan Pengairan
-                        </div>
-
-                    </div>
-
+                <div class="category-item" data-kategori="bangunan pengairan">
+                    <span class="circle purple">
+                        <i class="bi bi-building"></i>
+                    </span>
+                    Bangunan Pengairan
                 </div>
 
             </div>
 
         </div>
+
+    </div>
+
+</div>
 
     </div>
 
@@ -446,5 +439,136 @@
     </div>
 
 </section>
+<script>
 
+const dataGIS = <?= json_encode($gis ?? []); ?>;
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const map = L.map('map', {
+        scrollWheelZoom: false
+    }).setView([-8.2192,114.3691],10);
+
+    L.tileLayer(
+        'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        {
+            maxZoom:20,
+            subdomains:['mt0','mt1','mt2','mt3']
+        }
+    ).addTo(map);
+
+    let markers = [];
+    let kategoriAktif = "";
+
+    function tampilkanMarker(){
+
+        // hapus marker lama
+        markers.forEach(function(marker){
+            map.removeLayer(marker);
+        });
+
+        markers = [];
+
+        dataGIS.forEach(function(item){
+
+            if(
+                item.latitude == null ||
+                item.longitude == null ||
+                item.latitude == "" ||
+                item.longitude == ""
+            ){
+                return;
+            }
+
+            // FILTER KATEGORI
+            if(
+                kategoriAktif != "" &&
+                item.keterangan.toLowerCase() != kategoriAktif
+            ){
+                return;
+            }
+
+            let marker = L.marker([
+                parseFloat(item.latitude),
+                parseFloat(item.longitude)
+            ]).addTo(map);
+
+            marker.bindPopup(`
+                <div style="min-width:220px">
+
+                    <h6>${item.nama_lokasi}</h6>
+
+                    <hr>
+
+                    <b>Kecamatan</b><br>
+
+                    ${item.nama_kecamatan ?? '-'}
+
+                    <br><br>
+
+                    <b>Latitude</b><br>
+
+                    ${item.latitude}
+
+                    <br><br>
+
+                    <b>Longitude</b><br>
+
+                    ${item.longitude}
+
+                    <br><br>
+
+                    <b>Kategori</b><br>
+
+                    ${item.keterangan ?? '-'}
+
+                </div>
+            `);
+
+            markers.push(marker);
+
+        });
+
+        if(markers.length > 0){
+
+            let group = L.featureGroup(markers);
+
+            map.fitBounds(group.getBounds().pad(0.2));
+
+        }
+
+    }
+
+    tampilkanMarker();
+
+    // ==========================
+    // FILTER SAAT KATEGORI DIKLIK
+    // ==========================
+
+    document.querySelectorAll(".category-item").forEach(function(item){
+
+        item.addEventListener("click", function(){
+
+            document.querySelectorAll(".category-item").forEach(function(el){
+                el.classList.remove("active");
+            });
+
+            this.classList.add("active");
+
+            kategoriAktif = this.dataset.kategori;
+
+            tampilkanMarker();
+
+        });
+
+    });
+
+    // Klik peta menuju halaman GIS
+
+    map.on('click', function () {
+        window.location.href = "<?= base_url('gis') ?>";
+    });
+
+});
+</script>
 <?= $this->include('layout/footer') ?>

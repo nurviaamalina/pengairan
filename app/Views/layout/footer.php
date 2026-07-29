@@ -11,13 +11,13 @@
 
                     <img src="<?= base_url('assets/images/pu.png') ?>" alt="Logo">
 
-                    <div class="ms-3">
+                    <div class="ms-3 footer-text">
 
-                        <h5>Dinas Pengairan<br>Banyuwangi</h5>
+                        <h5>Dinas Pengairan Banyuwangi</h5>
 
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Dinas pengairan berkomitmen untuk mengelola sumber daya air secara
+                            berkelanjutan demi kesejahteraan masyarakat dan kelestarian lingkungan
                         </p>
 
                     </div>
