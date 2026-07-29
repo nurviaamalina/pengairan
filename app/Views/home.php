@@ -98,14 +98,20 @@
 
             <div class="col-lg-4 col-md-4 col-6 text-center">
 
-                <a href="#" class="menu-link">
-                    <div class="menu-circle">
-                       <img src="<?= base_url('assets/images/cctv.png') ?>"alt=""style="width: 200%; height: 200%; object-fit: contain;">
-                    </div>
-                    <h5>Live CCTV</h5>
-                </a>
+    <a href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"
+       class="menu-link"
+       target="_blank">
 
-            </div>
+        <div class="menu-circle">
+            <img src="<?= base_url('assets/images/cctv.png') ?>"
+                 alt="Live CCTV"
+                 style="width: 200%; height: 200%; object-fit: contain;">
+        </div>
+
+        <h5>Live CCTV</h5>
+    </a>
+
+</div>
 
         </div>
 

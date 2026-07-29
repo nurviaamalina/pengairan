@@ -37,34 +37,37 @@
     </div>
     
                         <!-- Card 2 -->
-                        <div class="col-md-4">
-                            <div class="card shadow-sm border-0 rounded-4 h-100">
-                                <div class="card-body">
-                                    <i class="bi bi-telephone fs-1"></i>
+        <div class="col-lg-4 col-md-6">
+        <a href="<?= base_url('admin/pengaduan') ?>" class="text-decoration-none text-dark">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <i class="bi bi-telephone fs-1"></i>
 
-                                    <h6 class="mt-3">Layanan Pengaduan</h6>
+                    <h5 class="mt-3">Layanan Pengaduan</h5>
 
-                                    <small class="text-muted">
-                                        Monitoring sumber daya air secara terintegrasi.
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
+                    <p class="text-muted">
+                        Laporkan permasalahan pengairan dengan mudah dan cepat.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
                         <!-- Card 4 -->
-                        <div class="col-md-4">
-                            <div class="card shadow-sm border-0 rounded-4 h-100">
-                                <div class="card-body">
-                                    <i class="bi bi-camera-video fs-1"></i>
+                       <div class="col-lg-4 col-md-6">
+    <a href="<?= base_url('admin/dokumen') ?>" class="text-decoration-none text-dark">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+            <div class="card-body">
+                <i class="bi bi-file-earmark-text fs-1"></i>
 
-                                    <h6 class="mt-3">Live CCTV</h6>
+                <h5 class="mt-3">Dokumen</h5>
 
-                                    <small class="text-muted">
-                                        Laporkan masalah dengan mudah.
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
+                <p class="text-muted">
+                    Kelola dan akses dokumen Dinas Pengairan dengan mudah.
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
 
                     </div>
 

@@ -60,6 +60,13 @@ $routes->get('korsda/detail_kegiatan/(:num)', 'Korsda::detailKegiatan/$1');
 $routes->get('korsda/gis/(:num)', 'Korsda::gis/$1');
 $routes->get('gis', 'Gis::index');
 
+$routes->get('instagram', 'Instagram::index');
+
+// profil
+$routes->get('tentang-kami', 'TentangKami::index');
+
+//cctv
+$routes->get('cctv', 'Cctv::index');
 /*
 |--------------------------------------------------------------------------
 | ADMIN

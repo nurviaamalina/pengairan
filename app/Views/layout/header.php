@@ -95,9 +95,9 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Pengaduan</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('pengaduan') ?>">Pengaduan</a></li>
                             <li><a class="dropdown-item" href="<?= base_url('korsda') ?>">Korsda</a></li>
-                            <li><a class="dropdown-item" href="#">Live CCTV</a></li>
+                            <li><a class="dropdown-item"href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"target="_blank">Live CCTV</a></li>
                         </ul>
                     </li>
 

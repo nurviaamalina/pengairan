@@ -16,69 +16,23 @@ $uri = service('uri');
         </li>
 
          <!-- Profil -->
-        <li class="menu-dropdown">
-
-            <a class="menu-link"
-                data-bs-toggle="collapse"
-                href="#profilMenu">
-
-                <div>
-                    <i class="bi bi-building"></i>
-                    <span>Profil</span>
-                </div>
-
-                <i class="bi bi-chevron-down"></i>
-
-            </a>
-
-            <div
-                class="collapse <?= $uri->getSegment(2) == 'profil' ? 'show' : '' ?>"
-                id="profilMenu">
-
-                <a href="<?= base_url('admin/profil#sejarah') ?>" class="submenu">
-                    Sejarah
-                </a>
-
-                <a href="<?= base_url('admin/profil#visimisi') ?>" class="submenu">
-                    Visi & Misi
-                </a>
-
-                <a href="<?= base_url('admin/profil#struktur') ?>" class="submenu">
-                    Struktur Organisasi
-                </a>
-
-            </div>
-
-        </li>
-
+        <li>
+    <a href="<?= base_url('admin/profil') ?>" class="menu-link">
+        <div>
+            <i class="bi bi-building"></i>
+            <span>Profil</span>
+        </div>
+    </a>
+</li>
         <!-- Layanan -->
-        <li class="menu-dropdown">
-
-            <a class="menu-link" data-bs-toggle="collapse" href="#layananMenu">
-
-                <div>
-                    <i class="bi bi-grid"></i>
-                    <span>Layanan</span>
-                </div>
-
-                <i class="bi bi-chevron-down"></i>
-
-            </a>
-
-            <div class="collapse" id="layananMenu">
-
-               
-                <a href="<?= base_url('admin/korsda/dashboard') ?>" class="submenu">
-                    KORSDA
-                </a>
-
-                <a href="#" class="submenu">
-                    Live CCTV
-                </a>
-
-            </div>
-
-        </li>
+        <li>
+    <a href="<?= base_url('admin/korsda/dashboard') ?>" class="menu-link">
+        <div>
+            <i class="bi bi-grid"></i>
+            <span>KORSDA</span>
+        </div>
+    </a>
+</li>
 
         <!-- Dokumen -->
         <li>
