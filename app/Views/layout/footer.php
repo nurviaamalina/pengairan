@@ -95,9 +95,16 @@
 
                         <ul>
 
-                            <li><a href="#">Layanan</a></li>
-                            <li><a href="#">Pengaduan</a></li>
-                            <li><a href="#">Sekardadu</a></li>
+                            <li><a href="<?= base_url('korsda') ?>">KORSDA</a></li>
+
+<li><a href="<?= base_url('pengaduan') ?>">Pengaduan</a></li>
+
+<li>
+    <a href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"
+       target="_blank">
+        Live CCTV
+    </a>
+</li>
 
                         </ul>
 

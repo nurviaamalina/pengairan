@@ -487,8 +487,12 @@ const dataGIS = <?= json_encode($gis ?? []); ?>;
 document.addEventListener("DOMContentLoaded", function () {
 
     const map = L.map('map', {
-        scrollWheelZoom: false
-    }).setView([-8.2192,114.3691],10);
+    scrollWheelZoom: true,   
+    touchZoom: true,
+    doubleClickZoom: true,
+    dragging: true,
+    zoomControl: true
+}).setView([-8.2192, 114.3691], 11);
 
     L.tileLayer(
         'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',

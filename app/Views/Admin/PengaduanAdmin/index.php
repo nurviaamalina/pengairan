@@ -661,10 +661,10 @@
             </div>
 
         </div>
-        <?= $this->include('admin/layout/footer') ?>
+        
     </div>
 </div>
-
+ <?= $this->include('admin/layout/footer') ?>
 <script>
 document.getElementById('searchInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') search();

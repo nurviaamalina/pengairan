@@ -169,8 +169,8 @@
         </div>
 
         <!-- Footer -->
-        <?= $this->include('admin/layout/footer') ?>
 
     </div>
 
 </div>
+ <?= $this->include('admin/layout/footer') ?>

@@ -157,9 +157,6 @@
 
             </button>
         </div>
-
     </div>
-
 </div>
-
-<?= $this->include('admin/layout/footer') ?>
+ <?= $this->include('admin/layout/footer') ?>
