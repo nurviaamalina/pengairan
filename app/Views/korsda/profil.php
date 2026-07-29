@@ -31,11 +31,6 @@
         Kegiatan
     </a>
 
-    <a href="<?= base_url('korsda/gis/'.$korsda['id']) ?>"
-       class="tab-link <?= $uri->getSegment(2) == 'gis' ? 'active' : '' ?>">
-        GIS
-    </a>
-
 </div>
 </div>
 

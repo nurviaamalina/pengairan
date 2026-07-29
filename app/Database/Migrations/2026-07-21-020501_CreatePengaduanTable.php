@@ -53,7 +53,6 @@ class CreatePengaduanTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '50',
                 'null'       => true,
-                'unique'     => true,
             ],
             'created_at' => [
                 'type'    => 'DATETIME',
