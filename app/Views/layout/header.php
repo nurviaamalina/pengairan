@@ -21,7 +21,11 @@
 
     <!-- CSS -->
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
+
     <link href="<?= base_url('assets/css/dokumen.css') ?>" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?= base_url('assets/css/korsda.css') ?>">
+
 </head>
 
 <body>
@@ -75,16 +79,28 @@
                             href="#"
                             role="button"
                             data-bs-toggle="dropdown">
-                            LAYANAN
+                            INOVASI
                         </a>
 
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="https://sekardadu.dingkoding.com/home">Sekardadu</a></li>
                             <li><a class="dropdown-item" href="https://mawasdiri.dingkoding.com/home">Mawasdiri</a></li>
                             <li><a class="dropdown-item" href="https://pubwi.dingkoding.com/home">Warm System</a></li>
-                            <li><a class="dropdown-item" href="#">Pengaduan</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown">
+                            LAYANAN
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?= base_url('pengaduan') ?>">Pengaduan</a></li>
                             <li><a class="dropdown-item" href="<?= base_url('korsda') ?>">Korsda</a></li>
-                            <li><a class="dropdown-item" href="#">Live CCTV</a></li>
+                            <li><a class="dropdown-item"href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"target="_blank">Live CCTV</a></li>
                         </ul>
                     </li>
 

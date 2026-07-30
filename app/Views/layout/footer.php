@@ -11,13 +11,13 @@
 
                     <img src="<?= base_url('assets/images/pu.png') ?>" alt="Logo">
 
-                    <div class="ms-3">
+                    <div class="ms-3 footer-text">
 
-                        <h5>Dinas Pengairan<br>Banyuwangi</h5>
+                        <h5>Dinas Pengairan Banyuwangi</h5>
 
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Dinas pengairan berkomitmen untuk mengelola sumber daya air secara
+                            berkelanjutan demi kesejahteraan masyarakat dan kelestarian lingkungan
                         </p>
 
                     </div>
@@ -65,9 +65,6 @@
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="#"><i class="fas fa-rss"></i></a>
 
                 </div>
 
@@ -98,9 +95,16 @@
 
                         <ul>
 
-                            <li><a href="#">Layanan</a></li>
-                            <li><a href="#">Pengaduan</a></li>
-                            <li><a href="#">Sekardadu</a></li>
+                            <li><a href="<?= base_url('korsda') ?>">KORSDA</a></li>
+
+<li><a href="<?= base_url('pengaduan') ?>">Pengaduan</a></li>
+
+<li>
+    <a href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"
+       target="_blank">
+        Live CCTV
+    </a>
+</li>
 
                         </ul>
 

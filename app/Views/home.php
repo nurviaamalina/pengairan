@@ -1,4 +1,7 @@
 <?= $this->include('layout/header') ?>
+<link rel="stylesheet" href="<?= base_url('assets/css/gis.css') ?>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <section class="hero">
 
@@ -38,12 +41,13 @@
 
             <div class="col-lg-4 col-md-4 col-6 text-center mb-3">
 
-                <a href="https://sekardadu.dingkoding.com/home" class="menu-link">
-                    <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/sekardadu.png') ?>" alt="">
-                    </div>
-                    <h5>Sekardadu</h5>
-                </a>
+            <a href="https://sekardadu.dingkoding.com/home" class="menu-link">
+                <div class="menu-circle">
+                <img src="<?= base_url('assets/images/sekardadu.png') ?>"
+                alt=""style="width: 250%; height: 250%; object-fit: contain;">
+            </div>
+        <h5>Sekardadu</h5>
+        </a>
                 
 
             </div>
@@ -52,7 +56,7 @@
 
                 <a href="https://mawasdiri.dingkoding.com/home" class="menu-link">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/mawasdiri.png') ?>" alt="">
+                       <img src="<?= base_url('assets/images/mawasdiri.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
                     </div>
                     <h5>Mawasdiri</h5>
                 </a>
@@ -63,7 +67,7 @@
 
                 <a href="https://pubwi.dingkoding.com/home" class="menu-link">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/warmsystem.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/warmsystem.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
                     </div>
                     <h5>Warm System</h5>
                 </a>
@@ -74,7 +78,7 @@
 
                  <a href="<?= base_url('pengaduan') ?>" class="menu-link text-decoration-none">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/pengaduan.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/pengaduan.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
                     </div>
                     <h5>Pengaduan</h5>
                 </a>
@@ -85,7 +89,7 @@
 
                 <a href="<?= base_url('korsda') ?>" class="menu-item text-decoration-none">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/korsda.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/korsda.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
                     </div>
                     <h5>KORSDA</h5>
                 </a>
@@ -94,14 +98,20 @@
 
             <div class="col-lg-4 col-md-4 col-6 text-center">
 
-                <a href="#" class="menu-link">
-                    <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/cctv.png') ?>" alt="">
-                    </div>
-                    <h5>Live CCTV</h5>
-                </a>
+    <a href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"
+       class="menu-link"
+       target="_blank">
 
-            </div>
+        <div class="menu-circle">
+            <img src="<?= base_url('assets/images/cctv.png') ?>"
+                 alt="Live CCTV"
+                 style="width: 200%; height: 200%; object-fit: contain;">
+        </div>
+
+        <h5>Live CCTV</h5>
+    </a>
+
+</div>
 
         </div>
 
@@ -131,45 +141,67 @@
         </div>
     </div>
 
-        <!-- Berita Utama -->
-        <div class="berita-utama">
+       
+        <?php if (!empty($berita)) : ?>
+ <!-- Berita Utama -->
+<div class="berita-utama">
 
-            <img src="<?= base_url('assets/images/berita1.jpg') ?>" alt="">
+    <a href="<?= base_url('berita/'.$berita[0]['slug']) ?>">
 
-            <div class="overlay"></div>
+        <img src="<?= base_url('uploads/berita/'.$berita[0]['gambar']) ?>" alt="">
+
+        <div class="overlay">
+
+            <h3><?= esc($berita[0]['judul']) ?></h3>
+
+            <span>
+                <?= date('d F Y', strtotime($berita[0]['created_at'])) ?>
+            </span>
 
         </div>
+
+    </a>
+
+</div>
 
         <!-- Slider Berita -->
         <div class="slider-berita">
 
-            <button class="slider-btn kiri">
-                &#10094;
-            </button>
+    <button class="slider-btn kiri">
+        <i class="bi bi-arrow-left"></i>
+    </button>
 
-            <div class="berita-item">
+ <?php foreach (array_slice($berita, 1) as $item): ?>
 
-                <img src="<?= base_url('assets/images/berita2.jpg') ?>">
+<div class="berita-item">
 
-            </div>
+    <a href="<?= base_url('berita/'.$item['slug']) ?>">
 
-            <div class="berita-item">
+        <img src="<?= base_url('uploads/berita/'.$item['gambar']) ?>">
 
-                <img src="<?= base_url('assets/images/berita2.jpg') ?>">
+        <div class="overlay-kecil">
 
-            </div>
+            <h6><?= esc($item['judul']) ?></h6>
 
-            <div class="berita-item">
-
-                <img src="<?= base_url('assets/images/berita2.jpg') ?>">
-
-            </div>
-
-            <button class="slider-btn kanan">
-                &#10095;
-            </button>
+            <span>
+                <?= date('d M Y', strtotime($item['created_at'])) ?>
+            </span>
 
         </div>
+
+    </a>
+
+</div>
+
+<?php endforeach; ?>
+
+    <button class="slider-btn kanan">
+        <i class="bi bi-arrow-right"></i>
+    </button>
+
+</div>
+
+<?php endif; ?>
 
         <div class="text-center">
 
@@ -183,68 +215,103 @@
 
 </section>
 <!-- INFORMASI TERKINI -->
-<section class="info-section py-5">
+<!-- ===========================
+     INSTAGRAM
+=========================== -->
+
+<section class="instagram-section py-5">
 
     <div class="container">
 
-        <div class="text-center mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <h2 class="fw-bold text-primary-custom">
-                Informasi Terkini
-            </h2>
+            <div>
 
-            <p class="text-muted mt-3">
-                Ikuti berbagai kegiatan dan informasi terbaru Dinas Pengairan
-                Banyuwangi yang dipublikasikan melalui media resmi kami
-            </p>
+                <h2 class="section-title">
 
-            <div class="line-title"></div>
+                    Instagram
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Dokumentasi kegiatan terbaru Dinas Pengairan Kabupaten Banyuwangi.
+
+                </p>
+
+            </div>
+
+            <a href="<?= base_url('instagram') ?>" class="btn btn-outline-primary">
+
+                Lihat Semua
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
 
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row g-4">
 
-            <?php foreach($berita as $item): ?>
+            <?php if (!empty($instagram)) : ?>
 
-            <div class="col-lg-5 col-md-6 mb-4">
+                <?php foreach ($instagram as $item) : ?>
 
-                <div class="card berita-card">
+                    <div class="col-lg-4 col-md-6">
 
-                    <img src="<?= base_url('assets/images/'.$item['gambar']) ?>" class="card-img-top">
+                        <div class="instagram-card">
 
-                    <div class="card-body">
+                            <a href="<?= esc($item['instagram_url']) ?>" target="_blank">
 
-                        <small class="text-muted">
-                            <?= $item['tanggal'] ?>
-                        </small>
+                                <img
+                                    src="<?= base_url('uploads/instagram/' . $item['thumbnail']) ?>"
+                                    class="img-fluid">
 
-                        <h6 class="mt-2 fw-semibold">
-                            <?= $item['judul'] ?>
-                        </h6>
+                            </a>
+
+                            <div class="instagram-content">
+
+                                <h5>
+
+                                    <?= esc($item['judul']) ?>
+
+                                </h5>
+
+                                <p>
+
+                                    <?= character_limiter(strip_tags($item['caption']), 90) ?>
+
+                                </p>
+
+                                <small>
+
+                                    <i class="bi bi-calendar-event"></i>
+
+                                    <?= date('d F Y', strtotime($item['tanggal_post'])) ?>
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            <?php else : ?>
+
+                <div class="col-12">
+
+                    <div class="alert alert-light text-center">
+
+                        Belum ada postingan Instagram.
 
                     </div>
 
                 </div>
 
-            </div>
-
-            <?php endforeach; ?>
-
-        </div>
-
-        <div class="text-center mt-3">
-
-            <a href="https://instagram.com"
-                target="_blank"
-                class="btn btn-instagram">
-
-                <i class="bi bi-instagram"></i>
-
-                Lihat Selengkapnya di Instagram
-
-                <i class="bi bi-arrow-right ms-2"></i>
-
-            </a>
+            <?php endif; ?>
 
         </div>
 
@@ -266,68 +333,60 @@
 
         <!-- MAP -->
         <div class="map-wrapper">
-
-            <iframe
-                src="https://www.google.com/maps/d/embed?mid=YOUR_MAP_ID"
-                width="100%"
-                height="420"
-                style="border:0;"
-                loading="lazy">
-            </iframe>
-
-        </div>
+        <div id="map"></div>
+</div>
 
         <!-- KATEGORI -->
         <div class="category-box mt-4">
 
-            <div class="row align-items-center g-3">
+    <div class="row align-items-center g-3">
 
-                <div class="col-lg-3">
-                    <div class="category-title">
-                        <strong>Kategori</strong><br>
-                        Infrastruktur
-                    </div>
+        <div class="col-lg-3">
+            <div class="category-title">
+                <strong>Kategori</strong><br>
+                Infrastruktur
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+
+            <div class="d-flex flex-wrap gap-4 justify-content-lg-start justify-content-center">
+
+                <div class="category-item" data-kategori="jaringan irigasi">
+                    <span class="circle blue">
+                        <i class="bi bi-droplet-fill"></i>
+                    </span>
+                    Jaringan Irigasi
                 </div>
 
-                <div class="col-lg-9">
+                <div class="category-item" data-kategori="bendungan">
+                    <span class="circle green">
+                        <i class="bi bi-tree-fill"></i>
+                    </span>
+                    Bendungan
+                </div>
 
-                    <div class="d-flex flex-wrap gap-4 justify-content-lg-start justify-content-center">
+                <div class="category-item" data-kategori="embung">
+                    <span class="circle orange">
+                        <i class="bi bi-water"></i>
+                    </span>
+                    Embung
+                </div>
 
-                        <div class="category-item">
-                            <span class="circle blue">
-                                <i class="bi bi-droplet-fill"></i>
-                            </span>
-                            Jaringan Irigasi
-                        </div>
-
-                        <div class="category-item">
-                            <span class="circle green">
-                                <i class="bi bi-tree-fill"></i>
-                            </span>
-                            Bendungan
-                        </div>
-
-                        <div class="category-item">
-                            <span class="circle orange">
-                                <i class="bi bi-water"></i>
-                            </span>
-                            Embung
-                        </div>
-
-                        <div class="category-item">
-                            <span class="circle purple">
-                                <i class="bi bi-building"></i>
-                            </span>
-                            Bangunan Pengairan
-                        </div>
-
-                    </div>
-
+                <div class="category-item" data-kategori="bangunan pengairan">
+                    <span class="circle purple">
+                        <i class="bi bi-building"></i>
+                    </span>
+                    Bangunan Pengairan
                 </div>
 
             </div>
 
         </div>
+
+    </div>
+
+</div>
 
     </div>
 
@@ -336,86 +395,83 @@
 <!-- KEGIATAN TERBARU -->
 <section class="kegiatan-section">
 
+    <img src="<?= base_url('assets/images/batik 2.png') ?>" class="motif-kanan">
+
     <div class="container">
 
-        <h2 class="judul-kegiatan">
-            Kegiatan Terbaru
-        </h2>
+        <div class="judul-section">
 
-        <p class="text-muted mt-3 mb-5">
-             Dokumentasi kegiatan, agenda, dan berbagai aktivitas Dinas Pengairan Banyuwangi dalam mendukung pelayanan kepada masyarakat.
-        </p>
-        <!-- Berita Utama -->
-        <div class="berita-utama">
+            <h2 class="judul-berita">
+                Kegiatan Terbaru
+            </h2>
 
-            <img src="<?= base_url('assets/images/kegiatan-utama.jpg') ?>" alt="">
-
-            <div class="overlay"></div>
+            <p class="text-muted mt-3 mb-5">
+                Ikuti berbagai kegiatan terbaru Dinas Pengairan Kabupaten Banyuwangi.
+            </p>
 
         </div>
 
-        <!-- Slider -->
+        <?php if (!empty($headlineKegiatan)) : ?>
+
+            <!-- Headline Kegiatan -->
+            <a href="<?= base_url('kegiatan'.$headlineKegiatan['slug']) ?>" class="headline-kegiatan">
+
+                <img src="<?= base_url('uploads/kegiatan/thumbnail/'.$headlineKegiatan['thumbnail']) ?>" alt="<?= esc($headlineKegiatan['judul']) ?>">
+
+                <div class="overlay">
+
+                    <h3><?= esc($headlineKegiatan['judul']) ?></h3>
+
+                    <span>
+                        <?= date('d F Y', strtotime($headlineKegiatan['tanggal'])) ?>
+                    </span>
+
+                </div>
+
+            </a>
+
+        <?php endif; ?>
+
+        <!-- Slider Tahun -->
         <div class="slider-wrapper">
 
             <button class="slider-arrow left">
-                <i class="fa-solid fa-chevron-left"></i>
+                <i class="bi bi-chevron-left"></i>
             </button>
 
-            <div class="row g-3 justify-content-center">
+            <div class="slider-container">
 
-                <div class="col-lg-4 col-md-4">
+                <?php if (!empty($tahunKegiatan)) : ?>
 
-                    <a href="#" class="card-berita">
+                    <?php foreach ($tahunKegiatan as $item) : ?>
 
-                        <img src="<?= base_url('assets/images/kegiatan1.jpg') ?>" alt="">
+                        <a href="<?= base_url('kegiatan/tahun/'.$item['tahun']) ?>" class="card-berita">
 
-                        <div class="tahun">
-                            2026
-                        </div>
+                            <img src="<?= base_url('uploads/kegiatan/thumbnail/'.$item['thumbnail']) ?>" alt="<?= esc($item['tahun']) ?>">
 
-                    </a>
+                            <div class="tahun">
 
-                </div>
+                                <?= esc($item['tahun']) ?>
 
-                <div class="col-lg-4 col-md-4">
+                            </div>
 
-                    <a href="#" class="card-berita">
+                        </a>
 
-                        <img src="<?= base_url('assets/images/kegiatan2.jpg') ?>" alt="">
+                    <?php endforeach; ?>
 
-                        <div class="tahun">
-                            2025
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <div class="col-lg-4 col-md-4">
-
-                    <a href="#" class="card-berita">
-
-                        <img src="<?= base_url('assets/images/kegiatan3.jpg') ?>" alt="">
-
-                        <div class="tahun">
-                            2024
-                        </div>
-
-                    </a>
-
-                </div>
+                <?php endif; ?>
 
             </div>
 
             <button class="slider-arrow right">
-                <i class="fa-solid fa-chevron-right"></i>
+                <i class="bi bi-chevron-right"></i>
             </button>
 
         </div>
 
         <div class="text-center mt-4">
 
-            <a href="#" class="btn-lihat">
+            <a href="<?= base_url('kegiatan') ?>" class="btn-lihat">
                 Lihat Semua
             </a>
 
@@ -424,4 +480,140 @@
     </div>
 
 </section>
+<script>
+
+const dataGIS = <?= json_encode($gis ?? []); ?>;
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const map = L.map('map', {
+    scrollWheelZoom: true,   
+    touchZoom: true,
+    doubleClickZoom: true,
+    dragging: true,
+    zoomControl: true
+}).setView([-8.2192, 114.3691], 11);
+
+    L.tileLayer(
+        'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        {
+            maxZoom:20,
+            subdomains:['mt0','mt1','mt2','mt3']
+        }
+    ).addTo(map);
+
+    let markers = [];
+    let kategoriAktif = "";
+
+    function tampilkanMarker(){
+
+        // hapus marker lama
+        markers.forEach(function(marker){
+            map.removeLayer(marker);
+        });
+
+        markers = [];
+
+        dataGIS.forEach(function(item){
+
+            if(
+                item.latitude == null ||
+                item.longitude == null ||
+                item.latitude == "" ||
+                item.longitude == ""
+            ){
+                return;
+            }
+
+            // FILTER KATEGORI
+            if(
+                kategoriAktif != "" &&
+                item.keterangan.toLowerCase() != kategoriAktif
+            ){
+                return;
+            }
+
+            let marker = L.marker([
+                parseFloat(item.latitude),
+                parseFloat(item.longitude)
+            ]).addTo(map);
+
+            marker.bindPopup(`
+                <div style="min-width:220px">
+
+                    <h6>${item.nama_lokasi}</h6>
+
+                    <hr>
+
+                    <b>Kecamatan</b><br>
+
+                    ${item.nama_kecamatan ?? '-'}
+
+                    <br><br>
+
+                    <b>Latitude</b><br>
+
+                    ${item.latitude}
+
+                    <br><br>
+
+                    <b>Longitude</b><br>
+
+                    ${item.longitude}
+
+                    <br><br>
+
+                    <b>Kategori</b><br>
+
+                    ${item.keterangan ?? '-'}
+
+                </div>
+            `);
+
+            markers.push(marker);
+
+        });
+
+        if(markers.length > 0){
+
+            let group = L.featureGroup(markers);
+
+            map.fitBounds(group.getBounds().pad(0.2));
+
+        }
+
+    }
+
+    tampilkanMarker();
+
+    // ==========================
+    // FILTER SAAT KATEGORI DIKLIK
+    // ==========================
+
+    document.querySelectorAll(".category-item").forEach(function(item){
+
+        item.addEventListener("click", function(){
+
+            document.querySelectorAll(".category-item").forEach(function(el){
+                el.classList.remove("active");
+            });
+
+            this.classList.add("active");
+
+            kategoriAktif = this.dataset.kategori;
+
+            tampilkanMarker();
+
+        });
+
+    });
+
+    // Klik peta menuju halaman GIS
+
+    map.on('click', function () {
+        window.location.href = "<?= base_url('gis') ?>";
+    });
+
+});
+</script>
 <?= $this->include('layout/footer') ?>

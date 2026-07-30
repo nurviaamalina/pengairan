@@ -6,22 +6,17 @@ use CodeIgniter\Model;
 
 class KorsdaModel extends Model
 {
-    protected $table            = 'korsda';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $table = 'korsda';
+    protected $primaryKey = 'id';
+    protected $returnType = 'array';
 
     protected $allowedFields = [
-        'kecamatan',
-        'nama_koordinator',
-        'no_hp',
+        'nama_kecamatan',
+        'ketua',
         'alamat',
-        'foto'
+        'telepon',
+        'deskripsi',
+        'gambar'
     ];
-
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
 }
+

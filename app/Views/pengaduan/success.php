@@ -33,7 +33,12 @@
             </div>
             <h2>Pengaduan Anda Berhasil Dikirim</h2>
             <p>Terima kasih telah menyampaikan pengaduan Anda. Kami akan menindaklanjuti laporan Anda segera mungkin.</p>
-            <a href="<?= base_url('pengaduan') ?>" class="btn btn-outline-primary btn-back">Kembali ke Pengaduan</a>
+            <?php if(!empty($tracking_code)): ?>
+                <p>Kode pelacakan Anda: <strong><?= esc($tracking_code) ?></strong></p>
+                <a href="<?= base_url('pengaduan/track') ?>" class="btn btn-primary">Lacak Pengaduan</a>
+            <?php else: ?>
+                <a href="<?= base_url('pengaduan') ?>" class="btn btn-outline-primary btn-back">Kembali ke Pengaduan</a>
+            <?php endif; ?>
         </div>
     </div>
 </div>

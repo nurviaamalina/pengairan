@@ -18,61 +18,94 @@
 
         <h1 class="judul-beritaPage mb-5">Berita Terbaru</h1>
 
+         <?php if (!empty($berita)) : ?>
+
         <!-- Headline -->
         <div class="row g-4 mb-5">
 
-            <div class="col-lg-6">
-                <a href="<?= base_url('berita/detail') ?>" class="headline-card">
-                    <img src="<?= base_url('assets/images/berita1.png') ?>" alt="Berita">
-                    <div class="overlay">
-                        <h4>Dinas PU Pengairan Ajak Siswa SDN Bersih-bersih Sungai</h4>
-                        <span>Senin, 13 Juli 2026</span>
+                <?php
+                $headline = array_slice($berita, 0, 2);
+
+                foreach ($headline as $item) :
+                ?>
+
+                    <div class="col-lg-6">
+
+                        <a href="<?= base_url('berita/' . $item['slug']) ?>" class="headline-card">
+
+                            <img src="<?= base_url('uploads/berita/' . $item['gambar']) ?>" alt="">
+
+                            <div class="overlay">
+
+                                <h4><?= esc($item['judul']) ?></h4>
+
+                                <span>
+                                    <?= date('d F Y', strtotime($item['created_at'])) ?>
+                                </span>
+
+                            </div>
+
+                        </a>
+
                     </div>
-                </a>
+
+                <?php endforeach; ?>
+
             </div>
 
-            <div class="col-lg-6">
-                <a href="<?= base_url('berita/detail') ?>" class="headline-card">
-                    <img src="<?= base_url('assets/images/berita1.png') ?>" alt="Berita">
-                    <div class="overlay">
-                        <h4>Dinas PU Pengairan Ajak Siswa SDN Bersih-bersih Sungai</h4>
-                        <span>Senin, 13 Juli 2026</span>
-                    </div>
-                </a>
-            </div>
-
-        </div>
 
         <!-- List Berita -->
-        <a href="<?= base_url('berita/detail') ?>" class="text-decoration-none text-dark">
+         <?php foreach ($berita as $item) : ?>
 
-            <div class="row g-4 align-items-center">
+                <a href="<?= base_url('berita/' . $item['slug']) ?>"
+                    class="text-decoration-none text-dark">
 
-                    <div class="col-lg-4">
+                    <div class="row g-4 align-items-center mb-5">
 
-                        <img src="<?= base_url('assets/images/berita1.png') ?>"
-                            class="img-fluid rounded-3 berita-img"
-                            alt="Berita">
+                        <div class="col-lg-4">
 
-                    </div>
-
-                    <div class="col-lg-8">
-
-                        <div class="card-body p-0">
-
-                            <h2 class="card-title berita-title">
-                                Dinas Pengairan Kabupaten Banyuwangi Perkuat Transformasi Digital Melalui Pengembangan Website Terintegrasi
-                            </h2>
-
-                            <p class="berita-date">
-                                Senin, 13 Juli 2026
-                            </p>
+                            <img
+                                src="<?= base_url('uploads/berita/' . $item['gambar']) ?>"
+                                class="img-fluid rounded-3 berita-img"
+                                alt="<?= esc($item['judul']) ?>">
 
                         </div>
 
-                     </div>
+                        <div class="col-lg-8">
+
+                            <div class="card-body p-0">
+
+                                <h2 class="berita-title">
+
+                                    <?= esc($item['judul']) ?>
+
+                                </h2>
+
+                                <p class="berita-date">
+
+                                    <?= date('d F Y', strtotime($item['created_at'])) ?>
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            <?php endforeach; ?>
+
+        <?php else : ?>
+
+            <div class="alert alert-warning">
+
+                Belum ada berita.
+
             </div>
-        </a>
+
+        <?php endif; ?>
 
     </div>
 

@@ -2,10 +2,80 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
+use App\Models\KorsdaModel;
+use App\Models\ProfilKorsdaModel;
+use App\Models\KegiatanKorsdaModel;
+
 class Korsda extends BaseController
 {
     public function index()
     {
-        return view('korsda');
+        $model = new KorsdaModel();
+
+        $data = [
+            'title'   => 'KORSDA',
+            'korsda'  => $model->findAll(),
+        ];
+
+        return view('korsda', $data);
     }
+
+public function profil($id)
+{
+    $korsdaModel = new \App\Models\KorsdaModel();
+    $profilModel = new \App\Models\ProfilKorsdaModel();
+
+    $data['korsda'] = $korsdaModel->find($id);
+
+    $data['profil'] = $profilModel
+        ->where('id_korsda', $id)
+        ->first();
+
+    return view('korsda/profil', $data);
+}
+
+public function kegiatan($id)
+{
+    $korsdaModel = new \App\Models\KorsdaModel();
+    $kegiatanModel = new \App\Models\KegiatanKorsdaModel();
+
+    $data['korsda'] = $korsdaModel->find($id);
+
+    $data['kegiatan'] = $kegiatanModel
+        ->where('id_korsda', $id)
+        ->orderBy('tanggal', 'DESC')
+        ->findAll();
+
+    return view('korsda/kegiatankorsda', $data);
+}
+
+public function detailKegiatan($id)
+{
+    $kegiatanModel = new \App\Models\KegiatanKorsdaModel();
+
+    $data['kegiatan'] = $kegiatanModel->find($id);
+
+    if (!$data['kegiatan']) {
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+    }
+
+    return view('korsda/detail_kegiatan', $data);
+}
+
+public function peta($id)
+{
+    $korsdaModel = new \App\Models\KorsdaModel();
+    $wilayahModel = new \App\Models\WilayahKerjaModel();
+
+    $data['korsda'] = $korsdaModel->find($id);
+
+    $data['wilayah'] = $wilayahModel
+        ->where('id_korsda', $id)
+        ->findAll();
+
+    return view('korsda/korsda_peta', $data);
+}
+
+
 }

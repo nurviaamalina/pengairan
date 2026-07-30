@@ -1,0 +1,89 @@
+<?= $this->include('admin/layout/header') ?>
+
+<div class="d-flex">
+
+<?= $this->include('admin/layout/sidebar') ?>
+
+<div class="content flex-grow-1 p-4 bg-light">
+
+    <h2 class="fw-bold mb-4">Tambah Kegiatan KORSDA</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <form action="<?= site_url('admin/korsda/kegiatan/store') ?>" method="post" enctype="multipart/form-data">
+
+                <?= csrf_field() ?>
+
+                <div class="mb-3">
+                    <label class="form-label">Kecamatan</label>
+
+                    <select name="id_korsda" class="form-select" required>
+
+                        <option value="">-- Pilih Kecamatan --</option>
+
+                        <?php foreach($korsda as $item): ?>
+
+                            <option value="<?= $item['id'] ?>">
+                                <?= $item['nama_kecamatan'] ?>
+                            </option>
+
+                        <?php endforeach ?>
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Judul</label>
+
+                    <input type="text"
+                           name="judul"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tanggal</label>
+
+                    <input type="date"
+                           name="tanggal"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Upload Gambar</label>
+
+                    <input type="file"
+                           name="gambar"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Isi Kegiatan</label>
+
+                    <textarea name="isi"
+                              rows="6"
+                              class="form-control"
+                              required></textarea>
+                </div>
+
+                <button class="btn btn-primary">
+                    Simpan
+                </button>
+
+                <a href="<?= site_url('admin/korsda/kegiatan') ?>" class="btn btn-secondary">
+                    Kembali
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+<?= $this->include('admin/layout/footer') ?>

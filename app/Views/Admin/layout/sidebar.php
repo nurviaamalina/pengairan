@@ -9,76 +9,40 @@ $uri = service('uri');
         <!-- Beranda -->
         <li>
             <a href="<?= base_url('admin/dashboard') ?>"
-                class="menu-link <?= $uri->getSegment(2) == 'dashboard' ? 'active' : '' ?>">
+               class="menu-link <?= $uri->getSegment(2) == 'dashboard' ? 'active' : '' ?>">
                 <i class="bi bi-house-door"></i>
                 <span>Beranda</span>
             </a>
         </li>
 
         <!-- Profil -->
-        <li class="menu-dropdown">
-
-            <a class="menu-link" data-bs-toggle="collapse" href="#profilMenu">
-                <div>
-                    <i class="bi bi-person"></i>
-                    <span>Profil</span>
-                </div>
-
-                <i class="bi bi-chevron-down"></i>
+        <li>
+            <a href="<?= base_url('admin/profil') ?>"
+               class="menu-link <?= $uri->getSegment(2) == 'profil' ? 'active' : '' ?>">
+                <i class="bi bi-building"></i>
+                <span>Profil</span>
             </a>
-
-            <div class="collapse" id="profilMenu">
-
-                <a href="<?= base_url('admin/profil/visi-misi') ?>" class="submenu">
-                    Visi & Misi
-                </a>
-
-                <a href="<?= base_url('admin/profil/sejarah') ?>" class="submenu">
-                    Sejarah
-                </a>
-
-                <a href="<?= base_url('admin/profil/struktur') ?>" class="submenu">
-                    Struktur Organisasi
-                </a>
-
-            </div>
-
         </li>
 
-        <!-- Layanan -->
-        <li class="menu-dropdown">
-
-            <a class="menu-link" data-bs-toggle="collapse" href="#layananMenu">
-
-                <div>
-                    <i class="bi bi-grid"></i>
-                    <span>Layanan</span>
-                </div>
-
-                <i class="bi bi-chevron-down"></i>
-
+        <!-- KORSDA -->
+        <li>
+            <a href="<?= base_url('admin/korsda/dashboard') ?>"
+               class="menu-link <?= $uri->getSegment(2) == 'korsda' ? 'active' : '' ?>">
+                <i class="bi bi-grid"></i>
+                <span>KORSDA</span>
             </a>
-
-            <div class="collapse" id="layananMenu">
-
-                <a href="#" class="submenu">Pengaduan</a>
-
-                <a href="#" class="submenu">Korsda
-                    class="menu-link <?= $uri->getSegment(2) == 'dashboard' ? 'active' : '' ?>">
-                </a>
-
-
-                <a href="#" class="submenu">Live CCTV</a>
-
-            </div>
-
         </li>
 
         <!-- Dokumen -->
         <li>
             <a href="<?= base_url('admin/dokumen') ?>"
+<<<<<<< HEAD
                 class="menu-link <?= ($uri->getSegment(2) == 'dokumen' ||$uri->getSegment(2) == 'kategori') ? 'active' : '' ?>">
                 <i class="bi bi-folder2-open"></i>
+=======
+               class="menu-link <?= $uri->getSegment(2) == 'dokumen' ? 'active' : '' ?>">
+                <i class="bi bi-folder"></i>
+>>>>>>> eef50d04fed1eaf64ffcf2d8a329753d0a692f16
                 <span>Dokumen</span>
             </a>
         </li>
@@ -86,7 +50,7 @@ $uri = service('uri');
         <!-- Pengaduan -->
         <li>
             <a href="<?= base_url('admin/pengaduan') ?>"
-                class="menu-link <?= $uri->getSegment(2) == 'pengaduan' ? 'active' : '' ?>">
+               class="menu-link <?= $uri->getSegment(2) == 'pengaduan' ? 'active' : '' ?>">
                 <i class="bi bi-envelope"></i>
                 <span>Pengaduan</span>
             </a>
@@ -95,9 +59,27 @@ $uri = service('uri');
         <!-- Berita -->
         <li>
             <a href="<?= base_url('admin/berita') ?>"
-             class="menu-link <?= $uri->getSegment(2) == 'berita' ? 'active' : '' ?>">
-                    <i class="bi bi-newspaper"></i>
+               class="menu-link <?= $uri->getSegment(2) == 'berita' ? 'active' : '' ?>">
+                <i class="bi bi-newspaper"></i>
                 <span>Berita</span>
+            </a>
+        </li>
+
+        <!-- Kegiatan -->
+        <li>
+            <a href="<?= base_url('admin/kegiatan') ?>"
+               class="menu-link <?= $uri->getSegment(2) == 'kegiatan' ? 'active' : '' ?>">
+                <i class="bi bi-camera"></i>
+                <span>Kegiatan</span>
+            </a>
+        </li>
+
+        <!-- Instagram -->
+        <li>
+            <a href="<?= base_url('admin/instagram') ?>"
+               class="menu-link <?= $uri->getSegment(2) == 'instagram' ? 'active' : '' ?>">
+                <i class="bi bi-instagram"></i>
+                <span>Instagram</span>
             </a>
         </li>
 

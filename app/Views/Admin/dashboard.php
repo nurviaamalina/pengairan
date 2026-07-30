@@ -19,101 +19,122 @@
                     <div class="row g-4">
 
                         <!-- Card 1 -->
-                        <div class="col-md-3">
-                            <div class="card shadow-sm border-0 rounded-4 h-100">
-                                <div class="card-body">
-                                    <i class="bi bi-geo-alt fs-1"></i>
+                        <div class="col-lg-4 col-md-6">
+        <a href="<?= base_url('admin/korsda/dashboard') ?>" class="text-decoration-none text-dark">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <i class="bi bi-people fs-1"></i>
 
-                                    <h6 class="mt-3">
-                                        Geografis Information System
-                                    </h6>
+                    <h5 class="mt-3">Korsda</h5>
 
-                                    <small class="text-muted">
-                                        Jelajahi peta digital jaringan sungai,
-                                        irigasi dan bendungan.
-                                    </small>
-
-                                    <div class="mt-4">
-                                        <a href="#">Selengkapnya →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    <p class="text-muted">
+                        Jelajahi peta digital jaringan sungai,
+                        irigasi dan bendungan.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    
                         <!-- Card 2 -->
-                        <div class="col-md-3">
-                            <div class="card shadow-sm border-0 rounded-4 h-100">
-                                <div class="card-body">
-                                    <i class="bi bi-list fs-1"></i>
+        <div class="col-lg-4 col-md-6">
+        <a href="<?= base_url('admin/pengaduan') ?>" class="text-decoration-none text-dark">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <i class="bi bi-telephone fs-1"></i>
 
-                                    <h6 class="mt-3">SI AIR</h6>
+                    <h5 class="mt-3">Layanan Pengaduan</h5>
 
-                                    <small class="text-muted">
-                                        Monitoring sumber daya air secara terintegrasi.
-                                    </small>
-
-                                    <div class="mt-4">
-                                        <a href="#">Selengkapnya →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div class="col-md-3">
-                            <div class="card shadow-sm border-0 rounded-4 h-100">
-                                <div class="card-body">
-                                    <i class="bi bi-building fs-1"></i>
-
-                                    <h6 class="mt-3">Data Center</h6>
-
-                                    <small class="text-muted">
-                                        Infrastruktur pengairan dan bendungan.
-                                    </small>
-
-                                    <div class="mt-4">
-                                        <a href="#">Selengkapnya →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    <p class="text-muted">
+                        Laporkan permasalahan pengairan dengan mudah dan cepat.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
                         <!-- Card 4 -->
-                        <div class="col-md-3">
-                            <div class="card shadow-sm border-0 rounded-4 h-100">
-                                <div class="card-body">
-                                    <i class="bi bi-telephone fs-1"></i>
+                       <div class="col-lg-4 col-md-6">
+    <a href="<?= base_url('admin/dokumen') ?>" class="text-decoration-none text-dark">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+            <div class="card-body">
+                <i class="bi bi-file-earmark-text fs-1"></i>
 
-                                    <h6 class="mt-3">Layanan Pengaduan</h6>
+                <h5 class="mt-3">Dokumen</h5>
 
-                                    <small class="text-muted">
-                                        Laporkan masalah dengan mudah.
-                                    </small>
-
-                                    <div class="mt-4">
-                                        <a href="#">Selengkapnya →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <p class="text-muted">
+                    Kelola dan akses dokumen Dinas Pengairan dengan mudah.
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
 
                     </div>
 
                     <!-- MAP -->
                     <div class="card border-0 shadow-sm rounded-4 mt-4">
-                        <div class="card-body">
+    <div class="card-body">
 
-                            <h5>Peta Jaringan Irigasi</h5>
+        <h5 class="mb-3">Peta Jaringan Irigasi</h5>
 
-                            <iframe
-                                src="https://maps.google.com/maps?q=jakarta&t=&z=12&ie=UTF8&iwloc=&output=embed"
-                                width="100%"
-                                height="300"
-                                style="border:0;">
-                            </iframe>
+        <div id="map" style="height:450px;border-radius:15px;"></div>
 
-                        </div>
-                    </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+const map = L.map('map');
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© OpenStreetMap'
+}).addTo(map);
+
+let bounds = [];
+
+<?php foreach($gis as $row): ?>
+
+    <?php if(!empty($row['latitude']) && !empty($row['longitude'])): ?>
+
+        var marker = L.marker([
+            <?= $row['latitude'] ?>,
+            <?= $row['longitude'] ?>
+        ]).addTo(map);
+
+        marker.bindPopup(`
+            <strong><?= esc($row['nama_lokasi']) ?></strong><br>
+            Kecamatan : <?= esc($row['nama_kecamatan']) ?><br>
+
+            <?php if(!empty($row['keterangan'])): ?>
+                <?= esc($row['keterangan']) ?>
+            <?php endif; ?>
+        `);
+
+        bounds.push([
+            <?= $row['latitude'] ?>,
+            <?= $row['longitude'] ?>
+        ]);
+
+    <?php endif; ?>
+
+<?php endforeach; ?>
+
+if(bounds.length > 0){
+
+    map.fitBounds(bounds,{
+        padding:[30,30]
+    });
+
+}else{
+
+    map.setView([-8.2192,114.3691],11);
+
+}
+
+</script>
 
                 </div>
 
@@ -125,23 +146,41 @@
 
                             <h5>Berita</h5>
 
-                            <?php for($i=1;$i<=3;$i++): ?>
+                           <?php if (!empty($berita)) : ?>
 
-                            <div class="d-flex mt-3">
+                                    <?php foreach ($berita as $item) : ?>
 
-                                <div class="bg-secondary rounded"
-                                    style="width:80px;height:60px;"></div>
+                                        <div class="d-flex mt-3">
 
-                                <div class="ms-3">
-                                    <small>
-                                        Laporkan permasalahan pengairan
-                                        dengan mudah dan cepat.
-                                    </small>
-                                </div>
+                                            <img
+                                                src="<?= base_url('uploads/berita/' . $item['gambar']) ?>"
+                                                style="width:80px;height:60px;object-fit:cover;border-radius:8px;">
 
-                            </div>
+                                            <div class="ms-3">
 
-                            <?php endfor; ?>
+                                                <strong style="font-size:14px;">
+                                                    <?= esc($item['judul']) ?>
+                                                </strong>
+
+                                                <br>
+
+                                                <small class="text-muted">
+                                                    <?= date('d M Y', strtotime($item['created_at'])) ?>
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                    <?php endforeach; ?>
+
+                                <?php else : ?>
+
+                                    <p class="text-muted mt-3">
+                                        Belum ada berita.
+                                    </p>
+
+                                <?php endif; ?>
 
                         </div>
                     </div>
@@ -153,14 +192,33 @@
 
                             <div class="row mt-3">
 
-                                <?php for($i=1;$i<=3;$i++): ?>
+                                <?php if (!empty($kegiatan)) : ?>
 
-                                <div class="col-4">
-                                    <div class="bg-secondary rounded"
-                                        style="height:90px;"></div>
-                                </div>
+                                        <?php foreach ($kegiatan as $item) : ?>
 
-                                <?php endfor; ?>
+                                            <div class="col-4 mb-3">
+
+                                                <img
+                                                    src="<?= base_url('uploads/kegiatan/thumbnail/' . $item['thumbnail']) ?>"
+                                                    class="img-fluid rounded"
+                                                    style="height:90px;width:100%;object-fit:cover;"
+                                                    title="<?= esc($item['judul']) ?>">
+
+                                            </div>
+
+                                        <?php endforeach; ?>
+
+                                    <?php else : ?>
+
+                                        <div class="col-12">
+
+                                            <small class="text-muted">
+                                                Belum ada kegiatan.
+                                            </small>
+
+                                        </div>
+
+                                    <?php endif; ?>
 
                             </div>
 
