@@ -21,6 +21,7 @@
 
     <!-- CSS -->
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/dokumen.css') ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -88,7 +89,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">DOKUMEN</a>
+                        <a class="nav-link" href="<?= base_url('dokumen') ?>">DOKUMEN</a>
                     </li>
 
                     <li class="nav-item">

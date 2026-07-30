@@ -1,0 +1,116 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:url('../images/bg-login.jpg') center center/cover no-repeat;
+    position:relative;
+}
+
+/* Overlay biru */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(15,40,95,.45);
+}
+
+.navbar{
+    position:absolute;
+    top:30px;
+    right:60px;
+    z-index:100;
+}
+
+.navbar a{
+    color:#fff;
+    text-decoration:none;
+    font-size:16px;
+}
+
+.navbar span{
+    color:#fff;
+    margin:0 10px;
+}
+
+/* Kotak login */
+.login-box{
+    position:relative;
+    z-index:10;
+
+    width:400px;
+    padding:45px;
+
+    background:rgba(255, 255, 255, 0);
+    border:1px solid rgba(255,255,255,.25);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(12px);
+
+    border-radius:15px;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
+}
+
+.login-box h1{
+    text-align:center;
+    color:#ffffff;
+    font-size:54px;
+    font-weight:300;
+    margin-bottom:35px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    color:#fff;
+    margin-bottom:8px;
+    font-size:16px;
+}
+
+.form-group input{
+    width:100%;
+    height:50px;
+    border:none;
+    outline:none;
+
+    border-radius:30px;
+
+    background:#fff;
+
+    padding:0 15px;
+
+    font-size:10px;
+}
+
+button{
+    display:block;
+    margin:30px auto 0;
+
+    width:120px;
+    height:42px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#fff;
+
+    color:#222;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#f4b400;
+    color:#fff;
+}

@@ -1,0 +1,332 @@
+/* =====================================
+   GLOBAL
+===================================== */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f5f5;
+    color:#222;
+}
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero-section,
+.hero-detail{
+    background:#f4b400;
+    padding:90px 0 160px;
+    text-align:center;
+}
+
+.hero-title,
+.hero-detail h1{
+    font-size:48px;
+    font-weight:700;
+    margin-bottom:10px;
+    color:#000;
+}
+
+.hero-subtitle{
+    font-size:24px;
+    color:#000;
+    margin:0;
+}
+
+/* =====================================
+   CONTENT
+===================================== */
+
+.dokumen-section,
+.detail-section{
+    margin-top:-90px;
+    margin-bottom:80px;
+}
+
+.dokumen-wrapper,
+.detail-wrapper{
+    background:#fff;
+    border-radius:16px;
+    padding:45px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* =====================================
+   FILTER
+===================================== */
+
+.filter-wrapper{
+    display:flex;
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.search-item,
+.kategori-item,
+.tahun-item{
+    flex:1;
+}
+
+.search-item{
+    min-width:auto;
+}
+
+.kategori-item,
+.tahun-item{
+    width:auto;
+}
+
+.tahun-item{
+    width:180px;
+}
+
+.search-box{
+    position:relative;
+}
+
+.search-box i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#c59d00;
+    font-size:16px;
+}
+
+.search-box input,
+.kategori-item select,
+.tahun-item select{
+    width:100%;
+    height:40px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:0 18px;
+    font-size:15px;
+    background:#fff;
+    outline:none;
+    transition:.3s;
+}
+
+.search-box input{
+    padding-left:35px;
+}
+
+.kategori-item select,
+.tahun-item select{
+    cursor:pointer;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 18px center;
+    padding-right:45px;
+}
+
+.search-box input:hover,
+.kategori-item select:hover,
+.tahun-item select:hover{
+    border-color:#f4b400;
+}
+
+.search-box input:focus,
+.kategori-item select:focus,
+.tahun-item select:focus{
+    border-color:#f4b400;
+    box-shadow:0 0 0 4px rgba(244,180,0,.15);
+}
+
+/* =====================================
+   RESULT
+===================================== */
+
+.result-count{
+    font-size:16px;
+    margin-bottom:25px;
+    color:#555;
+}
+
+/* =====================================
+   KATEGORI CARD
+===================================== */
+
+.kategori-card{
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:13px 20px;
+    margin-bottom:15px;
+    border:1px solid #e3e3e3;
+    border-radius:12px;
+    background:#fff;
+    text-decoration:none;
+    color:#222;
+    transition:.3s;
+}
+
+.kategori-card::before{
+    content:'';
+    position:absolute;
+    left:15px;
+    top:18px;
+    width:2px;
+    height:20px;
+    background:#f4b400;
+    border-radius:5px;
+}
+
+.kategori-card:hover{
+    transform:translateY(-3px);
+    border-color:#f4b400;
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+    color:#222;
+}
+
+.folder-icon{
+    margin:0 18px 0 12px;
+}
+
+.folder-icon i{
+    font-size:24px;
+    color:#1f2937;
+}
+
+.kategori-title{
+    font-size:17px;
+    font-weight:500;
+}
+
+/* =====================================
+   DOKUMEN CARD
+===================================== */
+
+.dokumen-card{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    margin-bottom:10px;
+    border:1px solid #e3e3e3;
+    border-radius:12px;
+    background:#fff;
+    transition:.3s;
+}
+
+.dokumen-card::before{
+    content:'';
+    position:absolute;
+    left:15px;
+    top:13px;
+    width:4px;
+    height:20px;
+    background:#f4b400;
+    border-radius:3px;
+}
+
+.dokumen-card:hover{
+    border-color:#f4b400;
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.dokumen-left{
+    display:flex;
+    align-items:center;
+}
+
+.dokumen-title{
+    font-size:15px;
+    font-weight:500;
+    color:#222;
+}
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.btn-download{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 13px;
+    border:1px solid #ddd;
+    border-radius:5px;
+    text-decoration:none;
+    color:#333;
+    transition:.3s;
+}
+
+.btn-download:hover{
+    background:#f4b400;
+    border-color:#f4b400;
+    color:#000;
+}
+
+/* =====================================
+   BUTTON KEMBALI
+===================================== */
+
+.btn-card-kembali{
+    display:block;
+    text-decoration:none;
+    margin-top:15px;
+}
+
+.card-kembali{
+    cursor:pointer;
+}
+
+.card-kembali:hover{
+    background:#0d6efd;
+}
+
+.card-kembali:hover .dokumen-title,
+.card-kembali:hover .folder-icon i{
+    color:#fff;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:768px){
+
+    .hero-title,
+    .hero-detail h1{
+        font-size:34px;
+    }
+
+    .hero-subtitle{
+        font-size:18px;
+    }
+
+    .dokumen-wrapper,
+    .detail-wrapper{
+        padding:25px;
+    }
+
+    .filter-wrapper{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .search-item,
+    .kategori-item,
+    .tahun-item{
+        width:100%;
+        min-width:100%;
+    }
+
+    .dokumen-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .btn-download{
+        width:100%;
+        justify-content:center;
+    }
+}

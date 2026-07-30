@@ -243,6 +243,8 @@ body{
 /* ADMIN CSS BERITA 
 */ 
 
+
+
 /* ADMIN 
 */ 
 
@@ -269,4 +271,134 @@ body{
     border-radius:15px;
 
     box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+
+/* ==========================
+   DOKUMEN ADMIN
+========================== */
+
+
+.wrapper{
+
+    display:flex;
+
+}
+
+.main{
+
+    flex:1;
+
+    padding:25px;
+
+}
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.btn-upload{
+
+    background:white;
+
+    border:1px solid #222;
+
+    padding:10px 18px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+}
+
+.dokumen-container{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.dokumen-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    border:1px solid #ececec;
+
+    transition:.3s;
+
+    text-decoration:none;
+
+    color:#222;
+
+    cursor:pointer;
+
+}
+
+.dokumen-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+    border-color:#1d2b63;
+
+}
+
+.card-footer{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.hapus{
+
+    width:35px;
+
+    height:35px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#f8f9fa;
+
+    transition:.3s;
+
+}
+
+.hapus:hover{
+
+    background:#dc3545;
+
+    color:#fff;
+
 }
