@@ -66,7 +66,7 @@ class AdminBerita extends BaseController
             'gambar' => $namaGambar,
 
             'publikator' => $this->request->getPost('publikator'),
-
+            'tanggal'     => $this->request->getPost('tanggal'),
 
             'views' => 0
 

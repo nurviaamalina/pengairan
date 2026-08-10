@@ -112,61 +112,180 @@
 
 <section class="instagram-feed py-5">
 
-    <div class="container">
+   <div class="container">
 
-        <div class="row g-4">
+   <div class="row g-4">
 
-            <?php foreach ($instagram as $item) : ?>
+    <?php foreach ($instagram as $item) : ?>
 
-                <div class="col-lg-4 col-md-6">
+        <?php
+            // Prioritaskan permalink dari API Instagram
+            $instagramUrl = !empty($item['permalink'])
+                ? $item['permalink']
+                : ($item['instagram_url'] ?? '#');
 
-                    <div class="instagram-card">
+            // Untuk sementara gambar dari API
+            $imageUrl = !empty($item['media_url'])
+                ? $item['media_url']
+                : ($item['thumbnail_url'] ?? null);
 
-                        <a href="<?= esc($item['instagram_url']) ?>" target="_blank">
+            $tanggal = !empty($item['posted_at'])
+                ? $item['posted_at']
+                : ($item['tanggal_post'] ?? null);
+        ?>
+
+        <div class="col-lg-4 col-md-6">
+
+            <!-- SELURUH CARD MENJADI LINK -->
+            <a
+                href="<?= esc($instagramUrl, 'attr') ?>"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="instagram-card-link"
+            >
+
+                <div class="instagram-card">
+
+                    <!-- GAMBAR -->
+
+                    <div class="instagram-image">
+
+                        <?php if (!empty($imageUrl)) : ?>
 
                             <img
-                                src="<?= base_url('uploads/instagram/' . $item['thumbnail']) ?>"
-                                class="img-fluid">
+                                src="<?= esc($imageUrl, 'attr') ?>"
+                                alt="<?= esc($item['judul']) ?>"
+                                loading="lazy"
+                            >
 
-                        </a>
+                        <?php else : ?>
 
-                        <div class="p-3">
+                            <div class="instagram-image-empty">
 
-                            <h5>
+                                <i class="bi bi-instagram"></i>
 
-                                <?= esc($item['judul']) ?>
+                                <span>
+                                    Gambar tidak tersedia
+                                </span>
 
-                            </h5>
+                            </div>
 
-                            <p>
+                        <?php endif; ?>
 
-                                <?= character_limiter(strip_tags($item['caption']),100) ?>
+                    </div>
 
-                            </p>
+
+                    <!-- ISI CARD -->
+
+                    <div class="p-3">
+
+                        <h5>
+                            <?= esc($item['judul']) ?>
+                        </h5>
+
+                        <p>
+                            <?= character_limiter(
+                                strip_tags($item['caption'] ?? ''),
+                                100
+                            ) ?>
+                        </p>
+
+                        <?php if (!empty($tanggal)) : ?>
 
                             <small>
-
-                                <?= date('d F Y', strtotime($item['tanggal_post'])) ?>
-
+                                <?= date(
+                                    'd F Y',
+                                    strtotime($tanggal)
+                                ) ?>
                             </small>
 
-                        </div>
+                        <?php endif; ?>
 
                     </div>
 
                 </div>
 
-            <?php endforeach; ?>
+            </a>
 
         </div>
 
-        <div class="mt-5 d-flex justify-content-center">
+    <?php endforeach; ?>
 
-            <?= $pager->links() ?>
+</div>
+
+
+    <!-- PAGINATION -->
+
+    <?php if (isset($totalPages) && $totalPages > 1) : ?>
+
+        <div class="d-flex justify-content-center mt-5">
+
+            <nav aria-label="Pagination Instagram">
+
+                <ul class="pagination">
+
+                    <?php if ($currentPage > 1) : ?>
+
+                        <li class="page-item">
+
+                            <a
+                                class="page-link"
+                                href="<?= base_url(
+                                    'instagram?page=' . ($currentPage - 1)
+                                ) ?>"
+                            >
+                                &laquo;
+                            </a>
+
+                        </li>
+
+                    <?php endif; ?>
+
+
+                    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+
+                        <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
+
+                            <a
+                                class="page-link"
+                                href="<?= base_url(
+                                    'instagram?page=' . $i
+                                ) ?>"
+                            >
+                                <?= $i ?>
+                            </a>
+
+                        </li>
+
+                    <?php endfor; ?>
+
+
+                    <?php if ($currentPage < $totalPages) : ?>
+
+                        <li class="page-item">
+
+                            <a
+                                class="page-link"
+                                href="<?= base_url(
+                                    'instagram?page=' . ($currentPage + 1)
+                                ) ?>"
+                            >
+                                &raquo;
+                            </a>
+
+                        </li>
+
+                    <?php endif; ?>
+
+                </ul>
+
+            </nav>
 
         </div>
 
-    </div>
+    <?php endif; ?>
+
+</div>
 
 </section>
 

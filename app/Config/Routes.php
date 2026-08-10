@@ -37,6 +37,16 @@ $routes->get('/', 'Home::index');
 
 /*
 |--------------------------------------------------------------------------
+| INSTAGRAM
+|--------------------------------------------------------------------------
+
+*/
+
+$routes->get('instagram-sync', 'InstagramSync::index');
+$routes->get('instagram', 'Instagram::index');
+
+/*
+|--------------------------------------------------------------------------
 | BERITA
 |--------------------------------------------------------------------------
 */
@@ -134,8 +144,6 @@ $routes->get('korsda/kegiatan/(:num)', 'Korsda::kegiatan/$1');
 $routes->get('korsda/detail_kegiatan/(:num)', 'Korsda::detailKegiatan/$1');
 $routes->get('korsda/gis/(:num)', 'Korsda::gis/$1');
 $routes->get('gis', 'Gis::index');
-
-$routes->get('instagram', 'Instagram::index');
 
 
 // profil
