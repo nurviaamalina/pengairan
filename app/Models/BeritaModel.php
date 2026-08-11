@@ -24,6 +24,7 @@ class BeritaModel extends Model
         'isi',
         'gambar',
         'publikator',
+        'tanggal',
         'views'
     ];
 

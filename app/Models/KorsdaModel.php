@@ -8,8 +8,9 @@ class KorsdaModel extends Model
 {
     protected $table = 'korsda';
     protected $primaryKey = 'id';
+
     protected $returnType = 'array';
-    
+
     protected $useSoftDeletes = true;
 
     protected $allowedFields = [
@@ -28,17 +29,27 @@ class KorsdaModel extends Model
     protected $useTimestamps = true;
 
     public function getKorsda()
-{
-    return $this->select('korsda.*, kecamatan.nama_kecamatan')
-                ->join('kecamatan', 'kecamatan.id = korsda.kecamatan_id')
-                ->findAll();
-}
+    {
+        return $this->select('korsda.*, kecamatan.nama_kecamatan')
+            ->join(
+                'kecamatan',
+                'kecamatan.id = korsda.kecamatan_id',
+                'left'
+            )
+            ->where('korsda.status', 'Aktif')
+            ->orderBy('kecamatan.nama_kecamatan', 'ASC')
+            ->findAll();
+    }
 
-public function getById($id)
-{
-    return $this->select('korsda.*, kecamatan.nama_kecamatan')
-                ->join('kecamatan', 'kecamatan.id = korsda.kecamatan_id')
-                ->where('korsda.id', $id)
-                ->first();
-}
+    public function getById($id)
+    {
+        return $this->select('korsda.*, kecamatan.nama_kecamatan')
+            ->join(
+                'kecamatan',
+                'kecamatan.id = korsda.kecamatan_id',
+                'left'
+            )
+            ->where('korsda.id', $id)
+            ->first();
+    }
 }

@@ -20,6 +20,7 @@ class AuthFilter implements FilterInterface
         RequestInterface $request,
         ResponseInterface $response,
         $arguments = null
-    ) {
+    ) 
+    {
     }
 }

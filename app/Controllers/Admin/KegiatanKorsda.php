@@ -8,172 +8,303 @@ use App\Models\KorsdaModel;
 
 class KegiatanKorsda extends BaseController
 {
-    protected $kegiatan;
-    protected $korsda;
+    protected $kegiatanKorsdaAdminModel;
+    protected $korsdaModel;
 
     public function __construct()
     {
-        $this->kegiatan = new KegiatanKorsdaAdminModel();
-        $this->korsda   = new KorsdaModel();
+        $this->kegiatanKorsdaAdminModel = new KegiatanKorsdaAdminModel();
+        $this->korsdaModel = new KorsdaModel();
     }
 
-   public function index()
+
+    /**
+     * INDEX
+     * Menampilkan semua kegiatan KORSDA
+     */
+    public function index()
+    {
+        $data['kegiatan'] = $this->kegiatanKorsdaAdminModel
+            ->select('
+                kegiatankorsda.*,
+                korsda.nama_wilayah,
+                kecamatan.nama_kecamatan
+            ')
+            ->join(
+                'korsda',
+                'korsda.id = kegiatankorsda.korsda_id',
+                'left'
+            )
+            ->join(
+                'kecamatan',
+                'kecamatan.id = korsda.kecamatan_id',
+                'left'
+            )
+            ->orderBy('kegiatankorsda.tanggal', 'DESC')
+            ->findAll();
+
+        return view(
+            'admin/korsda/kegiatan_korsda/index',
+            $data
+        );
+    }
+
+
+    /**
+     * CREATE
+     * Form tambah kegiatan
+     */
+    public function create()
 {
-    $data['kegiatan'] = $this->kegiatan
-        ->select('kegiatankorsda.*, kecamatan.nama_kecamatan')
-        ->join(
-            'korsda',
-            'korsda.id = kegiatankorsda.korsda_id'
-        )
-        ->join(
-            'kecamatan',
-            'kecamatan.id = korsda.kecamatan_id'
-        )
-        ->orderBy('tanggal', 'DESC')
+    $korsda = $this->korsdaModel
+        ->select('id, nama_wilayah')
+        ->orderBy('nama_wilayah', 'ASC')
         ->findAll();
 
+    $data = [
+        'title'  => 'Tambah Kegiatan KORSDA',
+        'korsda' => $korsda,
+    ];
+
     return view(
-        'admin/korsda/kegiatan_korsda/index',
+        'admin/korsda/kegiatan_korsda/create',
         $data
     );
 }
 
-    public function create()
-    {
-        $data['korsda'] = $this->korsda
-            ->select('korsda.*, kecamatan.nama_kecamatan')
-            ->join(
-                'kecamatan',
-                'kecamatan.id = korsda.kecamatan_id'
-            )
-            ->orderBy(
-                'kecamatan.nama_kecamatan',
-                'ASC'
-            )
-            ->findAll();
 
-        return view(
-            'admin/korsda/kegiatan_korsda/create',
-            $data
-        );
-    }
-
+    /**
+     * STORE
+     * Simpan kegiatan baru
+     */
     public function store()
-{
-    $korsdaId = $this->request->getPost('korsda_id');
+    {
+        $korsdaId = $this->request->getPost('korsda_id');
 
-    $gambar = $this->request->getFile('gambar');
+        // Pastikan KORSDA tersedia
+        $korsda = $this->korsdaModel->find($korsdaId);
 
-    $namaGambar = null;
+        if (!$korsda) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(
+                    'error',
+                    'Data KORSDA tidak ditemukan.'
+                );
+        }
 
-    if ($gambar && $gambar->isValid() && !$gambar->hasMoved()) {
-        $namaGambar = $gambar->getRandomName();
-        $gambar->move('uploads/kegiatan', $namaGambar);
+
+        // Upload gambar
+        $gambar = $this->request->getFile('gambar');
+
+        $namaGambar = null;
+
+        if (
+            $gambar &&
+            $gambar->isValid() &&
+            !$gambar->hasMoved()
+        ) {
+
+            $namaGambar = $gambar->getRandomName();
+
+            $gambar->move(
+                FCPATH . 'uploads/kegiatan',
+                $namaGambar
+            );
+        }
+
+
+        // Simpan
+        $this->kegiatanKorsdaAdminModel->save([
+            'korsda_id' => $korsdaId,
+            'judul'     => $this->request->getPost('judul'),
+            'tanggal'   => $this->request->getPost('tanggal'),
+            'isi'       => $this->request->getPost('isi'),
+            'gambar'    => $namaGambar,
+        ]);
+
+
+        return redirect()
+            ->to(base_url('admin/korsda/kegiatan'))
+            ->with(
+                'success',
+                'Data kegiatan berhasil ditambahkan.'
+            );
     }
 
-    $this->kegiatan->save([
-        'korsda_id' => $korsdaId,
-        'judul'     => $this->request->getPost('judul'),
-        'tanggal'   => $this->request->getPost('tanggal'),
-        'isi'       => $this->request->getPost('isi'),
-        'gambar'    => $namaGambar
-    ]);
 
-    return redirect()
-        ->to('/admin/korsda/kegiatan')
-        ->with('success', 'Data berhasil ditambahkan');
-}
+    /**
+     * EDIT
+     * Form edit kegiatan
+     */
     public function edit($id)
-    {
-        $data['kegiatan'] = $this->kegiatan->find($id);
+{
+    $kegiatan = $this->kegiatanKorsdaAdminModel
+        ->find($id);
 
-        $data['korsda'] = $this->korsda
-            ->select('korsda.*, kecamatan.nama_kecamatan')
-            ->join(
-                'kecamatan',
-                'kecamatan.id = korsda.kecamatan_id'
-            )
-            ->orderBy(
-                'kecamatan.nama_kecamatan',
-                'ASC'
-            )
-            ->findAll();
-
-        return view(
-            'admin/korsda/kegiatan_korsda/edit',
-            $data
+    if (!$kegiatan) {
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(
+            'Data kegiatan tidak ditemukan.'
         );
     }
 
+    $korsda = $this->korsdaModel
+        ->select('
+            korsda.id,
+            korsda.nama_wilayah
+        ')
+        ->orderBy('korsda.nama_wilayah', 'ASC')
+        ->findAll();
+
+    $data = [
+        'title'    => 'Edit Kegiatan KORSDA',
+        'kegiatan' => $kegiatan,
+        'korsda'   => $korsda,
+    ];
+
+    return view(
+        'admin/korsda/kegiatan_korsda/edit',
+        $data
+    );
+}
+
+
+    /**
+     * UPDATE
+     * Update kegiatan
+     */
     public function update($id)
     {
+        $kegiatan = $this->kegiatanKorsdaAdminModel
+            ->find($id);
+
+        if (!$kegiatan) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(
+                'Data kegiatan tidak ditemukan.'
+            );
+        }
+
+
+        $korsdaId = $this->request->getPost('korsda_id');
+
+        // Pastikan KORSDA valid
+        $korsda = $this->korsdaModel->find($korsdaId);
+
+        if (!$korsda) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(
+                    'error',
+                    'Data KORSDA tidak ditemukan.'
+                );
+        }
+
+
         $data = [
-            'korsda_id' => $this->request->getPost('korsda_id'),
+            'korsda_id' => $korsdaId,
             'judul'     => $this->request->getPost('judul'),
             'tanggal'   => $this->request->getPost('tanggal'),
             'isi'       => $this->request->getPost('isi'),
         ];
 
+
+        // Upload gambar baru
         $gambar = $this->request->getFile('gambar');
 
-        if ($gambar && $gambar->isValid() && !$gambar->hasMoved()) {
+        if (
+            $gambar &&
+            $gambar->isValid() &&
+            !$gambar->hasMoved()
+        ) {
 
-            $lama = $this->kegiatan->find($id);
-
+            // Hapus gambar lama
             if (
-                !empty($lama['gambar']) &&
+                !empty($kegiatan['gambar']) &&
                 file_exists(
-                    'uploads/kegiatan/' . $lama['gambar']
+                    FCPATH . 'uploads/kegiatan/' .
+                    $kegiatan['gambar']
                 )
             ) {
+
                 unlink(
-                    'uploads/kegiatan/' . $lama['gambar']
+                    FCPATH . 'uploads/kegiatan/' .
+                    $kegiatan['gambar']
                 );
             }
 
-            $nama = $gambar->getRandomName();
+
+            // Upload gambar baru
+            $namaGambar = $gambar->getRandomName();
 
             $gambar->move(
-                'uploads/kegiatan',
-                $nama
+                FCPATH . 'uploads/kegiatan',
+                $namaGambar
             );
 
-            $data['gambar'] = $nama;
+            $data['gambar'] = $namaGambar;
         }
 
-        $this->kegiatan->update($id, $data);
+
+        $this->kegiatanKorsdaAdminModel
+            ->update($id, $data);
+
 
         return redirect()
-            ->to('/admin/korsda/kegiatan')
+            ->to(base_url('admin/korsda/kegiatan'))
             ->with(
                 'success',
-                'Data berhasil diubah'
+                'Data kegiatan berhasil diubah.'
             );
     }
 
+
+    /**
+     * DELETE
+     * Hapus kegiatan
+     */
     public function delete($id)
     {
-        $data = $this->kegiatan->find($id);
+        $kegiatan = $this->kegiatanKorsdaAdminModel
+            ->find($id);
 
+        if (!$kegiatan) {
+            return redirect()
+                ->back()
+                ->with(
+                    'error',
+                    'Data kegiatan tidak ditemukan.'
+                );
+        }
+
+
+        // Hapus gambar
         if (
-            $data &&
-            !empty($data['gambar']) &&
+            !empty($kegiatan['gambar']) &&
             file_exists(
-                'uploads/kegiatan/' . $data['gambar']
+                FCPATH . 'uploads/kegiatan/' .
+                $kegiatan['gambar']
             )
         ) {
+
             unlink(
-                'uploads/kegiatan/' . $data['gambar']
+                FCPATH . 'uploads/kegiatan/' .
+                $kegiatan['gambar']
             );
         }
 
-        $this->kegiatan->delete($id);
+
+        // Hapus data
+        $this->kegiatanKorsdaAdminModel
+            ->delete($id);
+
 
         return redirect()
-            ->to('/admin/korsda/kegiatan')
+            ->to(base_url('admin/korsda/kegiatan'))
             ->with(
                 'success',
-                'Data berhasil dihapus'
+                'Data kegiatan berhasil dihapus.'
             );
     }
 }

@@ -1,3 +1,4 @@
+
 <?php
 $uri = service('uri');
 ?>
@@ -37,8 +38,11 @@ $uri = service('uri');
         <li>
             <a href="<?= base_url('admin/dokumen') ?>"
 
-               class="menu-link <?= $uri->getSegment(2) == 'dokumen' ? 'active' : '' ?>">
-                <i class="bi bi-folder"></i>
+
+
+               class="menu-link <?= ($uri->getSegment(2) == 'dokumen' || $uri->getSegment(2) == 'kategori') ? 'active' : '' ?>">
+                <i class="bi bi-folder2-open"></i>
+
                 <span>Dokumen</span>
             </a>
         </li>
@@ -82,3 +86,4 @@ $uri = service('uri');
     </ul>
 
 </div>
+

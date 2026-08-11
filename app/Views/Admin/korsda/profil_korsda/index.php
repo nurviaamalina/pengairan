@@ -98,7 +98,7 @@
                             </th>
 
                             <th>
-                                Kecamatan
+                                Wilayah
                             </th>
 
                             <th>
@@ -177,7 +177,7 @@
                                     <span class="fw-semibold">
 
                                         <?= esc(
-                                            $row['nama_kecamatan'] ?? '-'
+                                            $row['nama_wilayah'] ?? '-'
                                         ) ?>
 
                                     </span>

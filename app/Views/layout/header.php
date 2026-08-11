@@ -111,10 +111,14 @@
                 </ul>
 
                 <!-- Search -->
-                <form class="d-flex">
+                <form action="<?= base_url('search') ?>" method="get" class="d-flex">
+                    
                     <input class="form-control form-control-sm"
                         type="search"
-                        placeholder="Cari">
+                        name="keyword"
+                        placeholder="Cari"
+                        autocomplete="off"
+                        required>
 
                     <button class="btn btn-light ms-1" type="submit">
                         <i class="bi bi-search"></i>

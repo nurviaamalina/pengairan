@@ -48,7 +48,7 @@ class AdminKategoriDokumen extends BaseController
             'slug'          => url_title($this->request->getPost('slug'), '-', true),
         ]);
 
-        return redirect()->to('admin/kategori/store')
+        return redirect()->to('/admin/kategori')
                          ->with('success', 'Kategori berhasil ditambahkan.');
     }
 

@@ -19,31 +19,64 @@
                     <?= csrf_field() ?>
 
                     <div class="mb-3">
-                        <label class="form-label">Kecamatan / KORSDA</label>
 
-                        <select name="korsda_id" class="form-select" required>
+    <label
+        for="korsda_id"
+        class="form-label fw-semibold"
+    >
+        Nama Wilayah
+        <span class="text-danger">*</span>
+    </label>
 
-                            <option value="">-- Pilih Kecamatan --</option>
+    <select
+        name="korsda_id"
+        id="korsda_id"
+        class="form-select"
+        required
+    >
 
-                            <?php foreach ($korsda as $k): ?>
+        <option value="">
+            -- Pilih Nama Wilayah --
+        </option>
 
-                                <option value="<?= $k['id'] ?>">
-                                    <?= esc($k['nama_kecamatan']) ?>
-                                </option>
+        <?php if (!empty($korsda)): ?>
 
-                            <?php endforeach; ?>
+            <?php foreach ($korsda as $item): ?>
 
-                        </select>
-                    </div>
+                <option
+                    value="<?= esc($item['id']) ?>"
+                    <?= old('korsda_id') == $item['id']
+                        ? 'selected'
+                        : '' ?>
+                >
 
-                    <div class="mb-3">
-                        <label class="form-label">Nama Wilayah</label>
+                    <?= esc($item['nama_wilayah']) ?>
 
-                        <input type="text"
-                               name="nama_wilayah"
-                               class="form-control"
-                               required>
-                    </div>
+                    <?php if (!empty($item['nama_kecamatan'])): ?>
+
+                        - <?= esc($item['nama_kecamatan']) ?>
+
+                    <?php endif; ?>
+
+                </option>
+
+            <?php endforeach; ?>
+
+        <?php else: ?>
+
+            <option value="" disabled>
+                Data wilayah belum tersedia
+            </option>
+
+        <?php endif; ?>
+
+    </select>
+
+    <small class="text-muted">
+        Pilih nama wilayah yang sudah terdaftar pada data KORSDA.
+    </small>
+
+</div>
 
                    <div class="mb-3">
     <label class="form-label">File Shapefile (ZIP)</label>

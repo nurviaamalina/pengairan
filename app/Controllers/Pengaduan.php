@@ -16,27 +16,17 @@ class Pengaduan extends BaseController
     // ===== INDEX (Form + Daftar Pengaduan + Pencarian) =====
     public function index()
     {
-        $keyword = $this->request->getGet('keyword');
+        // Paginate 5 per page
+        $pengaduan = $this->pengaduanModel
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5);
 
-        if ($keyword) {
-            $pengaduan = $this->pengaduanModel
-                ->like('nama', $keyword)
-                ->orLike('judul', $keyword)
-                ->orLike('kategori', $keyword)
-                ->orLike('status', $keyword)
-                ->orderBy('created_at', 'DESC')
-                ->limit(5)  // ← BATASI 5 DATA
-                ->findAll();
-        } else {
-            $pengaduan = $this->pengaduanModel
-                ->orderBy('created_at', 'DESC')
-                ->limit(5)  // ← BATASI 5 DATA
-                ->findAll();
-        }
+        $pager = $this->pengaduanModel->pager;
 
         $data = [
             'pengaduan' => $pengaduan,
-            'keyword'   => $keyword
+            'total' => $this->pengaduanModel->countAll(),
+            'pager' => $pager
         ];
 
         return view('Pengaduan/index', $data);
@@ -68,23 +58,81 @@ class Pengaduan extends BaseController
     // ===== TRACK FORM =====
     public function trackForm()
     {
-        return view('Pengaduan/track');
+        // Show paginated list (5 per page) for the track page using its own pager group
+        $pengaduan = $this->pengaduanModel
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5, 'track');
+
+        $pager = $this->pengaduanModel->pager;
+
+        $data = [
+            'pengaduan' => $pengaduan,
+            'total' => $this->pengaduanModel->countAll(),
+            'pager' => $pager,
+            'pagerGroup' => 'track'
+        ];
+
+        return view('Pengaduan/track', $data);
     }
 
     // ===== TRACK =====
     public function track()
     {
         $query = $this->request->getPost('query');
-
-        $pengaduan = $this->pengaduanModel
-            ->like('nama', $query)
-            ->orLike('tracking_code', $query)
-            ->orLike('judul', $query)
-            ->findAll();
+        $result = $this->getTrackRows($query);
 
         return view('Pengaduan/track', [
-            'pengaduan' => $pengaduan,
+            'pengaduan' => $result,
             'query' => $query
         ]);
+    }
+
+    public function trackJson()
+    {
+        $query = $this->request->getGet('query');
+        $result = $this->getTrackRows($query);
+
+        return $this->response->setJSON(['data' => $result]);
+    }
+
+    private function getTrackRows($query)
+    {
+        if (empty($query)) {
+            return [];
+        }
+
+        $model = new \App\Models\PengaduanModel();
+
+        $rows = $model->groupStart()
+            ->where('tracking_code', $query)
+            ->orWhere('nama', $query)
+            ->groupEnd()
+            ->findAll();
+
+        $result = [];
+
+        foreach ($rows as $row) {
+            $row['hasil_penanganan'] = $row['hasil_penanganan']
+                ?? $row['tindak_lanjut']
+                ?? $row['catatan_penanganan']
+                ?? '';
+
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+
+    // ===== UPDATE TINDAK LANJUT =====
+    public function updateTindakLanjut($id)
+    {
+        $data = [
+            'status' => $this->request->getPost('status'),
+            'tindak_lanjut' => $this->request->getPost('tindak_lanjut'),
+        ];
+
+        $this->pengaduanModel->update($id, $data);
+
+        return redirect()->back()->with('success', 'Tindak lanjut berhasil disimpan.');
     }
 }

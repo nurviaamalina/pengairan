@@ -34,10 +34,19 @@ class PetaKorsda extends BaseController
     public function index()
 {
     $wilayah = $this->wilayahModel
-        ->select('wilayah.*, korsda.nama AS nama')
+        ->select('
+            wilayah.*,
+            korsda.nama_wilayah,
+            kecamatan.nama_kecamatan
+        ')
         ->join(
             'korsda',
             'korsda.id = wilayah.korsda_id',
+            'left'
+        )
+        ->join(
+            'kecamatan',
+            'kecamatan.id = korsda.kecamatan_id',
             'left'
         )
         ->orderBy('wilayah.id', 'DESC')
@@ -58,13 +67,18 @@ class PetaKorsda extends BaseController
     public function create()
 {
     $korsda = $this->korsdaModel
-        ->select('korsda.id, kecamatan.nama_kecamatan')
+        ->select('
+            korsda.id,
+            korsda.kecamatan_id,
+            korsda.nama_wilayah,
+            kecamatan.nama_kecamatan
+        ')
         ->join(
             'kecamatan',
             'kecamatan.id = korsda.kecamatan_id',
             'left'
         )
-        ->orderBy('kecamatan.nama_kecamatan', 'ASC')
+        ->orderBy('korsda.nama_wilayah', 'ASC')
         ->findAll();
 
     $data = [
@@ -72,7 +86,10 @@ class PetaKorsda extends BaseController
         'korsda' => $korsda,
     ];
 
-    return view('admin/korsda/peta/create', $data);
+    return view(
+        'admin/korsda/peta/create',
+        $data
+    );
 }
 
     // =========================================================
@@ -493,31 +510,42 @@ class PetaKorsda extends BaseController
     // EDIT
     // =========================================================
 
-    public function edit($id)
-    {
-        $wilayah = $this->wilayahModel->find($id);
+   public function edit($id)
+{
+    $wilayah = $this->wilayahModel->find($id);
 
-        if (!$wilayah) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(
-                'Data wilayah tidak ditemukan.'
-            );
-        }
-
-        $korsda = $this->korsdaModel
-            ->orderBy('nama', 'ASC')
-            ->findAll();
-
-        $data = [
-            'title'   => 'Edit Wilayah KORSDA',
-            'wilayah' => $wilayah,
-            'korsda'  => $korsda,
-        ];
-
-        return view(
-            'admin/korsda/peta/edit',
-            $data
+    if (!$wilayah) {
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(
+            'Data wilayah tidak ditemukan.'
         );
     }
+
+    $korsda = $this->korsdaModel
+        ->select('
+            korsda.id,
+            korsda.kecamatan_id,
+            korsda.nama_wilayah,
+            kecamatan.nama_kecamatan
+        ')
+        ->join(
+            'kecamatan',
+            'kecamatan.id = korsda.kecamatan_id',
+            'left'
+        )
+        ->orderBy('korsda.nama_wilayah', 'ASC')
+        ->findAll();
+
+    $data = [
+        'title'   => 'Edit Wilayah KORSDA',
+        'wilayah' => $wilayah,
+        'korsda'  => $korsda,
+    ];
+
+    return view(
+        'admin/korsda/peta/edit',
+        $data
+    );
+}
 
     // =========================================================
     // UPDATE

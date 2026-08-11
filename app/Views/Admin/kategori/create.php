@@ -24,7 +24,11 @@
 
             <div class="card-body">
 
+
                     <form action="<?= base_url('admin/kategori/store'); ?>" method="post" enctype="multipart/form-data">
+
+                <form action="<?= base_url('admin/kategori/store'); ?>" method="post" enctype="multipart/form-data">
+
 
                         <?= csrf_field(); ?>
 

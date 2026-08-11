@@ -20,12 +20,22 @@ class ProfilKorsda extends BaseController
    public function index()
 {
     $profil = $this->profilModel
-        ->select('profil_korsda.*, korsda.nama AS nama_kecamatan')
+        ->select('
+            profil_korsda.*,
+            korsda.nama_wilayah,
+            kecamatan.nama_kecamatan
+        ')
         ->join(
             'korsda',
             'korsda.id = profil_korsda.korsda_id',
             'left'
         )
+        ->join(
+            'kecamatan',
+            'kecamatan.id = korsda.kecamatan_id',
+            'left'
+        )
+        ->orderBy('korsda.nama_wilayah', 'ASC')
         ->findAll();
 
     $data = [
@@ -39,18 +49,31 @@ class ProfilKorsda extends BaseController
     );
 }
 
-    public function create()
-    {
-        $korsda = $this->korsdaModel->findAll();
+ public function create()
+{
+    $korsda = $this->korsdaModel
+        ->select('
+            korsda.id,
+            korsda.kecamatan_id,
+            korsda.nama_wilayah,
+            kecamatan.nama_kecamatan
+        ')
+        ->join(
+            'kecamatan',
+            'kecamatan.id = korsda.kecamatan_id',
+            'left'
+        )
+        ->orderBy('korsda.nama_wilayah', 'ASC')
+        ->findAll();
 
-        return view(
-            'Admin/korsda/profil_korsda/create',
-            [
-                'title'  => 'Tambah Profil KORSDA',
-                'korsda' => $korsda,
-            ]
-        );
-    }
+    return view(
+        'Admin/korsda/profil_korsda/create',
+        [
+            'title'  => 'Tambah Profil KORSDA',
+            'korsda' => $korsda
+        ]
+    );
+}
 
     public function store()
     {
@@ -169,35 +192,64 @@ class ProfilKorsda extends BaseController
     }
 
     public function edit($id)
-    {
-        $profil = $this->profilModel->find($id);
+{
+    // Data profil yang akan diedit
+    $profil = $this->profilModel
+        ->select('
+            profil_korsda.*,
+            korsda.kecamatan_id,
+            korsda.nama_wilayah,
+            kecamatan.nama_kecamatan
+        ')
+        ->join(
+            'korsda',
+            'korsda.id = profil_korsda.korsda_id',
+            'left'
+        )
+        ->join(
+            'kecamatan',
+            'kecamatan.id = korsda.kecamatan_id',
+            'left'
+        )
+        ->where('profil_korsda.id', $id)
+        ->first();
 
-        if (!$profil) {
-            return redirect()
-                ->to(
-                    base_url(
-                        'admin/korsda/profil_korsda'
-                    )
-                )
-                ->with(
-                    'error',
-                    'Data Profil KORSDA tidak ditemukan.'
-                );
-        }
-
-
-        $korsda = $this->korsdaModel->findAll();
-
-
-        return view(
-            'Admin/korsda/profil_korsda/edit',
-            [
-                'title'  => 'Edit Profil KORSDA',
-                'profil' => $profil,
-                'korsda' => $korsda,
-            ]
+    if (!$profil) {
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(
+            'Profil KORSDA tidak ditemukan.'
         );
     }
+
+
+    // Semua data KORSDA
+    $korsda = $this->korsdaModel
+        ->select('
+            korsda.id,
+            korsda.kecamatan_id,
+            korsda.nama_wilayah,
+            kecamatan.nama_kecamatan
+        ')
+        ->join(
+            'kecamatan',
+            'kecamatan.id = korsda.kecamatan_id',
+            'left'
+        )
+        ->orderBy('korsda.nama_wilayah', 'ASC')
+        ->findAll();
+
+
+    $data = [
+        'title'  => 'Edit Profil KORSDA',
+        'profil' => $profil,
+        'korsda' => $korsda,
+    ];
+
+
+    return view(
+        'Admin/korsda/profil_korsda/edit',
+        $data
+    );
+}
 
 
     /**

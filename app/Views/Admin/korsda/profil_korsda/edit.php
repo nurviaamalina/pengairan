@@ -8,20 +8,27 @@
 
         <div class="card shadow">
 
+            <!-- HEADER -->
             <div class="card-header">
+
                 <h4 class="mb-0">
                     Edit Profil KORSDA
                 </h4>
+
             </div>
 
+
             <div class="card-body">
+
 
                 <!-- FLASH ERROR -->
 
                 <?php if (session()->getFlashdata('error')): ?>
 
                     <div class="alert alert-danger">
+
                         <?= esc(session()->getFlashdata('error')) ?>
+
                     </div>
 
                 <?php endif; ?>
@@ -34,8 +41,7 @@
                         <ul class="mb-0">
 
                             <?php foreach (
-                                session()->getFlashdata('errors')
-                                as $error
+                                session()->getFlashdata('errors') as $error
                             ): ?>
 
                                 <li>
@@ -51,6 +57,8 @@
                 <?php endif; ?>
 
 
+                <!-- FORM -->
+
                 <form
                     action="<?= base_url(
                         'admin/korsda/profil_korsda/update/' .
@@ -63,9 +71,9 @@
                     <?= csrf_field() ?>
 
 
-                    <!-- =================================================
-                         KORSDA / KECAMATAN
-                    ================================================== -->
+                    <!-- ==========================================
+                         NAMA WILAYAH
+                    =========================================== -->
 
                     <div class="mb-3">
 
@@ -73,9 +81,13 @@
                             for="korsda_id"
                             class="form-label"
                         >
-                            Kecamatan
+
+                            Nama Wilayah
+
                             <span class="text-danger">*</span>
+
                         </label>
+
 
                         <select
                             name="korsda_id"
@@ -85,35 +97,68 @@
                         >
 
                             <option value="">
-                                -- Pilih Kecamatan --
+                                -- Pilih Nama Wilayah --
                             </option>
 
-                            <?php foreach ($korsda as $k): ?>
 
-                                <option
-                                    value="<?= esc($k['id']) ?>"
-                                    <?= (
-                                        ($profil['korsda_id'] ?? '')
-                                        == $k['id']
-                                    )
-                                        ? 'selected'
-                                        : '' ?>
-                                >
+                            <?php if (!empty($korsda)): ?>
 
-                                    <?= esc($k['nama'] ?? '-') ?>
+                                <?php foreach ($korsda as $k): ?>
+
+                                    <option
+                                        value="<?= esc($k['id']) ?>"
+                                        <?= (
+                                            ($profil['korsda_id'] ?? '') == $k['id']
+                                        )
+                                            ? 'selected'
+                                            : '' ?>
+                                    >
+
+                                        <?= esc(
+                                            $k['nama_wilayah'] ?? '-'
+                                        ) ?>
+
+                                        <?php if (
+                                            !empty($k['nama_kecamatan'])
+                                        ): ?>
+
+                                            -
+                                            <?= esc(
+                                                $k['nama_kecamatan']
+                                            ) ?>
+
+                                        <?php endif; ?>
+
+                                    </option>
+
+                                <?php endforeach; ?>
+
+                            <?php else: ?>
+
+                                <option value="" disabled>
+
+                                    Data wilayah belum tersedia
 
                                 </option>
 
-                            <?php endforeach; ?>
+                            <?php endif; ?>
 
                         </select>
+
+
+                        <small class="text-muted">
+
+                            Pilih wilayah yang sudah terdaftar pada
+                            data KORSDA.
+
+                        </small>
 
                     </div>
 
 
-                    <!-- =================================================
+                    <!-- ==========================================
                          VISI
-                    ================================================== -->
+                    =========================================== -->
 
                     <div class="mb-3">
 
@@ -121,8 +166,13 @@
                             for="visi"
                             class="form-label"
                         >
+
                             Visi
+
+                            <span class="text-danger">*</span>
+
                         </label>
+
 
                         <textarea
                             name="visi"
@@ -135,9 +185,9 @@
                     </div>
 
 
-                    <!-- =================================================
+                    <!-- ==========================================
                          MISI
-                    ================================================== -->
+                    =========================================== -->
 
                     <div class="mb-3">
 
@@ -145,8 +195,13 @@
                             for="misi"
                             class="form-label"
                         >
+
                             Misi
+
+                            <span class="text-danger">*</span>
+
                         </label>
+
 
                         <textarea
                             name="misi"
@@ -159,9 +214,9 @@
                     </div>
 
 
-                    <!-- =================================================
+                    <!-- ==========================================
                          TUGAS
-                    ================================================== -->
+                    =========================================== -->
 
                     <div class="mb-3">
 
@@ -169,8 +224,13 @@
                             for="tugas"
                             class="form-label"
                         >
+
                             Tugas
+
+                            <span class="text-danger">*</span>
+
                         </label>
+
 
                         <textarea
                             name="tugas"
@@ -183,9 +243,9 @@
                     </div>
 
 
-                    <!-- =================================================
+                    <!-- ==========================================
                          FUNGSI
-                    ================================================== -->
+                    =========================================== -->
 
                     <div class="mb-3">
 
@@ -193,8 +253,11 @@
                             for="fungsi"
                             class="form-label"
                         >
+
                             Fungsi
+
                         </label>
+
 
                         <textarea
                             name="fungsi"
@@ -206,20 +269,21 @@
                     </div>
 
 
-                    <!-- =================================================
+                    <!-- ==========================================
                          STRUKTUR SAAT INI
-                    ================================================== -->
+                    =========================================== -->
 
                     <div class="mb-3">
 
                         <label class="form-label">
+
                             Struktur Saat Ini
+
                         </label>
 
+
                         <?php if (
-                            !empty(
-                                $profil['struktur_organisasi']
-                            )
+                            !empty($profil['struktur_organisasi'])
                         ): ?>
 
                             <div class="mb-3">
@@ -227,9 +291,7 @@
                                 <img
                                     src="<?= base_url(
                                         'uploads/korsda/' .
-                                        $profil[
-                                            'struktur_organisasi'
-                                        ]
+                                        $profil['struktur_organisasi']
                                     ) ?>"
                                     width="300"
                                     class="img-thumbnail"
@@ -241,7 +303,9 @@
                         <?php else: ?>
 
                             <div class="text-muted">
+
                                 Belum ada gambar struktur.
+
                             </div>
 
                         <?php endif; ?>
@@ -249,9 +313,9 @@
                     </div>
 
 
-                    <!-- =================================================
+                    <!-- ==========================================
                          GANTI STRUKTUR
-                    ================================================== -->
+                    =========================================== -->
 
                     <div class="mb-3">
 
@@ -259,8 +323,11 @@
                             for="struktur_organisasi"
                             class="form-label"
                         >
+
                             Ganti Struktur
+
                         </label>
+
 
                         <input
                             type="file"
@@ -270,17 +337,20 @@
                             accept="image/*"
                         >
 
+
                         <small class="text-muted">
+
                             Kosongkan jika tidak ingin mengganti
                             gambar struktur.
+
                         </small>
 
                     </div>
 
 
-                    <!-- =================================================
+                    <!-- ==========================================
                          DESKRIPSI
-                    ================================================== -->
+                    =========================================== -->
 
                     <div class="mb-3">
 
@@ -288,8 +358,11 @@
                             for="deskripsi"
                             class="form-label"
                         >
+
                             Deskripsi
+
                         </label>
+
 
                         <textarea
                             name="deskripsi"
@@ -301,9 +374,9 @@
                     </div>
 
 
-                    <!-- =================================================
+                    <!-- ==========================================
                          BUTTON
-                    ================================================== -->
+                    =========================================== -->
 
                     <div class="d-flex justify-content-end">
 
@@ -320,6 +393,7 @@
 
                         </a>
 
+
                         <button
                             type="submit"
                             class="btn btn-primary"
@@ -332,6 +406,7 @@
                         </button>
 
                     </div>
+
 
                 </form>
 

@@ -1,4 +1,4 @@
-<?= $this->include('layout/header') ?>
+ <?= $this->include('layout/header') ?>
 
 <link rel="stylesheet" href="<?= base_url('assets/css/korsda.css') ?>">
 
@@ -54,48 +54,46 @@
 
             <?php if (!empty($kecamatan)) : ?>
 
-                <?php foreach ($kecamatan as $item) : ?>
+    <?php foreach ($kecamatan as $item) : ?>
 
-                    <div class="col-lg-4 col-md-6 col-sm-12 korsda-item">
+        <div class="col-lg-4 col-md-6 col-sm-12 korsda-item">
 
-                        <a href="<?= base_url('korsda/korsdawilayah/' . $item['id']) ?>" class="korsda-link">
+            <a href="<?= base_url('korsda/korsdawilayah/' . $item['id']) ?>"
+               class="korsda-link">
 
-                            <div class="korsda-card">
+                <div class="korsda-card">
 
-                                <div class="text-center">
+                    <div class="text-center">
 
+                        <small>Kecamatan</small>
 
-                                    <small>Kecamatan</small>
+                        <h4 class="nama-kecamatan">
+                            <?= esc($item['nama_kecamatan']) ?>
+                        </h4>
 
-                                    <h4 class="nama-kecamatan">
-                                        <?= esc($item['nama_kecamatan']) ?>
-                                    </h4>
-
-                                    <div class="line"></div>
-
-                                </div>
-
-                            </div>
-
-                        </a>
-
-                    </div>
-
-                <?php endforeach; ?>
-
-            <?php else : ?>
-
-                <div class="col-12">
-
-                    <div class="alert alert-warning text-center">
-
-                        Data Kecamatan belum tersedia.
+                        <div class="line"></div>
 
                     </div>
 
                 </div>
 
-            <?php endif; ?>
+            </a>
+
+        </div>
+
+    <?php endforeach; ?>
+
+<?php else : ?>
+
+    <div class="col-12">
+
+        <div class="alert alert-warning text-center">
+            Data Kecamatan belum tersedia.
+        </div>
+
+    </div>
+
+<?php endif; ?>
 
         </div>
 

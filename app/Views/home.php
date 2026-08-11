@@ -11,7 +11,7 @@
 
         <h1>
 
-            DINAS PU PENGAIRAN
+            DINAS PENGAIRAN
 
             <span>BANYUWANGI</span>
 
@@ -22,16 +22,20 @@
             berkelanjutan demi kesejahteraan masyarakat dan kelestarian lingkungan
         </p>
 
-      <form action="<?= base_url('/') ?>" method="GET">
+        <form action="<?= base_url('search') ?>" method="get">
+
     <div class="search-box">
 
         <input
             type="text"
-            name="q"
-            value="<?= esc($keyword ?? '') ?>"
-            placeholder="Apa yang perlu anda cari?">
+            name="keyword"
+            class="search-input"
+            placeholder="Apa yang perlu anda cari?"
+            autocomplete="off"
+             required>
 
     </div>
+
 </form>
 
         <div class="row justify-content-center mt-5">

@@ -37,7 +37,7 @@
 
                     <tr>
                         <th width="60">No</th>
-                        <th>Kecamatan</th>
+                        <th>Wilayah</th>
                         <th>Judul</th>
                         <th width="130">Gambar</th>
                         <th width="120">Tanggal</th>
@@ -58,7 +58,7 @@
 
                             <td class="text-center"><?= $no++ ?></td>
 
-                            <td><?= esc($item['nama_kecamatan']) ?></td>
+                            <td><?= esc($item['nama_wilayah']) ?></td>
 
                             <td><?= esc($item['judul']) ?></td>
 

@@ -42,6 +42,7 @@
                                 <th width="60">No</th>
                                 <th width="100">Foto</th>
                                 <th>Kecamatan</th>
+                                <th> Wilayah</th>
                                 <th>Nama</th>
                                 <th>Jabatan</th>
                                 <th>No HP</th>
@@ -105,6 +106,10 @@ $fotoPath = FCPATH . 'uploads/korsda/' . $foto;
 
                                         <td>
                                             <?= esc($row['nama_kecamatan']) ?>
+                                        </td>
+
+                                        <td>
+                                            <?= esc($row['nama_wilayah']) ?>
                                         </td>
 
                                         <td>

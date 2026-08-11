@@ -6,15 +6,13 @@ use CodeIgniter\Model;
 
 class KecamatanModel extends Model
 {
-    protected $table = 'kecamatan';
-    protected $primaryKey = 'id';
+    protected $table            = 'kecamatan';
+    protected $primaryKey       = 'id';
+    protected $returnType       = 'array';
 
     protected $allowedFields = [
         'nama_kecamatan'
     ];
 
-    protected $useTimestamps = true;
-    protected $useSoftDeletes = true;
-
-    protected $returnType = 'array';
+    protected $useTimestamps = false;
 }

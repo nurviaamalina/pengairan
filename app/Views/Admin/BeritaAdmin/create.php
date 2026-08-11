@@ -84,6 +84,16 @@
                                    required>
                         </div>
 
+                        <div class="mb-3">
+                            <label>Tanggal</label>
+                            <input
+                                type="date"
+                                name="tanggal"
+                                class="form-control"
+                                value="<?= date('Y-m-d'); ?>"
+                                required>
+                        </div>
+
                         <!-- Upload Thumbnail -->
                         <div class="mb-4">
                             <label class="form-label fw-semibold">

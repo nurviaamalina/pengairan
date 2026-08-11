@@ -2,172 +2,298 @@
 
 <div class="d-flex">
 
-```
-<?= $this->include('admin/layout/sidebar') ?>
+    <?= $this->include('admin/layout/sidebar') ?>
 
-<div class="content flex-grow-1 p-4 bg-light">
+    <div class="content flex-grow-1 p-4 bg-light">
 
-    <h2 class="fw-bold mb-4">Edit Kegiatan KORSDA</h2>
+        <h2 class="fw-bold mb-4">
+            Edit Kegiatan KORSDA
+        </h2>
 
-    <div class="card shadow-sm">
 
-        <div class="card-body">
+        <!-- ERROR -->
+        <?php if (session()->getFlashdata('error')): ?>
 
-            <form action="<?= site_url('admin/korsda/kegiatan/update/' . $kegiatan['id']) ?>"
-                  method="post"
-                  enctype="multipart/form-data">
+            <div class="alert alert-danger">
+                <?= esc(session()->getFlashdata('error')) ?>
+            </div>
 
-                <?= csrf_field() ?>
+        <?php endif; ?>
 
-                <!-- KORSDA / KECAMATAN -->
-                <div class="mb-3">
 
-                    <label class="form-label">
-                        Kecamatan
-                    </label>
+        <?php if (session()->getFlashdata('errors')): ?>
 
-                    <select name="korsda_id" class="form-select" required>
+            <div class="alert alert-danger">
 
-                        <option value="">
-                            -- Pilih Kecamatan --
-                        </option>
+                <ul class="mb-0">
 
-                        <?php foreach ($korsda as $item): ?>
+                    <?php foreach (
+                        session()->getFlashdata('errors') as $error
+                    ): ?>
 
-                            <option
-                                value="<?= $item['id'] ?>"
-                                <?= ((int) $item['id'] === (int) ($kegiatan['korsda_id'] ?? 0)) ? 'selected' : '' ?>
-                            >
-                                <?= esc($item['nama_kecamatan']) ?>
+                        <li>
+                            <?= esc($error) ?>
+                        </li>
+
+                    <?php endforeach; ?>
+
+                </ul>
+
+            </div>
+
+        <?php endif; ?>
+
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <form
+                    action="<?= site_url(
+                        'admin/korsda/kegiatan/update/' . $kegiatan['id']
+                    ) ?>"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+
+                    <?= csrf_field() ?>
+
+
+                    <!-- NAMA WILAYAH -->
+                    <div class="mb-3">
+
+                        <label
+                            for="korsda_id"
+                            class="form-label"
+                        >
+                            Nama Wilayah
+                            <span class="text-danger">*</span>
+                        </label>
+
+
+                        <select
+                            name="korsda_id"
+                            id="korsda_id"
+                            class="form-select"
+                            required
+                        >
+
+                            <option value="">
+                                -- Pilih Nama Wilayah --
                             </option>
 
-                        <?php endforeach; ?>
 
-                    </select>
+                            <?php if (!empty($korsda)): ?>
 
-                </div>
+                                <?php foreach ($korsda as $item): ?>
 
+                                    <option
+                                        value="<?= esc($item['id']) ?>"
+                                        <?= (
+                                            ($kegiatan['korsda_id'] ?? '')
+                                            == $item['id']
+                                        )
+                                            ? 'selected'
+                                            : '' ?>
+                                    >
 
-                <!-- JUDUL -->
-                <div class="mb-3">
+                                        <?= esc(
+                                            $item['nama_wilayah']
+                                        ) ?>
 
-                    <label class="form-label">
-                        Judul
-                    </label>
+                                    </option>
 
-                    <input
-                        type="text"
-                        name="judul"
-                        class="form-control"
-                        value="<?= esc($kegiatan['judul'] ?? '') ?>"
-                        required>
+                                <?php endforeach; ?>
 
-                </div>
+                            <?php else: ?>
 
+                                <option value="" disabled>
+                                    Data nama wilayah belum tersedia
+                                </option>
 
-                <!-- TANGGAL -->
-                <div class="mb-3">
+                            <?php endif; ?>
 
-                    <label class="form-label">
-                        Tanggal
-                    </label>
+                        </select>
 
-                    <input
-                        type="date"
-                        name="tanggal"
-                        class="form-control"
-                        value="<?= esc($kegiatan['tanggal'] ?? '') ?>"
-                        required>
-
-                </div>
+                    </div>
 
 
-                <!-- GAMBAR LAMA -->
-                <div class="mb-3">
+                    <!-- JUDUL -->
+                    <div class="mb-3">
 
-                    <label class="form-label">
-                        Gambar Lama
-                    </label>
-
-                    <br>
-
-                    <?php if (!empty($kegiatan['gambar'])): ?>
-
-                        <img
-                            src="<?= base_url('uploads/kegiatan/' . $kegiatan['gambar']) ?>"
-                            width="180"
-                            class="img-thumbnail">
-
-                    <?php else: ?>
-
-                        <div class="text-muted">
-                            Belum ada gambar
-                        </div>
-
-                    <?php endif; ?>
-
-                </div>
+                        <label
+                            for="judul"
+                            class="form-label"
+                        >
+                            Judul
+                            <span class="text-danger">*</span>
+                        </label>
 
 
-                <!-- GANTI GAMBAR -->
-                <div class="mb-3">
+                        <input
+                            type="text"
+                            name="judul"
+                            id="judul"
+                            class="form-control"
+                            value="<?= esc(
+                                $kegiatan['judul'] ?? ''
+                            ) ?>"
+                            required
+                        >
 
-                    <label class="form-label">
-                        Ganti Gambar
-                    </label>
-
-                    <input
-                        type="file"
-                        name="gambar"
-                        class="form-control"
-                        accept="image/*">
-
-                    <small class="text-muted">
-                        Kosongkan jika tidak ingin mengganti gambar.
-                    </small>
-
-                </div>
+                    </div>
 
 
-                <!-- ISI KEGIATAN -->
-                <div class="mb-3">
+                    <!-- TANGGAL -->
+                    <div class="mb-3">
 
-                    <label class="form-label">
-                        Isi Kegiatan
-                    </label>
-
-                    <textarea
-                        name="isi"
-                        rows="8"
-                        class="form-control"
-                        required><?= esc($kegiatan['isi'] ?? '') ?></textarea>
-
-                </div>
+                        <label
+                            for="tanggal"
+                            class="form-label"
+                        >
+                            Tanggal
+                            <span class="text-danger">*</span>
+                        </label>
 
 
-                <!-- BUTTON -->
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-save"></i>
-                    Update
-                </button>
+                        <input
+                            type="date"
+                            name="tanggal"
+                            id="tanggal"
+                            class="form-control"
+                            value="<?= esc(
+                                $kegiatan['tanggal'] ?? ''
+                            ) ?>"
+                            required
+                        >
 
-                <a
-                    href="<?= site_url('admin/korsda/kegiatan') ?>"
-                    class="btn btn-secondary">
+                    </div>
 
-                    <i class="bi bi-arrow-left"></i>
-                    Kembali
 
-                </a>
+                    <!-- GAMBAR LAMA -->
+                    <div class="mb-3">
 
-            </form>
+                        <label class="form-label">
+                            Gambar Saat Ini
+                        </label>
+
+
+                        <?php if (
+                            !empty($kegiatan['gambar'])
+                        ): ?>
+
+                            <div class="mb-2">
+
+                                <img
+                                    src="<?= base_url(
+                                        'uploads/kegiatan/' .
+                                        $kegiatan['gambar']
+                                    ) ?>"
+                                    alt="Gambar Kegiatan"
+                                    class="img-thumbnail"
+                                    style="
+                                        max-width: 250px;
+                                        max-height: 180px;
+                                        object-fit: cover;
+                                    "
+                                >
+
+                            </div>
+
+                        <?php else: ?>
+
+                            <p class="text-muted">
+                                Belum ada gambar.
+                            </p>
+
+                        <?php endif; ?>
+
+                    </div>
+
+
+                    <!-- GANTI GAMBAR -->
+                    <div class="mb-3">
+
+                        <label
+                            for="gambar"
+                            class="form-label"
+                        >
+                            Ganti Gambar
+                        </label>
+
+
+                        <input
+                            type="file"
+                            name="gambar"
+                            id="gambar"
+                            class="form-control"
+                            accept="image/png,image/jpeg,image/jpg"
+                        >
+
+
+                        <small class="text-muted">
+                            Kosongkan jika tidak ingin mengganti gambar.
+                        </small>
+
+                    </div>
+
+
+                    <!-- ISI KEGIATAN -->
+                    <div class="mb-4">
+
+                        <label
+                            for="isi"
+                            class="form-label"
+                        >
+                            Isi Kegiatan
+                            <span class="text-danger">*</span>
+                        </label>
+
+
+                        <textarea
+                            name="isi"
+                            id="isi"
+                            rows="6"
+                            class="form-control"
+                            required
+                        ><?= esc(
+                            $kegiatan['isi'] ?? ''
+                        ) ?></textarea>
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+                    <div class="d-flex gap-2">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            <i class="bi bi-save me-1"></i>
+                            Update
+                        </button>
+
+
+                        <a
+                            href="<?= site_url(
+                                'admin/korsda/kegiatan'
+                            ) ?>"
+                            class="btn btn-secondary"
+                        >
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Kembali
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
 
         </div>
 
     </div>
-
-</div>
-```
 
 </div>
 

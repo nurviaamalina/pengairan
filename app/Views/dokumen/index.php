@@ -11,62 +11,128 @@
 
 <section class="dokumen-section">
 
-    <div class="container">
+<div class="container">
 
-        <div class="dokumen-wrapper">
+<div class="dokumen-wrapper">
 
-            <div class="row g-3 align-items-center mb-4">
+<form action="<?= base_url('dokumen') ?>" method="get">
 
-                <div class="col-lg-6">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
+<div class="row g-3 align-items-center mb-4">
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Cari Dokumen">
-                    </div>
-                </div>
+<div class="col-lg-5">
 
-                <div class="col-lg-3">
-                    <select class="form-select filter-select">
-                        <option>Semua Kategori</option>
-                    </select>
-                </div>
+<!-- <div class="search-box">
 
-                <div class="col-lg-3">
-                    <select class="form-select filter-select">
-                        <option>Tahun</option>
-                    </select>
-                </div>
+<i class="fas fa-search"></i>
 
-            </div>
+<input
+type="text"
+class="form-control"
+name="keyword"
 
-            <p class="result-count">
-                Menampilkan <?= count($kategori) ?>
-                dari <?= count($kategori) ?> Dokumen
-            </p>
+value="<?= esc($keyword ?? '') ?>">
 
-            <?php foreach($kategori as $row): ?>
+</div> -->
 
-                <a href="<?= base_url('dokumen/'.$row['id']) ?>"
-                   class="kategori-card">
+</div>
 
-                    <div class="folder-icon">
-                        <i class="fa-regular fa-folder"></i>
-                    </div>
+<div class="col-lg-3">
 
-                    <div class="kategori-title">
-                        <?= esc($row['nama_kategori']) ?>
-                    </div>
+<select class="form-select filter-select" name="kategori">
 
-                </a>
+<option value="">Semua Kategori</option>
 
-            <?php endforeach ?>
+<?php foreach($allKategori as $k): ?>
 
-        </div>
+<option
+value="<?= $k['id'] ?>"
+<?= ($kategoriDipilih==$k['id'])?'selected':'';?>>
 
-    </div>
+<?= esc($k['nama_kategori']) ?>
+
+</option>
+
+<?php endforeach; ?>
+
+</select>
+
+</div>
+
+<div class="col-lg-2">
+
+<select class="form-select filter-select" name="tahun">
+
+<option value="">Tahun</option>
+
+<?php foreach($tahunList as $t): ?>
+
+<option
+value="<?= $t['tahun']?>"
+<?= ($tahunDipilih==$t['tahun'])?'selected':'';?>>
+
+<?= $t['tahun']?>
+
+</option>
+
+<?php endforeach; ?>
+
+</select>
+
+</div>
+
+<div class="col-lg-2">
+
+<button class="btn btn-warning w-100">
+
+Cari
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+<p class="result-count">
+
+Menampilkan <?= count($kategoriCard) ?> Kategori
+
+</p>
+
+<?php if(empty($kategoriCard)): ?>
+
+<div class="alert alert-warning">
+
+Dokumen tidak ditemukan.
+
+</div>
+
+<?php endif; ?>
+
+<?php foreach($kategoriCard as $row): ?>
+
+<a href="<?= base_url('dokumen/detail/'.$row['id']) ?>" class="kategori-card">
+
+<div class="folder-icon">
+
+<i class="fa-regular fa-folder"></i>
+
+</div>
+
+<div class="kategori-title">
+
+<?= esc($row['nama_kategori']) ?>
+
+</div>
+
+</a>
+
+<?php endforeach; ?>
+
+</div>
+
+</div>
 
 </section>
 
