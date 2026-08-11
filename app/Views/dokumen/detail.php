@@ -11,59 +11,142 @@
 
         <div class="detail-wrapper">
 
-            <!-- FILTER -->
-            <div class="filter-wrapper">
+            <!-- Filter -->
+            <form action="<?= base_url('dokumen/detail/' . $kategori['id']) ?>" method="get">
 
-                <div class="search-item">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Cari Dokumen">
+                <div class="filter-wrapper">
+
+                    <!-- Cari -->
+                    <div class="search-item">
+                        <!-- <div class="search-box">
+                            <i class="fas fa-search"></i>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="keyword"
+                                placeholder="Cari Dokumen"
+                                value="<?= esc($keyword ?? '') ?>">
+                        </div> -->
                     </div>
+
+                    <!-- Kategori -->
+                    <div class="kategori-item">
+
+                        <select
+                            name="kategori"
+                            class="form-select">
+
+                            <option value="">Semua Kategori</option>
+
+                            <?php foreach ($allKategori as $k): ?>
+
+                                <option
+                                    value="<?= $k['id']; ?>"
+                                    <?= ($kategoriDipilih == $k['id']) ? 'selected' : ''; ?>>
+
+                                    <?= esc($k['nama_kategori']); ?>
+
+                                </option>
+
+                            <?php endforeach; ?>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Tahun -->
+                    <div class="tahun-item">
+
+                        <select
+                            name="tahun"
+                            class="form-select">
+
+                            <option value="">Tahun</option>
+
+                            <?php foreach ($tahunList as $t): ?>
+
+                                <option
+                                    value="<?= $t['tahun']; ?>"
+                                    <?= ($tahunDipilih == $t['tahun']) ? 'selected' : ''; ?>>
+
+                                    <?= $t['tahun']; ?>
+
+                                </option>
+
+                            <?php endforeach; ?>
+
+                        </select>
+
+                    </div>
+
+                    <div class="button-item">
+
+                        <button
+                            type="submit"
+                            class="btn btn-warning">
+
+                            Cari
+
+                        </button>
+
+                    </div>
+
                 </div>
 
-                <div class="kategori-item">
-                    <select>
-                        <option>Semua Kategori</option>
-                    </select>
-                </div>
+            </form>
 
-                <div class="tahun-item">
-                    <select>
-                        <option>Tahun</option>
-                    </select>
-                </div>
+            <!-- Jumlah Dokumen -->
+            <p class="result-count">
+                Menampilkan <?= count($dokumen); ?> Dokumen
+            </p>
 
-            </div>
+            <!-- Daftar Dokumen -->
+            <?php if (!empty($dokumen)): ?>
 
-            <!-- LIST DOKUMEN -->
-            <?php foreach ($dokumen as $row): ?>
+                <?php foreach ($dokumen as $row): ?>
 
-                <div class="dokumen-card">
+                    <div class="dokumen-card">
 
-                    <div class="dokumen-left">
+                        <div class="dokumen-left">
 
-                        <div class="folder-icon">
-                            <i class="fa-regular fa-folder"></i>
+                            <div class="folder-icon">
+                                <i class="fa-regular fa-folder"></i>
+                            </div>
+
+                            <div class="dokumen-title">
+                                <?= esc($row['judul']); ?>
+                            </div>
+
                         </div>
 
-                        <div class="dokumen-title">
-                            <?= esc($row['judul']) ?>
+                        <div class="dokumen-right">
+
+                            <a
+                                href="<?= base_url('dokumen/download/' . $row['id']); ?>"
+                                class="btn-download">
+
+                                Unduh
+
+                            </a>
+
                         </div>
 
                     </div>
 
-                    <div class="dokumen-right">
-                        <a href="<?= base_url('dokumen/download/' . $row['id']) ?>" class="btn-download">
-                            Unduh
-                        </a>
-                    </div>
+                <?php endforeach; ?>
 
+            <?php else: ?>
+
+                <div class="alert alert-warning">
+                    Tidak ada dokumen yang ditemukan.
                 </div>
 
-            <?php endforeach; ?>
+            <?php endif; ?>
 
-            <!-- Card Kembali -->
+            <!-- Tombol Kembali -->
             <a href="<?= base_url('dokumen') ?>" class="btn-card-kembali">
+
                 <div class="dokumen-card card-kembali">
 
                     <div class="dokumen-left">
@@ -79,6 +162,7 @@
                     </div>
 
                 </div>
+
             </a>
 
         </div>

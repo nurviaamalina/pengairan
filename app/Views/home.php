@@ -22,13 +22,21 @@
             berkelanjutan demi kesejahteraan masyarakat dan kelestarian lingkungan
         </p>
 
-        <div class="search-box">
+        <form action="<?= base_url('search') ?>" method="get">
 
-            <input
-                type="text"
-                placeholder="Apa yang perlu anda cari?">
+    <div class="search-box">
 
-        </div>
+        <input
+            type="text"
+            name="keyword"
+            class="search-input"
+            placeholder="Apa yang perlu anda cari?"
+            autocomplete="off"
+             required>
+
+    </div>
+
+</form>
 
         <div class="row justify-content-center mt-5">
 

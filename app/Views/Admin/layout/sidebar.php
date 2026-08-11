@@ -36,13 +36,12 @@ $uri = service('uri');
         <!-- Dokumen -->
         <li>
             <a href="<?= base_url('admin/dokumen') ?>"
-<<<<<<< HEAD
+
                 class="menu-link <?= ($uri->getSegment(2) == 'dokumen' ||$uri->getSegment(2) == 'kategori') ? 'active' : '' ?>">
                 <i class="bi bi-folder2-open"></i>
-=======
-               class="menu-link <?= $uri->getSegment(2) == 'dokumen' ? 'active' : '' ?>">
-                <i class="bi bi-folder"></i>
->>>>>>> eef50d04fed1eaf64ffcf2d8a329753d0a692f16
+
+              
+
                 <span>Dokumen</span>
             </a>
         </li>
