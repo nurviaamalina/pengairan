@@ -121,6 +121,7 @@ $routes->get('kategori/(:segment)', 'Admin\AdminDokumen::kategori/$1');
 
 $routes->get('pengaduan/track', 'Pengaduan::trackForm');
 $routes->post('pengaduan/track', 'Pengaduan::track');
+$routes->get('pengaduan/track-json', 'Pengaduan::trackJson');
 
 /*
 |--------------------------------------------------------------------------
@@ -185,7 +186,9 @@ $routes->group('admin', function ($routes) {
     $routes->get('pengaduan/detail/(:num)', 'Admin\AdminPengaduan::detail/$1');
     $routes->post('pengaduan/update/(:num)', 'Admin\AdminPengaduan::updateStatus/$1');
     $routes->get('pengaduan/delete/(:num)', 'Admin\AdminPengaduan::delete/$1');
-
+    $routes->post('pengaduan/tindaklanjut/(:num)', 'Admin\AdminPengaduan::tindaklanjut/$1');
+    
+    
     /*
     | DASHBOARD KORSDA
     */

@@ -21,8 +21,9 @@ class PengaduanModel extends Model
         'deskripsi',
         'tracking_code',
         'status',
-        'created_at',
+        'tindak_lanjut',
         'updated_at',
+        'created_at'
     ];
 
     protected bool $allowEmptyInserts = false;

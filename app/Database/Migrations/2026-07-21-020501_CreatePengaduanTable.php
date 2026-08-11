@@ -53,6 +53,11 @@ class CreatePengaduanTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '50',
                 'null'       => true,
+                
+            ],
+            'tindak_lanjut' => [ 
+                'type' => 'TEXT',
+                'null' => true,
             ],
             'created_at' => [
                 'type'    => 'DATETIME',
@@ -65,6 +70,9 @@ class CreatePengaduanTable extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        
+        
+        $this->forge->addKey('tracking_code', false, true);         
         $this->forge->createTable('pengaduan', true);
     }
 
