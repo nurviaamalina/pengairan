@@ -61,6 +61,7 @@
                             <input type="date"
                                    name="tanggal"
                                    class="form-control"
+                                    value="<?= date('Y-m-d'); ?>"
                                    required>
 
                         </div>

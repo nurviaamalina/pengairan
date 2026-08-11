@@ -240,8 +240,122 @@ body{
 }
 
 
-/* ADMIN CSS BERITA 
+/* ADMIN CSS BERITA IMPORT 
 */ 
+
+/* =========================================
+   IMPORT BERITA -
+========================================= */
+
+/* Tombol Import Data Lama di halaman index */
+.btn-import-berita {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 15px;
+
+    border: 1px solid #198754;
+    border-radius: 8px;
+
+    background: #fff;
+    color: #198754;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.btn-import-berita:hover {
+    background: #198754;
+    color: #fff;
+}
+
+
+/* Area tombol pada form import */
+.import-berita-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+/* Tombol batal */
+.btn-import-berita-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 9px 16px;
+
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+
+    background: #fff;
+    color: #495057;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.btn-import-berita-cancel:hover {
+    background: #f1f3f5;
+    color: #212529;
+}
+
+
+/* Tombol submit import */
+.btn-import-berita-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 9px 17px;
+
+    border: 1px solid #198754;
+    border-radius: 8px;
+
+    background: #198754;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.btn-import-berita-submit:hover {
+    background: #157347;
+    border-color: #157347;
+}
+
+
+/* Responsive */
+@media (max-width: 576px) {
+
+    .import-berita-actions {
+        flex-direction: column;
+    }
+
+    .btn-import-berita-cancel,
+    .btn-import-berita-submit {
+        width: 100%;
+    }
+
+}
 
 
 
@@ -693,3 +807,117 @@ input[type=file]{
     transform: scale(.98);
 }
 
+
+/* =========================================
+   IMPORT KEGIATAN
+========================================= */
+
+/* Tombol Import Data Lama di halaman index */
+.btn-import-kegiatan {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 15px;
+
+    border: 1px solid #198754;
+    border-radius: 8px;
+
+    background: #fff;
+    color: #198754;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.btn-import-kegiatan:hover {
+    background: #198754;
+    color: #fff;
+}
+
+
+/* Area tombol pada form import */
+.import-kegiatan-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+/* Tombol batal */
+.btn-import-kegiatan-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 9px 16px;
+
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+
+    background: #fff;
+    color: #495057;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.btn-import-kegiatan-cancel:hover {
+    background: #f1f3f5;
+    color: #212529;
+}
+
+
+/* Tombol submit import */
+.btn-import-kegiatan-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 9px 17px;
+
+    border: 1px solid #198754;
+    border-radius: 8px;
+
+    background: #198754;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.btn-import-kegiatan-submit:hover {
+    background: #157347;
+    border-color: #157347;
+}
+
+
+/* Responsive */
+@media (max-width: 576px) {
+
+    .import-kegiatan-actions {
+        flex-direction: column;
+    }
+
+    .btn-import-kegiatan-cancel,
+    .btn-import-kegiatan-submit {
+        width: 100%;
+    }
+
+}

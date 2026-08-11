@@ -30,14 +30,14 @@ class AdminPengaduan extends BaseController
                 ->orLike('kategori', $keyword)
                 ->orLike('status', $keyword)
                 ->orderBy('created_at', 'DESC')
-                ->limit(10)
-                ->findAll();
+                ->paginate(10);
         } else {
             $pengaduan = $this->pengaduanModel
                 ->orderBy('created_at', 'DESC')
-                ->limit(10)
-                ->findAll();
+                ->paginate(10);
         }
+
+        $pager = $this->pengaduanModel->pager;
 
         // Hitung statistik
         $total_all = $this->pengaduanModel->countAll();
@@ -54,6 +54,7 @@ class AdminPengaduan extends BaseController
             'diproses'  => $diproses,
             'selesai'   => $selesai,
             'ditolak'   => $ditolak,
+            'pager'     => $pager,
         ];
 
         return view('Admin/PengaduanAdmin/index', $data);
@@ -192,4 +193,19 @@ class AdminPengaduan extends BaseController
         fclose($output);
         exit();
     }
+
+    public function tindaklanjut($id)
+    {
+        $data = [
+            'status' => $this->request->getPost('status') ?? 'pending',
+            'tindak_lanjut' => $this->request->getPost('tindak_lanjut') ?? '',
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        $this->pengaduanModel->update($id, $data);
+
+        return redirect()->to('/admin/pengaduan/detail/' . $id)
+            ->with('success', 'Status dan tindak lanjut berhasil disimpan.');
+    }
+
 }

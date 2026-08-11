@@ -1,13 +1,19 @@
 <?php
 
+namespace Config;
+
 use CodeIgniter\Router\RouteCollection;
 
-/** @var RouteCollection $routes */
+/**
+ * @var RouteCollection $routes
+ */
 
 
-// =========================
-// LOGIN & REGISTER
-// =========================
+/*
+|--------------------------------------------------------------------------
+| LOGIN & REGISTER
+|--------------------------------------------------------------------------
+*/
 
 $routes->get('login', 'Auth::login');
 $routes->post('login', 'Auth::prosesLogin');
@@ -18,62 +24,80 @@ $routes->post('register', 'Auth::prosesRegister');
 $routes->get('logout', 'Auth::logout');
 
 
-
 /*
 |--------------------------------------------------------------------------
 | FRONTEND
 |--------------------------------------------------------------------------
-
 */
 
 $routes->get('/', 'Home::index');
-
 $routes->get('search', 'Home::search');
+
+
+/*
+|--------------------------------------------------------------------------
+| INSTAGRAM
+|--------------------------------------------------------------------------
+*/
+
+$routes->get('instagram-sync', 'InstagramSync::index');
+$routes->get('instagram', 'Instagram::index');
+
 
 /*
 |--------------------------------------------------------------------------
 | BERITA
 |--------------------------------------------------------------------------
 */
+
 $routes->get('berita', 'Berita::index');
 $routes->get('berita/(:segment)', 'Berita::detail/$1');
+
 
 /*
 |--------------------------------------------------------------------------
 | KEGIATAN
 |--------------------------------------------------------------------------
 */
+
 $routes->get('kegiatan', 'Kegiatan::index');
 $routes->get('kegiatan/tahun/(:num)', 'Kegiatan::tahun/$1');
 $routes->get('kegiatan/(:segment)', 'Kegiatan::detail/$1');
+
 
 /*
 |--------------------------------------------------------------------------
 | GIS
 |--------------------------------------------------------------------------
 */
+
 // $routes->get('gis', 'Gis::gis');
+
 
 /*
 |--------------------------------------------------------------------------
 | PENGADUAN
 |--------------------------------------------------------------------------
 */
+
 $routes->get('pengaduan', 'Pengaduan::index');
 $routes->get('pengaduan/create', 'Pengaduan::create');
 $routes->post('pengaduan/save', 'Pengaduan::save');
 
 $routes->get('pengaduan/track', 'Pengaduan::trackForm');
 $routes->post('pengaduan/track', 'Pengaduan::track');
+$routes->get('pengaduan/track-json', 'Pengaduan::trackJson');
 
 
-/*Dokumen 
+/*
+|--------------------------------------------------------------------------
+| DOKUMEN FRONTEND
+|--------------------------------------------------------------------------
 */
 
 $routes->get('dokumen', 'DokumenController::index');
 $routes->get('dokumen/detail/(:num)', 'DokumenController::detail/$1');
-$routes->get('/dokumen/download/(:num)', 'DokumenController::download/$1');
-
+$routes->get('dokumen/download/(:num)', 'DokumenController::download/$1');
 
 
 /*
@@ -81,39 +105,61 @@ $routes->get('/dokumen/download/(:num)', 'DokumenController::download/$1');
 | FRONTEND KORSDA
 |--------------------------------------------------------------------------
 */
+
 $routes->get('korsda', 'Korsda::index');
 $routes->get('korsda/profil/(:num)', 'Korsda::profil/$1');
 $routes->get('korsda/peta/(:num)', 'Korsda::peta/$1');
 $routes->get('korsda/kegiatan/(:num)', 'Korsda::kegiatan/$1');
 $routes->get('korsda/detail_kegiatan/(:num)', 'Korsda::detailKegiatan/$1');
 $routes->get('korsda/gis/(:num)', 'Korsda::gis/$1');
+
 $routes->get('gis', 'Gis::index');
 
-$routes->get('instagram', 'Instagram::index');
 
+/*
+|--------------------------------------------------------------------------
+| CCTV
+|--------------------------------------------------------------------------
+*/
 
-// profil
-
-//cctv
 $routes->get('cctv', 'Cctv::index');
 
+
+/*
+|--------------------------------------------------------------------------
+| TENTANG KAMI
+|--------------------------------------------------------------------------
+*/
+
 $routes->get('tentang-kami', 'TentangKami::index');
+
 
 /*
 |--------------------------------------------------------------------------
 | ADMIN
 |--------------------------------------------------------------------------
+|
+| Semua halaman admin dilindungi oleh filter "auth".
+|
 */
+
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     /*
-    | Dashboard
+    |--------------------------------------------------------------------------
+    | DASHBOARD
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('dashboard', 'Admin\Dashboard::index');
 
+
     /*
+    |--------------------------------------------------------------------------
     | BERITA
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('berita', 'Admin\AdminBerita::index');
     $routes->get('berita/create', 'Admin\AdminBerita::create');
     $routes->post('berita/store', 'Admin\AdminBerita::store');
@@ -121,9 +167,16 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->post('berita/update/(:num)', 'Admin\AdminBerita::update/$1');
     $routes->get('berita/delete/(:num)', 'Admin\AdminBerita::delete/$1');
 
+    $routes->get('berita/import', 'Admin\AdminBerita::import');
+    $routes->post('berita/import', 'Admin\AdminBerita::importProcess');
+
+
     /*
+    |--------------------------------------------------------------------------
     | KEGIATAN
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('kegiatan', 'Admin\AdminKegiatan::index');
     $routes->get('kegiatan/create', 'Admin\AdminKegiatan::create');
     $routes->post('kegiatan/store', 'Admin\AdminKegiatan::store');
@@ -132,22 +185,38 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('kegiatan/delete/(:num)', 'Admin\AdminKegiatan::delete/$1');
     $routes->get('kegiatan/foto/delete/(:num)', 'Admin\AdminKegiatan::deleteFoto/$1');
 
+    $routes->get('kegiatan/import', 'Admin\AdminKegiatan::import');
+    $routes->post('kegiatan/import', 'Admin\AdminKegiatan::importProcess');
+
+
     /*
-    | PENGADUAN
+    |--------------------------------------------------------------------------
+    | PENGADUAN ADMIN
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('pengaduan', 'Admin\AdminPengaduan::index');
     $routes->get('pengaduan/detail/(:num)', 'Admin\AdminPengaduan::detail/$1');
     $routes->post('pengaduan/update/(:num)', 'Admin\AdminPengaduan::updateStatus/$1');
     $routes->get('pengaduan/delete/(:num)', 'Admin\AdminPengaduan::delete/$1');
+    $routes->post('pengaduan/tindaklanjut/(:num)', 'Admin\AdminPengaduan::tindaklanjut/$1');
+
 
     /*
+    |--------------------------------------------------------------------------
     | DASHBOARD KORSDA
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('korsda/dashboard', 'Admin\DashboardKorsda::index');
 
+
     /*
+    |--------------------------------------------------------------------------
     | DATA KORSDA
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('korsda', 'Admin\Korsda::index');
     $routes->get('korsda/data', 'Admin\Korsda::index');
 
@@ -159,9 +228,13 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     $routes->get('korsda/delete/(:num)', 'Admin\Korsda::delete/$1');
 
+
     /*
+    |--------------------------------------------------------------------------
     | PROFIL KORSDA
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('korsda/profil', 'Admin\ProfilKorsda::index');
 
     $routes->get('korsda/profil_korsda', 'Admin\ProfilKorsda::index');
@@ -173,12 +246,17 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     $routes->get('korsda/profil_korsda/delete/(:num)', 'Admin\ProfilKorsda::delete/$1');
 
+
     /*
+    |--------------------------------------------------------------------------
     | WILAYAH
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('korsda/wilayah', 'Admin\PetaKorsda::index');
     $routes->get('peta', 'Admin\PetaKorsda::index');
     $routes->get('wilayah', 'Admin\PetaKorsda::index');
+
     $routes->get('wilayah/create', 'Admin\PetaKorsda::create');
     $routes->post('wilayah/store', 'Admin\PetaKorsda::store');
 
@@ -187,20 +265,31 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     $routes->get('wilayah/delete/(:num)', 'Admin\PetaKorsda::delete/$1');
 
+
     /*
-    | GIS
+    |--------------------------------------------------------------------------
+    | GIS KORSDA
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('korsda/gis', 'Admin\GisKorsda::index');
 
 
     /*
+    |--------------------------------------------------------------------------
     | KECAMATAN
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('korsda/kecamatan', 'Admin\KecamatanKorsda::index');
 
+
     /*
+    |--------------------------------------------------------------------------
     | KEGIATAN KORSDA
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('korsda/kegiatan', 'Admin\KegiatanKorsda::index');
     $routes->get('korsda/kegiatan/create', 'Admin\KegiatanKorsda::create');
     $routes->post('korsda/kegiatan/store', 'Admin\KegiatanKorsda::store');
@@ -208,9 +297,13 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->post('korsda/kegiatan/update/(:num)', 'Admin\KegiatanKorsda::update/$1');
     $routes->get('korsda/kegiatan/delete/(:num)', 'Admin\KegiatanKorsda::delete/$1');
 
+
     /*
+    |--------------------------------------------------------------------------
     | PROFIL ADMIN
+    |--------------------------------------------------------------------------
     */
+
     $routes->get('profil', 'Admin\AdminProfil::index');
     $routes->get('profil/create', 'Admin\AdminProfil::create');
     $routes->post('profil/save', 'Admin\AdminProfil::save');
@@ -221,9 +314,10 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
     /*
     |--------------------------------------------------------------------------
-    | INSTAGRAM
+    | INSTAGRAM ADMIN
     |--------------------------------------------------------------------------
     */
+
     $routes->get('instagram', 'Admin\AdminInstagram::index');
     $routes->get('instagram/create', 'Admin\AdminInstagram::create');
     $routes->post('instagram/store', 'Admin\AdminInstagram::store');
@@ -234,25 +328,28 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('instagram/delete/(:num)', 'Admin\AdminInstagram::delete/$1');
 
 
-    // ==========================
-    // KATEGORI DOKUMEN
-    // ==========================
+    /*
+    |--------------------------------------------------------------------------
+    | KATEGORI DOKUMEN
+    |--------------------------------------------------------------------------
+    */
 
-   $routes->get('kategori', 'Admin\AdminKategoriDokumen::index');
+    $routes->get('kategori', 'Admin\AdminKategoriDokumen::index');
     $routes->get('kategori/create', 'Admin\AdminKategoriDokumen::create');
     $routes->post('kategori/store', 'Admin\AdminKategoriDokumen::store');
     $routes->get('kategori/edit/(:num)', 'Admin\AdminKategoriDokumen::edit/$1');
     $routes->post('kategori/update/(:num)', 'Admin\AdminKategoriDokumen::update/$1');
     $routes->get('kategori/delete/(:num)', 'Admin\AdminKategoriDokumen::delete/$1');
 
-    //Halaman isi kategori
+    // Halaman isi kategori
     $routes->get('kategori/(:segment)', 'Admin\AdminDokumen::kategori/$1');
 
 
-
-    // ==========================
-    // DOKUMEN
-    // ==========================
+    /*
+    |--------------------------------------------------------------------------
+    | DOKUMEN ADMIN
+    |--------------------------------------------------------------------------
+    */
 
     $routes->get('dokumen', 'Admin\AdminDokumen::index');
 
@@ -266,9 +363,16 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->post('dokumen/update/(:num)', 'Admin\AdminDokumen::update/$1');
 
     $routes->get('dokumen/delete/(:num)', 'Admin\AdminDokumen::delete/$1');
-
-
-    
 });
-// Tambahkan jika memang ada halaman detail kegiatan admin
+
+
+/*
+|--------------------------------------------------------------------------
+| TAMBAHAN
+|--------------------------------------------------------------------------
+|
+| Tambahkan route lain di bawah ini jika memang diperlukan.
+|
+*/
+
 // $routes->get('korsda/kegiatan/detail/(:num)', 'Admin\KegiatanKorsda::detail/$1');
