@@ -23,6 +23,7 @@ class Home extends BaseController
 
     public function index()
     {
+
         $kegiatanModel = new KegiatanModel();
         $instagramModel = new InstagramModel();
 

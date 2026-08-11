@@ -37,6 +37,16 @@ $routes->get('/', 'Home::index');
 
 /*
 |--------------------------------------------------------------------------
+| INSTAGRAM
+|--------------------------------------------------------------------------
+
+*/
+
+$routes->get('instagram-sync', 'InstagramSync::index');
+$routes->get('instagram', 'Instagram::index');
+
+/*
+|--------------------------------------------------------------------------
 | BERITA
 |--------------------------------------------------------------------------
 */
@@ -136,8 +146,6 @@ $routes->get('korsda/detail_kegiatan/(:num)', 'Korsda::detailKegiatan/$1');
 $routes->get('korsda/gis/(:num)', 'Korsda::gis/$1');
 $routes->get('gis', 'Gis::index');
 
-$routes->get('instagram', 'Instagram::index');
-
 
 // profil
 
@@ -168,6 +176,8 @@ $routes->group('admin', function ($routes) {
     $routes->post('berita/update/(:num)', 'Admin\AdminBerita::update/$1');
     $routes->get('berita/delete/(:num)', 'Admin\AdminBerita::delete/$1');
 
+    $routes->get('berita/import', 'Admin\AdminBerita::import');
+    $routes->post('berita/import', 'Admin\AdminBerita::importProcess');
     /*
     | KEGIATAN
     */
@@ -178,6 +188,9 @@ $routes->group('admin', function ($routes) {
     $routes->post('kegiatan/update/(:num)', 'Admin\AdminKegiatan::update/$1');
     $routes->get('kegiatan/delete/(:num)', 'Admin\AdminKegiatan::delete/$1');
     $routes->get('kegiatan/foto/delete/(:num)', 'Admin\AdminKegiatan::deleteFoto/$1');
+
+    $routes->get('kegiatan/import', 'Admin\AdminKegiatan::import');
+    $routes->post('kegiatan/import', 'Admin\AdminKegiatan::importProcess');
 
     /*
     | PENGADUAN

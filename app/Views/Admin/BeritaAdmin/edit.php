@@ -72,7 +72,18 @@
                                 value="<?= esc($berita['publikator']) ?>"
                                 required>
                         </div>
-
+                        <!-- Tanggal -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Tanggal
+                            </label>
+                            <input
+                                type="date"
+                                name="tanggal"
+                                class="form-control"
+                                value="<?= old('tanggal', $berita['tanggal']) ?>"
+                                required>
+                        </div>
 
                         <!-- Upload Thumbnail -->
                         <div class="mb-4">
