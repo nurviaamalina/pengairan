@@ -2,111 +2,172 @@
 
 <div class="d-flex">
 
+```
 <?= $this->include('admin/layout/sidebar') ?>
 
 <div class="content flex-grow-1 p-4 bg-light">
 
-<h2 class="fw-bold mb-4">Edit Kegiatan KORSDA</h2>
+    <h2 class="fw-bold mb-4">Edit Kegiatan KORSDA</h2>
 
-<div class="card shadow-sm">
+    <div class="card shadow-sm">
 
-<div class="card-body">
+        <div class="card-body">
 
-<form action="<?= site_url('admin/korsda/kegiatan/update/'.$kegiatan['id']) ?>"
-      method="post"
-      enctype="multipart/form-data">
+            <form action="<?= site_url('admin/korsda/kegiatan/update/' . $kegiatan['id']) ?>"
+                  method="post"
+                  enctype="multipart/form-data">
 
-<?= csrf_field() ?>
+                <?= csrf_field() ?>
 
-<div class="mb-3">
-<label class="form-label">Kecamatan</label>
+                <!-- KORSDA / KECAMATAN -->
+                <div class="mb-3">
 
-<select name="id_korsda" class="form-select">
+                    <label class="form-label">
+                        Kecamatan
+                    </label>
 
-<?php foreach($korsda as $item): ?>
+                    <select name="korsda_id" class="form-select" required>
 
-<option value="<?= $item['id'] ?>"
-<?= $item['id']==$kegiatan['id_korsda'] ? 'selected' : '' ?>>
+                        <option value="">
+                            -- Pilih Kecamatan --
+                        </option>
 
-<?= esc($item['nama_kecamatan']) ?>
+                        <?php foreach ($korsda as $item): ?>
 
-</option>
+                            <option
+                                value="<?= $item['id'] ?>"
+                                <?= ((int) $item['id'] === (int) ($kegiatan['korsda_id'] ?? 0)) ? 'selected' : '' ?>
+                            >
+                                <?= esc($item['nama_kecamatan']) ?>
+                            </option>
 
-<?php endforeach; ?>
+                        <?php endforeach; ?>
 
-</select>
+                    </select>
+
+                </div>
+
+
+                <!-- JUDUL -->
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Judul
+                    </label>
+
+                    <input
+                        type="text"
+                        name="judul"
+                        class="form-control"
+                        value="<?= esc($kegiatan['judul'] ?? '') ?>"
+                        required>
+
+                </div>
+
+
+                <!-- TANGGAL -->
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Tanggal
+                    </label>
+
+                    <input
+                        type="date"
+                        name="tanggal"
+                        class="form-control"
+                        value="<?= esc($kegiatan['tanggal'] ?? '') ?>"
+                        required>
+
+                </div>
+
+
+                <!-- GAMBAR LAMA -->
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Gambar Lama
+                    </label>
+
+                    <br>
+
+                    <?php if (!empty($kegiatan['gambar'])): ?>
+
+                        <img
+                            src="<?= base_url('uploads/kegiatan/' . $kegiatan['gambar']) ?>"
+                            width="180"
+                            class="img-thumbnail">
+
+                    <?php else: ?>
+
+                        <div class="text-muted">
+                            Belum ada gambar
+                        </div>
+
+                    <?php endif; ?>
+
+                </div>
+
+
+                <!-- GANTI GAMBAR -->
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Ganti Gambar
+                    </label>
+
+                    <input
+                        type="file"
+                        name="gambar"
+                        class="form-control"
+                        accept="image/*">
+
+                    <small class="text-muted">
+                        Kosongkan jika tidak ingin mengganti gambar.
+                    </small>
+
+                </div>
+
+
+                <!-- ISI KEGIATAN -->
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Isi Kegiatan
+                    </label>
+
+                    <textarea
+                        name="isi"
+                        rows="8"
+                        class="form-control"
+                        required><?= esc($kegiatan['isi'] ?? '') ?></textarea>
+
+                </div>
+
+
+                <!-- BUTTON -->
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i>
+                    Update
+                </button>
+
+                <a
+                    href="<?= site_url('admin/korsda/kegiatan') ?>"
+                    class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Kembali
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>
-
-<div class="mb-3">
-<label class="form-label">Judul</label>
-
-<input
-type="text"
-name="judul"
-class="form-control"
-value="<?= esc($kegiatan['judul']) ?>">
-</div>
-
-<div class="mb-3">
-<label class="form-label">Tanggal</label>
-
-<input
-type="date"
-name="tanggal"
-class="form-control"
-value="<?= $kegiatan['tanggal'] ?>">
-</div>
-
-<div class="mb-3">
-<label class="form-label">Gambar Lama</label><br>
-
-<?php if($kegiatan['gambar']) : ?>
-
-<img src="<?= base_url('uploads/kegiatan/'.$kegiatan['gambar']) ?>"
-     width="180"
-     class="img-thumbnail">
-
-<?php endif; ?>
-
-</div>
-
-<div class="mb-3">
-<label class="form-label">Ganti Gambar</label>
-
-<input
-type="file"
-name="gambar"
-class="form-control">
-</div>
-
-<div class="mb-3">
-
-<label class="form-label">Isi Kegiatan</label>
-
-<textarea
-name="isi"
-rows="8"
-class="form-control"><?= esc($kegiatan['isi']) ?></textarea>
-
-</div>
-
-<button class="btn btn-primary">
-Update
-</button>
-
-<a href="<?= site_url('admin/korsda/kegiatan') ?>"
-class="btn btn-secondary">
-Kembali
-</a>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
+```
 
 </div>
 

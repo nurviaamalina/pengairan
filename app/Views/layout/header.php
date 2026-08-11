@@ -108,10 +108,6 @@
                         <a class="nav-link" href="<?= base_url('dokumen') ?>">DOKUMEN</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">KONTAK</a>
-                    </li>
-
                 </ul>
 
                 <!-- Search -->

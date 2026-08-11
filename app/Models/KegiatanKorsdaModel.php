@@ -9,9 +9,10 @@ class KegiatanKorsdaModel extends Model
     protected $table = 'kegiatankorsda';
 
     protected $primaryKey = 'id';
+    protected $returnType = 'array';
 
     protected $allowedFields = [
-        'id_korsda',
+        'korsda_id',
         'judul',
         'gambar',
         'tanggal'

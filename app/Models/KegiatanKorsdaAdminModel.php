@@ -13,7 +13,7 @@ class KegiatanKorsdaAdminModel extends Model
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'id_korsda',
+        'korsda_id',
         'judul',
         'gambar',
         'tanggal',

@@ -11,11 +11,11 @@
             <div>
                 <h4 class="fw-bold mb-1">Data Wilayah Kerja</h4>
                 <small class="text-muted">
-                    Kelola titik lokasi wilayah kerja setiap KORSDA.
+                    Kelola file peta wilayah setiap KORSDA.
                 </small>
             </div>
 
-            <a href="<?= base_url('admin/wilayah/create') ?>" class="btn btn-tambah">
+            <a href="<?= base_url('admin/wilayah/create') ?>" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i>
                 Tambah Wilayah
             </a>
@@ -23,11 +23,9 @@
         </div>
 
         <?php if (session()->getFlashdata('success')) : ?>
-
             <div class="alert alert-success">
                 <?= session()->getFlashdata('success') ?>
             </div>
-
         <?php endif; ?>
 
         <div class="card shadow-sm">
@@ -43,12 +41,10 @@
                             <tr class="text-center">
 
                                 <th width="60">No</th>
-                                <th>Kecamatan</th>
-                                <th>Nama Lokasi</th>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                                <th>Zoom</th>
-                                <th>Kategori</th>
+                                <th>Nama KORSDA</th>
+                                <th>Nama Wilayah</th>
+                                <th>File Peta</th>
+                                <th>Keterangan</th>
                                 <th width="170">Aksi</th>
 
                             </tr>
@@ -57,78 +53,97 @@
 
                         <tbody>
 
-                            <?php if (empty($wilayah)) : ?>
+                        <?php if(empty($wilayah)) : ?>
+
+                            <tr>
+
+                                <td colspan="6" class="text-center">
+
+                                    Belum ada data wilayah.
+
+                                </td>
+
+                            </tr>
+
+                        <?php else : ?>
+
+                            <?php $no=1; ?>
+
+                            <?php foreach($wilayah as $row) : ?>
 
                                 <tr>
 
-                                    <td colspan="8" class="text-center">
-                                        Belum ada data Wilayah Kerja
+                                    <td class="text-center">
+
+                                        <?= $no++ ?>
+
+                                    </td>
+
+                                    <td>
+
+                                        <?= esc($row['nama']) ?>
+
+                                    </td>
+
+                                    <td>
+
+                                        <?= esc($row['nama_wilayah']) ?>
+
+                                    </td>
+
+                                    <td>
+
+                                        <?php if(!empty($row['file_peta'])) : ?>
+
+                                            <a href="<?= base_url('uploads/wilayah/'.$row['file_peta']) ?>"
+                                               target="_blank">
+
+                                                <?= esc($row['file_peta']) ?>
+
+                                            </a>
+
+                                        <?php else : ?>
+
+                                            <span class="text-danger">
+
+                                                Tidak ada file
+
+                                            </span>
+
+                                        <?php endif; ?>
+
+                                    </td>
+
+                                    <td>
+
+                                        <?= esc($row['keterangan']) ?>
+
+                                    </td>
+
+                                    <td class="text-center">
+
+                                        <a href="<?= base_url('admin/wilayah/edit/'.$row['id']) ?>"
+                                           class="btn btn-warning btn-sm">
+
+                                            <i class="bi bi-pencil-square"></i>
+
+                                        </a>
+
+                                        <a href="<?= base_url('admin/wilayah/delete/'.$row['id']) ?>"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="return confirm('Yakin ingin menghapus data?')">
+
+                                            <i class="bi bi-trash"></i>
+
+                                        </a>
+
                                     </td>
 
                                 </tr>
 
-                            <?php else : ?>
+                            <?php endforeach ?>
 
-                                <?php $no = 1; ?>
-
-                                <?php foreach ($wilayah as $row) : ?>
-
-                                    <tr>
-
-                                        <td class="text-center">
-                                            <?= $no++ ?>
-                                        </td>
-
-                                        <td>
-                                            <?= esc($row['nama_kecamatan']) ?>
-                                        </td>
-
-                                        <td>
-                                            <?= esc($row['nama_lokasi']) ?>
-                                        </td>
-
-                                        <td class="text-center">
-                                            <?= esc($row['latitude']) ?>
-                                        </td>
-
-                                        <td class="text-center">
-                                            <?= esc($row['longitude']) ?>
-                                        </td>
-
-                                        <td class="text-center">
-                                            <?= esc($row['zoom']) ?>
-                                        </td>
-
-                                        <td>
-                                            <?= esc($row['keterangan']) ?>
-                                        </td>
-
-                                        <td class="text-center">
-
-                                            <a href="<?= base_url('admin/wilayah/edit/'.$row['id']) ?>"
-                                                class="btn btn-warning btn-action">
-
-                                                <i class="bi bi-pencil-square"></i>
-                                                Edit
-
-                                            </a>
-
-                                            <a href="<?= base_url('admin/wilayah/delete/'.$row['id']) ?>"
-                                                class="btn btn-danger btn-action"
-                                                onclick="return confirm('Yakin ingin menghapus data?')">
-
-                                                <i class="bi bi-trash"></i>
-                                                Hapus
-
-                                            </a>
-
-                                        </td>
-
-                                    </tr>
-
-                                <?php endforeach; ?>
-
-                            <?php endif; ?>
+                        <?php endif; ?>
 
                         </tbody>
 

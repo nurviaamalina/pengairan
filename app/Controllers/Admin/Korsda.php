@@ -4,173 +4,237 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\KorsdaModel;
+use App\Models\KecamatanModel;
 
 class Korsda extends BaseController
 {
-    protected $korsda;
+    protected $korsdaModel;
+    protected $kecamatanModel;
 
     public function __construct()
     {
-        $this->korsda = new KorsdaModel();
+        $this->korsdaModel = new KorsdaModel();
+        $this->kecamatanModel = new KecamatanModel();
     }
 
-    // Menampilkan data
+    // =========================
+    // INDEX
+    // =========================
     public function index()
     {
         $data = [
-            'korsda' => $this->korsda->findAll()
+            'title'  => 'Data KORSDA',
+            'korsda' => $this->korsdaModel->getKorsda()
         ];
 
-        return view('Admin/korsda/index', $data);
+        return view('admin/korsda/index', $data);
     }
 
-    // Form tambah
+    // =========================
+    // CREATE
+    // =========================
     public function create()
     {
-        return view('Admin/korsda/create');
+        $data = [
+            'title'     => 'Tambah KORSDA',
+            'kecamatan' => $this->kecamatanModel->findAll()
+        ];
+
+        return view('admin/korsda/create', $data);
     }
 
-    // Simpan data
+    // =========================
+    // STORE
+    // =========================
     public function store()
-{
-    $rules = [
-        'nama_kecamatan' => [
-            'rules' => 'required',
-            'errors' => [
-                'required' => 'Nama Kecamatan wajib dipilih.'
-            ]
-        ],
-
-        'ketua' => [
-            'rules' => 'required',
-            'errors' => [
-                'required' => 'Nama Ketua wajib diisi.'
-            ]
-        ],
-
-        'alamat' => [
-            'rules' => 'required',
-            'errors' => [
-                'required' => 'Alamat wajib diisi.'
-            ]
-        ],
-
-        'telepon' => [
-            'rules' => 'required',
-            'errors' => [
-                'required' => 'Nomor Telepon wajib diisi.'
-            ]
-        ],
-
-        'deskripsi' => [
-            'rules' => 'required',
-            'errors' => [
-                'required' => 'Deskripsi wajib diisi.'
-            ]
-        ],
-
-        'gambar' => [
-            'rules' => 'uploaded[gambar]|is_image[gambar]|max_size[gambar,2048]',
-            'errors' => [
-                'uploaded' => 'Gambar wajib diupload.',
-                'is_image' => 'File yang dipilih harus berupa gambar.',
-                'max_size' => 'Ukuran gambar maksimal 2 MB.'
-            ]
-        ],
-    ];
-
-    if (!$this->validate($rules)) {
-        return redirect()->back()
-            ->withInput()
-            ->with('errors', $this->validator->getErrors());
-    }
-
-    $file = $this->request->getFile('gambar');
-
-    $namaGambar = $file->getRandomName();
-
-    $file->move(FCPATH . 'uploads/korsda', $namaGambar);
-
-    $this->korsda->save([
-        'nama_kecamatan' => $this->request->getPost('nama_kecamatan'),
-        'ketua'          => $this->request->getPost('ketua'),
-        'alamat'         => $this->request->getPost('alamat'),
-        'telepon'        => $this->request->getPost('telepon'),
-        'deskripsi'      => $this->request->getPost('deskripsi'),
-        'gambar'         => $namaGambar,
-    ]);
-
-    return redirect()->to(base_url('admin/korsda'))
-        ->with('success', 'Data KORSDA berhasil ditambahkan.');
-}
-    // Form edit
-    public function edit($id)
     {
-        $data['korsda'] = $this->korsda->find($id);
+        $rules = [
+            'kecamatan_id' => 'required',
+            'nama_wilayah' => 'required|max_length[100]',
+            'nama'         => 'required|max_length[100]',
+            'jabatan'      => 'required|max_length[100]',
+            'nip'          => 'permit_empty|max_length[30]',
+            'email'        => 'permit_empty|valid_email|max_length[100]',
+            'no_hp'        => 'permit_empty|max_length[20]',
+            'alamat'       => 'permit_empty',
+            'foto'         => 'permit_empty|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]|max_size[foto,2048]'
+        ];
 
-        if (!$data['korsda']) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        if (!$this->validate($rules)) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
         }
 
-        return view('Admin/korsda/edit', $data);
-    }
+        // =========================
+        // DATA
+        // =========================
 
-    // Update data
-    public function update($id)
-    {
-        $dataLama = $this->korsda->find($id);
+        $data = [
+            'kecamatan_id' => $this->request->getPost('kecamatan_id'),
+            'nama_wilayah' => $this->request->getPost('nama_wilayah'),
+            'nama'         => $this->request->getPost('nama'),
+            'jabatan'      => $this->request->getPost('jabatan'),
+            'nip'          => $this->request->getPost('nip'),
+            'email'        => $this->request->getPost('email'),
+            'no_hp'        => $this->request->getPost('no_hp'),
+            'alamat'       => $this->request->getPost('alamat'),
+            'status'       => $this->request->getPost('status') ?? 'Aktif'
+        ];
 
-        $gambar = $this->request->getFile('gambar');
+        // =========================
+        // FOTO
+        // =========================
 
-        if ($gambar && $gambar->isValid() && !$gambar->hasMoved()) {
+        $foto = $this->request->getFile('foto');
 
-            if (!empty($dataLama['gambar']) && file_exists(FCPATH . 'uploads/korsda/' . $dataLama['gambar'])) {
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
 
-                unlink(FCPATH . 'uploads/korsda/' . $dataLama['gambar']);
+            $namaFoto = $foto->getRandomName();
+
+            $uploadPath = FCPATH . 'uploads/korsda';
+
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
             }
 
-            $namaGambar = $gambar->getRandomName();
+            $foto->move($uploadPath, $namaFoto);
 
-            $gambar->move(FCPATH . 'uploads/korsda', $namaGambar);
-
-        } else {
-
-            $namaGambar = $dataLama['gambar'];
+            $data['foto'] = $namaFoto;
         }
 
-        $this->korsda->update($id, [
+        // =========================
+        // SIMPAN
+        // =========================
 
-            'nama_kecamatan' => $this->request->getPost('nama_kecamatan'),
-            'ketua'          => $this->request->getPost('ketua'),
-            'alamat'         => $this->request->getPost('alamat'),
-            'telepon'        => $this->request->getPost('telepon'),
-            'deskripsi'      => $this->request->getPost('deskripsi'),
-            'gambar'         => $namaGambar,
+        $this->korsdaModel->insert($data);
 
-        ]);
-
-        return redirect()->to('/admin/korsda')
-            ->with('success', 'Data KORSDA berhasil diupdate.');
+        return redirect()
+            ->to(base_url('admin/korsda'))
+            ->with('success', 'Data KORSDA berhasil ditambahkan.');
     }
 
-    // Hapus data
-    public function delete($id)
+    // =========================
+    // EDIT
+    // =========================
+    public function edit($id)
     {
-        $korsda = $this->korsda->find($id);
+        $korsda = $this->korsdaModel->getById($id);
 
         if (!$korsda) {
-
-            return redirect()->to('/admin/korsda');
+            return redirect()
+                ->to(base_url('admin/korsda'))
+                ->with('error', 'Data KORSDA tidak ditemukan.');
         }
 
-        if (!empty($korsda['gambar']) && file_exists(FCPATH . 'uploads/korsda/' . $korsda['gambar'])) {
+        $data = [
+            'title'     => 'Edit KORSDA',
+            'korsda'    => $korsda,
+            'kecamatan' => $this->kecamatanModel->findAll()
+        ];
 
-            unlink(FCPATH . 'uploads/korsda/' . $korsda['gambar']);
+        return view('admin/korsda/edit', $data);
+    }
+
+    // =========================
+    // UPDATE
+    // =========================
+    public function update($id)
+    {
+        $korsda = $this->korsdaModel->find($id);
+
+        if (!$korsda) {
+            return redirect()
+                ->to(base_url('admin/korsda'))
+                ->with('error', 'Data KORSDA tidak ditemukan.');
         }
 
-        $this->korsda->delete($id);
+        $rules = [
+            'kecamatan_id' => 'required',
+            'nama_wilayah' => 'required|max_length[100]',
+            'nama'         => 'required|max_length[100]',
+            'jabatan'      => 'required|max_length[100]',
+            'nip'          => 'permit_empty|max_length[30]',
+            'email'        => 'permit_empty|valid_email|max_length[100]',
+            'no_hp'        => 'permit_empty|max_length[20]',
+            'alamat'       => 'permit_empty',
+            'foto'         => 'permit_empty|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]|max_size[foto,2048]'
+        ];
 
-        return redirect()->to('/admin/korsda')
+        if (!$this->validate($rules)) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
+        }
+
+        $data = [
+            'kecamatan_id' => $this->request->getPost('kecamatan_id'),
+            'nama_wilayah' => $this->request->getPost('nama_wilayah'),
+            'nama'         => $this->request->getPost('nama'),
+            'jabatan'      => $this->request->getPost('jabatan'),
+            'nip'          => $this->request->getPost('nip'),
+            'email'        => $this->request->getPost('email'),
+            'no_hp'        => $this->request->getPost('no_hp'),
+            'alamat'       => $this->request->getPost('alamat'),
+            'status'       => $this->request->getPost('status') ?? 'Aktif'
+        ];
+
+        // FOTO BARU
+        $foto = $this->request->getFile('foto');
+
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
+
+            $uploadPath = FCPATH . 'uploads/korsda';
+
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+
+            $namaFoto = $foto->getRandomName();
+
+            $foto->move($uploadPath, $namaFoto);
+
+            // hapus foto lama
+            if (
+                !empty($korsda['foto']) &&
+                $korsda['foto'] !== 'default.png'
+            ) {
+                $fotoLama = $uploadPath . '/' . $korsda['foto'];
+
+                if (file_exists($fotoLama)) {
+                    unlink($fotoLama);
+                }
+            }
+
+            $data['foto'] = $namaFoto;
+        }
+
+        $this->korsdaModel->update($id, $data);
+
+        return redirect()
+            ->to(base_url('admin/korsda'))
+            ->with('success', 'Data KORSDA berhasil diperbarui.');
+    }
+
+    // =========================
+    // DELETE
+    // =========================
+    public function delete($id)
+    {
+        $korsda = $this->korsdaModel->find($id);
+
+        if (!$korsda) {
+            return redirect()
+                ->to(base_url('admin/korsda'))
+                ->with('error', 'Data KORSDA tidak ditemukan.');
+        }
+
+        $this->korsdaModel->delete($id);
+
+        return redirect()
+            ->to(base_url('admin/korsda'))
             ->with('success', 'Data KORSDA berhasil dihapus.');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\WilayahKerjaModel;
 use App\Models\KorsdaModel;
+use App\Models\KecamatanModel;
 
 class Gis extends BaseController
 {
@@ -11,18 +12,18 @@ class Gis extends BaseController
     {
         $wilayahModel = new WilayahKerjaModel();
         $korsdaModel  = new KorsdaModel();
-
+        $kecamatanModel = new KecamatanModel();
         // Semua titik wilayah kerja beserta nama kecamatan
-        $data['gis'] = $wilayahModel
-            ->select('wilayah_kerja.*, korsda.nama_kecamatan')
-            ->join('korsda', 'korsda.id = wilayah_kerja.id_korsda')
-            ->orderBy('korsda.nama_kecamatan', 'ASC')
-            ->findAll();
-
+       $data['gis'] = $wilayahModel
+    ->select('wilayah.*, kecamatan.nama_kecamatan')
+    ->join('korsda', 'korsda.id = wilayah.korsda_id')
+    ->join('kecamatan', 'kecamatan.id = korsda.kecamatan_id')
+    ->orderBy('kecamatan.nama_kecamatan', 'ASC')
+    ->findAll();
         // Data untuk dropdown filter
-        $data['kecamatan'] = $korsdaModel
-            ->orderBy('nama_kecamatan', 'ASC')
-            ->findAll();
+       $data['kecamatan'] = $kecamatanModel
+    ->orderBy('nama_kecamatan', 'ASC')
+    ->findAll();
 
         return view('gis', $data);
     }

@@ -6,20 +6,20 @@ use CodeIgniter\Database\Migration;
 
 class ProfilKorsda extends Migration
 {
-     public function up()
+    public function up()
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
                 'auto_increment' => true,
             ],
 
-            'id_korsda' => [
-                'type' => 'INT',
+            'korsda_id' => [
+                'type'       => 'INT',
                 'constraint' => 11,
-                'unsigned' => true,
+                'unsigned'   => true,
             ],
 
             'visi' => [
@@ -37,9 +37,19 @@ class ProfilKorsda extends Migration
                 'null' => true,
             ],
 
-            'struktur' => [
-                'type' => 'VARCHAR',
+            'fungsi' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+
+            'struktur_organisasi' => [
+                'type'       => 'VARCHAR',
                 'constraint' => 255,
+                'null'       => true,
+            ],
+
+            'deskripsi' => [
+                'type' => 'TEXT',
                 'null' => true,
             ],
 
@@ -52,14 +62,20 @@ class ProfilKorsda extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
+
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
         ]);
 
         $this->forge->addKey('id', true);
 
-        $this->forge->addKey('id_korsda');
+        // Agar satu KORSDA hanya memiliki satu profil
+        $this->forge->addUniqueKey('korsda_id');
 
         $this->forge->addForeignKey(
-            'id_korsda',
+            'korsda_id',
             'korsda',
             'id',
             'CASCADE',

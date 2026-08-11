@@ -16,7 +16,7 @@ class KegiatanKorsda extends Migration
                 'auto_increment' => true,
             ],
 
-            'id_korsda' => [
+            'korsda_id' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,

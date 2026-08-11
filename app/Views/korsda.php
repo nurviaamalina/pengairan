@@ -13,6 +13,7 @@
 
     <div class="container">
 
+        <!-- Search -->
         <div class="search-wrapper">
 
             <div class="search-box">
@@ -48,73 +49,39 @@
 
         </div>
 
-        <div class="row mt-5" id="korsdaContainer">
+        <!-- Card Kecamatan -->
+        <div class="row g-4 mt-5" id="korsdaContainer">
 
-            <?php if (!empty($korsda)) : ?>
+            <?php if (!empty($kecamatan)) : ?>
 
-                <?php foreach ($korsda as $item) : ?>
+                <?php foreach ($kecamatan as $item) : ?>
 
-<div class="col-lg-4 col-md-6 mb-4 korsda-item">
+                    <div class="col-lg-4 col-md-6 col-sm-12 korsda-item">
 
-    <a href="<?= base_url('korsda/profil/' . $item['id']) ?>" class="korsda-link">
+                        <a href="<?= base_url('korsda/korsdawilayah/' . $item['id']) ?>" class="korsda-link">
 
-        <div class="korsda-card">
+                            <div class="korsda-card">
 
-            <div class="text-center">
+                                <div class="text-center">
 
-                <?php if (!empty($item['gambar'])) : ?>
 
-                    <img src="<?= base_url('uploads/korsda/' . $item['gambar']) ?>"
-                        class="icon">
+                                    <small>Kecamatan</small>
 
-                <?php else : ?>
+                                    <h4 class="nama-kecamatan">
+                                        <?= esc($item['nama_kecamatan']) ?>
+                                    </h4>
 
-                    <img src="<?= base_url('assets/images/user.png') ?>"
-                        class="icon">
+                                    <div class="line"></div>
 
-                <?php endif; ?>
+                                </div>
 
-                <small>Koordinator</small>
+                            </div>
 
-                <h4 class="nama-kecamatan">
-                    Kecamatan <?= esc($item['nama_kecamatan']) ?>
-                </h4>
+                        </a>
 
-                <div class="line"></div>
+                    </div>
 
-            </div>
-
-            <div class="info">
-                <span>Nama Ketua</span>
-                <strong><?= esc($item['ketua']) ?></strong>
-            </div>
-
-            <div class="info">
-                <span>No HP / WhatsApp</span>
-                <strong><?= esc($item['telepon']) ?></strong>
-            </div>
-
-            <div class="info">
-                <span>Alamat</span>
-                <strong><?= esc($item['alamat']) ?></strong>
-            </div>
-
-            <?php if (!empty($item['deskripsi'])) : ?>
-
-                <div class="info">
-                    <span>Deskripsi</span>
-                    <strong><?= esc($item['deskripsi']) ?></strong>
-                </div>
-
-            <?php endif; ?>
-
-        </div>
-
-    </a>
-
-</div>
-
-<?php endforeach; ?>
+                <?php endforeach; ?>
 
             <?php else : ?>
 
@@ -122,7 +89,7 @@
 
                     <div class="alert alert-warning text-center">
 
-                        Data KORSDA belum tersedia.
+                        Data Kecamatan belum tersedia.
 
                     </div>
 
@@ -131,45 +98,44 @@
             <?php endif; ?>
 
         </div>
-<button
+
+        <button
             type="button"
             class="btn btn-primary btn-kembali"
             onclick="window.location.href='<?= base_url('/') ?>'">
 
             <i class="bi bi-arrow-left me-2"></i>
+
             Kembali
 
         </button>
+
     </div>
 
 </section>
 
 <script>
-const searchInput = document.getElementById('searchKecamatan');
 
-searchInput.addEventListener('keyup', function() {
+document.getElementById('searchKecamatan').addEventListener('keyup', function(){
 
     let keyword = this.value.toLowerCase();
 
-    document.querySelectorAll('.korsda-item').forEach(function(card) {
+    let cards = document.querySelectorAll('.korsda-item');
 
-        let kecamatan = card.querySelector('.nama-kecamatan')
-            .innerText.toLowerCase();
+    cards.forEach(function(card){
 
-        if (kecamatan.includes(keyword)) {
+        let nama = card.querySelector('.nama-kecamatan').innerText.toLowerCase();
 
+        if(nama.includes(keyword)){
             card.style.display = "";
-
-        } else {
-
+        }else{
             card.style.display = "none";
-
         }
 
     });
 
 });
-</script>
 
+</script>
 
 <?= $this->include('layout/footer') ?>

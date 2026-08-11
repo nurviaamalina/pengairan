@@ -9,7 +9,6 @@ class WilayahKerja extends Migration
     public function up()
     {
         $this->forge->addField([
-
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
@@ -17,31 +16,27 @@ class WilayahKerja extends Migration
                 'auto_increment' => true,
             ],
 
-            'id_korsda' => [
+            'korsda_id' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
             ],
 
-            'nama_lokasi' => [
+            'nama_wilayah' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 150,
             ],
 
-            'latitude' => [
-                'type'       => 'DECIMAL',
-                'constraint' => '10,8',
+            'file_peta' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
             ],
 
-            'longitude' => [
-                'type'       => 'DECIMAL',
-                'constraint' => '11,8',
-            ],
-
-            'zoom' => [
-                'type'       => 'INT',
-                'constraint' => 2,
-                'default'    => 15,
+            'file_geojson' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => true,
+                'after'      => 'file_peta',
             ],
 
             'keterangan' => [
@@ -49,26 +44,38 @@ class WilayahKerja extends Migration
                 'null' => true,
             ],
 
-            'created_at DATETIME NULL',
-            'updated_at DATETIME NULL',
+            'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addKey('id_korsda');
+        $this->forge->addKey('korsda_id');
 
         $this->forge->addForeignKey(
-            'id_korsda',
+            'korsda_id',
             'korsda',
             'id',
             'CASCADE',
             'CASCADE'
         );
 
-        $this->forge->createTable('wilayah_kerja');
+        $this->forge->createTable('wilayah');
     }
 
     public function down()
     {
-        $this->forge->dropTable('wilayah_kerja');
+        $this->forge->dropTable('wilayah');
     }
 }

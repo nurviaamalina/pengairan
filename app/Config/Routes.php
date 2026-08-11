@@ -34,7 +34,6 @@ $routes->get('logout', 'Auth::logout');
 */
 
 $routes->get('/', 'Home::index');
-
 /*
 |--------------------------------------------------------------------------
 | BERITA
@@ -92,6 +91,7 @@ $routes->post('kategori/store', 'Admin\AdminKategoriDokumen::store');
 $routes->get('kategori/edit/(:num)', 'Admin\AdminKategoriDokumen::edit/$1');
 $routes->post('kategori/update/(:num)', 'Admin\AdminKategoriDokumen::update/$1');
 $routes->get('kategori/delete/(:num)', 'Admin\AdminKategoriDokumen::delete/$1');
+$routes->post('admin/dokumen/kategori/store', 'Admin\AdminKategoriDokumen::store');
 
 // Halaman isi kategori
 $routes->get('kategori/(:segment)', 'Admin\AdminDokumen::kategori/$1');
@@ -127,6 +127,8 @@ $routes->post('pengaduan/track', 'Pengaduan::track');
 | FRONTEND KORSDA
 |--------------------------------------------------------------------------
 */
+$routes->get('korsda', 'Kecamatan::index');
+$routes->get('korsda/korsdawilayah/(:num)', 'Korsda::korsdawilayah/$1');
 $routes->get('korsda', 'Korsda::index');
 $routes->get('korsda/profil/(:num)', 'Korsda::profil/$1');
 $routes->get('korsda/peta/(:num)', 'Korsda::peta/$1');
@@ -242,8 +244,17 @@ $routes->group('admin', function ($routes) {
     /*
     | KECAMATAN
     */
-    $routes->get('korsda/kecamatan', 'Admin\KecamatanKorsda::index');
+    $routes->get('korsda/kecamatan', 'Admin\Kecamatan::index');
 
+$routes->get('korsda/kecamatan', 'Admin\Kecamatan::index');
+
+$routes->get('korsda/kecamatan/create', 'Admin\Kecamatan::create');
+$routes->post('korsda/kecamatan/store', 'Admin\Kecamatan::store');
+
+$routes->get('korsda/kecamatan/edit/(:num)', 'Admin\Kecamatan::edit/$1');
+$routes->post('korsda/kecamatan/update/(:num)', 'Admin\Kecamatan::update/$1');
+
+$routes->get('korsda/kecamatan/delete/(:num)', 'Admin\Kecamatan::delete/$1');
     /*
     | KEGIATAN KORSDA
     */

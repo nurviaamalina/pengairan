@@ -23,11 +23,9 @@
         </div>
 
         <?php if (session()->getFlashdata('success')) : ?>
-
             <div class="alert alert-success">
                 <?= session()->getFlashdata('success') ?>
             </div>
-
         <?php endif; ?>
 
         <div class="card shadow-sm">
@@ -41,16 +39,15 @@
                         <thead class="table-light">
 
                             <tr class="text-center">
-
                                 <th width="60">No</th>
-                                <th width="120">Gambar</th>
-                                <th>Nama Kecamatan</th>
-                                <th>Ketua</th>
-                                <th>Alamat</th>
-                                <th>Telepon</th>
+                                <th width="100">Foto</th>
+                                <th>Kecamatan</th>
+                                <th>Nama</th>
+                                <th>Jabatan</th>
+                                <th>No HP</th>
+                                <th>Status</th>
                                 <th>Tanggal Dibuat</th>
                                 <th width="170">Aksi</th>
-
                             </tr>
 
                         </thead>
@@ -60,8 +57,8 @@
                             <?php if (empty($korsda)) : ?>
 
                                 <tr>
-                                    <td colspan="8" class="text-center">
-                                        Belum ada data KORSDA
+                                    <td colspan="9" class="text-center">
+                                        Belum ada data KORSDA.
                                     </td>
                                 </tr>
 
@@ -79,17 +76,30 @@
 
                                         <td class="text-center">
 
-                                            <?php if (!empty($row['gambar'])) : ?>
+                                           <?php
+$foto = $row['foto'] ?? '';
+$fotoPath = FCPATH . 'uploads/korsda/' . $foto;
+?>
 
-                                                <img src="<?= base_url('uploads/korsda/' . $row['gambar']) ?>"
-                                                    width="90"
-                                                    class="img-thumbnail">
+<?php if (!empty($foto) && file_exists($fotoPath)) : ?>
 
-                                            <?php else : ?>
+    <img src="<?= base_url('uploads/korsda/' . $foto) ?>"
+         width="80"
+         height="80"
+         style="object-fit: cover;"
+         class="img-thumbnail"
+         alt="<?= esc($row['nama']) ?>">
 
-                                                <span class="text-muted">-</span>
+<?php else : ?>
 
-                                            <?php endif; ?>
+    <img src="<?= base_url('assets/images/user.png') ?>"
+         width="80"
+         height="80"
+         style="object-fit: cover;"
+         class="img-thumbnail"
+         alt="Foto default">
+
+<?php endif; ?>
 
                                         </td>
 
@@ -98,15 +108,33 @@
                                         </td>
 
                                         <td>
-                                            <?= esc($row['ketua']) ?>
+                                            <?= esc($row['nama']) ?>
                                         </td>
 
                                         <td>
-                                            <?= esc($row['alamat']) ?>
+                                            <?= esc($row['jabatan']) ?>
                                         </td>
 
                                         <td>
-                                            <?= esc($row['telepon']) ?>
+                                            <?= esc($row['no_hp']) ?>
+                                        </td>
+
+                                        <td class="text-center">
+
+                                            <?php if ($row['status'] == 'Aktif') : ?>
+
+                                                <span class="badge bg-success">
+                                                    Aktif
+                                                </span>
+
+                                            <?php else : ?>
+
+                                                <span class="badge bg-danger">
+                                                    Nonaktif
+                                                </span>
+
+                                            <?php endif; ?>
+
                                         </td>
 
                                         <td class="text-center">
@@ -119,17 +147,20 @@
 
                                         <td class="text-center">
 
-                                            <a href="<?= base_url('admin/korsda/edit/'.$row['id']) ?>" class="btn btn-warning btn-action">
-    <i class="bi bi-pencil-square"></i>
-    Edit
-</a>
+                                            <a href="<?= base_url('admin/korsda/edit/' . $row['id']) ?>"
+                                                class="btn btn-warning btn-sm">
 
-<a href="<?= base_url('admin/korsda/delete/'.$row['id']) ?>"
-   class="btn btn-danger btn-action"
-   onclick="return confirm('Yakin ingin menghapus data?')">
-    <i class="bi bi-trash"></i>
-    Hapus
-</a>
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+
+                                            <a href="<?= base_url('admin/korsda/delete/' . $row['id']) ?>"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Yakin ingin menghapus data ini?')">
+
+                                                <i class="bi bi-trash"></i>
+
+                                            </a>
+
                                         </td>
 
                                     </tr>
@@ -147,7 +178,9 @@
             </div>
 
         </div>
-         <div class="mt-3">
+
+        <div class="mt-3">
+
             <button
                 type="button"
                 class="btn btn-kembali"
@@ -157,9 +190,11 @@
                 Kembali
 
             </button>
+
         </div>
+
     </div>
 
 </div>
- <?= $this->include('admin/layout/footer') ?>
 
+<?= $this->include('admin/layout/footer') ?>

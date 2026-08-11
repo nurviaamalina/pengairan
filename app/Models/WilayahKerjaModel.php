@@ -6,19 +6,23 @@ use CodeIgniter\Model;
 
 class WilayahKerjaModel extends Model
 {
-    protected $table = 'wilayah_kerja';
-    protected $primaryKey = 'id';
-
-    protected $returnType = 'array';
+    protected $table            = 'wilayah';
+    protected $primaryKey       = 'id';
+    protected $returnType       = 'array';
 
     protected $allowedFields = [
-        'id_korsda',
-        'nama_lokasi',
-        'latitude',
-        'longitude',
-        'zoom',
-        'keterangan'
+        'korsda_id',
+        'nama_kecamatan',
+        'nama_wilayah',
+        'file_peta',
+        'file_geojson',
+        'keterangan',
     ];
 
     protected $useTimestamps = true;
+    protected $useSoftDeletes = true;
+
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
 }

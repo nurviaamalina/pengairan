@@ -4,117 +4,251 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+<div class="content flex-grow-1 p-4 bg-light">
 
-        <div class="card shadow">
+    <div class="card shadow">
 
-            <div class="card-header">
-                <h4 class="mb-0">Tambah Profil KORSDA</h4>
-            </div>
+        <div class="card-header">
+            <h4 class="mb-0">Tambah Profil KORSDA</h4>
+        </div>
 
-            <div class="card-body">
+        <div class="card-body">
 
-                <form action="<?= base_url('admin/korsda/profil_korsda/store') ?>"
-                      method="post"
-                      enctype="multipart/form-data">
+            <?php if (session()->getFlashdata('error')): ?>
 
-                    <?= csrf_field() ?>
+                <div class="alert alert-danger">
+                    <?= session()->getFlashdata('error') ?>
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Kecamatan</label>
+            <?php endif; ?>
 
-                        <select name="id_korsda" class="form-select" required>
+            <?php if (session()->getFlashdata('errors')): ?>
 
-                            <option value="">-- Pilih Kecamatan --</option>
+                <div class="alert alert-danger">
 
-                            <?php foreach ($kecamatan as $k): ?>
+                    <ul class="mb-0">
 
-                                <option value="<?= $k['id'] ?>">
-                                    <?= esc($k['nama_kecamatan']) ?>
-                                </option>
+                        <?php foreach (
+                            session()->getFlashdata('errors')
+                            as $error
+                        ): ?>
 
-                            <?php endforeach; ?>
+                            <li>
+                                <?= esc($error) ?>
+                            </li>
 
-                        </select>
-                    </div>
+                        <?php endforeach; ?>
 
-                    <div class="mb-3">
+                    </ul>
 
-                        <label class="form-label">Visi</label>
+                </div>
 
-                        <textarea
-                            name="visi"
-                            rows="4"
-                            class="form-control"
-                            required></textarea>
+            <?php endif; ?>
 
-                    </div>
 
-                    <div class="mb-3">
+            <form
+                action="<?= base_url('admin/korsda/profil_korsda/store') ?>"
+                method="post"
+                enctype="multipart/form-data"
+            >
 
-                        <label class="form-label">Misi</label>
+                <?= csrf_field() ?>
 
-                        <textarea
-                            name="misi"
-                            rows="4"
-                            class="form-control"
-                            required></textarea>
 
-                    </div>
+                <!-- KORSDA -->
 
-                    <div class="mb-3">
+                <div class="mb-3">
 
-                        <label class="form-label">Tugas</label>
+                    <label
+                        for="korsda_id"
+                        class="form-label"
+                    >
+                        KORSDA / Kecamatan
+                        <span class="text-danger">*</span>
+                    </label>
 
-                        <textarea
-                            name="tugas"
-                            rows="5"
-                            class="form-control"
-                            required></textarea>
+                    <select
+                        name="korsda_id"
+                        id="korsda_id"
+                        class="form-select"
+                        required
+                    >
 
-                    </div>
+                        <option value="">
+                            -- Pilih Kecamatan --
+                        </option>
 
-                    <div class="mb-3">
+                        <?php foreach ($korsda as $item): ?>
 
-                        <label class="form-label">
-                            Struktur Kepengurusan
-                        </label>
+                            <?php
+                                /*
+                                 * Sesuaikan dengan field tabel KORSDA.
+                                 * Jika tabel menggunakan nama_kecamatan,
+                                 * akan mengambil nama_kecamatan.
+                                 * Jika menggunakan nama, akan mengambil nama.
+                                 */
 
-                        <input
-                            type="file"
-                            name="struktur"
-                            class="form-control"
-                            accept="image/*"
-                            required>
+                                $namaKecamatan =
+                                    $item['nama_kecamatan']
+                                    ?? $item['nama']
+                                    ?? '-';
+                            ?>
 
-                    </div>
+                            <option
+                                value="<?= esc($item['id']) ?>"
+                                <?= old('korsda_id') == $item['id']
+                                    ? 'selected'
+                                    : '' ?>
+                            >
+                                <?= esc($namaKecamatan) ?>
+                            </option>
 
-                    <div class="d-flex justify-content-end">
+                        <?php endforeach; ?>
 
-                        <a href="<?= base_url('admin/korsda/profil_korsda') ?>"
-                           class="btn btn-secondary me-2">
+                    </select>
 
-                            Kembali
+                </div>
 
-                        </a>
 
-                        <button class="btn btn-primary">
+                <!-- VISI -->
 
-                            <i class="bi bi-save"></i>
+                <div class="mb-3">
 
-                            Simpan
+                    <label class="form-label">
+                        Visi
+                    </label>
 
-                        </button>
+                    <textarea
+                        name="visi"
+                        rows="4"
+                        class="form-control"
+                        required
+                    ><?= old('visi') ?></textarea>
 
-                    </div>
+                </div>
 
-                </form>
 
-            </div>
+                <!-- MISI -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Misi
+                    </label>
+
+                    <textarea
+                        name="misi"
+                        rows="4"
+                        class="form-control"
+                        required
+                    ><?= old('misi') ?></textarea>
+
+                </div>
+
+
+                <!-- TUGAS -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Tugas
+                    </label>
+
+                    <textarea
+                        name="tugas"
+                        rows="5"
+                        class="form-control"
+                        required
+                    ><?= old('tugas') ?></textarea>
+
+                </div>
+
+
+                <!-- FUNGSI -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Fungsi
+                    </label>
+
+                    <textarea
+                        name="fungsi"
+                        rows="5"
+                        class="form-control"
+                    ><?= old('fungsi') ?></textarea>
+
+                </div>
+
+
+                <!-- STRUKTUR -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Struktur Kepengurusan
+                        <span class="text-danger">*</span>
+                    </label>
+
+                    <input
+                        type="file"
+                        name="struktur_organisasi"
+                        class="form-control"
+                        accept="image/*"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESKRIPSI -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Deskripsi
+                    </label>
+
+                    <textarea
+                        name="deskripsi"
+                        rows="4"
+                        class="form-control"
+                    ><?= old('deskripsi') ?></textarea>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <div class="d-flex justify-content-end">
+
+                    <a
+                        href="<?= base_url('admin/korsda/profil_korsda') ?>"
+                        class="btn btn-secondary me-2"
+                    >
+                        Kembali
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+
+                        <i class="bi bi-save"></i>
+
+                        Simpan
+
+                    </button>
+
+                </div>
+
+            </form>
 
         </div>
 
     </div>
+
+</div>
 
 </div>
 

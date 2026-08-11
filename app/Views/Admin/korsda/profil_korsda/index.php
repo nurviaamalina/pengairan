@@ -1,152 +1,360 @@
-<?php helper('text'); ?>
 <?= $this->include('admin/layout/header') ?>
 
 <div class="d-flex">
 
-    <?= $this->include('admin/layout/sidebar') ?>
+   <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+<div class="content flex-grow-1 p-4 bg-light">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <div>
-                <h4 class="fw-bold mb-1">Profil KORSDA</h4>
-                <small class="text-muted">
-                    Kelola profil setiap KORSDA.
-                </small>
-            </div>
+        <div>
+            <h4 class="fw-bold mb-1">
+                Profil KORSDA
+            </h4>
 
-            <a href="<?= base_url('admin/korsda/profil_korsda/create') ?>"
-               class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i>
-                Tambah Profil
-            </a>
+            <small class="text-muted">
+                Kelola profil setiap KORSDA.
+            </small>
+        </div>
+
+        <a
+            href="<?= base_url('admin/korsda/profil_korsda/create') ?>"
+            class="btn btn-primary"
+        >
+            <i class="bi bi-plus-circle me-1"></i>
+            Tambah Profil
+        </a>
+
+    </div>
+
+
+    <!-- FLASH SUCCESS -->
+    <?php if (session()->getFlashdata('success')): ?>
+
+        <div
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+        >
+
+            <i class="bi bi-check-circle me-2"></i>
+
+            <?= esc(session()->getFlashdata('success')) ?>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+            ></button>
 
         </div>
 
-        <?php if(session()->getFlashdata('success')) : ?>
+    <?php endif; ?>
 
-            <div class="alert alert-success">
-                <?= session()->getFlashdata('success') ?>
-            </div>
 
-        <?php endif; ?>
+    <!-- FLASH ERROR -->
+    <?php if (session()->getFlashdata('error')): ?>
 
-        <div class="card shadow-sm">
+        <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+        >
 
-            <div class="card-body">
+            <i class="bi bi-exclamation-triangle me-2"></i>
 
-                <div class="table-responsive">
+            <?= esc(session()->getFlashdata('error')) ?>
 
-                    <table class="table table-bordered table-hover align-middle">
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+            ></button>
 
-                        <thead class="table-light">
+        </div>
 
-                            <tr class="text-center">
+    <?php endif; ?>
 
-                                <th width="60">No</th>
-                                <th>Kecamatan</th>
-                                <th>Visi</th>
-                                <th>Misi</th>
-                                <th>Tugas</th>
-                                <th width="150">Struktur</th>
-                                <th width="170">Aksi</th>
 
-                            </tr>
+    <!-- CARD -->
+    <div class="card shadow-sm border-0">
 
-                        </thead>
+        <div class="card-body">
 
-                        <tbody>
+            <div class="table-responsive">
 
-                        <?php if(empty($profil)) : ?>
+                <table
+                    class="table table-bordered table-hover align-middle mb-0"
+                >
+
+                    <!-- HEADER TABLE -->
+
+                    <thead class="table-light">
+
+                        <tr class="text-center">
+
+                            <th width="60">
+                                No
+                            </th>
+
+                            <th>
+                                Kecamatan
+                            </th>
+
+                            <th>
+                                Visi
+                            </th>
+
+                            <th>
+                                Misi
+                            </th>
+
+                            <th>
+                                Tugas
+                            </th>
+
+                            <th width="150">
+                                Struktur
+                            </th>
+
+                            <th width="180">
+                                Aksi
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <!-- BODY TABLE -->
+
+                    <tbody>
+
+                    <?php if (empty($profil)): ?>
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="text-center py-4"
+                            >
+
+                                <div class="text-muted">
+
+                                    <i
+                                        class="bi bi-folder2-open fs-3 d-block mb-2"
+                                    ></i>
+
+                                    Belum ada data Profil KORSDA.
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    <?php else: ?>
+
+                        <?php $no = 1; ?>
+
+                        <?php foreach ($profil as $row): ?>
 
                             <tr>
-                                <td colspan="7" class="text-center">
-                                    Belum ada data Profil KORSDA
+
+                                <!-- NOMOR -->
+
+                                <td class="text-center">
+
+                                    <?= $no++ ?>
+
                                 </td>
+
+
+                                <!-- KECAMATAN -->
+
+                                <td>
+
+                                    <span class="fw-semibold">
+
+                                        <?= esc(
+                                            $row['nama_kecamatan'] ?? '-'
+                                        ) ?>
+
+                                    </span>
+
+                                </td>
+
+
+                                <!-- VISI -->
+
+                                <td>
+
+                                    <?php if (!empty($row['visi'])): ?>
+
+                                        <?= word_limiter(
+                                            strip_tags($row['visi']),
+                                            10
+                                        ) ?>
+
+                                    <?php else: ?>
+
+                                        <span class="text-muted">
+                                            -
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </td>
+
+
+                                <!-- MISI -->
+
+                                <td>
+
+                                    <?php if (!empty($row['misi'])): ?>
+
+                                        <?= word_limiter(
+                                            strip_tags($row['misi']),
+                                            10
+                                        ) ?>
+
+                                    <?php else: ?>
+
+                                        <span class="text-muted">
+                                            -
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </td>
+
+
+                                <!-- TUGAS -->
+
+                                <td>
+
+                                    <?php if (!empty($row['tugas'])): ?>
+
+                                        <?= word_limiter(
+                                            strip_tags($row['tugas']),
+                                            10
+                                        ) ?>
+
+                                    <?php else: ?>
+
+                                        <span class="text-muted">
+                                            -
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </td>
+
+
+                                <!-- STRUKTUR ORGANISASI -->
+
+                                <td class="text-center">
+
+                                    <?php if (
+                                        !empty(
+                                            $row['struktur_organisasi']
+                                        )
+                                    ): ?>
+
+                                        <img
+                                            src="<?= base_url(
+                                                'uploads/korsda/' .
+                                                $row[
+                                                    'struktur_organisasi'
+                                                ]
+                                            ) ?>"
+                                            class="img-thumbnail"
+                                            width="120"
+                                            alt="Struktur Organisasi"
+                                        >
+
+                                    <?php else: ?>
+
+                                        <span class="text-muted">
+                                            Belum ada
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </td>
+
+
+                                <!-- AKSI -->
+
+                                <td class="text-center">
+
+                                    <div
+                                        class="d-flex justify-content-center gap-1"
+                                    >
+
+                                        <!-- EDIT -->
+
+                                        <a
+                                            href="<?= base_url(
+                                                'admin/korsda/profil_korsda/edit/' .
+                                                $row['id']
+                                            ) ?>"
+                                            class="btn btn-warning btn-sm"
+                                            title="Edit"
+                                        >
+
+                                            <i
+                                                class="bi bi-pencil-square"
+                                            ></i>
+
+                                        </a>
+
+
+                                        <!-- HAPUS -->
+
+                                        <a
+                                            href="<?= base_url(
+                                                'admin/korsda/profil_korsda/delete/' .
+                                                $row['id']
+                                            ) ?>"
+                                            class="btn btn-danger btn-sm"
+                                            title="Hapus"
+                                            onclick="return confirm(
+                                                'Yakin ingin menghapus profil KORSDA ini?'
+                                            )"
+                                        >
+
+                                            <i
+                                                class="bi bi-trash"
+                                            ></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
                             </tr>
 
-                        <?php else : ?>
+                        <?php endforeach; ?>
 
-                            <?php $no = 1; ?>
+                    <?php endif; ?>
 
-                            <?php foreach($profil as $row) : ?>
+                    </tbody>
 
-                                <tr>
-
-                                    <td class="text-center">
-                                        <?= $no++ ?>
-                                    </td>
-
-                                    <td>
-                                        <?= esc($row['nama_kecamatan']) ?>
-                                    </td>
-
-                                    <td>
-                                        <?= word_limiter(strip_tags($row['visi']), 10) ?>
-                                    </td>
-
-                                    <td>
-                                        <?= word_limiter(strip_tags($row['misi']), 10) ?>
-                                    </td>
-
-                                    <td>
-                                        <?= word_limiter(strip_tags($row['tugas']), 10) ?>
-                                    </td>
-
-                                    <td class="text-center">
-
-                                        <?php if(!empty($row['struktur'])) : ?>
-
-                                            <img src="<?= base_url('uploads/struktur/'.$row['struktur']) ?>"
-                                                 class="img-thumbnail"
-                                                 width="120">
-
-                                        <?php else : ?>
-
-                                            <span class="text-muted">
-                                                Belum ada
-                                            </span>
-
-                                        <?php endif; ?>
-
-                                    </td>
-
-                                    <td class="text-center">
-
-                                        <a href="<?= base_url('admin/korsda/profil_korsda/edit/'.$row['id']) ?>"
-                                           class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                            Edit
-                                        </a>
-
-                                        <a href="<?= base_url('admin/korsda/profil_korsda/delete/'.$row['id']) ?>"
-                                           class="btn btn-danger btn-sm"
-                                           onclick="return confirm('Yakin ingin menghapus data?')">
-                                            <i class="bi bi-trash"></i>
-                                            Hapus
-                                        </a>
-
-                                    </td>
-
-                                </tr>
-
-                            <?php endforeach; ?>
-
-                        <?php endif; ?>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
+                </table>
 
             </div>
 
         </div>
 
-        <!-- Tombol Kembali -->
-        <div class="mt-3">
+    </div>
+
+
+    <!-- KEMBALI -->
+
+    <div class="mt-3">
+
             <button
                 type="button"
                 class="btn btn-kembali"
@@ -156,7 +364,10 @@
                 Kembali
 
             </button>
+
         </div>
-    </div>
+
 </div>
- <?= $this->include('admin/layout/footer') ?>
+</div>
+
+<?= $this->include('admin/layout/footer') ?>

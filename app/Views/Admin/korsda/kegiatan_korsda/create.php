@@ -16,24 +16,28 @@
                 <?= csrf_field() ?>
 
                 <div class="mb-3">
-                    <label class="form-label">Kecamatan</label>
 
-                    <select name="id_korsda" class="form-select" required>
+    <label class="form-label">
+        Kecamatan
+    </label>
 
-                        <option value="">-- Pilih Kecamatan --</option>
+    <select name="korsda_id" class="form-select" required>
 
-                        <?php foreach($korsda as $item): ?>
+        <option value="">
+            -- Pilih Kecamatan --
+        </option>
 
-                            <option value="<?= $item['id'] ?>">
-                                <?= $item['nama_kecamatan'] ?>
-                            </option>
+        <?php foreach ($korsda as $item): ?>
 
-                        <?php endforeach ?>
+            <option value="<?= $item['id'] ?>">
+                <?= esc($item['nama_kecamatan']) ?>
+            </option>
 
-                    </select>
+        <?php endforeach; ?>
 
-                </div>
+    </select>
 
+</div>
                 <div class="mb-3">
                     <label class="form-label">Judul</label>
 

@@ -7,16 +7,24 @@ use CodeIgniter\Model;
 class ProfilModel extends Model
 {
     protected $table = 'profil_korsda';
+
     protected $primaryKey = 'id';
 
+    protected $returnType = 'array';
+
     protected $allowedFields = [
-        'id_korsda',
+        'korsda_id',
         'visi',
         'misi',
         'tugas',
-        'struktur',
-        'gambar'
+        'fungsi',
+        'struktur_organisasi',
+        'deskripsi',
     ];
 
     protected $useTimestamps = true;
+
+    protected $useSoftDeletes = true;
+
+    protected $deletedField = 'deleted_at';
 }

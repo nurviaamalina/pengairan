@@ -17,8 +17,28 @@
             </div>
 
             <div class="row">
+<div class="col-lg-2 col-md-6 mb-4">
+                    <a href="<?= base_url('admin/korsda/kecamatan') ?>" class="text-decoration-none">
 
-                <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card shadow border-0 dashboard-card">
+
+                            <div class="card-body text-center">
+
+                                <div class="icon bg-warning">
+                                    <i class="bi bi-geo-alt"></i>
+                                </div>
+
+                                <h6>Kecamatan</h6>
+
+                                <h2><?= $jumlahKecamatan ?></h2>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
                     <a href="<?= base_url('admin/korsda/data') ?>" class="text-decoration-none">
 
                         <div class="card shadow border-0 dashboard-card">
@@ -40,7 +60,7 @@
                     </a>
                 </div>
 
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-2 col-md-6 mb-4">
                     <a href="<?= base_url('admin/korsda/profil') ?>" class="text-decoration-none">
 
                         <div class="card shadow border-0 dashboard-card">
@@ -92,7 +112,7 @@
                             <div class="card-body text-center">
 
                                 <div class="icon bg-danger">
-                                    <i class="bi bi-geo-alt"></i>
+                                    <i class="bi bi-newspaper"></i>
                                 </div>
 
                                 <h6>Kegiatan</h6>
@@ -116,39 +136,53 @@
 
                 <div class="card-body">
 
-                    <table class="table table-bordered">
+    <table class="table table-bordered">
 
-                        <thead>
+        <thead>
 
-                            <tr>
-                                <th>No</th>
-                                <th>Kecamatan</th>
-                                <th>Ketua</th>
-                            </tr>
+            <tr>
+                <th>No</th>
+                <th>Kecamatan</th>
+                <th>Nama KORSDA</th>
+            </tr>
 
-                        </thead>
+        </thead>
 
-                        <tbody>
+        <tbody>
 
-                            <?php $no = 1; ?>
+            <?php if (!empty($korsdaTerbaru)) : ?>
 
-                            <?php foreach($korsdaTerbaru as $row): ?>
+                <?php $no = 1; ?>
 
-                                <tr>
+                <?php foreach ($korsdaTerbaru as $row) : ?>
 
-                                    <td><?= $no++ ?></td>
-                                    <td><?= $row['nama_kecamatan'] ?></td>
-                                    <td><?= $row['ketua'] ?></td>
+                    <tr>
 
-                                </tr>
+                        <td><?= $no++ ?></td>
 
-                            <?php endforeach; ?>
+                        <td><?= esc($row['nama_kecamatan']) ?></td>
 
-                        </tbody>
+                        <td><?= esc($row['nama']) ?></td>
 
-                    </table>
+                    </tr>
 
-                </div>
+                <?php endforeach; ?>
+
+            <?php else : ?>
+
+                <tr>
+                    <td colspan="3" class="text-center text-muted">
+                        Belum ada data KORSDA.
+                    </td>
+                </tr>
+
+            <?php endif; ?>
+
+        </tbody>
+
+    </table>
+
+</div>
 
             </div>
 

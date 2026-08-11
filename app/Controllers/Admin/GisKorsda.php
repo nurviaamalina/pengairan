@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Admin\Controllers;
+use App\Controllers\BaseController;
 
 use App\Models\GisModel;
 

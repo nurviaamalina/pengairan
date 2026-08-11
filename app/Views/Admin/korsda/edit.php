@@ -6,91 +6,76 @@
 
     <div class="content flex-grow-1 p-4 bg-light">
 
+        <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
 
             <div>
-                <h4 class="fw-bold mb-1">Edit KORSDA</h4>
+                <h4 class="fw-bold mb-1">
+                    Edit KORSDA
+                </h4>
+
                 <small class="text-muted">
-                    Ubah data KORSDA.
+                    Ubah data KORSDA yang sudah tersimpan.
                 </small>
             </div>
 
-            <a href="<?= base_url('admin/korsda') ?>" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i>
+            <a href="<?= base_url('admin/korsda') ?>"
+               class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left me-1"></i>
                 Kembali
+
             </a>
 
         </div>
 
-        <?php if (session()->getFlashdata('errors')) : ?>
 
-            <div class="alert alert-danger">
-
-                <ul class="mb-0">
-
-                    <?php foreach (session()->getFlashdata('errors') as $error) : ?>
-
-                        <li><?= esc($error) ?></li>
-
-                    <?php endforeach; ?>
-
-                </ul>
-
-            </div>
-
-        <?php endif; ?>
-
+        <!-- CARD -->
         <div class="card shadow-sm">
 
-            <div class="card-body">
+            <div class="card-body p-4">
 
-                <form action="<?= base_url('admin/korsda/update/' . $korsda['id']) ?>" method="post" enctype="multipart/form-data">
+                <form
+                    action="<?= base_url('admin/korsda/update/' . $korsda['id']) ?>"
+                    method="post"
+                    enctype="multipart/form-data">
 
                     <?= csrf_field() ?>
 
+
+                    <!-- BARIS 1 -->
                     <div class="row">
 
+                        <!-- Kecamatan -->
                         <div class="col-md-6 mb-3">
 
-                            <label class="form-label">Nama Kecamatan</label>
+                            <label class="form-label fw-semibold">
+                                Kecamatan
+                                <span class="text-danger">*</span>
+                            </label>
 
-                            <select name="nama_kecamatan" class="form-select" required>
+                            <select
+                                name="kecamatan_id"
+                                class="form-select"
+                                required>
 
-                                <option value="">-- Pilih Kecamatan --</option>
+                                <option value="">
+                                    -- Pilih Kecamatan --
+                                </option>
 
-                                <?php
-                                $kecamatan = [
-                                    'Bangorejo',
-                                    'Banyuwangi',
-                                    'Cluring',
-                                    'Gambiran',
-                                    'Giri',
-                                    'Glagah',
-                                    'Glenmore',
-                                    'Kabat',
-                                    'Kalibaru',
-                                    'Kalipuro',
-                                    'Licin',
-                                    'Muncar',
-                                    'Pesanggaran',
-                                    'Purwoharjo',
-                                    'Rogojampi',
-                                    'Sempu',
-                                    'Singojuruh',
-                                    'Songgon',
-                                    'Srono',
-                                    'Tegaldlimo',
-                                    'Tegalsari',
-                                    'Wongsorejo',
-                                    'Siliragung',
-                                    'Genteng'
-                                ];
+                                <?php foreach ($kecamatan as $item) : ?>
 
-                                foreach ($kecamatan as $item) :
-                                ?>
+                                    <option
+                                        value="<?= esc($item['id']) ?>"
+                                        <?= old(
+                                            'kecamatan_id',
+                                            $korsda['kecamatan_id']
+                                        ) == $item['id']
+                                            ? 'selected'
+                                            : '' ?>>
 
-                                    <option value="<?= $item ?>" <?= old('nama_kecamatan', $korsda['nama_kecamatan']) == $item ? 'selected' : '' ?>>
-                                        <?= $item ?>
+                                        <?= esc($item['nama_kecamatan']) ?>
+
                                     </option>
 
                                 <?php endforeach; ?>
@@ -99,95 +84,281 @@
 
                         </div>
 
+
+                        <!-- Nama Wilayah -->
                         <div class="col-md-6 mb-3">
 
-                            <label class="form-label">Ketua</label>
+                            <label class="form-label fw-semibold">
+                                Nama Wilayah
+                                <span class="text-danger">*</span>
+                            </label>
 
                             <input
                                 type="text"
-                                name="ketua"
+                                name="nama_wilayah"
                                 class="form-control"
-                                value="<?= old('ketua', $korsda['ketua']) ?>">
+                                value="<?= old(
+                                    'nama_wilayah',
+                                    $korsda['nama_wilayah'] ?? ''
+                                ) ?>"
+                                placeholder="Masukkan nama wilayah"
+                                maxlength="100"
+                                required>
 
                         </div>
 
                     </div>
 
+
+                    <!-- BARIS 2 -->
+                    <div class="row">
+
+                        <!-- Nama -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Nama
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="nama"
+                                class="form-control"
+                                value="<?= old(
+                                    'nama',
+                                    $korsda['nama'] ?? ''
+                                ) ?>"
+                                required>
+
+                        </div>
+
+
+                        <!-- Jabatan -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Jabatan
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="jabatan"
+                                class="form-control"
+                                value="<?= old(
+                                    'jabatan',
+                                    $korsda['jabatan'] ?? ''
+                                ) ?>"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BARIS 3 -->
+                    <div class="row">
+
+                        <!-- NIP -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-semibold">
+                                NIP
+                            </label>
+
+                            <input
+                                type="text"
+                                name="nip"
+                                class="form-control"
+                                value="<?= old(
+                                    'nip',
+                                    $korsda['nip'] ?? ''
+                                ) ?>">
+
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                value="<?= old(
+                                    'email',
+                                    $korsda['email'] ?? ''
+                                ) ?>">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BARIS 4 -->
+                    <div class="row">
+
+                        <!-- No HP -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-semibold">
+                                No. HP
+                            </label>
+
+                            <input
+                                type="text"
+                                name="no_hp"
+                                class="form-control"
+                                value="<?= old(
+                                    'no_hp',
+                                    $korsda['no_hp'] ?? ''
+                                ) ?>">
+
+                        </div>
+
+
+                        <!-- Status -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Status
+                            </label>
+
+                            <select
+                                name="status"
+                                class="form-select">
+
+                                <option
+                                    value="Aktif"
+                                    <?= old(
+                                        'status',
+                                        $korsda['status'] ?? 'Aktif'
+                                    ) == 'Aktif'
+                                        ? 'selected'
+                                        : '' ?>>
+
+                                    Aktif
+
+                                </option>
+
+                                <option
+                                    value="Nonaktif"
+                                    <?= old(
+                                        'status',
+                                        $korsda['status'] ?? ''
+                                    ) == 'Nonaktif'
+                                        ? 'selected'
+                                        : '' ?>>
+
+                                    Nonaktif
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ALAMAT -->
                     <div class="mb-3">
 
-                        <label class="form-label">Alamat</label>
+                        <label class="form-label fw-semibold">
+                            Alamat
+                        </label>
 
                         <textarea
                             name="alamat"
                             rows="3"
-                            class="form-control"><?= old('alamat', $korsda['alamat']) ?></textarea>
+                            class="form-control"><?= old(
+                                'alamat',
+                                $korsda['alamat'] ?? ''
+                            ) ?></textarea>
 
                     </div>
 
-                    <div class="row">
 
-                        <div class="col-md-6 mb-3">
+                    <!-- FOTO -->
+                    <div class="mb-3">
 
-                            <label class="form-label">Telepon</label>
+                        <label class="form-label fw-semibold">
+                            Foto
+                        </label>
 
-                            <input
-                                type="text"
-                                name="telepon"
-                                class="form-control"
-                                value="<?= old('telepon', $korsda['telepon']) ?>">
+                        <input
+                            type="file"
+                            name="foto"
+                            class="form-control"
+                            accept="image/png,image/jpeg,image/jpg">
 
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-
-                            <label class="form-label">Gambar Baru</label>
-
-                            <input
-                                type="file"
-                                name="gambar"
-                                class="form-control"
-                                accept="image/*">
-
-                        </div>
+                        <small class="text-muted">
+                            Kosongkan jika tidak ingin mengganti foto.
+                        </small>
 
                     </div>
 
-                    <?php if (!empty($korsda['gambar'])) : ?>
 
-                        <div class="mb-3">
+                    <!-- FOTO SAAT INI -->
+                    <?php
+                    $foto = $korsda['foto'] ?? '';
+                    $fotoPath = FCPATH . 'uploads/korsda/' . $foto;
+                    ?>
 
-                            <label class="form-label">Gambar Saat Ini</label>
+                    <?php if (
+                        !empty($foto) &&
+                        $foto !== 'default.png' &&
+                        file_exists($fotoPath)
+                    ) : ?>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Foto Saat Ini
+                            </label>
 
                             <div>
-                                <img src="<?= base_url('uploads/korsda/' . $korsda['gambar']) ?>"
+
+                                <img
+                                    src="<?= base_url(
+                                        'uploads/korsda/' . $foto
+                                    ) ?>"
+                                    width="120"
+                                    height="120"
                                     class="img-thumbnail"
-                                    style="max-width:200px;">
+                                    style="object-fit: cover;"
+                                    alt="<?= esc($korsda['nama'] ?? 'Foto KORSDA') ?>">
+
                             </div>
 
                         </div>
 
                     <?php endif; ?>
 
-                    <div class="mb-3">
 
-                        <label class="form-label">Deskripsi</label>
+                    <!-- TOMBOL -->
+                    <div class="text-end mt-3">
 
-                        <textarea
-                            name="deskripsi"
-                            rows="6"
-                            class="form-control"><?= old('deskripsi', $korsda['deskripsi']) ?></textarea>
+                        <button
+                            type="reset"
+                            class="btn btn-light">
 
-                    </div>
-
-                    <div class="text-end">
-
-                        <button type="reset" class="btn btn-light">
                             Reset
+
                         </button>
 
-                        <button type="submit" class="btn btn-warning">
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+
                             <i class="bi bi-save"></i>
-                            Update
+                            Simpan Perubahan
+
                         </button>
 
                     </div>
@@ -197,7 +368,27 @@
             </div>
 
         </div>
+
+
+        <!-- KEMBALI -->
+        <div class="mt-3">
+
+            <button
+                type="button"
+                class="btn btn-kembali"
+                onclick="window.location.href='<?= base_url(
+                    'admin/korsda/dashboard'
+                ) ?>'">
+
+                <i class="bi bi-arrow-left me-2"></i>
+                Kembali
+
+            </button>
+
+        </div>
+
     </div>
 
 </div>
- <?= $this->include('admin/layout/footer') ?>
+
+<?= $this->include('admin/layout/footer') ?>
