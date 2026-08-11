@@ -26,23 +26,77 @@
                     Tambah Berita
                 </a>
 
+                 <a href="<?= base_url('admin/berita/import') ?>"
+                    class="btn-import-berita">
+
+                    <i class="bi bi-file-earmark-excel"></i>
+                    Import Data Lama
+
+                </a>
+
             </div>
 
             <!-- Flash Message -->
             <?php if (session()->getFlashdata('success')) : ?>
 
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-success alert-dismissible fade show">
 
-                    <?= session()->getFlashdata('success') ?>
+                    <i class="bi bi-check-circle"></i>
 
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert">
+                    <?= esc(session()->getFlashdata('success')) ?>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
                     </button>
 
                 </div>
 
             <?php endif; ?>
+
+
+            <?php $importErrors = session()->getFlashdata('import_errors'); ?>
+
+<?php if (!empty($importErrors)) : ?>
+
+    <div class="alert alert-warning">
+
+        <h6 class="fw-bold">
+            Beberapa data tidak berhasil diimport:
+        </h6>
+
+        <?php foreach ($importErrors as $error) : ?>
+
+            <div class="mb-2">
+
+                <strong>
+                    Baris <?= esc($error['baris']) ?>
+                </strong>
+
+                <?php if (!empty($error['kode'])) : ?>
+                    — <?= esc($error['kode']) ?>
+                <?php endif; ?>
+
+                <ul class="mb-0">
+
+                    <?php foreach ($error['errors'] as $message) : ?>
+
+                        <li>
+                            <?= esc($message) ?>
+                        </li>
+
+                    <?php endforeach; ?>
+
+                </ul>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    </div>
+
+<?php endif; ?>
 
             <!-- Card -->
             <div class="card shadow-sm border-0">

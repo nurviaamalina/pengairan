@@ -26,6 +26,14 @@
                     Tambah Kegiatan
                 </a>
 
+                <a href="<?= base_url('admin/kegiatan/import') ?>"
+   class="btn-import-kegiatan">
+
+    <i class="bi bi-file-earmark-arrow-up"></i>
+    Import Data Lama
+
+</a>
+
             </div>
 
             <!-- Flash Message -->
