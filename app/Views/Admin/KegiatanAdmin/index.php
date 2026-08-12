@@ -20,19 +20,20 @@
                         Kelola seluruh kegiatan yang akan ditampilkan pada website.
                     </small>
                 </div>
-
+            <div class="d-flex align-items-center gap-3"><
                 <a href="<?= base_url('admin/kegiatan/create') ?>" class="btn btn-tambah">
                     <i class="bi bi-plus-circle"></i>
                     Tambah Kegiatan
                 </a>
 
                 <a href="<?= base_url('admin/kegiatan/import') ?>"
-   class="btn-import-kegiatan">
+                class="btn-import-kegiatan">
 
-    <i class="bi bi-file-earmark-arrow-up"></i>
-    Import Data Lama
+                    <i class="bi bi-file-earmark-arrow-up"></i>
+                    Import Data Lama
 
-</a>
+                </a>
+            </div>
 
             </div>
 

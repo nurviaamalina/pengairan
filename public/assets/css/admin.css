@@ -252,25 +252,19 @@ body{
     display: inline-flex;
     align-items: center;
     gap: 8px;
-
-    padding: 9px 15px;
-
-    border: 1px solid #198754;
-    border-radius: 8px;
-
-    background: #fff;
-    color: #198754;
-
-    font-size: 14px;
-    font-weight: 600;
-
+    font-size: 15px;
     text-decoration: none;
-
-    transition: all 0.2s ease;
+    background: #ffffff;
+    color: #1d2b63;
+    border: 2px solid #1d2b63;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all .3s ease;
 }
 
 .btn-import-berita:hover {
-    background: #198754;
+    background: #1d2b63;
     color: #fff;
 }
 
@@ -817,25 +811,19 @@ input[type=file]{
     display: inline-flex;
     align-items: center;
     gap: 8px;
-
-    padding: 9px 15px;
-
-    border: 1px solid #198754;
-    border-radius: 8px;
-
-    background: #fff;
-    color: #198754;
-
-    font-size: 14px;
-    font-weight: 600;
-
+    font-size: 15px;
     text-decoration: none;
-
-    transition: all 0.2s ease;
+     background: #ffffff;
+    color: #1d2b63;
+    border: 2px solid #1d2b63;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all .3s ease;
 }
 
 .btn-import-kegiatan:hover {
-    background: #198754;
+    background: #1d2b63;
     color: #fff;
 }
 
@@ -888,10 +876,10 @@ input[type=file]{
 
     padding: 9px 17px;
 
-    border: 1px solid #198754;
+    border: 1px solid #1d2b63;
     border-radius: 8px;
 
-    background: #198754;
+    background: #1d2b63;
     color: #fff;
 
     font-size: 14px;
@@ -903,8 +891,8 @@ input[type=file]{
 }
 
 .btn-import-kegiatan-submit:hover {
-    background: #157347;
-    border-color: #157347;
+    background: #1d2b63;
+    border-color: #1d2b63;
 }
 
 
