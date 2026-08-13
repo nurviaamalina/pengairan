@@ -21,18 +21,22 @@
                     </small>
                 </div>
 
-                <a href="<?= base_url('admin/berita/create') ?>" class="btn btn-tambah">
-                    <i class="bi bi-plus-circle"></i>
-                    Tambah Berita
-                </a>
+                 <div class="d-flex align-items-center gap-3">
+                    <a href="<?= base_url('admin/berita/create') ?>" class="btn btn-tambah">
+                                        <i class="bi bi-plus-circle"></i>
+                                        Tambah Berita
+                                    </a>
 
-                 <a href="<?= base_url('admin/berita/import') ?>"
-                    class="btn-import-berita">
+                                    <a href="<?= base_url('admin/berita/import') ?>"
+                                        class="btn-import-berita">
 
-                    <i class="bi bi-file-earmark-excel"></i>
-                    Import Data Lama
+                                        <i class="bi bi-file-earmark-excel"></i>
+                                        Import Data Lama
 
-                </a>
+                                    </a>
+
+                 </div>
+                
 
             </div>
 
