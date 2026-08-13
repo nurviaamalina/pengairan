@@ -80,17 +80,12 @@
                                     </td>
 
                                     <td>
+    <?= esc($row['nama_wilayah'] ?? '-') ?>
+</td>
 
-                                        <?= esc($row['nama']) ?>
-
-                                    </td>
-
-                                    <td>
-
-                                        <?= esc($row['nama_wilayah']) ?>
-
-                                    </td>
-
+<td>
+    <?= esc($row['nama_kecamatan'] ?? '-') ?>
+</td>
                                     <td>
 
                                         <?php if(!empty($row['file_peta'])) : ?>

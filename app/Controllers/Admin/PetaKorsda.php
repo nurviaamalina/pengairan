@@ -67,19 +67,19 @@ class PetaKorsda extends BaseController
     public function create()
 {
     $korsda = $this->korsdaModel
-        ->select('
-            korsda.id,
-            korsda.kecamatan_id,
-            korsda.nama_wilayah,
-            kecamatan.nama_kecamatan
-        ')
-        ->join(
-            'kecamatan',
-            'kecamatan.id = korsda.kecamatan_id',
-            'left'
-        )
-        ->orderBy('korsda.nama_wilayah', 'ASC')
-        ->findAll();
+    ->select('
+        korsda.id,
+        korsda.kecamatan_id,
+        korsda.nama_wilayah,
+        kecamatan.nama_kecamatan
+    ')
+    ->join(
+        'kecamatan',
+        'kecamatan.id = korsda.kecamatan_id',
+        'left'
+    )
+    ->orderBy('korsda.nama_wilayah', 'ASC')
+    ->findAll();
 
     $data = [
         'title'  => 'Tambah Wilayah KORSDA',
@@ -112,14 +112,6 @@ class PetaKorsda extends BaseController
             ],
         ],
 
-        'nama_wilayah' => [
-            'label'  => 'Nama Wilayah',
-            'rules'  => 'required|min_length[3]',
-            'errors' => [
-                'required'   => 'Nama wilayah wajib diisi.',
-                'min_length' => 'Nama wilayah minimal 3 karakter.',
-            ],
-        ],
 
         'file_peta' => [
             'label'  => 'File Peta',
@@ -151,10 +143,6 @@ class PetaKorsda extends BaseController
     // =====================================================
 
     $korsdaId = (int) $this->request->getPost('korsda_id');
-
-    $namaWilayah = trim(
-        $this->request->getPost('nama_wilayah')
-    );
 
     $keterangan = trim(
         $this->request->getPost('keterangan')
@@ -339,7 +327,7 @@ class PetaKorsda extends BaseController
     // =====================================================
 
     $ogr2ogr =
-        'C:\\OSGeo4W\\bin\\ogr2ogr.exe';
+        'C:\Program Files\QGIS 4.2.1\bin\ogr2ogr.exe';
 
 
     if (!file_exists($ogr2ogr)) {
@@ -399,12 +387,11 @@ class PetaKorsda extends BaseController
     // =====================================================
 
     $data = [
-        'korsda_id'    => $korsdaId,
-        'nama_wilayah' => $namaWilayah,
-        'file_peta'    => $namaFile,
-        'file_geojson' => $geojsonName,
-        'keterangan'   => $keterangan,
-    ];
+    'korsda_id'    => $korsdaId,
+    'file_peta'    => $namaFile,
+    'file_geojson' => $geojsonName,
+    'keterangan'   => $keterangan,
+];
 
 
     // =====================================================

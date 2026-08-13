@@ -271,6 +271,7 @@ $routes->post('admin/dokumen/kategori/store', 'Admin\AdminKategoriDokumen::store
 
     $routes->get('wilayah/create', 'Admin\PetaKorsda::create');
     $routes->post('wilayah/store', 'Admin\PetaKorsda::store');
+    $routes->post('korsda/wilayah/store','Admin\PetaKorsda::store');
 
     $routes->get('wilayah/edit/(:num)', 'Admin\PetaKorsda::edit/$1');
     $routes->post('wilayah/update/(:num)', 'Admin\PetaKorsda::update/$1');
