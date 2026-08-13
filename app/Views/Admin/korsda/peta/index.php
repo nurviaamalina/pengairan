@@ -44,7 +44,6 @@
                                 <th>Nama KORSDA</th>
                                 <th>Nama Wilayah</th>
                                 <th>File Peta</th>
-                                <th>Keterangan</th>
                                 <th width="170">Aksi</th>
 
                             </tr>

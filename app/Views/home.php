@@ -335,7 +335,7 @@
             <h2 class="map-title">Infrastruktur Pengairan Banyuwangi</h2>
 
             <p class="map-subtitle">
-                Peta persebaran irigasi, bendungan, sungai, dan bangunan pengairan lainnya di Kabupaten Banyuwangi
+                Peta persebaran irigasi, bendung, sungai, dan bangunan pengairan lainnya di Kabupaten Banyuwangi
             </p>
         </div>
 
@@ -371,7 +371,7 @@
                     <span class="circle green">
                         <i class="bi bi-tree-fill"></i>
                     </span>
-                    Bendungan
+                    Bendung
                 </div>
 
                 <div class="category-item" data-kategori="embung">

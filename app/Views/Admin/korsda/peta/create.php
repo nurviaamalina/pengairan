@@ -197,25 +197,6 @@
                     </div>
 
 
-                    <!-- KETERANGAN -->
-                    <div class="mb-4">
-
-                        <label class="form-label fw-semibold">
-
-                            Keterangan
-
-                        </label>
-
-                        <textarea
-                            name="keterangan"
-                            class="form-control"
-                            rows="4"
-                            placeholder="Masukkan keterangan peta jika diperlukan..."
-                        ><?= old('keterangan') ?></textarea>
-
-                    </div>
-
-
                     <!-- INFO FORMAT -->
                     <div class="alert alert-info">
 

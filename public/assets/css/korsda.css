@@ -494,4 +494,46 @@ KEMBALI
 
 }
 
+/* =========================================
+   PROFIL KORSDA
+========================================= */
 
+.profil-text {
+    text-align: justify;
+    text-justify: inter-word;
+
+    font-size: 16px;
+    line-height: 1.8;
+
+    color: #172b4d;
+
+    margin-bottom: 24px;
+}
+
+.profil-subtitle {
+    line-height: 1.7;
+}
+
+
+/* Judul Visi, Misi, Tugas, Fungsi */
+
+.profil-text + h3 {
+    margin-top: 30px;
+}
+
+.container h3 {
+    font-size: 25px;
+    font-weight: 700;
+
+    color: #172b4d;
+
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+
+/* Agar teks tidak terlalu melebar */
+
+.profil-text {
+    max-width: 100%;
+}

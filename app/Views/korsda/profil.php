@@ -50,23 +50,22 @@
 
     <h2 class="fw-bold mb-2">
         Struktur KORSDA Kecamatan
-        <?= esc($korsda['nama_wilayah']) ?>
+        <?= esc($korsda['nama_wilayah'] ?? $korsda['nama_kecamatan']) ?>
     </h2>
 
-    <p class="text-muted mb-4">
-    Struktur Organisasi Koordinator Pengelola
-    Sumber Daya Air di Kecamatan
-    <?= esc($korsda['nama_wilayah']) ?>
-</p>
+    <p class="text-muted mb-4 profil-subtitle">
+        Struktur Organisasi Koordinator Pengelola
+        Sumber Daya Air di Kecamatan
+        <?= esc($korsda['nama_wilayah'] ?? $korsda['nama_kecamatan']) ?>
+    </p>
 
 
     <!-- VISI -->
-
     <?php if (!empty($profil['visi'])): ?>
 
         <h3>Visi</h3>
 
-        <p>
+        <p class="profil-text">
             <?= nl2br(esc($profil['visi'])) ?>
         </p>
 
@@ -74,12 +73,11 @@
 
 
     <!-- MISI -->
-
     <?php if (!empty($profil['misi'])): ?>
 
         <h3>Misi</h3>
 
-        <p>
+        <p class="profil-text">
             <?= nl2br(esc($profil['misi'])) ?>
         </p>
 
@@ -87,12 +85,11 @@
 
 
     <!-- TUGAS -->
-
     <?php if (!empty($profil['tugas'])): ?>
 
         <h3>Tugas</h3>
 
-        <p>
+        <p class="profil-text">
             <?= nl2br(esc($profil['tugas'])) ?>
         </p>
 
@@ -100,12 +97,11 @@
 
 
     <!-- FUNGSI -->
-
     <?php if (!empty($profil['fungsi'])): ?>
 
         <h3>Fungsi</h3>
 
-        <p>
+        <p class="profil-text">
             <?= nl2br(esc($profil['fungsi'])) ?>
         </p>
 
@@ -113,7 +109,6 @@
 
 
     <!-- STRUKTUR ORGANISASI -->
-
     <?php if (!empty($profil['struktur_organisasi'])): ?>
 
         <h3 class="mt-4">
@@ -124,11 +119,10 @@
 
             <img
                 src="<?= base_url(
-                    'uploads/korsda/' .
-                    $profil['struktur_organisasi']
+                    'uploads/korsda/' . $profil['struktur_organisasi']
                 ) ?>"
                 class="img-fluid rounded shadow-sm"
-                alt="Struktur Organisasi KORSDA Kecamatan <?= esc($korsda['nama']) ?>"
+                alt="Struktur Organisasi KORSDA Kecamatan <?= esc($korsda['nama_kecamatan']) ?>"
                 style="max-width: 100%; height: auto;"
             >
 
@@ -138,14 +132,13 @@
 
 
     <!-- DESKRIPSI -->
-
     <?php if (!empty($profil['deskripsi'])): ?>
 
         <h3 class="mt-4">
             Deskripsi
         </h3>
 
-        <p>
+        <p class="profil-text">
             <?= nl2br(esc($profil['deskripsi'])) ?>
         </p>
 
