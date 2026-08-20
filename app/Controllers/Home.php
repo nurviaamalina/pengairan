@@ -49,12 +49,37 @@ class Home extends BaseController
             'tahunKegiatan' => $kegiatanModel->getTahunHomepage(),
 
             // Data GIS
-            'gis' => $this->wilayahModel
-                ->select('wilayah.*, kecamatan.nama_kecamatan')
-                ->join('korsda', 'korsda.id = wilayah.korsda_id')
-                ->join('kecamatan', 'kecamatan.id = korsda.kecamatan_id')
-                ->orderBy('kecamatan.nama_kecamatan', 'ASC')
-                ->findAll(),
+           'gis' => $this->wilayahModel
+    ->select('
+        wilayah.id,
+        wilayah.korsda_id,
+        wilayah.file_geojson,
+        wilayah.keterangan,
+        korsda.nama_wilayah,
+        korsda.kecamatan_id,
+        kecamatan.nama_kecamatan
+    ')
+    ->join(
+        'korsda',
+        'korsda.id = wilayah.korsda_id',
+        'left'
+    )
+    ->join(
+        'kecamatan',
+        'kecamatan.id = korsda.kecamatan_id',
+        'left'
+    )
+    ->where('wilayah.file_geojson IS NOT NULL')
+    ->where('wilayah.file_geojson !=', '')
+    ->orderBy(
+        'kecamatan.nama_kecamatan',
+        'ASC'
+    )
+    ->orderBy(
+        'korsda.nama_wilayah',
+        'ASC'
+    )
+    ->findAll(),
 
             // Dropdown Kecamatan
             'kecamatan' => $this->kecamatanModel

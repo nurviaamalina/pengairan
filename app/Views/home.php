@@ -227,6 +227,7 @@
      INSTAGRAM
 =========================== -->
 
+
 <section class="instagram-section py-5">
 
     <div class="container">
@@ -445,79 +446,7 @@
     </div>
 
 </section>
-<!-- INFRASTRUKTUR -->
-<section class="map-section py-5">
 
-    <div class="container">
-
-        <div class="text-center mb-4">
-            <h2 class="map-title">Infrastruktur Pengairan Banyuwangi</h2>
-
-            <p class="map-subtitle">
-                Peta persebaran irigasi, bendung, sungai, dan bangunan pengairan lainnya di Kabupaten Banyuwangi
-            </p>
-        </div>
-
-        <!-- MAP -->
-        <div class="map-wrapper">
-        <div id="map"></div>
-</div>
-
-        <!-- KATEGORI -->
-        <div class="category-box mt-4">
-
-    <div class="row align-items-center g-3">
-
-        <div class="col-lg-3">
-            <div class="category-title">
-                <strong>Kategori</strong><br>
-                Infrastruktur
-            </div>
-        </div>
-
-        <div class="col-lg-9">
-
-            <div class="d-flex flex-wrap gap-4 justify-content-lg-start justify-content-center">
-
-                <div class="category-item" data-kategori="jaringan irigasi">
-                    <span class="circle blue">
-                        <i class="bi bi-droplet-fill"></i>
-                    </span>
-                    Jaringan Irigasi
-                </div>
-
-                <div class="category-item" data-kategori="bendungan">
-                    <span class="circle green">
-                        <i class="bi bi-tree-fill"></i>
-                    </span>
-                    Bendung
-                </div>
-
-                <div class="category-item" data-kategori="embung">
-                    <span class="circle orange">
-                        <i class="bi bi-water"></i>
-                    </span>
-                    Embung
-                </div>
-
-                <div class="category-item" data-kategori="bangunan pengairan">
-                    <span class="circle purple">
-                        <i class="bi bi-building"></i>
-                    </span>
-                    Bangunan Pengairan
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-    </div>
-
-</section>
 
 <!-- KEGIATAN TERBARU -->
 <section class="kegiatan-section">
@@ -607,140 +536,348 @@
     </div>
 
 </section>
+<section class="map-section py-5">
+
+    <div class="container">
+
+        <!-- JUDUL -->
+        <div class="text-center mb-4">
+            <h2 class="map-title">
+                Infrastruktur Pengairan Banyuwangi
+            </h2>
+
+            <p class="map-subtitle">
+                Peta persebaran irigasi, bendung, sungai, dan bangunan
+                pengairan lainnya di Kabupaten Banyuwangi
+            </p>
+        </div>
+
+
+        <!-- MAP -->
+        <div class="map-wrapper">
+            <div id="map"></div>
+        </div>
+
 <script>
+document.addEventListener('DOMContentLoaded', function () {
 
-const dataGIS = <?= json_encode($gis ?? []); ?>;
-
-document.addEventListener("DOMContentLoaded", function () {
+    const dataGIS = <?= json_encode(
+        $gis ?? [],
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+    ) ?>;
 
     const map = L.map('map', {
-    scrollWheelZoom: true,   
-    touchZoom: true,
-    doubleClickZoom: true,
-    dragging: true,
-    zoomControl: true
-}).setView([-8.2192, 114.3691], 11);
+        scrollWheelZoom: true,
+        touchZoom: true,
+        doubleClickZoom: true,
+        dragging: true,
+        zoomControl: true
+    }).setView(
+        [-8.2192, 114.3691],
+        10
+    );
+
+
+    // =====================================================
+    // BASE MAP
+    // =====================================================
 
     L.tileLayer(
         'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         {
-            maxZoom:20,
-            subdomains:['mt0','mt1','mt2','mt3']
+            maxZoom: 20,
+            subdomains: [
+                'mt0',
+                'mt1',
+                'mt2',
+                'mt3'
+            ],
+            attribution: 'Google Maps'
         }
     ).addTo(map);
 
-    let markers = [];
-    let kategoriAktif = "";
 
-    function tampilkanMarker(){
+    // =====================================================
+    // SIMPAN SEMUA LAYER
+    // =====================================================
 
-        // hapus marker lama
-        markers.forEach(function(marker){
-            map.removeLayer(marker);
-        });
+    const layers = [];
 
-        markers = [];
 
-        dataGIS.forEach(function(item){
+    // =====================================================
+    // LOAD GEOJSON
+    // =====================================================
 
-            if(
-                item.latitude == null ||
-                item.longitude == null ||
-                item.latitude == "" ||
-                item.longitude == ""
-            ){
-                return;
-            }
+    const promises = dataGIS.map(function (item) {
 
-            // FILTER KATEGORI
-            if(
-                kategoriAktif != "" &&
-                item.keterangan.toLowerCase() != kategoriAktif
-            ){
-                return;
-            }
-
-            let marker = L.marker([
-                parseFloat(item.latitude),
-                parseFloat(item.longitude)
-            ]).addTo(map);
-
-            marker.bindPopup(`
-                <div style="min-width:220px">
-
-                    <h6>${item.nama_lokasi}</h6>
-
-                    <hr>
-
-                    <b>Kecamatan</b><br>
-
-                    ${item.nama_kecamatan ?? '-'}
-
-                    <br><br>
-
-                    <b>Latitude</b><br>
-
-                    ${item.latitude}
-
-                    <br><br>
-
-                    <b>Longitude</b><br>
-
-                    ${item.longitude}
-
-                    <br><br>
-
-                    <b>Kategori</b><br>
-
-                    ${item.keterangan ?? '-'}
-
-                </div>
-            `);
-
-            markers.push(marker);
-
-        });
-
-        if(markers.length > 0){
-
-            let group = L.featureGroup(markers);
-
-            map.fitBounds(group.getBounds().pad(0.2));
-
+        if (!item.file_geojson) {
+            return Promise.resolve();
         }
 
-    }
 
-    tampilkanMarker();
+        const geojsonUrl =
+            "<?= base_url('uploads/wilayah/') ?>" +
+            item.file_geojson;
 
-    // ==========================
-    // FILTER SAAT KATEGORI DIKLIK
-    // ==========================
 
-    document.querySelectorAll(".category-item").forEach(function(item){
+        return fetch(geojsonUrl)
 
-        item.addEventListener("click", function(){
+            .then(function (response) {
 
-            document.querySelectorAll(".category-item").forEach(function(el){
-                el.classList.remove("active");
+                if (!response.ok) {
+
+                    throw new Error(
+                        'GeoJSON tidak ditemukan: ' +
+                        geojsonUrl
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(function (geojson) {
+
+                const layer = L.geoJSON(
+                    geojson,
+                    {
+
+                        style: function () {
+
+                            return {
+                                color: '#3388ff',
+                                weight: 4,
+                                opacity: 0.9,
+                                fillColor: '#3388ff',
+                                fillOpacity: 0.20
+                            };
+
+                        },
+
+
+                        pointToLayer:
+                            function (feature, latlng) {
+
+                                return L.circleMarker(
+                                    latlng,
+                                    {
+                                        radius: 7,
+                                        fillColor: '#3388ff',
+                                        color: '#ffffff',
+                                        weight: 2,
+                                        fillOpacity: 0.9
+                                    }
+                                );
+
+                            },
+
+
+                        onEachFeature:
+                            function (
+                                feature,
+                                layer
+                            ) {
+
+                                const properties =
+                                    feature.properties || {};
+
+
+                                const nama =
+                                    properties.nama ||
+                                    properties.nama_lokasi ||
+                                    item.nama_wilayah ||
+                                    'Infrastruktur Pengairan';
+
+
+                                const kategori =
+                                    properties.kategori ||
+                                    item.keterangan ||
+                                    '-';
+
+
+                                layer.bindPopup(`
+
+                                    <div
+                                        style="
+                                            min-width:220px;
+                                        "
+                                    >
+
+                                        <h6 class="fw-bold">
+                                            ${nama}
+                                        </h6>
+
+                                        <hr>
+
+                                        <b>
+                                            Kecamatan
+                                        </b>
+
+                                        <br>
+
+                                        ${item.nama_kecamatan ?? '-'}
+
+                                        <br><br>
+
+                                        <b>
+                                            Kategori
+                                        </b>
+
+                                        <br>
+
+                                        ${kategori}
+
+                                        <br><br>
+
+                                        <b>
+                                            Keterangan
+                                        </b>
+
+                                        <br>
+
+                                        ${item.keterangan ?? '-'}
+
+                                    </div>
+
+                                `);
+
+                            }
+
+                    }
+                );
+
+
+                layer.addTo(map);
+
+                layers.push(layer);
+
+            })
+
+            .catch(function (error) {
+
+                console.error(
+                    'Gagal memuat GeoJSON:',
+                    error
+                );
+
             });
 
-            this.classList.add("active");
+    });
 
-            kategoriAktif = this.dataset.kategori;
 
-            tampilkanMarker();
+    // =====================================================
+    // FIT KE SEMUA DATA
+    // =====================================================
+
+    Promise.all(promises)
+        .then(function () {
+
+            if (layers.length === 0) {
+                return;
+            }
+
+
+            const group =
+                L.featureGroup(layers);
+
+
+            if (group.getBounds().isValid()) {
+
+                map.fitBounds(
+                    group.getBounds(),
+                    {
+                        padding: [30, 30]
+                    }
+                );
+
+            }
 
         });
 
-    });
 
-    // Klik peta menuju halaman GIS
+    // =====================================================
+    // FIX LEAFLET SIZE
+    // =====================================================
 
-    map.on('click', function () {
-        window.location.href = "<?= base_url('gis') ?>";
-    });
+    setTimeout(function () {
+
+        map.invalidateSize();
+
+    }, 500);
 
 });
 </script>
+        <!-- KATEGORI -->
+        <div class="category-box mt-4">
+
+            <div class="row align-items-center g-3">
+
+                <div class="col-lg-3">
+                    <div class="category-title">
+                        <strong>Kategori</strong><br>
+                        Infrastruktur
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+
+                    <div class="d-flex flex-wrap gap-4
+                                justify-content-lg-start
+                                justify-content-center">
+
+                        <div class="category-item"
+                             data-kategori="jaringan irigasi">
+
+                            <span class="circle blue">
+                                <i class="bi bi-droplet-fill"></i>
+                            </span>
+
+                            Jaringan Irigasi
+                        </div>
+
+
+                        <div class="category-item"
+                             data-kategori="bendung">
+
+                            <span class="circle green">
+                                <i class="bi bi-tree-fill"></i>
+                            </span>
+
+                            Bendung
+                        </div>
+
+
+                        <div class="category-item"
+                             data-kategori="embung">
+
+                            <span class="circle orange">
+                                <i class="bi bi-water"></i>
+                            </span>
+
+                            Embung
+                        </div>
+
+
+                        <div class="category-item"
+                             data-kategori="bangunan pengairan">
+
+                            <span class="circle purple">
+                                <i class="bi bi-building"></i>
+                            </span>
+
+                            Bangunan Pengairan
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 <?= $this->include('layout/footer') ?>
