@@ -23,13 +23,25 @@
 
                 </div>
 
-                <a href="<?= base_url('admin/instagram/create') ?>" class="btn btn-tambah">
+               <div> <a href="<?= base_url('admin/instagram/create') ?>" class="btn btn-tambah">
 
                     <i class="bi bi-plus-circle"></i>
 
                     Tambah Feed
 
                 </a>
+
+                <a href="<?= base_url('admin/instagram/sync') ?>"
+                    class="btn-sync-instagram"
+                    onclick="return confirm('Sinkronkan data Instagram sekarang?')">
+
+                        <i class="bi bi-arrow-repeat"></i>
+
+                        Sync Instagram Sekarang
+
+                </a>
+
+                </div>
 
             </div>
 

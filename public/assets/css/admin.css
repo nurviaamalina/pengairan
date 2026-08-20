@@ -1506,3 +1506,32 @@ input[type=file]{
     }
 
 }
+
+
+.btn-sync-instagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    background: #b00020;
+    color: #fff;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    border: none;
+
+    transition: .2s;
+}
+
+.btn-sync-instagram:hover {
+    background: #8f001a;
+    color: #fff;
+    transform: translateY(-1px);
+}

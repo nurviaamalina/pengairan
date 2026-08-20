@@ -119,21 +119,28 @@
     <?php foreach ($instagram as $item) : ?>
 
         <?php
-            // Prioritaskan permalink dari API Instagram
+            // URL posting Instagram
             $instagramUrl = !empty($item['permalink'])
                 ? $item['permalink']
                 : ($item['instagram_url'] ?? '#');
 
-            // Untuk sementara gambar dari API
-            $imageUrl = !empty($item['media_url'])
-                ? $item['media_url']
-                : ($item['thumbnail_url'] ?? null);
+            // Tentukan gambar preview
+            $mediaType = strtoupper($item['media_type'] ?? 'IMAGE');
 
+            if ($mediaType === 'VIDEO') {
+                // REELS / VIDEO menggunakan thumbnail
+                $imageUrl = $item['thumbnail_url'] ?? null;
+            } else {
+                // FOTO menggunakan media_url
+                $imageUrl = $item['media_url'] ?? null;
+            }
+
+            // Tanggal
             $tanggal = !empty($item['posted_at'])
                 ? $item['posted_at']
                 : ($item['tanggal_post'] ?? null);
         ?>
-
+        
         <div class="col-lg-4 col-md-6">
 
             <!-- SELURUH CARD MENJADI LINK -->

@@ -231,73 +231,191 @@
 
     <div class="container">
 
+        <!-- HEADER -->
         <div class="d-flex justify-content-between align-items-center mb-4">
 
             <div>
 
                 <h2 class="section-title">
-
                     Instagram
-
                 </h2>
 
                 <p class="text-muted">
-
                     Dokumentasi kegiatan terbaru Dinas Pengairan Kabupaten Banyuwangi.
-
                 </p>
 
             </div>
 
-            <a href="<?= base_url('instagram') ?>" class="btn btn-outline-primary">
-
+            <a
+                href="<?= base_url('instagram') ?>"
+                class="btn btn-outline-primary"
+            >
                 Lihat Semua
-
                 <i class="bi bi-arrow-right"></i>
-
             </a>
 
         </div>
 
+
+        <!-- FEED -->
         <div class="row g-4">
 
             <?php if (!empty($instagram)) : ?>
 
                 <?php foreach ($instagram as $item) : ?>
 
+                    <?php
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | LINK INSTAGRAM
+                        |--------------------------------------------------------------------------
+                        */
+
+                        $instagramUrl = !empty($item['permalink'])
+                            ? $item['permalink']
+                            : ($item['instagram_url'] ?? '#');
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | GAMBAR
+                        |--------------------------------------------------------------------------
+                        |
+                        | IMAGE  → media_url
+                        | VIDEO  → thumbnail_url
+                        |
+                        */
+
+                        $mediaType = strtoupper(
+                            $item['media_type'] ?? 'IMAGE'
+                        );
+
+
+                        if ($mediaType === 'VIDEO') {
+
+                            $imageUrl = $item['thumbnail_url']
+                                ?? $item['media_url']
+                                ?? null;
+
+                        } else {
+
+                            $imageUrl = $item['media_url']
+                                ?? $item['thumbnail_url']
+                                ?? null;
+
+                        }
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | TANGGAL
+                        |--------------------------------------------------------------------------
+                        */
+
+                        $tanggal = !empty($item['posted_at'])
+                            ? $item['posted_at']
+                            : ($item['tanggal_post'] ?? null);
+
+                    ?>
+
+
+                    <!-- CARD -->
                     <div class="col-lg-4 col-md-6">
 
                         <div class="instagram-card">
 
-                            <a href="<?= esc($item['instagram_url']) ?>" target="_blank">
 
-                                <img
-                                    src="<?= base_url('uploads/instagram/' . $item['thumbnail']) ?>"
-                                    class="img-fluid">
+                            <!-- GAMBAR + LINK -->
+                            <a
+                                href="<?= esc($instagramUrl, 'attr') ?>"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="instagram-card-link"
+                            >
+
+                                <div class="instagram-image">
+
+                                    <?php if (!empty($imageUrl)) : ?>
+
+                                        <img
+                                            src="<?= esc($imageUrl, 'attr') ?>"
+                                            alt="<?= esc($item['judul'] ?? 'Posting Instagram') ?>"
+                                            class="img-fluid"
+                                            loading="lazy"
+                                        >
+
+                                    <?php else : ?>
+
+                                        <div class="instagram-image-empty">
+
+                                            <i class="bi bi-instagram"></i>
+
+                                            <span>
+                                                Preview tidak tersedia
+                                            </span>
+
+                                        </div>
+
+                                    <?php endif; ?>
+
+
+                                    <!-- ICON REELS -->
+                                    <?php if ($mediaType === 'VIDEO') : ?>
+
+                                        <span class="instagram-video-icon">
+
+                                            <i class="bi bi-play-fill"></i>
+
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </div>
 
                             </a>
 
+
+                            <!-- CONTENT -->
                             <div class="instagram-content">
 
                                 <h5>
 
-                                    <?= esc($item['judul']) ?>
+                                    <?= esc(
+                                        $item['judul']
+                                        ?? 'Posting Instagram'
+                                    ) ?>
 
                                 </h5>
 
+
                                 <p>
 
-                                    <?= character_limiter(strip_tags($item['caption']), 90) ?>
+                                    <?= character_limiter(
+                                        strip_tags(
+                                            $item['caption'] ?? ''
+                                        ),
+                                        90
+                                    ) ?>
 
                                 </p>
 
-                                <small>
 
-                                    <i class="bi bi-calendar-event"></i>
+                                <?php if (!empty($tanggal)) : ?>
 
-                                    <?= date('d F Y', strtotime($item['tanggal_post'])) ?>
+                                    <small>
 
-                                </small>
+                                        <i class="bi bi-calendar-event"></i>
+
+                                        <?= date(
+                                            'd F Y',
+                                            strtotime($tanggal)
+                                        ) ?>
+
+                                    </small>
+
+                                <?php endif; ?>
+
 
                             </div>
 
@@ -306,6 +424,7 @@
                     </div>
 
                 <?php endforeach; ?>
+
 
             <?php else : ?>
 

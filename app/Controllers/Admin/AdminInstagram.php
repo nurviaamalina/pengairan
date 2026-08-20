@@ -249,4 +249,53 @@ class AdminInstagram extends BaseController
             ->to(base_url('admin/instagram'))
             ->with('success', 'Feed Instagram berhasil dihapus.');
     }
+
+
+    public function sync()
+{
+    $syncUrl = base_url('instagram-sync');
+
+    $client = \Config\Services::curlrequest([
+        'timeout' => 60,
+    ]);
+
+    try {
+
+        $response = $client->get($syncUrl);
+
+        $result = json_decode(
+            $response->getBody(),
+            true
+        );
+
+        if (!empty($result['status'])) {
+
+            return redirect()
+                ->back()
+                ->with(
+                    'success',
+                    'Sinkronisasi berhasil. ' .
+                    'Data baru: ' . ($result['posting_baru'] ?? 0) .
+                    ', diperbarui: ' . ($result['posting_update'] ?? 0)
+                );
+        }
+
+        return redirect()
+            ->back()
+            ->with(
+                'error',
+                $result['message'] ?? 'Sinkronisasi gagal.'
+            );
+
+    } catch (\Throwable $e) {
+
+        return redirect()
+            ->back()
+            ->with(
+                'error',
+                'Gagal melakukan sinkronisasi Instagram: '
+                . $e->getMessage()
+            );
+    }
+}
 }

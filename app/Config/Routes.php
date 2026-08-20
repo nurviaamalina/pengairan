@@ -336,7 +336,7 @@ $routes->get('korsda/kecamatan/delete/(:num)', 'Admin\Kecamatan::delete/$1');
     | INSTAGRAM ADMIN
     |--------------------------------------------------------------------------
     */
-
+    $routes->get('instagram/sync', 'Admin\AdminInstagram::sync');
     $routes->get('instagram', 'Admin\AdminInstagram::index');
     $routes->get('instagram/create', 'Admin\AdminInstagram::create');
     $routes->post('instagram/store', 'Admin\AdminInstagram::store');
