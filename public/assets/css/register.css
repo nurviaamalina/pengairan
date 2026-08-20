@@ -164,3 +164,37 @@ button:hover{
     }
 
 }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.role-select {
+    width: 100%;
+    height: 46px;
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #ffffff;
+    color: #555;
+
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+
+    appearance: auto;
+}
+
+.role-select:focus {
+    outline: none;
+}

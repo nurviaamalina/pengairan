@@ -27,57 +27,141 @@ class Auth extends BaseController
 
     // Proses Register
     public function prosesRegister()
-    {
-        $password = $this->request->getPost('password');
-        $confirm  = $this->request->getPost('confirm_password');
+{
+    $username = $this->request->getPost('username');
+    $email    = $this->request->getPost('email');
+    $password = $this->request->getPost('password');
+    $role     = $this->request->getPost('role');
 
-        if ($password !== $confirm) {
-            return redirect()->back()->with('error', 'Konfirmasi password tidak sesuai.');
-        }
 
-        $cek = $this->user
-            ->where('username', $this->request->getPost('username'))
-            ->orWhere('email', $this->request->getPost('email'))
-            ->first();
-
-        if ($cek) {
-            return redirect()->back()->with('error', 'Username atau Email sudah digunakan.');
-        }
-
-        $this->user->insert([
-            'username' => $this->request->getPost('username'),
-            'email'    => $this->request->getPost('email'),
-            'password' => password_hash($password, PASSWORD_DEFAULT),
-        ]);
-
-        return redirect()->to('/login')
-                         ->with('success', 'Registrasi berhasil. Silakan login.');
+    // =========================
+    // VALIDASI ROLE
+    // =========================
+    if (!in_array($role, ['admin', 'user'])) {
+        return redirect()->back()
+            ->withInput()
+            ->with('error', 'Silakan pilih role Admin atau User.');
     }
 
-    // Proses Login
-    public function prosesLogin()
-{
-    $user = $this->user
-        ->where('username', $this->request->getPost('username'))
+
+    // =========================
+    // CEK USERNAME
+    // =========================
+    $cekUsername = $this->user
+        ->where('username', $username)
         ->first();
 
+    if ($cekUsername) {
+        return redirect()->back()
+            ->withInput()
+            ->with('error', 'Username sudah digunakan.');
+    }
+
+
+    // =========================
+    // CEK EMAIL
+    // =========================
+    $cekEmail = $this->user
+        ->where('email', $email)
+        ->first();
+
+    if ($cekEmail) {
+        return redirect()->back()
+            ->withInput()
+            ->with('error', 'Email sudah digunakan.');
+    }
+
+
+    // =========================
+    // BATASI MAKSIMAL 5 ADMIN
+    // =========================
+    if ($role === 'admin') {
+
+        $jumlahAdmin = $this->user
+            ->where('role', 'admin')
+            ->countAllResults();
+
+        if ($jumlahAdmin >= 5) {
+            return redirect()->back()
+                ->withInput()
+                ->with(
+                    'error',
+                    'Jumlah akun Admin sudah mencapai batas maksimal 5 akun.'
+                );
+        }
+    }
+
+
+    // =========================
+    // SIMPAN USER
+    // =========================
+    $this->user->insert([
+        'username' => $username,
+        'email'    => $email,
+        'password' => password_hash(
+            $password,
+            PASSWORD_DEFAULT
+        ),
+        'role'     => $role,
+    ]);
+
+
+    return redirect()->to('/login')
+        ->with(
+            'success',
+            'Registrasi berhasil. Silakan login.'
+        );
+}
+
+    // Proses Login
+   public function prosesLogin()
+{
+    $username = $this->request->getPost('username');
+    $password = $this->request->getPost('password');
+
+    // Cari user berdasarkan username
+    $user = $this->user
+        ->where('username', $username)
+        ->first();
+
+    // Jika username tidak ditemukan
     if (!$user) {
         return redirect()->to('/login')
             ->with('error', 'Username tidak ditemukan.');
     }
 
-    if (!password_verify($this->request->getPost('password'), $user['password'])) {
+    // Jika password salah
+    if (!password_verify($password, $user['password'])) {
         return redirect()->to('/login')
             ->with('error', 'Password salah.');
     }
 
+    // Deteksi role dari database
+    $role = $user['role'];
+
+    // Simpan data login ke session
     session()->set([
         'id'       => $user['id'],
         'username' => $user['username'],
+        'role'     => $role,
         'login'    => true,
     ]);
 
-    return redirect()->to('/admin/dashboard');
+    // Jika ADMIN
+    if ($role === 'admin') {
+        return redirect()->to('/admin/dashboard');
+    }
+
+    // Jika USER
+    if ($role === 'user') {
+        return redirect()->to('/admin/korsda/kegiatan');
+    }
+
+    // Jika role tidak valid
+    session()->destroy();
+
+    return redirect()->to('/login')
+        ->with('error', 'Role tidak valid.');
 }
 
     // Logout

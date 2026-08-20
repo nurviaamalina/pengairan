@@ -12,7 +12,7 @@
 
             <h3 class="fw-bold">Tambah </h3>
 
-            <a href="<?= base_url('admin/dokumen/kategori'); ?>" class="btn btn-secondary">
+            <a href="<?= base_url('admin/kategori'); ?>" class="btn btn-secondary">
                 <i class="fa fa-arrow-left"></i> Kembali
             </a>
 

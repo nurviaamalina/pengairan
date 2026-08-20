@@ -64,30 +64,48 @@ class AdminKategoriDokumen extends BaseController
 
     // Update
     public function update($id)
-    {
-        $kategori = $this->kategori->find($id);
+{
+    $kategori = $this->kategori->find($id);
 
-        $ruleSlug = ($kategori['slug'] == $this->request->getPost('slug'))
-            ? 'required'
-            : 'required|is_unique[kategori_dokumen.slug]';
-
-        $rules = [
-            'nama_kategori' => 'required',
-            'slug'          => $ruleSlug
-        ];
-
-        if (!$this->validate($rules)) {
-            return redirect()->back()->withInput();
-        }
-
-        $this->kategori->update($id, [
-            'nama_kategori' => $this->request->getPost('nama_kategori'),
-            'slug'          => url_title($this->request->getPost('slug'), '-', true),
-        ]);
-
+    if (!$kategori) {
         return redirect()->to('/admin/kategori')
-                         ->with('success', 'Kategori berhasil diperbarui.');
+            ->with('error', 'Kategori tidak ditemukan.');
     }
+
+    // Ambil data dari form
+    $namaKategori = trim($this->request->getPost('nama_kategori'));
+    $slug = url_title(
+        trim($this->request->getPost('slug')),
+        '-',
+        true
+    );
+
+    // Validasi
+    $rules = [
+        'nama_kategori' => 'required',
+        'slug' => "required|is_unique[kategori_dokumen.slug,id,{$id}]"
+    ];
+
+    $dataValidasi = [
+        'nama_kategori' => $namaKategori,
+        'slug' => $slug
+    ];
+
+    if (!$this->validateData($dataValidasi, $rules)) {
+        return redirect()->back()
+            ->withInput()
+            ->with('errors', $this->validator->getErrors());
+    }
+
+    // Update data
+    $this->kategori->update($id, [
+        'nama_kategori' => $namaKategori,
+        'slug'          => $slug,
+    ]);
+
+    return redirect()->to('/admin/kategori')
+        ->with('success', 'Kategori berhasil diperbarui.');
+}
 
     // Hapus
     public function delete($id)

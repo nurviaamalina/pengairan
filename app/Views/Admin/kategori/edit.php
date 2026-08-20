@@ -1,55 +1,90 @@
 <?= $this->include('Admin/layout/header'); ?>
+
+<div class="wrapper">
+
 <?= $this->include('Admin/layout/sidebar'); ?>
 
-<div class="content-wrapper">
+<div class="main">
 
-    <div class="page-header">
+    <div class="container-fluid">
 
-        <h2>Edit Kategori Dokumen</h2>
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
-    </div>
-
-    <div class="card">
-
-        <form action="<?= base_url('admin/kategori/update/'.$kategori['id']); ?>" method="post">
-
-            <?= csrf_field(); ?>
-
-            <div class="form-group">
-
-                <label>Nama Kategori</label>
-
-                <input
-                    type="text"
-                    name="nama_kategori"
-                    class="form-control"
-                    value="<?= esc($kategori['nama_kategori']); ?>"
-                    required>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Slug</label>
-
-                <input
-                    type="text"
-                    name="slug"
-                    class="form-control"
-                    value="<?= esc($kategori['slug']); ?>"
-                    required>
-
-            </div>
-
-            <button type="submit" class="btn btn-success">
-                Update
-            </button>
+            <h3 class="fw-bold">Edit Kategori</h3>
 
             <a href="<?= base_url('admin/kategori'); ?>" class="btn btn-secondary">
-                Kembali
+                <i class="fa fa-arrow-left"></i> Kembali
             </a>
 
-        </form>
+        </div>
+        
+    </div>
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+
+                     <form action="<?= base_url('admin/kategori/update/' . $kategori['id']) ?>" method="post">
+
+
+                        <?= csrf_field(); ?>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nama Kategori
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nama_kategori"
+                            class="form-control"
+                            value="<?= esc($kategori['nama_kategori']); ?>"
+
+                            required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Slug
+                        </label>
+
+                        <input
+                            type="text"
+                            name="slug"
+                            class="form-control"
+                             value="<?= esc($kategori['slug']); ?>"
+                            required>
+
+                    </div>
+
+
+                    <div class="text-end">
+
+                        <button type="submit" class="btn btn-primary">
+
+                            <i class="fa fa-save"></i>
+
+                           Update
+
+                        </button>
+
+                        <a href="<?= base_url('admin/kategori'); ?>" class="btn btn-danger">
+
+                            Batal
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
 
     </div>
 

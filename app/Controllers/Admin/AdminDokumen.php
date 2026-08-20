@@ -62,33 +62,52 @@ class AdminDokumen extends BaseController
 
     
     // Simpan dokumen
-    public function store()
-    {
-        $rules = [
-            'kategori_id' => 'required',
-            'judul'       => 'required',
-            'tahun'       => 'required',
-            'file'        => 'uploaded[file]|ext_in[file,pdf]'
-        ];
+    // Simpan dokumen
+public function store()
+{
+    $rules = [
+        'kategori_id' => 'required',
+        'judul'       => 'required',
+        'tahun'       => 'required',
+        'file'        => 'uploaded[file]|ext_in[file,pdf]'
+    ];
 
-        if (!$this->validate($rules)) {
-            return redirect()->back()->withInput();
-        }
-
-        $file = $this->request->getFile('file');
-        $namaFile = $file->getRandomName();
-        $file->move('uploads/dokumen', $namaFile);
-
-        $this->dokumen->save([
-            'kategori_id' => $this->request->getPost('kategori_id'),
-            'judul'       => $this->request->getPost('judul'),
-            'tahun'       => $this->request->getPost('tahun'),
-            'file'        => $namaFile,
-        ]);
-
-        return redirect()->to('/admin/dokumen/create')
-                         ->with('success', 'Dokumen berhasil ditambahkan.');
+    if (!$this->validate($rules)) {
+        return redirect()->back()->withInput();
     }
+
+    $kategoriId = $this->request->getPost('kategori_id');
+
+    // Cari kategori berdasarkan ID
+    $kategori = $this->kategori->find($kategoriId);
+
+    if (!$kategori) {
+        return redirect()->back()
+            ->withInput()
+            ->with('error', 'Kategori tidak ditemukan.');
+    }
+
+    $file = $this->request->getFile('file');
+
+    // Nama file tetap menggunakan nama asli
+    $namaFile = $file->getName();
+
+    // Simpan file
+    $file->move(FCPATH . 'uploads/dokumen', $namaFile);
+
+    // Simpan data ke database
+    $this->dokumen->save([
+        'kategori_id' => $kategoriId,
+        'judul'       => $this->request->getPost('judul'),
+        'tahun'       => $this->request->getPost('tahun'),
+        'file'        => $namaFile,
+    ]);
+
+    // Redirect ke halaman kategori
+    return redirect()->to('/admin/kategori/' . $kategori['slug'])
+        ->with('success', 'Dokumen berhasil ditambahkan.');
+}
+
 
     // Form edit
     public function edit($id)
@@ -103,36 +122,51 @@ class AdminDokumen extends BaseController
 
     // Update
     public function update($id)
-    {
-        $dokumen = $this->dokumen->find($id);
+{
+    $dokumen = $this->dokumen->find($id);
 
-        $data = [
-            'kategori_id' => $this->request->getPost('kategori_id'),
-            'judul'       => $this->request->getPost('judul'),
-            'tahun'       => $this->request->getPost('tahun'),
-        ];
+    if (!$dokumen) {
+        return redirect()->back()
+            ->with('error', 'Dokumen tidak ditemukan.');
+    }
 
-        $file = $this->request->getFile('file');
+    $data = [
+        'kategori_id' => $this->request->getPost('kategori_id'),
+        'judul'       => $this->request->getPost('judul'),
+        'tahun'       => $this->request->getPost('tahun'),
+    ];
 
-        if ($file && $file->isValid() && !$file->hasMoved()) {
+    $file = $this->request->getFile('file');
 
-            if (!empty($dokumen['file']) && file_exists(FCPATH . 'uploads/dokumen/' . $dokumen['file'])) {
-                unlink(FCPATH . 'uploads/dokumen/' . $dokumen['file']);
-            }
+    // Jika user upload PDF baru
+    if ($file && $file->isValid() && !$file->hasMoved()) {
 
-            $namaFile = $file->getRandomName();
-            $file->move('uploads/dokumen', $namaFile);
-
-            $data['file'] = $namaFile;
+        // Hapus file lama
+        if (
+            !empty($dokumen['file']) &&
+            file_exists(FCPATH . 'uploads/dokumen/' . $dokumen['file'])
+        ) {
+            unlink(FCPATH . 'uploads/dokumen/' . $dokumen['file']);
         }
 
-        $this->dokumen->update($id, $data);
+        // Gunakan nama asli PDF
+        $namaFile = $file->getName();
 
-        $kategori = $this->kategori->find($this->request->getPost('kategori_id'));
+        // Simpan dengan nama asli
+        $file->move(FCPATH . 'uploads/dokumen', $namaFile);
 
-        return redirect()->to('/admin/kategori/' .$kategori['slug'])
-                         ->with('success', 'Dokumen berhasil diperbarui.');
+        $data['file'] = $namaFile;
     }
+
+    $this->dokumen->update($id, $data);
+
+    $kategori = $this->kategori->find(
+        $this->request->getPost('kategori_id')
+    );
+
+    return redirect()->to('/admin/kategori/' . $kategori['slug'])
+                     ->with('success', 'Dokumen berhasil diperbarui.');
+}
 
     // Hapus
     public function delete($id)
