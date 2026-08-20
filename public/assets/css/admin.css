@@ -186,59 +186,58 @@ body{
 }
 
 
-/* ==========================
+/* =========================
    FOOTER
-========================== */
+========================= */
 
-.footer{
-    background:#1d2b63;
-    color:#fff;
-    padding:25px 0 15px;
-    width:100%;
+.footer {
+    background: #1d2b63;
+    color: #ffffff;
+    padding: 50px 0 55px;
+    margin-top: 60px;
 }
 
-.footer-contact{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
+.footer-container {
+    width: 85%;
+    max-width: 1296px;
+    margin: 0 auto;
 }
 
-.contact-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:14px;
+/* Menu */
+.footer-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
-.footer-divider{
-    border-left:1px solid rgba(255,255,255,.5);
+.footer-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    transition: 0.3s ease;
 }
 
-.social-media{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    margin-top:10px;
+.footer-menu a:hover {
+    color: #ffffff;
 }
 
-.social-media a{
-    color:#fff;
-    font-size:18px;
+/* Garis */
+.footer-line {
+    width: 100%;
+    height: 1px;
+    background: #bfc5ca;
+    margin: 28px 0 20px;
 }
 
-.social-media a:hover{
-    color:#ffc107;
+/* Copyright */
+.footer-copyright {
+    text-align: center;
+    font-size: 15px;
+    color: #ffff;
+    font-style: italic;
 }
-
-.footer-map{
-    width:140px;
-    border-radius:15px;
-}
-
-.footer hr{
-    border-color:rgba(255,255,255,.3);
-}
-
 
 /* ADMIN CSS BERITA IMPORT 
 */ 

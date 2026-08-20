@@ -38,19 +38,16 @@
 
                             <p>
                                 <i class="fa-solid fa-phone"></i>
-                                (123) 456-7890
+                                (0333) 424676
                             </p>
-
-                        </div>
-
-                        <div class="col-md-6">
 
                             <p>
                                 <i class="fa-solid fa-print"></i>
-                                (123) 456-7890
+                                 dinaspengairan2@gmail.com
                             </p>
 
                         </div>
+
 
                     </div>
 
@@ -60,11 +57,12 @@
 
                     <span>Social Media</span>
 
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/dinas_pengairan.bwi/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/pengairanbanyuwangi/?locale=id_ID" target="_blank" rel="noopener noreferrer""><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/PengairanBwi" target="_blank" rel="noopener noreferrer""><i class="fab fa-twitter"></i></a>
+                    
 
                 </div>
 
@@ -80,10 +78,8 @@
                         <h6>PROFIL</h6>
 
                         <ul>
-
-                            <li><a href="#">Profil</a></li>
-                            <li><a href="#">Visi Misi</a></li>
-                            <li><a href="#">Struktur</a></li>
+                            <li><a href="<?= site_url('tentang-kami') ?>#">Visi Misi</a></li>
+                            <li><a href="<?= site_url('tentang-kami') ?>">Struktur</a></li><li>
 
                         </ul>
 
@@ -112,13 +108,13 @@
 
                     <div class="col-4">
 
-                        <h6>DOKUMEN</h6>
+                        <h6>Arsip</h6>
 
                         <ul>
 
-                            <li><a href="#">Dokumen</a></li>
-                            <li><a href="#">Download</a></li>
-                            <li><a href="#">Arsip</a></li>
+                            <li><a href="<?= site_url('dokumen') ?>">Dokumen</a></li>
+                            <li><a href="<?= site_url('berita') ?>">Berita</a></li>
+                            <li><a href="<?= site_url('kegiatan') ?>">Kegiatan</a></li>
 
                         </ul>
 
