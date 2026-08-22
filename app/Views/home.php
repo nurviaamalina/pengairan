@@ -11,7 +11,7 @@
 
         <h1>
 
-            DINAS PENGAIRAN
+            DINAS PU PENGAIRAN
 
             <span>BANYUWANGI</span>
 
