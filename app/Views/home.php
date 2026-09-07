@@ -811,71 +811,68 @@ document.addEventListener('DOMContentLoaded', function () {
         <!-- KATEGORI -->
         <div class="category-box mt-4">
 
-            <div class="row align-items-center g-3">
+    <!-- JUDUL -->
+    <div class="category-title">
+        <strong>Kategori</strong>
+        <span>Infrastruktur</span>
+    </div>
 
-                <div class="col-lg-3">
-                    <div class="category-title">
-                        <strong>Kategori</strong><br>
-                        Infrastruktur
-                    </div>
-                </div>
+    <!-- GARIS -->
+    <div class="category-divider"></div>
 
-                <div class="col-lg-9">
+    <!-- DAFTAR KATEGORI -->
+    <div class="category-list">
 
-                    <div class="d-flex flex-wrap gap-4
-                                justify-content-lg-start
-                                justify-content-center">
+        <div class="category-item"
+             data-kategori="jaringan irigasi">
 
-                        <div class="category-item"
-                             data-kategori="jaringan irigasi">
+            <span class="circle blue">
+                <i class="bi bi-droplet-fill"></i>
+            </span>
 
-                            <span class="circle blue">
-                                <i class="bi bi-droplet-fill"></i>
-                            </span>
-
-                            Jaringan Irigasi
-                        </div>
-
-
-                        <div class="category-item"
-                             data-kategori="bendung">
-
-                            <span class="circle green">
-                                <i class="bi bi-tree-fill"></i>
-                            </span>
-
-                            Bendung
-                        </div>
-
-
-                        <div class="category-item"
-                             data-kategori="embung">
-
-                            <span class="circle orange">
-                                <i class="bi bi-water"></i>
-                            </span>
-
-                            Embung
-                        </div>
-
-
-                        <div class="category-item"
-                             data-kategori="bangunan pengairan">
-
-                            <span class="circle purple">
-                                <i class="bi bi-building"></i>
-                            </span>
-
-                            Bangunan Pengairan
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+            <span>Jaringan Irigasi</span>
 
         </div>
+
+
+        <div class="category-item"
+             data-kategori="bendung">
+
+            <span class="circle green">
+                <i class="bi bi-tree-fill"></i>
+            </span>
+
+            <span>Bendung</span>
+
+        </div>
+
+
+        <div class="category-item"
+             data-kategori="embung">
+
+            <span class="circle orange">
+                <i class="bi bi-water"></i>
+            </span>
+
+            <span>Embung</span>
+
+        </div>
+
+
+        <div class="category-item"
+             data-kategori="bangunan pengairan">
+
+            <span class="circle purple">
+                <i class="bi bi-building"></i>
+            </span>
+
+            <span>Bangunan Pengairan</span>
+
+        </div>
+
+    </div>
+
+</div>
 
     </div>
 
