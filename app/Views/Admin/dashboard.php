@@ -1,10 +1,12 @@
 <?= $this->include('admin/layout/header') ?>
 
-<div class="d-flex min-vh-100">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-    <?= $this->include('admin/layout/sidebar') ?>
+<?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 d-flex flex-column bg-light">
+<main class="content-wrapper">
+
+    <div class="dashboard-content">
 
         <!-- Isi Dashboard -->
         <div class="p-4 flex-grow-1">
@@ -426,14 +428,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
 
                 </div>
-
             </div>
-
+            <?= $this->include('Admin/layout/footer'); ?>
         </div>
-
-        <!-- Footer -->
-        <?= $this->include('admin/layout/footer') ?>
-
-    </div>
-
-</div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

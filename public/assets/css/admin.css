@@ -2,10 +2,51 @@
    ADMIN DASHBOARD
 =========================== */
 
-body{
-    margin:0;
-    background:#f5f6fa;
-    font-family:Arial, Helvetica, sans-serif;
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #f5f6fa;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    /* halaman utama tidak ikut scroll */
+    overflow: auto;
+}
+
+.content-wrapper {
+    position: fixed;
+
+    top: 65px;
+    left: 250px;       /* wajib, mengikuti lebar sidebar */
+
+    right: 0;
+    bottom: 0;
+
+    width: auto;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: #f5f6fa;
+
+    box-sizing: border-box;
+}
+
+
+/* isi content */
+
+.content {
+    width: 100%;
+    min-height: 100%;
+
+    padding: 40px;
+
+    box-sizing: border-box;
 }
 
 
@@ -13,15 +54,28 @@ body{
    TOPBAR
 =========================== */
 
-.topbar{
-    height:65px;
-    background:#fff;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 25px;
-    border-bottom:1px solid #dcdcdc;
-    box-shadow:0 2px 4px rgba(0,0,0,.08);
+.topbar {
+    height: 65px;
+
+    background: #fff;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 25px;
+
+    border-bottom: 1px solid #dcdcdc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+
+     /* TETAP DI ATAS */
+    position: fixed;
+    top: 0;
+    left: 0px;
+
+      width: 100%;
+
+    z-index: 9999;
 }
 
 /* ===========================
@@ -98,14 +152,54 @@ body{
    SIDEBAR
 ========================== */
 
-.sidebar{
-    width:250px;
-    min-height:100vh;
-    background:#fff;
-    padding:25px 15px;
-    box-shadow:2px 0 10px rgba(0,0,0,.08);
+.sidebar {
+    position: fixed;
+
+    top: 65px;
+    left: 0;
+
+    width: 250px;
+
+    height: calc(100vh - 65px);
+
+    background: #fff;
+
+    padding: 25px 15px;
+
+    box-shadow: 2px 0 10px rgba(0,0,0,.08);
+
+    box-sizing: border-box;
+
+    /* SIDEBAR SCROLL SENDIRI */
+    overflow-y: auto;
+    overflow-x: auto;
+
+    z-index: 1000;
+}
+.sidebar::-webkit-scrollbar {
+    width: 6px;
 }
 
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+
+/* Firefox */
+
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #d0d0d0 transparent;
+}
 .sidebar-menu{
     list-style:none;
     padding:0;
@@ -186,58 +280,54 @@ body{
 }
 
 
+
 /* =========================
    FOOTER
 ========================= */
 
+
 .footer {
-    background: #1d2b63;
-    color: #ffffff;
-    padding: 50px 0 55px;
-    margin-top: 60px;
+    height: 65px;
+
+    position: auto;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    background: #fff;
+    color: #444;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 25px;
+
+    border-top: 1px solid #dcdcdc;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, .08);
+
+    z-index: 9998;
+    box-sizing: border-box;
 }
+
 
 .footer-container {
-    width: 85%;
-    max-width: 1296px;
-    margin: 0 auto;
-}
-
-/* Menu */
-.footer-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.footer-menu a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 400;
-    transition: 0.3s ease;
-}
-
-.footer-menu a:hover {
-    color: #ffffff;
-}
-
-/* Garis */
-.footer-line {
     width: 100%;
-    height: 1px;
-    background: #bfc5ca;
-    margin: 28px 0 20px;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
 }
 
-/* Copyright */
+
 .footer-copyright {
-    text-align: center;
     font-size: 15px;
-    color: #ffff;
-    font-style: italic;
+    color: #555;
+
+    font-style: normal;
+    margin: 0;
 }
+
 
 /* ADMIN CSS BERITA IMPORT 
 */ 

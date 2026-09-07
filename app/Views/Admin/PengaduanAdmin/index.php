@@ -246,7 +246,7 @@
 <div class="d-flex min-vh-100">
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 d-flex flex-column bg-light">
+   <main class="content-wrapper">
         <div class="p-4 flex-grow-1">
 
             <!-- HEADER -->

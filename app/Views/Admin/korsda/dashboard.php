@@ -7,7 +7,7 @@
 
 
     <!-- MAIN CONTENT -->
-    <div class="content flex-grow-1 bg-light">
+<main class="content-wrapper">
 
         <!-- ================================
              DASHBOARD CONTENT

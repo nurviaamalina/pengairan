@@ -2,65 +2,91 @@
 
 <div class="wrapper">
 
+```
+<!-- SIDEBAR -->
 <?= $this->include('Admin/layout/sidebar'); ?>
 
-<div class="main">
+<!-- MAIN CONTENT -->
+<main class="content-wrapper">
 
+    <!-- HEADER HALAMAN -->
     <div class="container-fluid">
 
-             <div class="topbar">
+        <div class="topbar">
             <h3>Tambah Dokumen</h3>
-</div>
-        
+        </div>
+
     </div>
+
+
+    <!-- FORM TAMBAH DOKUMEN -->
+    <div class="container-fluid">
 
         <div class="card shadow">
 
             <div class="card-body">
 
-                <form action="<?= base_url('admin/dokumen/store'); ?>" method="post" enctype="multipart/form-data">
+                <form
+                    action="<?= base_url('admin/dokumen/store'); ?>"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
 
                     <?= csrf_field(); ?>
 
+
+                    <!-- KATEGORI -->
                     <div class="mb-3">
 
                         <label class="form-label">
                             Kategori
                         </label>
 
-                        <select name="kategori_id" class="form-control" required>
+                        <select
+                            name="kategori_id"
+                            class="form-control"
+                            required
+                        >
 
-                    <option value="">-- Pilih Kategori --</option>
+                            <option value="">
+                                -- Pilih Kategori --
+                            </option>
 
-                    <?php foreach($kategori as $k) : ?>
+                            <?php foreach ($kategori as $k): ?>
 
-                        <option value="<?= $k['id']; ?>">
+                                <option
+                                    value="<?= $k['id']; ?>"
+                                    <?= old('kategori_id') == $k['id'] ? 'selected' : ''; ?>
+                                >
+                                    <?= esc($k['nama_kategori']); ?>
+                                </option>
 
-                            <?= esc($k['nama_kategori']); ?>
+                            <?php endforeach; ?>
 
-                        </option>
-
-                    <?php endforeach; ?>
-
-                </select>
-
+                        </select>
 
                     </div>
 
+
+                    <!-- JUDUL -->
                     <div class="mb-3">
 
                         <label class="form-label">
-                            Judul 
+                            Judul
                         </label>
 
                         <input
                             type="text"
                             name="judul"
                             class="form-control"
-                            required>
+                            value="<?= old('judul'); ?>"
+                            required
+                        >
 
                     </div>
 
+
+                    <!-- TAHUN -->
                     <div class="mb-3">
 
                         <label class="form-label">
@@ -72,12 +98,15 @@
                             name="tahun"
                             class="form-control"
                             min="2000"
-                            max="<?= date('Y'); ?> "
-                            required>
+                            max="<?= date('Y'); ?>"
+                            value="<?= old('tahun'); ?>"
+                            required
+                        >
 
                     </div>
 
 
+                    <!-- FILE PDF -->
                     <div class="mb-4">
 
                         <label class="form-label">
@@ -88,8 +117,9 @@
                             type="file"
                             name="file"
                             class="form-control"
-                            accept=".pdf"
-                            required>
+                            accept=".pdf,application/pdf"
+                            required
+                        >
 
                         <small class="text-muted">
                             File yang diperbolehkan hanya PDF.
@@ -97,20 +127,25 @@
 
                     </div>
 
+
+                    <!-- BUTTON -->
                     <div class="text-end">
 
-                        <button type="submit" class="btn btn-primary">
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
 
                             <i class="fa fa-save"></i>
-
                             Simpan
 
                         </button>
 
-                        <a href="<?= base_url('admin/kategori/' .$slug); ?>" class="btn btn-danger">
-
+                        <a
+                            href="<?= base_url('admin/kategori/' . $slug); ?>"
+                            class="btn btn-danger"
+                        >
                             Batal
-
                         </a>
 
                     </div>
@@ -122,6 +157,9 @@
         </div>
 
     </div>
+
+</main>
+```
 
 </div>
 

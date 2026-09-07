@@ -2,36 +2,55 @@
 
 <div class="wrapper">
 
+```
+<!-- SIDEBAR -->
 <?= $this->include('Admin/layout/sidebar'); ?>
 
-<div class="main">
+<!-- MAIN CONTENT -->
+<main class="content-wrapper">
 
+    <!-- HEADER HALAMAN -->
     <div class="container-fluid">
 
         <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <h3 class="fw-bold">Tambah </h3>
+            <div>
+                <h3 class="fw-bold mb-1">Tambah Kategori</h3>
+                <p class="text-muted mb-0">
+                    Tambahkan kategori dokumen baru ke dalam sistem.
+                </p>
+            </div>
 
-            <a href="<?= base_url('admin/kategori'); ?>" class="btn btn-secondary">
-                <i class="fa fa-arrow-left"></i> Kembali
+            <a
+                href="<?= base_url('admin/kategori'); ?>"
+                class="btn btn-secondary"
+            >
+                <i class="fa fa-arrow-left"></i>
+                Kembali
             </a>
 
         </div>
-        
+
     </div>
+
+
+    <!-- FORM TAMBAH KATEGORI -->
+    <div class="container-fluid">
 
         <div class="card shadow">
 
             <div class="card-body">
 
+                <form
+                    action="<?= base_url('admin/kategori/store'); ?>"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
 
-                    <form action="<?= base_url('admin/kategori/store'); ?>" method="post" enctype="multipart/form-data">
-
-                <form action="<?= base_url('admin/kategori/store'); ?>" method="post" enctype="multipart/form-data">
+                    <?= csrf_field(); ?>
 
 
-                        <?= csrf_field(); ?>
-
+                    <!-- NAMA KATEGORI -->
                     <div class="mb-3">
 
                         <label class="form-label">
@@ -43,10 +62,13 @@
                             name="nama_kategori"
                             class="form-control"
                             value="<?= old('nama_kategori'); ?>"
-                            required>
+                            required
+                        >
 
                     </div>
 
+
+                    <!-- SLUG -->
                     <div class="mb-3">
 
                         <label class="form-label">
@@ -58,25 +80,30 @@
                             name="slug"
                             class="form-control"
                             value="<?= old('slug'); ?>"
-                            required>
+                            required
+                        >
 
                     </div>
 
 
+                    <!-- BUTTON -->
                     <div class="text-end">
 
-                        <button type="submit" class="btn btn-primary">
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
 
                             <i class="fa fa-save"></i>
-
                             Simpan
 
                         </button>
 
-                        <a href="<?= base_url('admin/kategori'); ?>" class="btn btn-danger">
-
+                        <a
+                            href="<?= base_url('admin/kategori'); ?>"
+                            class="btn btn-danger"
+                        >
                             Batal
-
                         </a>
 
                     </div>
@@ -88,6 +115,9 @@
         </div>
 
     </div>
+
+</main>
+```
 
 </div>
 

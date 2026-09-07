@@ -4,7 +4,7 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <main class="content-wrapper flex-grow-1 p-4">
+    <main class="content-wrapper">
 
         <div class="card shadow-sm">
 
