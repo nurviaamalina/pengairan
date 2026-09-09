@@ -16,6 +16,7 @@
 
     <!-- CSS Admin -->
     <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/css/korsdaadmin.css') ?>">
 

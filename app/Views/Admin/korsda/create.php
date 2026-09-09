@@ -372,3 +372,4 @@
     </div>
 
 </div>
+<?= $this->include('admin/layout/footer') ?>

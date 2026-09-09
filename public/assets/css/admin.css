@@ -19,18 +19,12 @@ body {
 }
 
 .content-wrapper {
-    position: fixed;
+    margin-left: 250px;
+    padding-top: 65px;
 
-    top: 65px;
-    left: 250px;       /* wajib, mengikuti lebar sidebar */
+    width: calc(100% - 250px);
 
-    right: 0;
-    bottom: 0;
-
-    width: auto;
-
-    overflow-y: auto;
-    overflow-x: hidden;
+    min-height: calc(100vh - 65px);
 
     background: #f5f6fa;
 
@@ -42,7 +36,6 @@ body {
 
 .content {
     width: 100%;
-    min-height: 100%;
 
     padding: 40px;
 
@@ -151,7 +144,6 @@ body {
 /* ==========================
    SIDEBAR
 ========================== */
-
 .sidebar {
     position: fixed;
 
@@ -279,56 +271,6 @@ body {
     margin-top:5px;
 }
 
-
-
-/* =========================
-   FOOTER
-========================= */
-
-
-.footer {
-    height: 65px;
-
-    position: auto;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-
-    background: #fff;
-    color: #444;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 25px;
-
-    border-top: 1px solid #dcdcdc;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, .08);
-
-    z-index: 9998;
-    box-sizing: border-box;
-}
-
-
-.footer-container {
-    width: 100%;
-    margin: 0;
-
-    display: flex;
-    align-items: center;
-}
-
-
-.footer-copyright {
-    font-size: 15px;
-    color: #555;
-
-    font-style: normal;
-    margin: 0;
-}
-
-
 /* ADMIN CSS BERITA IMPORT 
 */ 
 
@@ -439,8 +381,6 @@ body {
     }
 
 }
-
-
 
 /* ADMIN 
 */ 
@@ -565,17 +505,6 @@ body {
 
 }
 
-.card-footer{
-
-    margin-top:30px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-}
 
 .hapus{
 
@@ -1629,8 +1558,71 @@ input[type=file]{
    MANAJEMEN USER
 ========================= */
 
-.content {
+/* =====================================================
+   MANAJEMEN USER
+===================================================== */
+
+.user-page-header {
+    width: 100%;
+    min-height: 90px;
+
+    background: #ffffff;
+
+    padding: 20px 25px;
+
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.user-page-header h3 {
+    margin: 0;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #263574;
+}
+
+.user-page-header p {
+    margin: 5px 0 0;
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+/* CONTENT USER */
+
+.user-content {
+    width: 100%;
+
     padding: 25px;
+
+    box-sizing: border-box;
+}
+
+
+/* CARD */
+
+.user-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow: 0 5px 25px rgba(0,0,0,.05);
+
+    box-sizing: border-box;
 }
 
 .user-card {

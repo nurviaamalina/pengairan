@@ -429,7 +429,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 </div>
             </div>
-            <?= $this->include('Admin/layout/footer'); ?>
+            
         </div>
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<?= $this->include('admin/layout/footer') ?>

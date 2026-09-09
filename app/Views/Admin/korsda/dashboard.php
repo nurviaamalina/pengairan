@@ -288,63 +288,9 @@
                 </div>
 
             </div>
-
-
-            <!-- ================================
-                 INFORMASI
-            ================================= -->
-            <div class="dashboard-info">
-
-                <div class="info-box">
-
-                    <div class="info-icon">
-                        <i class="bi bi-info-circle"></i>
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Informasi Dashboard
-                        </strong>
-
-                        <p>
-                            Gunakan menu statistik untuk mengelola
-                            data KORSDA, profil, wilayah kerja,
-                            dan kegiatan.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="dashboard-version">
-
-                    Sistem Informasi KORSDA<br>
-
-                    <span>
-                        Versi 1.0.0
-                    </span>
-
-                </div>
-
-            </div>
+        
 
         </main>
-
-
-        <!-- FOOTER -->
-        <footer class="dashboard-footer">
-
-            <span>
-                © <?= date('Y') ?>
-                Dinas Pengairan Kabupaten Banyuwangi.
-            </span>
-
-            <span>
-                KORSDA Kabupaten Banyuwangi
-            </span>
-
-        </footer>
 
     </div>
 
