@@ -2,7 +2,7 @@
 
 <div class="wrapper">
 
-```
+
 <!-- SIDEBAR -->
 <?= $this->include('Admin/layout/sidebar'); ?>
 
@@ -159,7 +159,7 @@
     </div>
 
 </main>
-```
+
 
 </div>
 

@@ -1,145 +1,172 @@
+
 <?= $this->include('Admin/layout/header'); ?>
 
 <div class="wrapper">
 
-<?= $this->include('Admin/layout/sidebar'); ?>
+    <?= $this->include('Admin/layout/sidebar'); ?>
 
-<div class="main">
+    <main class="content-wrapper">
 
-    <div class="container-fluid">
+        <!-- FLASH MESSAGE -->
+        <?php if (session()->getFlashdata('success')) : ?>
 
-        <?php if(session()->getFlashdata('success')) : ?>
             <div class="alert alert-success">
                 <?= session()->getFlashdata('success'); ?>
             </div>
+
         <?php endif; ?>
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
 
+        <!-- HEADER HALAMAN -->
+<div class="user-page-header">
 
-            <div>
-            <h1><?= esc($kategori['nama_kategori']); ?></h1>
-           
-        </div>
+    <div>
+        <h3>
+            <?= esc($kategori['nama_kategori']); ?>
+        </h3>
 
-
-            <a href="<?= base_url('admin/dokumen/create/'.$kategori['slug']) ?>"
-                class="btn btn-primary">
-
-                <i class="fa fa-plus"></i>
-                Tambah 
-
-            </a>
-
-        </div>
-        
+        <p>
+            Daftar dokumen dalam kategori ini.
+        </p>
     </div>
 
+    <a href="<?= base_url('admin/dokumen/create/'.$kategori['slug']) ?>"
+       class="btn btn-primary">
+
+        <i class="fa fa-plus"></i>
+        Tambah Dokumen
+
+    </a>
+
+</div>
+
+
+
+        <!-- TABEL DOKUMEN -->
         <div class="card shadow">
 
             <div class="card-body">
 
-                <table class="table table-bordered table-hover align-middle">
+                <div class="table-responsive">
 
-                    <thead class="table-dark">
+                    <table class="table table-bordered table-hover align-middle">
 
-                        <tr>
-
-                            <th width="70">No</th>
-
-                            <th>Judul Dokumen</th>
-
-                            <th width="120">Tahun</th>
-
-                            <th width="120">PDF</th>
-
-                            <th width="180">Aksi</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <?php if(empty($dokumen)) : ?>
+                        <thead class="table-dark">
 
                             <tr>
 
-                                <td colspan="5" class="text-center">
+                                <th width="70">No</th>
 
-                                    Belum ada dokumen.
+                                <th>Judul Dokumen</th>
 
-                                </td>
+                                <th width="120">Tahun</th>
 
-                            </tr>
+                                <th width="120">PDF</th>
 
-                        <?php endif; ?>
-
-                        <?php $no = 1; ?>
-
-                        <?php foreach($dokumen as $d) : ?>
-
-                            <tr>
-
-                                <td><?= $no++; ?></td>
-
-                                <td><?= esc($d['judul']); ?></td>
-
-                                <td><?= esc($d['tahun']); ?></td>
-
-                                <td>
-
-                                    <a href="<?= base_url('uploads/dokumen/'.$d['file']); ?>"
-
-                                        target="_blank">
-
-                                         <?= esc($d['file']); ?>
-
-
-                                    </a>
-
-                                </td>
-
-                                <td>
-
-                                    <a href="<?= base_url('admin/dokumen/edit/'.$d['id']); ?>"
-
-                                        class="btn btn-warning btn-sm">
-
-                                        <i class="fa fa-edit"></i>
-
-                                        Edit
-
-                                    </a>
-
-                                    <a href="<?= base_url('admin/dokumen/delete/'.$d['id']); ?>"
-
-                                        class="btn btn-danger btn-sm"
-
-                                        onclick="return confirm('Yakin ingin menghapus dokumen ini?')">
-
-                                        <i class="fa fa-trash"></i>
-
-                                        Hapus
-
-                                    </a>
-
-                                </td>
+                                <th width="180">Aksi</th>
 
                             </tr>
 
-                        <?php endforeach; ?>
+                        </thead>
 
-                    </tbody>
 
-                </table>
+                        <tbody>
+
+                            <?php if (empty($dokumen)) : ?>
+
+                                <tr>
+
+                                    <td colspan="5" class="text-center py-4">
+
+                                        Belum ada dokumen.
+
+                                    </td>
+
+                                </tr>
+
+                            <?php else : ?>
+
+                                <?php $no = 1; ?>
+
+                                <?php foreach ($dokumen as $d) : ?>
+
+                                    <tr>
+
+                                        <!-- NO -->
+                                        <td>
+                                            <?= $no++; ?>
+                                        </td>
+
+
+                                        <!-- JUDUL -->
+                                        <td>
+                                            <?= esc($d['judul']); ?>
+                                        </td>
+
+
+                                        <!-- TAHUN -->
+                                        <td>
+                                            <?= esc($d['tahun']); ?>
+                                        </td>
+
+
+                                        <!-- PDF -->
+                                        <td>
+
+                                            <a href="<?= base_url('uploads/dokumen/'.$d['file']); ?>"
+                                               target="_blank">
+
+                                                <i class="fa fa-file-pdf"></i>
+
+                                                <?= esc($d['file']); ?>
+
+                                            </a>
+
+                                        </td>
+
+
+                                        <!-- AKSI -->
+                                        <td>
+
+                                            <a href="<?= base_url('admin/dokumen/edit/'.$d['id']); ?>"
+                                               class="btn btn-warning btn-sm">
+
+                                                <i class="fa fa-edit"></i>
+                                                Edit
+
+                                            </a>
+
+
+                                            <a href="<?= base_url('admin/dokumen/delete/'.$d['id']); ?>"
+                                               class="btn btn-danger btn-sm"
+                                               onclick="return confirm('Yakin ingin menghapus dokumen ini?')">
+
+                                                <i class="fa fa-trash"></i>
+                                                Hapus
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+    </main>
 
 </div>
 
 <?= $this->include('Admin/layout/footer'); ?>
+

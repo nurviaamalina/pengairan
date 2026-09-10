@@ -1,4 +1,6 @@
-<?= $this->include('layout/header') ?>
+<?php 
+use App\Controllers\Admin\Korsda;
+?><?= $this->include('layout/header') ?>
 
 <link rel="stylesheet"
       href="<?= base_url('assets/css/gis.css') ?>">
@@ -50,6 +52,12 @@
 
             >
 
+<a href="<?= base_url('korsda') ?>">
+    KORSDA
+</a>
+
+
+             >
             <span>
                 GIS
             </span>
@@ -111,46 +119,6 @@
 
                         </select>
 
-
-                        <!-- KATEGORI -->
-
-                        <label
-                            class="form-label fw-bold mt-3">
-
-                            Kategori Infrastruktur
-
-                        </label>
-
-
-                        <select
-                            class="form-select"
-                            id="filterKategori">
-
-                            <option value="">
-                                Semua Infrastruktur
-                            </option>
-
-                            <option value="jaringan irigasi">
-                                Jaringan Irigasi
-                            </option>
-
-                            <option value="bendung">
-                                Bendung
-                            </option>
-
-                            <option value="bendungan">
-                                Bendungan
-                            </option>
-
-                            <option value="embung">
-                                Embung
-                            </option>
-
-                            <option value="bangunan pengairan">
-                                Bangunan Pengairan
-                            </option>
-
-                        </select>
 
 
                         <!-- RESET -->
@@ -476,15 +444,6 @@ document.addEventListener(
                     .value;
 
 
-            const kategori =
-                document
-                    .getElementById(
-                        'filterKategori'
-                    )
-                    .value
-                    .toLowerCase()
-                    .trim();
-
 
             let visibleLayers = [];
 
@@ -500,20 +459,6 @@ document.addEventListener(
                     if (
                         kecamatan !== '' &&
                         item.id_kecamatan !== kecamatan
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    // =================================
-                    // FILTER KATEGORI
-                    // =================================
-
-                    if (
-                        kategori !== '' &&
-                        !item.kategori.includes(kategori)
                     ) {
 
                         return;
