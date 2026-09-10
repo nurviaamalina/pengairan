@@ -14,7 +14,12 @@ class UserModel extends Model
         'username',
         'email',
         'password',
-        'role'
+        'role',
+        'remember_token',
+        'reset_token',
+        'reset_expires',
+        'otp_code',
+        'otp_expires'
     ];
 
     protected $useTimestamps = true;

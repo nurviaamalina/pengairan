@@ -23,6 +23,40 @@ $routes->post('register', 'Auth::prosesRegister');
 
 $routes->get('logout', 'Auth::logout');
 
+// =====================================================
+// LUPA PASSWORD + OTP
+// =====================================================
+
+$routes->get(
+    'lupa-password',
+    'Auth::lupaPassword'
+);
+
+$routes->post(
+    'proses-lupa-password',
+    'Auth::prosesLupaPassword'
+);
+
+$routes->get(
+    'verifikasi-otp',
+    'Auth::verifikasiOtp'
+);
+
+$routes->post(
+    'proses-verifikasi-otp',
+    'Auth::prosesVerifikasiOtp'
+);
+
+$routes->get(
+    'reset-password',
+    'Auth::resetPassword'
+);
+
+$routes->post(
+    'proses-reset-password',
+    'Auth::prosesResetPassword'
+);
+
 
 /*
 |--------------------------------------------------------------------------
