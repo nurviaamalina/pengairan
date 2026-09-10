@@ -4,28 +4,36 @@
 
    <?= $this->include('admin/layout/sidebar') ?>
 
-<div class="content flex-grow-1 p-4 bg-light">
+<main class="content-wrapper">
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <div>
-            <h4 class="fw-bold mb-1">
-                Profil KORSDA
-            </h4>
 
-            <small class="text-muted">
-                Kelola profil setiap KORSDA.
-            </small>
-        </div>
+<div class="user-page-header">
 
-        <a
-            href="<?= base_url('admin/korsda/profil_korsda/create') ?>"
-            class="btn btn-primary"
-        >
+    <div>
+        <h3>
+            Profil KORSDA
+        </h3>
+
+        <p>
+            Kelola profil setiap KORSDA.
+        </p>
+    </div>
+
+    <div>
+        <a href="<?= base_url('admin/korsda/profil_korsda/create') ?>"
+           class="btn btn-primary">
+
             <i class="bi bi-plus-circle me-1"></i>
             Tambah Profil
+
         </a>
+    </div>
+
+</div>
+
 
     </div>
 

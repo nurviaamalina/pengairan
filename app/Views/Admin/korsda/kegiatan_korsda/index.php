@@ -2,140 +2,378 @@
 
 <div class="d-flex">
 
-<?= $this->include('admin/layout/sidebar') ?>
+    <?= $this->include('admin/layout/sidebar') ?>
 
-<div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold">Data Kegiatan KORSDA</h2>
-            <p class="text-muted">Kelola kegiatan masing-masing KORSDA</p>
-        </div>
+        <div class="container-fluid py-4">
 
-        <a href="<?= site_url('admin/korsda/kegiatan/create') ?>" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Tambah Kegiatan
-        </a>
-    </div>
+            <!-- ==========================================
+                 HEADER HALAMAN
+            =========================================== -->
 
-    <?php if(session()->getFlashdata('success')) : ?>
+            <div class="user-page-header">
 
-        <div class="alert alert-success">
-            <?= session()->getFlashdata('success') ?>
-        </div>
+                <div>
+                    <h3>
+                        Data Kegiatan KORSDA
+                    </h3>
 
-    <?php endif; ?>
+                    <p>
+                        Kelola kegiatan masing-masing KORSDA
+                    </p>
+                </div>
 
-    <div class="card shadow-sm border-0">
+                <div class="d-flex gap-2">
 
-        <div class="card-body">
+                    <!-- IMPORT -->
+                    <a
+                        href="<?= base_url('admin/korsda/kegiatan/import') ?>"
+                        class="btn btn-success"
+                    >
+                        <i class="bi bi-upload me-1"></i>
+                        Import
+                    </a>
 
-            <div class="table-responsive">
+                    <!-- TAMBAH -->
+                    <a
+                        href="<?= base_url('admin/korsda/kegiatan/create') ?>"
+                        class="btn btn-primary"
+                    >
+                        <i class="bi bi-plus-circle me-1"></i>
+                        Tambah Kegiatan
+                    </a>
 
-                <table class="table table-bordered table-hover align-middle">
+                </div>
 
-                    <thead class="table-primary text-center">
+            </div>
 
-                    <tr>
-                        <th width="60">No</th>
-                        <th>Wilayah</th>
-                        <th>Judul</th>
-                        <th width="130">Gambar</th>
-                        <th width="120">Tanggal</th>
-                        <th width="170">Aksi</th>
-                    </tr>
 
-                    </thead>
+            <!-- ==========================================
+                 FLASH MESSAGE SUCCESS
+            =========================================== -->
 
-                    <tbody>
+            <?php if (session()->getFlashdata('success')) : ?>
 
-                    <?php if(!empty($kegiatan)): ?>
+                <div class="alert alert-success alert-dismissible fade show">
 
-                        <?php $no=1; ?>
+                    <i class="bi bi-check-circle me-2"></i>
 
-                        <?php foreach($kegiatan as $item): ?>
+                    <?= nl2br(
+                        esc(
+                            session()->getFlashdata('success')
+                        )
+                    ) ?>
 
-                        <tr>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                    ></button>
 
-                            <td class="text-center"><?= $no++ ?></td>
+                </div>
 
-                            <td><?= esc($item['nama_wilayah']) ?></td>
+            <?php endif; ?>
 
-                            <td><?= esc($item['judul']) ?></td>
 
-                            <td class="text-center">
+            <!-- ==========================================
+                 FLASH MESSAGE ERROR
+            =========================================== -->
 
-                                <?php if($item['gambar']) : ?>
+            <?php if (session()->getFlashdata('error')) : ?>
 
-                                    <img src="<?= base_url('uploads/kegiatan/'.$item['gambar']) ?>"
-                                         width="90"
-                                         class="img-thumbnail">
+                <div class="alert alert-danger alert-dismissible fade show">
 
-                                <?php else: ?>
+                    <i class="bi bi-exclamation-triangle me-2"></i>
 
-                                    -
+                    <?= nl2br(
+                        esc(
+                            session()->getFlashdata('error')
+                        )
+                    ) ?>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                    ></button>
+
+                </div>
+
+            <?php endif; ?>
+
+
+            <!-- ==========================================
+                 CARD DATA KEGIATAN
+            =========================================== -->
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <table class="table align-middle">
+
+                            <!-- ============================
+                                 TABLE HEADER
+                            ============================= -->
+
+                            <thead>
+
+                                <tr>
+
+                                    <th width="50">
+                                        No
+                                    </th>
+
+                                    <th width="120">
+                                        Gambar
+                                    </th>
+
+                                    <th>
+                                        Wilayah
+                                    </th>
+
+                                    <th>
+                                        Judul Kegiatan
+                                    </th>
+
+                                    <th width="130">
+                                        Tanggal
+                                    </th>
+
+                                    <th width="130">
+                                        Aksi
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <!-- ============================
+                                 TABLE BODY
+                            ============================= -->
+
+                            <tbody>
+
+                                <?php if (!empty($kegiatan)) : ?>
+
+                                    <?php foreach ($kegiatan as $no => $item) : ?>
+
+                                        <tr>
+
+                                            <!-- NOMOR -->
+                                            <td>
+                                                <?= $no + 1 ?>
+                                            </td>
+
+
+                                            <!-- GAMBAR -->
+                                            <td>
+
+                                                <?php
+
+                                                /*
+                                                 * Lokasi thumbnail baru
+                                                 */
+                                                $gambarPathBaru =
+                                                    FCPATH .
+                                                    'uploads/Kegiatan/thumbnail/' .
+                                                    ($item['gambar'] ?? '');
+
+
+                                                /*
+                                                 * Lokasi gambar lama
+                                                 */
+                                                $gambarPathLama =
+                                                    FCPATH .
+                                                    'uploads/kegiatan/' .
+                                                    ($item['gambar'] ?? '');
+
+
+                                                /*
+                                                 * Tentukan URL gambar
+                                                 */
+                                                if (
+                                                    !empty($item['gambar']) &&
+                                                    file_exists($gambarPathBaru)
+                                                ) {
+
+                                                    $gambarUrl =
+                                                        base_url(
+                                                            'uploads/Kegiatan/thumbnail/' .
+                                                            $item['gambar']
+                                                        );
+
+                                                } elseif (
+                                                    !empty($item['gambar']) &&
+                                                    file_exists($gambarPathLama)
+                                                ) {
+
+                                                    $gambarUrl =
+                                                        base_url(
+                                                            'uploads/kegiatan/' .
+                                                            $item['gambar']
+                                                        );
+
+                                                } else {
+
+                                                    $gambarUrl =
+                                                        base_url(
+                                                            'assets/img/no-image.png'
+                                                        );
+
+                                                }
+
+                                                ?>
+
+
+                                                <img
+                                                    src="<?= $gambarUrl ?>"
+                                                    alt="<?= esc($item['judul'] ?? 'Kegiatan') ?>"
+                                                    style="
+                                                        width:75px;
+                                                        height:55px;
+                                                        object-fit:cover;
+                                                        border-radius:8px;
+                                                    "
+                                                >
+
+                                            </td>
+
+
+                                            <!-- WILAYAH -->
+                                            <td>
+
+                                                <strong>
+
+                                                    <?= esc(
+                                                        $item['nama_wilayah'] ?? '-'
+                                                    ) ?>
+
+                                                </strong>
+
+                                            </td>
+
+
+                                            <!-- JUDUL -->
+                                            <td>
+
+                                                <strong>
+
+                                                    <?= esc(
+                                                        $item['judul'] ?? '-'
+                                                    ) ?>
+
+                                                </strong>
+
+                                            </td>
+
+
+                                            <!-- TANGGAL -->
+                                            <td>
+
+                                                <?php if (!empty($item['tanggal'])) : ?>
+
+                                                    <?= date(
+                                                        'd/m/Y',
+                                                        strtotime($item['tanggal'])
+                                                    ) ?>
+
+                                                <?php else : ?>
+
+                                                    -
+
+                                                <?php endif; ?>
+
+                                            </td>
+
+
+                                            <!-- AKSI -->
+                                            <td>
+
+                                                <div class="d-flex gap-1">
+
+                                                    <!-- EDIT -->
+                                                    <a
+                                                        href="<?= base_url(
+                                                            'admin/korsda/kegiatan/edit/' .
+                                                            $item['id']
+                                                        ) ?>"
+                                                        class="btn btn-sm btn-warning"
+                                                        title="Edit"
+                                                    >
+
+                                                        <i class="bi bi-pencil"></i>
+
+                                                    </a>
+
+
+                                                    <!-- HAPUS -->
+                                                    <a
+                                                        href="<?= base_url(
+                                                            'admin/korsda/kegiatan/delete/' .
+                                                            $item['id']
+                                                        ) ?>"
+                                                        class="btn btn-sm btn-danger"
+                                                        title="Hapus"
+                                                        onclick="return confirm(
+                                                            'Yakin ingin menghapus kegiatan ini beserta seluruh dokumentasinya?'
+                                                        )"
+                                                    >
+
+                                                        <i class="bi bi-trash"></i>
+
+                                                    </a>
+
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+
+                                    <?php endforeach; ?>
+
+
+                                <?php else : ?>
+
+                                    <!-- ============================
+                                         DATA KOSONG
+                                    ============================= -->
+
+                                    <tr>
+
+                                        <td
+                                            colspan="6"
+                                            class="text-center py-5 text-muted"
+                                        >
+
+                                            Belum ada data kegiatan KORSDA.
+
+                                        </td>
+
+                                    </tr>
 
                                 <?php endif; ?>
 
-                            </td>
+                            </tbody>
 
-                            <td><?= date('d-m-Y', strtotime($item['tanggal'])) ?></td>
+                        </table>
 
-                            <td class="text-center">
+                    </div>
 
-                                <a href="<?= site_url('admin/korsda/kegiatan/edit/'.$item['id']) ?>"
-                                   class="btn btn-warning btn-sm">
-                                    Edit
-                                </a>
-
-                                <a href="<?= site_url('admin/korsda/kegiatan/delete/'.$item['id']) ?>"
-                                   onclick="return confirm('Yakin ingin menghapus data ini?')"
-                                   class="btn btn-danger btn-sm">
-                                    Hapus
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        <?php endforeach; ?>
-
-                    <?php else: ?>
-
-                        <tr>
-
-                            <td colspan="6" class="text-center">
-
-                                Belum ada data kegiatan.
-
-                            </td>
-
-                        </tr>
-
-                    <?php endif; ?>
-                        
-                    </tbody>
-
-                </table>
+                </div>
 
             </div>
 
         </div>
 
-    </div>
-                        <!-- Tombol Kembali -->
-        <div class="mt-3">
-            <button
-                type="button"
-                class="btn btn-kembali"
-                onclick="window.location.href='<?= base_url('admin/korsda/dashboard') ?>'">
 
-                <i class="bi bi-arrow-left me-2"></i>
-                Kembali
-
-            </button>
-        </div>
-</div>
+    </main>
 
 </div>
+
 
 <?= $this->include('admin/layout/footer') ?>

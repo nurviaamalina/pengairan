@@ -4,45 +4,42 @@
 
     <?= $this->include('Admin/layout/sidebar'); ?>
 
-    <div class="main">
+    <main class="content-wrapper">
 
-        <div class="topbar">
+        <!-- HEADER HALAMAN -->
+        <div class="user-page-header">
             <div>
                 <h3>Manajemen User</h3>
                 <p>Daftar seluruh akun yang terdaftar di sistem.</p>
             </div>
         </div>
 
+        <!-- CONTENT USER -->
+        <div class="user-content">
 
-        <div class="content">
-
-            <!-- PESAN SUCCESS -->
             <?php if (session()->getFlashdata('success')): ?>
                 <div class="alert alert-success">
                     <?= session()->getFlashdata('success') ?>
                 </div>
             <?php endif; ?>
 
-
-            <!-- PESAN ERROR -->
             <?php if (session()->getFlashdata('error')): ?>
                 <div class="alert alert-danger">
                     <?= session()->getFlashdata('error') ?>
                 </div>
             <?php endif; ?>
 
-
             <div class="user-card">
 
                 <div class="card-header-user">
                     <div>
                         <h4>Daftar User</h4>
+
                         <span>
                             Total User: <?= count($users) ?>
                         </span>
                     </div>
                 </div>
-
 
                 <div class="table-responsive">
 
@@ -71,17 +68,12 @@
                                             <?= $key + 1 ?>
                                         </td>
 
-
                                         <td>
                                             <div class="user-info">
 
                                                 <div class="user-avatar">
                                                     <?= strtoupper(
-                                                        substr(
-                                                            $user['username'],
-                                                            0,
-                                                            1
-                                                        )
+                                                        substr($user['username'], 0, 1)
                                                     ) ?>
                                                 </div>
 
@@ -92,14 +84,11 @@
                                             </div>
                                         </td>
 
-
                                         <td>
                                             <?= esc($user['email']) ?>
                                         </td>
 
-
                                         <td>
-
                                             <?php if ($user['role'] === 'admin'): ?>
 
                                                 <span class="badge-role admin">
@@ -113,13 +102,10 @@
                                                 </span>
 
                                             <?php endif; ?>
-
                                         </td>
 
-
                                         <td>
-
-                                            <?php if ($user['created_at']): ?>
+                                            <?php if (!empty($user['created_at'])): ?>
 
                                                 <?= date(
                                                     'd M Y H:i',
@@ -127,22 +113,16 @@
                                                 ) ?>
 
                                             <?php else: ?>
-
                                                 -
-
                                             <?php endif; ?>
-
                                         </td>
-
 
                                         <td>
 
                                             <?php if ($user['id'] != session()->get('id')): ?>
 
                                                 <form
-                                                    action="<?= base_url(
-                                                        'admin/manajemen-user/delete/' . $user['id']
-                                                    ) ?>"
+                                                    action="<?= base_url('admin/manajemen-user/delete/' . $user['id']) ?>"
                                                     method="post"
                                                     onsubmit="return confirm('Yakin ingin menghapus user ini?')"
                                                 >
@@ -182,7 +162,6 @@
                             <?php else: ?>
 
                                 <tr>
-
                                     <td colspan="6" class="empty-user">
 
                                         <i class="bi bi-people"></i>
@@ -192,7 +171,6 @@
                                         </p>
 
                                     </td>
-
                                 </tr>
 
                             <?php endif; ?>
@@ -207,7 +185,7 @@
 
         </div>
 
-    </div>
+    </main>
 
 </div>
 

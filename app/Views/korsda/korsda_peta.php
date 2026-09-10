@@ -8,29 +8,38 @@
 <section class="hero-korsda">
     <div class="container text-center">
         <h1>KORSDA</h1>
-        <h2><?= esc($korsda['nama_kecamatan']) ?></h2>
+        <h2>Kecamatan <?= esc($korsda['nama_kecamatan']) ?></h2>
     </div>
 </section>
 
-<div class="container">
 
+
+<?php $uri = service('uri'); ?>
+
+<div class="container">
     <div class="korsda-tabs">
 
-        <a href="<?= base_url('korsda/profil/'.$korsda['id']) ?>">
+        <a href="<?= base_url('korsda/profil/'.$korsda['id']) ?>"
+           class="tab-link <?= $uri->getSegment(2) == 'profil' ? 'active' : '' ?>">
             Profil
         </a>
 
-        <a href="<?= base_url('korsda/peta/'.$korsda['id']) ?>" class="active">
+        <a href="<?= base_url('korsda/peta/'.$korsda['id']) ?>"
+           class="tab-link <?= $uri->getSegment(2) == 'peta' ? 'active' : '' ?>">
             Peta Wilayah Kerja
         </a>
 
-        <a href="<?= base_url('korsda/kegiatan/'.$korsda['id']) ?>">
+        <a href="<?= base_url('korsda/kegiatan/'.$korsda['id']) ?>"
+           class="tab-link <?= $uri->getSegment(2) == 'kegiatan' ? 'active' : '' ?>">
             Kegiatan
         </a>
 
     </div>
-
 </div>
+
+
+
+
 
 <div class="container py-5">
 

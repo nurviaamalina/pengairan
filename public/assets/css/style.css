@@ -785,103 +785,11 @@ h5{
     border-radius:8px;
 }
 
-.category-box{
-    background:#fff;
-    border-radius:8px;
-    padding:20px 25px;
-}
-
-.category-title{
-    border-right:1px solid #d9d9d9;
-    line-height:1.4;
-}
-
-.category-item{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:500;
-    color:#333;
-}
-
-.circle{
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:#fff;
-    font-size:15px;
-}
-
-.blue{
-    background:#3B82F6;
-}
-
-.green{
-    background:#2E8B57;
-}
-
-.orange{
-    background:#F59E0B;
-}
-
-.purple{
-    background:#7E3ACE;
-}
-
-@media(max-width:992px){
-
-    .category-title{
-        border:none;
-        text-align:center;
-        margin-bottom:20px;
-    }
-
-    .map-title{
-        font-size:30px;
-    }
-
-}
 
 .menu-link{
     position: relative;
     z-index: 100;
     display: block;
-}
-/* ======================
-   GIS MAP
-====================== */
-
-#map{
-    height:550px;
-    border-radius:15px;
-    overflow:hidden;
-    cursor:pointer;
-}
-
-.category-item{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    cursor:pointer;
-    padding:8px 14px;
-    border-radius:30px;
-    transition:.3s;
-}
-
-.category-item:hover{
-    background:#eef3ff;
-}
-
-.category-item.active{
-    background:#0d6efd;
-    color:#fff;
-}
-
-.category-item.active .circle{
-    color:#fff;
 }
 
 /* ======================
@@ -1077,4 +985,168 @@ h5{
 
     margin: 0;
     padding: 0;
+}
+
+/* =========================================================
+   CATEGORY INFRASTRUKTUR
+========================================================= */
+
+.category-box {
+    width: 100%;
+
+    background: #fff;
+
+    border-radius: 14px;
+
+    padding: 14px 15px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   JUDUL
+========================================================= */
+
+.category-title {
+    width: 250px;
+
+    flex-shrink: 0;
+
+    font-size: 20px;
+
+    line-height: 1.45;
+
+    color: #111;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.category-title strong {
+    font-weight: 700;
+}
+
+.category-title span {
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   GARIS PEMISAH
+========================================================= */
+
+.category-divider {
+    width: 1px;
+
+    height: 68px;
+
+    background: #d9d9d9;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   CATEGORY LIST
+========================================================= */
+
+.category-list {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   CATEGORY ITEM
+========================================================= */
+
+.category-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    white-space: nowrap;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    color: #222;
+
+    cursor: pointer;
+
+    padding: 5px 6px;
+
+    transition: all .25s ease;
+
+    flex-shrink: 0;
+}
+
+.category-item:hover {
+
+    background: #eef3ff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CIRCLE
+========================================================= */
+
+.circle {
+    width: 30px;
+    height: 30px;
+
+    min-width: 30px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+
+    font-size: 19px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   COLORS
+========================================================= */
+
+.circle.blue {
+    background: #3B82F6;
+}
+
+.circle.green {
+    background: #2E8B57;
+}
+
+.circle.orange {
+    background: #F59E0B;
+}
+
+.circle.purple {
+    background: #7E3ACE;
 }

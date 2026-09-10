@@ -10,8 +10,6 @@ class KegiatanKorsdaAdminModel extends Model
 
     protected $primaryKey = 'id';
 
-    protected $returnType = 'array';
-
     protected $allowedFields = [
         'korsda_id',
         'judul',

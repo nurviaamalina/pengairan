@@ -4,15 +4,24 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
         <div class="card shadow-sm">
 
-            <div class="card-header">
+            <div class="user-page-header">
 
-                <h4 class="mb-0">Edit Kegiatan</h4>
+    <div>
+        <h3>
+            <i class="bi bi-pencil-square me-2"></i>
+            Edit Kegiatan
+        </h3>
 
-            </div>
+        <p>
+            Perbarui data kegiatan yang sudah ada.
+        </p>
+    </div>
+
+</div>
 
             <div class="card-body">
 

@@ -6,30 +6,25 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
         <div class="container-fluid">
 
             <!-- Judul -->
-            <div class="page-header">
+            <div class="user-page-header">
 
-                <div>
+    <div>
+        <h3>
+            <i class="bi bi-instagram me-2"></i>
+            Tambah Feed Instagram
+        </h3>
 
-                    <h3>Tambah Feed Instagram</h3>
+        <p>
+            Tambahkan postingan Instagram yang akan ditampilkan pada website.
+        </p>
+    </div>
 
-                    <p>Tambahkan postingan Instagram yang akan ditampilkan pada website.</p>
-
-                </div>
-
-                <a href="<?= base_url('admin/instagram') ?>" class="btn btn-kembaliberita">
-
-                    <i class="bi bi-arrow-left"></i>
-
-                    Kembali
-
-                </a>
-
-            </div>
+</div>
 
             <!-- Card -->
             <div class="card shadow-sm border-0 rounded-4">

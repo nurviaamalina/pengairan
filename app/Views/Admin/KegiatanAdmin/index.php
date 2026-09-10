@@ -4,38 +4,41 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4">
+    <main class="content-wrapper">
 
         <div class="container-fluid">
 
             <!-- Header -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="user-page-header">
 
-                <div>
-                    <h4 class="page-title">
-                        Data Kegiatan
-                    </h4>
+    <div>
+        <h3>
+            <i class="bi bi-calendar-event me-2"></i>
+            Data Kegiatan
+        </h3>
 
-                    <small class="page-subtitle">
-                        Kelola seluruh kegiatan yang akan ditampilkan pada website.
-                    </small>
-                </div>
-            <div class="d-flex align-items-center gap-3"><
-                <a href="<?= base_url('admin/kegiatan/create') ?>" class="btn btn-tambah">
-                    <i class="bi bi-plus-circle"></i>
-                    Tambah Kegiatan
-                </a>
+        <p>
+            Kelola seluruh kegiatan yang akan ditampilkan pada website.
+        </p>
+    </div>
 
-                <a href="<?= base_url('admin/kegiatan/import') ?>"
-                class="btn-import-kegiatan">
+    <div class="d-flex align-items-center gap-3">
 
-                    <i class="bi bi-file-earmark-arrow-up"></i>
-                    Import Data Lama
+        <a href="<?= base_url('admin/kegiatan/create') ?>"
+           class="btn btn-tambah">
+            <i class="bi bi-plus-circle me-1"></i>
+            Tambah Kegiatan
+        </a>
 
-                </a>
-            </div>
+        <a href="<?= base_url('admin/kegiatan/import') ?>"
+           class="btn-import-kegiatan">
+            <i class="bi bi-file-earmark-arrow-up me-1"></i>
+            Import Data Lama
+        </a>
 
-            </div>
+    </div>
+
+</div>
 
             <!-- Flash Message -->
             <?php if(session()->getFlashdata('success')) : ?>

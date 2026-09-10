@@ -4,23 +4,32 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="user-page-header">
 
-            <div>
-                <h4 class="fw-bold mb-1">Data Wilayah Kerja</h4>
-                <small class="text-muted">
-                    Kelola file peta wilayah setiap KORSDA.
-                </small>
-            </div>
+    <div>
+        <h3>
+            Data Wilayah Kerja
+        </h3>
 
-            <a href="<?= base_url('admin/wilayah/create') ?>" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i>
-                Tambah Wilayah
-            </a>
+        <p>
+            Kelola file peta wilayah setiap KORSDA.
+        </p>
+    </div>
 
-        </div>
+    <div>
+        <a href="<?= base_url('admin/wilayah/create') ?>"
+           class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+            Tambah Wilayah
+
+        </a>
+    </div>
+
+</div>
+
 
         <?php if (session()->getFlashdata('success')) : ?>
             <div class="alert alert-success">

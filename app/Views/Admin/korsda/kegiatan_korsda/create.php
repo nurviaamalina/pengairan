@@ -4,230 +4,377 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
-        <h2 class="fw-bold mb-4">
-            Tambah Kegiatan KORSDA
-        </h2>
+        <div class="container-fluid py-4">
 
-        <?php if (session()->getFlashdata('error')): ?>
+            <!-- HEADER -->
+            <div class="user-page-header mb-4">
 
-            <div class="alert alert-danger">
-                <?= esc(session()->getFlashdata('error')) ?>
-            </div>
+                <div>
+                    <h3>
+                        Tambah Kegiatan KORSDA
+                    </h3>
 
-        <?php endif; ?>
-
-        <?php if (session()->getFlashdata('errors')): ?>
-
-            <div class="alert alert-danger">
-
-                <ul class="mb-0">
-
-                    <?php foreach (
-                        session()->getFlashdata('errors') as $error
-                    ): ?>
-
-                        <li>
-                            <?= esc($error) ?>
-                        </li>
-
-                    <?php endforeach; ?>
-
-                </ul>
+                    <p>
+                        Tambahkan data kegiatan masing-masing KORSDA.
+                    </p>
+                </div>
 
             </div>
 
-        <?php endif; ?>
+
+            <!-- FLASH ERROR -->
+            <?php if (session()->getFlashdata('error')) : ?>
+
+                <div class="alert alert-danger alert-dismissible fade show">
+
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+
+                    <?= nl2br(
+                        esc(
+                            session()->getFlashdata('error')
+                        )
+                    ) ?>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                    ></button>
+
+                </div>
+
+            <?php endif; ?>
 
 
-        <div class="card shadow-sm">
+            <!-- FORM -->
+            <form
+                action="<?= base_url('admin/korsda/kegiatan/store') ?>"
+                method="post"
+                enctype="multipart/form-data"
+            >
 
-            <div class="card-body">
-
-                <form
-                    action="<?= site_url('admin/korsda/kegiatan/store') ?>"
-                    method="post"
-                    enctype="multipart/form-data"
-                >
-
-                    <?= csrf_field() ?>
+                <?= csrf_field() ?>
 
 
-                    <!-- NAMA WILAYAH -->
-                    <div class="mb-3">
+                <!-- DATA UTAMA -->
+                <div class="card border-0 shadow-sm mb-4">
 
-                        <label
-                            for="korsda_id"
-                            class="form-label"
-                        >
-                            Nama Wilayah
-                            <span class="text-danger">*</span>
-                        </label>
+                    <div class="card-body p-4">
 
-                        <select
-                            name="korsda_id"
-                            id="korsda_id"
-                            class="form-select"
-                            required
-                        >
+                        <!-- KORSDA -->
+                        <div class="mb-4">
 
-                            <option value="">
-                                -- Pilih Nama Wilayah --
-                            </option>
+                            <label class="form-label fw-semibold">
 
-                            <?php if (!empty($korsda)): ?>
+                                KORSDA
 
-                                <?php foreach ($korsda as $item): ?>
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            <select
+                                name="korsda_id"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+                                    -- Pilih KORSDA --
+                                </option>
+
+                                <?php foreach ($korsda as $item) : ?>
 
                                     <option
-                                        value="<?= esc($item['id']) ?>"
+                                        value="<?= $item['id'] ?>"
                                         <?= old('korsda_id') == $item['id']
                                             ? 'selected'
                                             : '' ?>
                                     >
-                                        <?= esc($item['nama_wilayah']) ?>
+                                        <?= esc(
+                                            $item['nama_wilayah']
+                                        ) ?>
                                     </option>
 
                                 <?php endforeach; ?>
 
-                            <?php else: ?>
+                            </select>
 
-                                <option value="" disabled>
-                                    Data nama wilayah belum tersedia
-                                </option>
+                        </div>
 
-                            <?php endif; ?>
 
-                        </select>
+                        <!-- JUDUL -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                Judul Kegiatan
+
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            <input
+                                type="text"
+                                name="judul"
+                                class="form-control"
+                                value="<?= old('judul') ?>"
+                                placeholder="Masukkan judul kegiatan"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- TANGGAL -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                Tanggal
+
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            <input
+                                type="date"
+                                name="tanggal"
+                                class="form-control"
+                                value="<?= old('tanggal') ?>"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- GAMBAR UTAMA -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                Gambar Utama
+
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            <input
+                                type="file"
+                                name="gambar"
+                                id="gambar"
+                                class="form-control"
+                                accept=".jpg,.jpeg,.png,.webp"
+                                required
+                            >
+
+                            <small class="text-muted">
+                                Format JPG, JPEG, PNG, atau WEBP.
+                            </small>
+
+                            <div
+                                id="previewGambar"
+                                class="mt-3"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- DOKUMENTASI -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Dokumentasi Kegiatan
+                            </label>
+
+                            <input
+                                type="file"
+                                name="dokumentasi[]"
+                                id="dokumentasi"
+                                class="form-control"
+                                accept=".jpg,.jpeg,.png,.webp"
+                                multiple
+                            >
+
+                            <small class="text-muted">
+                                Kamu dapat memilih lebih dari satu foto sekaligus.
+                            </small>
+
+                            <div
+                                id="previewDokumentasi"
+                                class="row g-3 mt-2"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- ISI -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                Isi Kegiatan
+
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            <textarea
+                                name="isi"
+                                class="form-control"
+                                rows="8"
+                                placeholder="Masukkan isi kegiatan..."
+                                required
+                            ><?= old('isi') ?></textarea>
+
+                        </div>
+
+
+                        <!-- BUTTON -->
+                        <div class="d-flex gap-2">
+
+                            <a
+                                href="<?= base_url('admin/korsda/kegiatan') ?>"
+                                class="btn btn-secondary"
+                            >
+                                <i class="bi bi-arrow-left me-1"></i>
+                                Kembali
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                <i class="bi bi-save me-1"></i>
+                                Simpan
+                            </button>
+
+                        </div>
 
                     </div>
 
+                </div>
 
-                    <!-- JUDUL -->
-                    <div class="mb-3">
-
-                        <label
-                            for="judul"
-                            class="form-label"
-                        >
-                            Judul
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="judul"
-                            id="judul"
-                            class="form-control"
-                            value="<?= old('judul') ?>"
-                            placeholder="Masukkan judul kegiatan"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- TANGGAL -->
-                    <div class="mb-3">
-
-                        <label
-                            for="tanggal"
-                            class="form-label"
-                        >
-                            Tanggal
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="date"
-                            name="tanggal"
-                            id="tanggal"
-                            class="form-control"
-                            value="<?= old('tanggal') ?>"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- GAMBAR -->
-                    <div class="mb-3">
-
-                        <label
-                            for="gambar"
-                            class="form-label"
-                        >
-                            Upload Gambar
-                        </label>
-
-                        <input
-                            type="file"
-                            name="gambar"
-                            id="gambar"
-                            class="form-control"
-                            accept="image/png,image/jpeg,image/jpg"
-                        >
-
-                        <small class="text-muted">
-                            Format JPG, JPEG, PNG.
-                        </small>
-
-                    </div>
-
-
-                    <!-- ISI KEGIATAN -->
-                    <div class="mb-3">
-
-                        <label
-                            for="isi"
-                            class="form-label"
-                        >
-                            Isi Kegiatan
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <textarea
-                            name="isi"
-                            id="isi"
-                            rows="6"
-                            class="form-control"
-                            placeholder="Masukkan isi kegiatan..."
-                            required
-                        ><?= old('isi') ?></textarea>
-
-                    </div>
-
-
-                    <!-- BUTTON -->
-                    <div class="d-flex gap-2">
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                        >
-                            <i class="bi bi-save me-1"></i>
-                            Simpan
-                        </button>
-
-                        <a
-                            href="<?= site_url('admin/korsda/kegiatan') ?>"
-                            class="btn btn-secondary"
-                        >
-                            <i class="bi bi-arrow-left me-1"></i>
-                            Kembali
-                        </a>
-
-                    </div>
-
-                </form>
-
-            </div>
+            </form>
 
         </div>
 
-    </div>
+    </main>
 
 </div>
 
 <?= $this->include('admin/layout/footer') ?>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    /* ==============================
+       PREVIEW GAMBAR UTAMA
+    ============================== */
+
+    const gambar = document.getElementById('gambar');
+
+    const previewGambar =
+        document.getElementById('previewGambar');
+
+    if (gambar) {
+
+        gambar.addEventListener('change', function () {
+
+            previewGambar.innerHTML = '';
+
+            const file = this.files[0];
+
+            if (!file) {
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+
+                const img =
+                    document.createElement('img');
+
+                img.src = event.target.result;
+
+                img.style.width = '220px';
+
+                img.style.height = '140px';
+
+                img.style.objectFit = 'cover';
+
+                img.style.borderRadius = '10px';
+
+                previewGambar.appendChild(img);
+
+            };
+
+            reader.readAsDataURL(file);
+
+        });
+
+    }
+
+
+    /* ==============================
+       PREVIEW DOKUMENTASI
+    ============================== */
+
+    const dokumentasi =
+        document.getElementById('dokumentasi');
+
+    const previewDokumentasi =
+        document.getElementById('previewDokumentasi');
+
+    if (dokumentasi) {
+
+        dokumentasi.addEventListener('change', function () {
+
+            previewDokumentasi.innerHTML = '';
+
+            Array.from(this.files).forEach(function (file) {
+
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+
+                    const col =
+                        document.createElement('div');
+
+                    col.className =
+                        'col-xl-3 col-lg-4 col-md-4 col-sm-6';
+
+                    const img =
+                        document.createElement('img');
+
+                    img.src = event.target.result;
+
+                    img.style.width = '100%';
+
+                    img.style.height = '180px';
+
+                    img.style.objectFit = 'cover';
+
+                    img.style.borderRadius = '10px';
+
+                    col.appendChild(img);
+
+                    previewDokumentasi.appendChild(col);
+
+                };
+
+                reader.readAsDataURL(file);
+
+            });
+
+        });
+
+    }
+
+});
+
+</script>

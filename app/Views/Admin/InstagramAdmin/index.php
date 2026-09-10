@@ -4,46 +4,46 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
         <div class="container-fluid">
 
             <!-- Header -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="user-page-header">
 
-                <div>
+    <div>
+        <h3>
+            <i class="bi bi-instagram me-2"></i>
+            Feed Instagram
+        </h3>
 
-                    <h4 class="fw-bold mb-1">
-                        Feed Instagram
-                    </h4>
+        <p>
+            Kelola seluruh postingan Instagram yang ditampilkan pada website.
+        </p>
+    </div>
 
-                    <small class="text-muted">
-                        Kelola seluruh postingan Instagram yang ditampilkan pada website.
-                    </small>
+    <div class="d-flex align-items-center gap-3">
 
-                </div>
+        <a href="<?= base_url('admin/instagram/create') ?>"
+           class="btn btn-tambah">
 
-               <div> <a href="<?= base_url('admin/instagram/create') ?>" class="btn btn-tambah">
+            <i class="bi bi-plus-circle me-1"></i>
+            Tambah Feed
 
-                    <i class="bi bi-plus-circle"></i>
+        </a>
 
-                    Tambah Feed
+        <a href="<?= base_url('admin/instagram/sync') ?>"
+           class="btn-sync-instagram"
+           onclick="return confirm('Sinkronkan data Instagram sekarang?')">
 
-                </a>
+            <i class="bi bi-arrow-repeat me-1"></i>
+            Sync Instagram Sekarang
 
-                <a href="<?= base_url('admin/instagram/sync') ?>"
-                    class="btn-sync-instagram"
-                    onclick="return confirm('Sinkronkan data Instagram sekarang?')">
+        </a>
 
-                        <i class="bi bi-arrow-repeat"></i>
+    </div>
 
-                        Sync Instagram Sekarang
-
-                </a>
-
-                </div>
-
-            </div>
+</div>
 
             <!-- Flash Message -->
             <?php if (session()->getFlashdata('success')) : ?>

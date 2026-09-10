@@ -4,28 +4,24 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+   <main class="content-wrapper">
 
         <!-- HEADER -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="user-page-header">
 
-            <div>
-                <h2 class="fw-bold mb-1">
-                    Tambah Peta Wilayah KORSDA
-                </h2>
+    <div>
+        <h3>
+            Tambah Peta Wilayah KORSDA
+        </h3>
 
-                <p class="text-muted mb-0">
-                    Tambahkan data peta wilayah kerja KORSDA.
-                </p>
-            </div>
+        <p>
+            Tambahkan data peta wilayah kerja KORSDA.
+        </p>
+    </div>
 
-            <a href="<?= base_url('admin/korsda/wilayah') ?>"
-               class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left me-1"></i>
-                Kembali
-            </a>
+</div>
 
-        </div>
+
 
 
         <!-- ERROR -->
