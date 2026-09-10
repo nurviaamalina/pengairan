@@ -10,13 +10,28 @@
 <main class="content-wrapper">
 
     <!-- HEADER HALAMAN -->
-    <div class="container-fluid">
+    <div class="user-page-header">
 
-        <div class="topbar">
-            <h3>Edit Dokumen</h3>
-        </div>
+    <div>
+        <h3>
+            <i class="bi bi-pencil-square me-2"></i>
+            Edit Dokumen
+        </h3>
 
+        <p>
+            Perbarui data dokumen yang sudah ada.
+        </p>
     </div>
+
+    <div>
+        <a href="<?= base_url('admin/dokumen') ?>"
+           class="btn btn-kembaliberita">
+            <i class="bi bi-arrow-left me-1"></i>
+            Kembali
+        </a>
+    </div>
+
+</div>
 
 
     <!-- FORM EDIT DOKUMEN -->

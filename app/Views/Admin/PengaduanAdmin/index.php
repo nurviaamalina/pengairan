@@ -250,13 +250,23 @@
         <div class="p-4 flex-grow-1">
 
             <!-- HEADER -->
-            <div class="page-header">
-                <div>
-                    <h5>📋 Daftar Pengaduan</h5>
-                    <small>Menampilkan <?= count($pengaduan) ?> pengaduan terbaru</small>
-                </div>
-                <span class="badge-total">Total: <?= $total_all ?? count($pengaduan) ?> Data</span>
-            </div>
+            <div class="user-page-header">
+    <div>
+        <h3>
+            <i class="bi bi-clipboard-check me-2"></i>
+            Daftar Pengaduan
+        </h3>
+        <p>
+            Menampilkan <?= count($pengaduan) ?> pengaduan terbaru
+        </p>
+    </div>
+
+    <div>
+        <span class="badge-total">
+            Total: <?= $total_all ?? count($pengaduan) ?> Data
+        </span>
+    </div>
+</div>
 
             <!-- STATISTIK -->
             <?php

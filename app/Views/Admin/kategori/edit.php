@@ -10,28 +10,21 @@
 <main class="content-wrapper">
 
     <!-- HEADER HALAMAN -->
-    <div class="container-fluid">
+    <div class="user-page-header">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3>
+            <i class="bi bi-pencil-square me-2"></i>
+            Edit Kategori
+        </h3>
 
-            <div>
-                <h3 class="fw-bold mb-1">Edit Kategori</h3>
-                <p class="text-muted mb-0">
-                    Perbarui informasi kategori dokumen.
-                </p>
-            </div>
-
-            <a href="<?= base_url('admin/kategori'); ?>"
-               class="btn btn-secondary">
-
-                <i class="fa fa-arrow-left"></i>
-                Kembali
-
-            </a>
-
-        </div>
-
+        <p>
+            Perbarui informasi kategori dokumen.
+        </p>
     </div>
+
+
+</div>
 
 
     <!-- FORM EDIT -->

@@ -6,53 +6,81 @@
 
     <main class="content-wrapper">
 
-        <div class="card shadow-sm">
+<div class="user-page-header">
 
-            <div class="card-header">
-                <h4 class="mb-0">
-                    <i class="bi bi-pencil-square"></i> Edit Kecamatan
-                </h4>
+    <div>
+        <h3>
+            Edit Kecamatan
+        </h3>
+
+        <p>
+            Perbarui data kecamatan KORSDA.
+        </p>
+    </div>
+
+</div>
+
+
+<!-- CARD FORM -->
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <?php if (session()->getFlashdata('errors')) : ?>
+
+            <div class="alert alert-danger">
+
+                <ul class="mb-0">
+
+                    <?php foreach (session()->getFlashdata('errors') as $error) : ?>
+
+                        <li>
+                            <?= esc($error) ?>
+                        </li>
+
+                    <?php endforeach; ?>
+
+                </ul>
+
             </div>
 
-            <div class="card-body">
+        <?php endif; ?>
 
-                <?php if (session()->getFlashdata('errors')) : ?>
 
-                    <div class="alert alert-danger">
+        <form action="<?= base_url('admin/korsda/kecamatan/update/' . $kecamatan['id']) ?>"
+              method="post">
 
-                        <ul class="mb-0">
+            <?= csrf_field(); ?>
 
-                            <?php foreach (session()->getFlashdata('errors') as $error) : ?>
 
-                                <li><?= esc($error) ?></li>
+            <!-- NAMA KECAMATAN -->
+            <div class="mb-3">
 
-                            <?php endforeach; ?>
+                <label class="form-label">
+                    Nama Kecamatan
+                    <span class="text-danger">*</span>
+                </label>
 
-                        </ul>
+                <input
+                    type="text"
+                    name="nama_kecamatan"
+                    class="form-control"
+                    value="<?= old('nama_kecamatan', $kecamatan['nama_kecamatan']) ?>"
+                    required
+                >
 
-                    </div>
+            </div>
 
-                <?php endif; ?>
 
-                <form action="<?= base_url('admin/korsda/kecamatan/update/' . $kecamatan['id']) ?>" method="post">
+            <!-- LANJUTKAN FIELD FORM DI SINI -->
 
-                    <?= csrf_field(); ?>
 
-                    <div class="mb-3">
+        </form>
 
-                        <label class="form-label">
-                            Nama Kecamatan <span class="text-danger">*</span>
-                        </label>
+    </div>
 
-                        <input
-                            type="text"
-                            name="nama_kecamatan"
-                            class="form-control"
-                            value="<?= old('nama_kecamatan', $kecamatan['nama_kecamatan']) ?>"
-                            required
-                        >
+</div>
 
-                    </div>
 
                     <div class="mt-4">
 

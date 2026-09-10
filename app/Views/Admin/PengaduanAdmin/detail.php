@@ -292,19 +292,35 @@
         <div class="p-4 flex-grow-1">
 
             <!-- PAGE HEADER -->
-            <div class="page-header">
-                <div>
-                    <h5><i class="bi bi-file-text me-2"></i>Detail Pengaduan</h5>
-                    <p>Informasi lengkap dan kelola tindak lanjut pengaduan masyarakat.</p>
-                </div>
-                <div>
-                    <?php
-                    $statusMap = ['pending' => '🟡 Pending', 'diproses' => '🔵 Diproses', 'selesai' => '🟢 Selesai', 'ditolak' => '🔴 Ditolak'];
-                    $status = $pengaduan['status'];
-                    ?>
-                    <span class="badge-status <?= $status ?>"><?= $statusMap[$status] ?? ucfirst($status) ?></span>
-                </div>
-            </div>
+           <div class="user-page-header">
+    <div>
+        <h3>
+            <i class="bi bi-file-text me-2"></i>
+            Detail Pengaduan
+        </h3>
+
+        <p>
+            Informasi lengkap dan kelola tindak lanjut pengaduan masyarakat.
+        </p>
+    </div>
+
+    <div>
+        <?php
+        $statusMap = [
+            'pending'  => '🟡 Pending',
+            'diproses' => '🔵 Diproses',
+            'selesai'  => '🟢 Selesai',
+            'ditolak'  => '🔴 Ditolak'
+        ];
+
+        $status = $pengaduan['status'];
+        ?>
+
+        <span class="badge-status <?= esc($status) ?>">
+            <?= $statusMap[$status] ?? ucfirst($status) ?>
+        </span>
+    </div>
+</div>
 
             <!-- DETAIL CARD -->
             <div class="detail-card card shadow-sm border-0 rounded-4">

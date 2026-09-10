@@ -9,13 +9,22 @@
         <div class="card shadow">
 
             <!-- HEADER -->
-            <div class="card-header">
+ 
+<div class="user-page-header">
 
-                <h4 class="mb-0">
-                    Edit Profil KORSDA
-                </h4>
+    <div>
+        <h3>
+            Edit Profil KORSDA
+        </h3>
 
-            </div>
+        <p>
+            Perbarui profil Koordinator Pengelola Sumber Daya Air.
+        </p>
+    </div>
+
+</div>
+
+
 
 
             <div class="card-body">

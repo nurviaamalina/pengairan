@@ -8,11 +8,20 @@
 
         <div class="card shadow-sm">
 
-            <div class="card-header">
-                <h4 class="mb-0">
-                    <i class="bi bi-plus-circle"></i> Tambah Kecamatan
-                </h4>
-            </div>
+<div class="user-page-header">
+
+    <div>
+        <h3>
+            Tambah Kecamatan
+        </h3>
+
+        <p>
+            Tambahkan data kecamatan KORSDA.
+        </p>
+    </div>
+
+</div>
+
 
             <div class="card-body">
 
@@ -62,7 +71,7 @@
                         </button>
 
                         <a href="<?= base_url('admin/korsda/kecamatan') ?>" class="btn btn-secondary">
-                            <i class="bi bi-arrow-left"></i> Kembali
+                            <i class="bi bi-x-circle"></i> Batal
                         </a>
 
                     </div>

@@ -286,15 +286,31 @@
         <div class="p-4 flex-grow-1">
 
             <!-- ===== PAGE HEADER ===== -->
-            <div class="page-header">
-                <div>
-                    <h3>
-                        <i class="bi bi-building me-2"></i>
-                        Profil Dinas Pengairan
-                    </h3>
-                    <p>Kelola informasi Profil Dinas Pengairan Kabupaten Banyuwangi</p>
-                </div>
+<div class="user-page-header">
+
+    <div>
+
+        <h3>
+            <i class="bi bi-building me-2"></i>
+            Profil Dinas Pengairan
+        </h3>
+
+        <p>
+            Kelola informasi Profil Dinas Pengairan Kabupaten Banyuwangi
+        </p>
+
+    </div>
+
+    <div class="mb-4">
+                <a href="<?= base_url('admin/profil/create') ?>" class="btn btn-primary">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    Tambah Profil
+                </a>
             </div>
+
+</div>
+
+
 
             <!-- ===== FLASH MESSAGE ===== -->
             <?php if(session()->getFlashdata('success')): ?>
@@ -313,15 +329,6 @@
                 </div>
             <?php endif; ?>
 
-            <!-- ===================================================== -->
-            <!-- TOMBOL TAMBAH DATA -->
-            <!-- ===================================================== -->
-            <div class="mb-4">
-                <a href="<?= base_url('admin/profil/create') ?>" class="btn btn-primary">
-                    <i class="bi bi-plus-circle me-2"></i>
-                    Tambah Profil
-                </a>
-            </div>
 
             <!-- ===================================================== -->
             <!-- TABEL DATA PROFIL -->
@@ -510,15 +517,6 @@
             </div>
 
             <?php endif; ?>
-
-            <!-- Tombol Kembali -->
-            <div class="mt-4">
-                <button type="button" class="btn btn-kembali"
-                        onclick="window.location.href='<?= base_url('admin/dashboard') ?>'">
-                    <i class="bi bi-arrow-left me-2"></i>
-                    Kembali
-                </button>
-            </div>
 
         </div>
     </div>

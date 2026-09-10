@@ -6,16 +6,30 @@
 
 <main class="content-wrapper">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold">Data Kegiatan KORSDA</h2>
-            <p class="text-muted">Kelola kegiatan masing-masing KORSDA</p>
-        </div>
+<div class="user-page-header">
 
-        <a href="<?= site_url('admin/korsda/kegiatan/create') ?>" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Tambah Kegiatan
+    <div>
+        <h3>
+            Data Kegiatan KORSDA
+        </h3>
+
+        <p>
+            Kelola kegiatan masing-masing KORSDA
+        </p>
+    </div>
+
+    <div>
+        <a href="<?= site_url('admin/korsda/kegiatan/create') ?>"
+           class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+            Tambah Kegiatan
+
         </a>
     </div>
+
+</div>
+
 
     <?php if(session()->getFlashdata('success')) : ?>
 

@@ -9,27 +9,20 @@
             <div class="container-fluid">
 
                 <!-- Header -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="user-page-header">
 
-                    <div>
-                        <h3 class="fw-bold mb-1">
-                            Import Data Berita Lama
-                        </h3>
+    <div>
+        <h3>
+            <i class="bi bi-file-earmark-excel me-2"></i>
+            Import Data Berita Lama
+        </h3>
 
-                        <p class="text-muted mb-0">
-                            Import data berita lama menggunakan file Excel dan ZIP gambar.
-                        </p>
-                    </div>
+        <p>
+            Import data berita lama menggunakan file Excel dan ZIP gambar.
+        </p>
+    </div>
 
-                    <a href="<?= base_url('admin/berita') ?>"
-                    class="btn btn-secondary">
-
-                        <i class="bi bi-arrow-left"></i>
-                        Kembali
-
-                    </a>
-
-                </div>
+</div>
 
 
                 <!-- Card -->

@@ -10,28 +10,20 @@
 <main class="content-wrapper">
 
     <!-- HEADER HALAMAN -->
-    <div class="container-fluid">
+    <div class="user-page-header">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3>
+            <i class="bi bi-plus-circle me-2"></i>
+            Tambah Kategori
+        </h3>
 
-            <div>
-                <h3 class="fw-bold mb-1">Tambah Kategori</h3>
-                <p class="text-muted mb-0">
-                    Tambahkan kategori dokumen baru ke dalam sistem.
-                </p>
-            </div>
-
-            <a
-                href="<?= base_url('admin/kategori'); ?>"
-                class="btn btn-secondary"
-            >
-                <i class="fa fa-arrow-left"></i>
-                Kembali
-            </a>
-
-        </div>
-
+        <p>
+            Tambahkan kategori dokumen baru ke dalam sistem.
+        </p>
     </div>
+
+</div>
 
 
     <!-- FORM TAMBAH KATEGORI -->

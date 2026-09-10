@@ -6,9 +6,20 @@
 
     <main class="content-wrapper">
 
-        <h2 class="fw-bold mb-4">
+<div class="user-page-header">
+
+    <div>
+        <h3>
             Tambah Kegiatan KORSDA
-        </h2>
+        </h3>
+
+        <p>
+            Tambahkan data kegiatan masing-masing KORSDA.
+        </p>
+    </div>
+
+</div>
+
 
         <?php if (session()->getFlashdata('error')): ?>
 
@@ -214,8 +225,8 @@
                             href="<?= site_url('admin/korsda/kegiatan') ?>"
                             class="btn btn-secondary"
                         >
-                            <i class="bi bi-arrow-left me-1"></i>
-                            Kembali
+                            <i class="bi bi-x-circle"></i>
+                            Batal
                         </a>
 
                     </div>

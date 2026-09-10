@@ -15,29 +15,23 @@
         <main class="korsda-dashboard-content">
 
             <!-- HEADER -->
-            <div class="dashboard-heading">
+<div class="user-page-header">
 
-                <div>
-                    <span class="heading-label">
-                        <i class="bi bi-grid-fill"></i>
-                        KORSDA
-                    </span>
+    <div>
 
-                    <h1>Dashboard KORSDA</h1>
+        <h3>
+            Dashboard KORSDA
+        </h3>
 
-                    <p>
-                        Kelola seluruh data KORSDA Kabupaten Banyuwangi
-                    </p>
-                </div>
+        <p>
+            Kelola seluruh data KORSDA Kabupaten Banyuwangi
+        </p>
 
-                <a href="<?= base_url('admin/dashboard') ?>"
-                   class="btn-dashboard-back">
+    </div>
 
-                    <i class="bi bi-arrow-left"></i>
-                    Kembali
-                </a>
+</div>
 
-            </div>
+
 
 
             <!-- ================================

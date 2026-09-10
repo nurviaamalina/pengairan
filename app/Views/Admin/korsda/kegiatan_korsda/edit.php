@@ -6,9 +6,20 @@
 
     <main class="content-wrapper">
 
-        <h2 class="fw-bold mb-4">
+<div class="user-page-header">
+
+    <div>
+        <h3>
             Edit Kegiatan KORSDA
-        </h2>
+        </h3>
+
+        <p>
+            Perbarui data kegiatan masing-masing KORSDA.
+        </p>
+    </div>
+
+</div>
+
 
 
         <!-- ERROR -->
@@ -281,8 +292,8 @@
                             ) ?>"
                             class="btn btn-secondary"
                         >
-                            <i class="bi bi-arrow-left me-1"></i>
-                            Kembali
+                            <i class="bi bi-x-circle"></i>
+                            Batal
                         </a>
 
                     </div>

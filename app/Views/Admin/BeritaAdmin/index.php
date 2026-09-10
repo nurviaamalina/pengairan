@@ -9,36 +9,35 @@
         <div class="container-fluid">
 
             <!-- Header -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="user-page-header">
 
-                <div>
-                    <h4 class="fw-bold mb-1">
-                        Data Berita
-                    </h4>
+    <div>
+        <h3>
+            Data Berita
+        </h3>
 
-                    <small class="text-muted">
-                        Kelola seluruh berita yang akan ditampilkan pada website.
-                    </small>
-                </div>
+        <p>
+            Kelola seluruh berita yang akan ditampilkan pada website.
+        </p>
+    </div>
 
-                 <div class="d-flex align-items-center gap-3">
-                    <a href="<?= base_url('admin/berita/create') ?>" class="btn btn-tambah">
-                                        <i class="bi bi-plus-circle"></i>
-                                        Tambah Berita
-                                    </a>
+    <div class="d-flex align-items-center gap-3">
 
-                                    <a href="<?= base_url('admin/berita/import') ?>"
-                                        class="btn-import-berita">
+        <a href="<?= base_url('admin/berita/create') ?>"
+           class="btn btn-tambah">
+            <i class="bi bi-plus-circle me-1"></i>
+            Tambah Berita
+        </a>
 
-                                        <i class="bi bi-file-earmark-excel"></i>
-                                        Import Data Lama
+        <a href="<?= base_url('admin/berita/import') ?>"
+           class="btn-import-berita">
+            <i class="bi bi-file-earmark-excel me-1"></i>
+            Import Data Lama
+        </a>
 
-                                    </a>
+    </div>
 
-                 </div>
-                
-
-            </div>
+</div>
 
             <!-- Flash Message -->
             <?php if (session()->getFlashdata('success')) : ?>
