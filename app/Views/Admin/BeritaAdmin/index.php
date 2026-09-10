@@ -1,4 +1,14 @@
-<?= $this->include('admin/layout/header') ?>
+<link
+        rel="stylesheet"
+        href="<?= base_url('assets/css/admin/dashboard.css') ?>"
+    >
+
+    <link
+        rel="stylesheet"
+        href="<?= base_url('assets/css/admin/berita.css') ?>"
+    >
+    
+    <?= $this->include('admin/layout/header') ?>
 
 <div class="d-flex">
 

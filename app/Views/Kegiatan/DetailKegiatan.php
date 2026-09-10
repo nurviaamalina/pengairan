@@ -13,7 +13,7 @@
                 </li>
 
                 <li class="breadcrumb-item">
-                    <a href="<?= base_url('berita') ?>">Kegiatan</a>
+                    <a href="<?= base_url('kegiatan') ?>">Kegiatan</a>
                 </li>
 
                 <li class="breadcrumb-item active">

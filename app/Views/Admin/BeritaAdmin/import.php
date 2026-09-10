@@ -79,59 +79,124 @@
                             <?= csrf_field() ?>
 
 
-                            <!-- FILE EXCEL -->
-                            <div class="mb-4">
+                           <!-- ==========================================
+     FILE EXCEL
+=========================================== -->
 
-                                <label class="form-label fw-semibold">
+<div class="import-file-group">
 
-                                    <i class="bi bi-file-earmark-excel"></i>
-                                    File Excel Berita
+    <label class="import-file-label">
 
-                                </label>
+        <i class="bi bi-file-earmark-excel"></i>
 
-                                <input
-                                    type="file"
-                                    name="excel"
-                                    class="form-control"
-                                    accept=".xlsx,.xls"
-                                    required>
+        File Excel Berita
 
-                                <small class="text-muted">
-
-                                    Format yang diperbolehkan:
-                                    <strong>.xlsx</strong> atau
-                                    <strong>.xls</strong>.
-
-                                </small>
-
-                            </div>
+    </label>
 
 
-                            <!-- FILE ZIP -->
-                            <div class="mb-4">
+    <div class="import-upload-box">
 
-                                <label class="form-label fw-semibold">
+        <i class="bi bi-cloud-arrow-up import-upload-icon"></i>
 
-                                    <i class="bi bi-file-earmark-zip"></i>
-                                    ZIP Gambar Berita
+        <div class="import-upload-text">
 
-                                </label>
+            <strong>
+                Pilih file Excel
+            </strong>
 
-                                <input
-                                    type="file"
-                                    name="zip"
-                                    class="form-control"
-                                    accept=".zip"
-                                    required>
+            <span>
+                atau drag & drop file di sini
+            </span>
 
-                                <small class="text-muted">
+        </div>
 
-                                    ZIP harus berisi folder
-                                    <strong>BERITA</strong>.
 
-                                </small>
+        <label class="import-browse-button">
 
-                            </div>
+            Browse File
+
+            <input
+                type="file"
+                name="excel"
+                id="excel"
+                accept=".xlsx,.xls"
+                required
+            >
+
+        </label>
+
+    </div>
+
+
+    <small class="import-file-help">
+
+        Format yang diperbolehkan:
+        <strong>.xlsx</strong> atau
+        <strong>.xls</strong>.
+
+    </small>
+
+</div>
+
+
+<!-- ==========================================
+     FILE ZIP
+=========================================== -->
+
+<div class="import-file-group">
+
+    <label class="import-file-label">
+
+        <i class="bi bi-file-earmark-zip"></i>
+
+        ZIP Gambar Berita
+
+    </label>
+
+
+    <div class="import-upload-box">
+
+        <i class="bi bi-cloud-arrow-up import-upload-icon"></i>
+
+        <div class="import-upload-text">
+
+            <strong>
+                Pilih file ZIP
+            </strong>
+
+            <span>
+                atau drag & drop file di sini
+            </span>
+
+        </div>
+
+
+        <label class="import-browse-button">
+
+            Browse File
+
+            <input
+                type="file"
+                name="zip"
+                id="zip"
+                accept=".zip"
+                required
+            >
+
+        </label>
+
+    </div>
+
+
+    <small class="import-file-help">
+
+        ZIP harus berisi folder
+        <strong>BERITA</strong>
+        yang berisi thumbnail berita.
+
+    </small>
+
+</div>
 
 
                             <!-- CONTOH STRUKTUR ZIP -->

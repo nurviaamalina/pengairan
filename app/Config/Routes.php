@@ -518,16 +518,66 @@ $routes->group('admin', function ($routes) {
     $routes->post('korsda/kecamatan/update/(:num)', 'Kecamatan::update/$1');
     $routes->get('korsda/kecamatan/delete/(:num)', 'Kecamatan::delete/$1');
 
-});
+
     /*
-    | KEGIATAN KORSDA
-    */
-    $routes->get('korsda/kegiatan', 'Admin\KegiatanKorsda::index');
-    $routes->get('korsda/kegiatan/create', 'Admin\KegiatanKorsda::create');
-    $routes->post('korsda/kegiatan/store', 'Admin\KegiatanKorsda::store');
-    $routes->get('korsda/kegiatan/edit/(:num)', 'Admin\KegiatanKorsda::edit/$1');
-    $routes->post('korsda/kegiatan/update/(:num)', 'Admin\KegiatanKorsda::update/$1');
-    $routes->get('korsda/kegiatan/delete/(:num)', 'Admin\KegiatanKorsda::delete/$1');
+|--------------------------------------------------------------------------
+| KEGIATAN KORSDA
+|--------------------------------------------------------------------------
+*/
+
+$routes->get(
+    'korsda/kegiatan',
+    'Admin\KegiatanKorsda::index'
+);
+
+$routes->get(
+    'korsda/kegiatan/create',
+    'Admin\KegiatanKorsda::create'
+);
+
+$routes->post(
+    'korsda/kegiatan/store',
+    'Admin\KegiatanKorsda::store'
+);
+
+$routes->get(
+    'korsda/kegiatan/edit/(:num)',
+    'Admin\KegiatanKorsda::edit/$1'
+);
+
+$routes->post(
+    'korsda/kegiatan/update/(:num)',
+    'Admin\KegiatanKorsda::update/$1'
+);
+
+$routes->get(
+    'korsda/kegiatan/delete/(:num)',
+    'Admin\KegiatanKorsda::delete/$1'
+);
+
+$routes->get(
+    'korsda/kegiatan/foto/delete/(:num)',
+    'Admin\KegiatanKorsda::deleteFoto/$1'
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| IMPORT KEGIATAN KORSDA
+|--------------------------------------------------------------------------
+*/
+
+$routes->get(
+    'korsda/kegiatan/import',
+    'Admin\KegiatanKorsda::import'
+);
+
+$routes->post(
+    'korsda/kegiatan/import',
+    'Admin\KegiatanKorsda::importProcess'
+);
+
+});
 
     /*
     | PROFIL ADMIN
