@@ -1,29 +1,35 @@
 <?= $this->include('admin/layout/header') ?>
 
-<div class="d-flex min-vh-100">
+<div class="d-flex">
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 d-flex flex-column bg-light">
+    <main class="content-wrapper">
 
         <div class="container-fluid py-4">
 
-            <div class="mb-4">
+            <!-- HEADER -->
+            <div class="user-page-header mb-4">
 
-                <h2 class="fw-bold">
-                    Tambah Kegiatan KORSDA
-                </h2>
+                <div>
+                    <h3>
+                        Tambah Kegiatan KORSDA
+                    </h3>
 
-                <p class="text-muted">
-                    Tambahkan kegiatan dan dokumentasi KORSDA.
-                </p>
+                    <p>
+                        Tambahkan data kegiatan masing-masing KORSDA.
+                    </p>
+                </div>
 
             </div>
 
 
+            <!-- FLASH ERROR -->
             <?php if (session()->getFlashdata('error')) : ?>
 
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade show">
+
+                    <i class="bi bi-exclamation-triangle me-2"></i>
 
                     <?= nl2br(
                         esc(
@@ -31,11 +37,18 @@
                         )
                     ) ?>
 
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                    ></button>
+
                 </div>
 
             <?php endif; ?>
 
 
+            <!-- FORM -->
             <form
                 action="<?= base_url('admin/korsda/kegiatan/store') ?>"
                 method="post"
@@ -45,18 +58,20 @@
                 <?= csrf_field() ?>
 
 
-                <div class="card border-0 shadow-sm">
+                <!-- DATA UTAMA -->
+                <div class="card border-0 shadow-sm mb-4">
 
                     <div class="card-body p-4">
 
-
                         <!-- KORSDA -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
+
                                 KORSDA
+
                                 <span class="text-danger">*</span>
+
                             </label>
 
                             <select
@@ -90,12 +105,14 @@
 
 
                         <!-- JUDUL -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
+
                                 Judul Kegiatan
+
                                 <span class="text-danger">*</span>
+
                             </label>
 
                             <input
@@ -103,6 +120,7 @@
                                 name="judul"
                                 class="form-control"
                                 value="<?= old('judul') ?>"
+                                placeholder="Masukkan judul kegiatan"
                                 required
                             >
 
@@ -110,12 +128,14 @@
 
 
                         <!-- TANGGAL -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
+
                                 Tanggal
+
                                 <span class="text-danger">*</span>
+
                             </label>
 
                             <input
@@ -130,12 +150,14 @@
 
 
                         <!-- GAMBAR UTAMA -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
+
                                 Gambar Utama
+
                                 <span class="text-danger">*</span>
+
                             </label>
 
                             <input
@@ -147,6 +169,10 @@
                                 required
                             >
 
+                            <small class="text-muted">
+                                Format JPG, JPEG, PNG, atau WEBP.
+                            </small>
+
                             <div
                                 id="previewGambar"
                                 class="mt-3"
@@ -156,7 +182,6 @@
 
 
                         <!-- DOKUMENTASI -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
@@ -173,7 +198,7 @@
                             >
 
                             <small class="text-muted">
-                                Kamu dapat memilih lebih dari satu foto.
+                                Kamu dapat memilih lebih dari satu foto sekaligus.
                             </small>
 
                             <div
@@ -185,24 +210,28 @@
 
 
                         <!-- ISI -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
+
                                 Isi Kegiatan
+
                                 <span class="text-danger">*</span>
+
                             </label>
 
                             <textarea
                                 name="isi"
                                 class="form-control"
                                 rows="8"
+                                placeholder="Masukkan isi kegiatan..."
                                 required
                             ><?= old('isi') ?></textarea>
 
                         </div>
 
 
+                        <!-- BUTTON -->
                         <div class="d-flex gap-2">
 
                             <a
@@ -231,164 +260,121 @@
 
         </div>
 
-
-        <?= $this->include('admin/layout/footer') ?>
-
-    </div>
+    </main>
 
 </div>
+
+<?= $this->include('admin/layout/footer') ?>
 
 
 <script>
 
-document.addEventListener(
-    'DOMContentLoaded',
-    function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-        const gambar =
-            document.getElementById('gambar');
+    /* ==============================
+       PREVIEW GAMBAR UTAMA
+    ============================== */
 
-        const previewGambar =
-            document.getElementById('previewGambar');
+    const gambar = document.getElementById('gambar');
 
+    const previewGambar =
+        document.getElementById('previewGambar');
 
-        if (gambar) {
+    if (gambar) {
 
-            gambar.addEventListener(
-                'change',
-                function () {
+        gambar.addEventListener('change', function () {
 
-                    previewGambar.innerHTML = '';
+            previewGambar.innerHTML = '';
 
-                    const file =
-                        this.files[0];
+            const file = this.files[0];
 
-                    if (!file) {
-                        return;
-                    }
+            if (!file) {
+                return;
+            }
 
+            const reader = new FileReader();
 
-                    const reader =
-                        new FileReader();
+            reader.onload = function (event) {
 
+                const img =
+                    document.createElement('img');
 
-                    reader.onload =
-                        function (event) {
+                img.src = event.target.result;
 
-                            const img =
-                                document.createElement(
-                                    'img'
-                                );
+                img.style.width = '220px';
 
-                            img.src =
-                                event.target.result;
+                img.style.height = '140px';
 
-                            img.style.width =
-                                '220px';
+                img.style.objectFit = 'cover';
 
-                            img.style.height =
-                                '140px';
+                img.style.borderRadius = '10px';
 
-                            img.style.objectFit =
-                                'cover';
+                previewGambar.appendChild(img);
 
-                            img.style.borderRadius =
-                                '10px';
+            };
 
-                            previewGambar
-                                .appendChild(img);
-                        };
+            reader.readAsDataURL(file);
 
-
-                    reader.readAsDataURL(file);
-                }
-            );
-        }
-
-
-        const dokumentasi =
-            document.getElementById(
-                'dokumentasi'
-            );
-
-        const previewDokumentasi =
-            document.getElementById(
-                'previewDokumentasi'
-            );
-
-
-        if (dokumentasi) {
-
-            dokumentasi.addEventListener(
-                'change',
-                function () {
-
-                    previewDokumentasi.innerHTML =
-                        '';
-
-
-                    Array.from(
-                        this.files
-                    ).forEach(
-                        function (file) {
-
-                            const reader =
-                                new FileReader();
-
-
-                            reader.onload =
-                                function (event) {
-
-                                    const col =
-                                        document.createElement(
-                                            'div'
-                                        );
-
-                                    col.className =
-                                        'col-xl-3 col-lg-4 col-md-4 col-sm-6';
-
-
-                                    const img =
-                                        document.createElement(
-                                            'img'
-                                        );
-
-                                    img.src =
-                                        event.target.result;
-
-                                    img.style.width =
-                                        '100%';
-
-                                    img.style.height =
-                                        '180px';
-
-                                    img.style.objectFit =
-                                        'cover';
-
-                                    img.style.borderRadius =
-                                        '10px';
-
-
-                                    col.appendChild(
-                                        img
-                                    );
-
-
-                                    previewDokumentasi
-                                        .appendChild(col);
-                                };
-
-
-                            reader.readAsDataURL(
-                                file
-                            );
-                        }
-                    );
-                }
-            );
-        }
+        });
 
     }
-);
+
+
+    /* ==============================
+       PREVIEW DOKUMENTASI
+    ============================== */
+
+    const dokumentasi =
+        document.getElementById('dokumentasi');
+
+    const previewDokumentasi =
+        document.getElementById('previewDokumentasi');
+
+    if (dokumentasi) {
+
+        dokumentasi.addEventListener('change', function () {
+
+            previewDokumentasi.innerHTML = '';
+
+            Array.from(this.files).forEach(function (file) {
+
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+
+                    const col =
+                        document.createElement('div');
+
+                    col.className =
+                        'col-xl-3 col-lg-4 col-md-4 col-sm-6';
+
+                    const img =
+                        document.createElement('img');
+
+                    img.src = event.target.result;
+
+                    img.style.width = '100%';
+
+                    img.style.height = '180px';
+
+                    img.style.objectFit = 'cover';
+
+                    img.style.borderRadius = '10px';
+
+                    col.appendChild(img);
+
+                    previewDokumentasi.appendChild(col);
+
+                };
+
+                reader.readAsDataURL(file);
+
+            });
+
+        });
+
+    }
+
+});
 
 </script>

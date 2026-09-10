@@ -1,36 +1,52 @@
+
 <?= $this->include('admin/layout/header') ?>
 
 <div class="d-flex">
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
-        <!-- Header -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- ==========================================
+             HEADER
+        =========================================== -->
+
+        <div class="user-page-header">
 
             <div>
-                <h4 class="fw-bold mb-1">
-                    Edit KORSDA
-                </h4>
 
-                <small class="text-muted">
+                <h3>
+                    Edit KORSDA
+                </h3>
+
+                <p>
                     Ubah data KORSDA yang sudah tersimpan.
-                </small>
+                </p>
+
             </div>
 
-            <a href="<?= base_url('admin/korsda') ?>"
-               class="btn btn-secondary">
 
-                <i class="bi bi-arrow-left me-1"></i>
-                Kembali
+            <!-- KEMBALI -->
 
-            </a>
+            <div>
+
+                <a href="<?= base_url('admin/korsda') ?>"
+                   class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left me-1"></i>
+                    Kembali
+
+                </a>
+
+            </div>
 
         </div>
 
 
-        <!-- CARD -->
+        <!-- ==========================================
+             CARD FORM
+        =========================================== -->
+
         <div class="card shadow-sm">
 
             <div class="card-body p-4">
@@ -38,30 +54,42 @@
                 <form
                     action="<?= base_url('admin/korsda/update/' . $korsda['id']) ?>"
                     method="post"
-                    enctype="multipart/form-data">
+                    enctype="multipart/form-data"
+                >
 
                     <?= csrf_field() ?>
 
 
-                    <!-- BARIS 1 -->
+                    <!-- ==========================================
+                         BARIS 1
+                    =========================================== -->
+
                     <div class="row">
 
-                        <!-- Kecamatan -->
+
+                        <!-- KECAMATAN -->
+
                         <div class="col-md-6 mb-3">
 
                             <label class="form-label fw-semibold">
+
                                 Kecamatan
+
                                 <span class="text-danger">*</span>
+
                             </label>
+
 
                             <select
                                 name="kecamatan_id"
                                 class="form-select"
-                                required>
+                                required
+                            >
 
                                 <option value="">
                                     -- Pilih Kecamatan --
                                 </option>
+
 
                                 <?php foreach ($kecamatan as $item) : ?>
 
@@ -72,7 +100,8 @@
                                             $korsda['kecamatan_id']
                                         ) == $item['id']
                                             ? 'selected'
-                                            : '' ?>>
+                                            : '' ?>
+                                    >
 
                                         <?= esc($item['nama_kecamatan']) ?>
 
@@ -85,13 +114,18 @@
                         </div>
 
 
-                        <!-- Nama Wilayah -->
+                        <!-- NAMA WILAYAH -->
+
                         <div class="col-md-6 mb-3">
 
                             <label class="form-label fw-semibold">
+
                                 Nama Wilayah
+
                                 <span class="text-danger">*</span>
+
                             </label>
+
 
                             <input
                                 type="text"
@@ -103,23 +137,33 @@
                                 ) ?>"
                                 placeholder="Masukkan nama wilayah"
                                 maxlength="100"
-                                required>
+                                required
+                            >
 
                         </div>
 
                     </div>
 
 
-                    <!-- BARIS 2 -->
+                    <!-- ==========================================
+                         BARIS 2
+                    =========================================== -->
+
                     <div class="row">
 
-                        <!-- Nama -->
+
+                        <!-- NAMA -->
+
                         <div class="col-md-6 mb-3">
 
                             <label class="form-label fw-semibold">
+
                                 Nama
+
                                 <span class="text-danger">*</span>
+
                             </label>
+
 
                             <input
                                 type="text"
@@ -129,18 +173,24 @@
                                     'nama',
                                     $korsda['nama'] ?? ''
                                 ) ?>"
-                                required>
+                                required
+                            >
 
                         </div>
 
 
-                        <!-- Jabatan -->
+                        <!-- JABATAN -->
+
                         <div class="col-md-6 mb-3">
 
                             <label class="form-label fw-semibold">
+
                                 Jabatan
+
                                 <span class="text-danger">*</span>
+
                             </label>
+
 
                             <input
                                 type="text"
@@ -150,22 +200,29 @@
                                     'jabatan',
                                     $korsda['jabatan'] ?? ''
                                 ) ?>"
-                                required>
+                                required
+                            >
 
                         </div>
 
                     </div>
 
 
-                    <!-- BARIS 3 -->
+                    <!-- ==========================================
+                         BARIS 3
+                    =========================================== -->
+
                     <div class="row">
 
+
                         <!-- NIP -->
+
                         <div class="col-md-6 mb-3">
 
                             <label class="form-label fw-semibold">
                                 NIP
                             </label>
+
 
                             <input
                                 type="text"
@@ -174,17 +231,20 @@
                                 value="<?= old(
                                     'nip',
                                     $korsda['nip'] ?? ''
-                                ) ?>">
+                                ) ?>"
+                            >
 
                         </div>
 
 
-                        <!-- Email -->
+                        <!-- EMAIL -->
+
                         <div class="col-md-6 mb-3">
 
                             <label class="form-label fw-semibold">
                                 Email
                             </label>
+
 
                             <input
                                 type="email"
@@ -193,22 +253,29 @@
                                 value="<?= old(
                                     'email',
                                     $korsda['email'] ?? ''
-                                ) ?>">
+                                ) ?>"
+                            >
 
                         </div>
 
                     </div>
 
 
-                    <!-- BARIS 4 -->
+                    <!-- ==========================================
+                         BARIS 4
+                    =========================================== -->
+
                     <div class="row">
 
-                        <!-- No HP -->
+
+                        <!-- NO HP -->
+
                         <div class="col-md-6 mb-3">
 
                             <label class="form-label fw-semibold">
                                 No. HP
                             </label>
+
 
                             <input
                                 type="text"
@@ -217,21 +284,25 @@
                                 value="<?= old(
                                     'no_hp',
                                     $korsda['no_hp'] ?? ''
-                                ) ?>">
+                                ) ?>"
+                            >
 
                         </div>
 
 
-                        <!-- Status -->
+                        <!-- STATUS -->
+
                         <div class="col-md-6 mb-3">
 
                             <label class="form-label fw-semibold">
                                 Status
                             </label>
 
+
                             <select
                                 name="status"
-                                class="form-select">
+                                class="form-select"
+                            >
 
                                 <option
                                     value="Aktif"
@@ -240,11 +311,11 @@
                                         $korsda['status'] ?? 'Aktif'
                                     ) == 'Aktif'
                                         ? 'selected'
-                                        : '' ?>>
-
+                                        : '' ?>
+                                >
                                     Aktif
-
                                 </option>
+
 
                                 <option
                                     value="Nonaktif"
@@ -253,10 +324,9 @@
                                         $korsda['status'] ?? ''
                                     ) == 'Nonaktif'
                                         ? 'selected'
-                                        : '' ?>>
-
+                                        : '' ?>
+                                >
                                     Nonaktif
-
                                 </option>
 
                             </select>
@@ -266,49 +336,72 @@
                     </div>
 
 
-                    <!-- ALAMAT -->
+                    <!-- ==========================================
+                         ALAMAT
+                    =========================================== -->
+
                     <div class="mb-3">
 
                         <label class="form-label fw-semibold">
                             Alamat
                         </label>
 
+
                         <textarea
                             name="alamat"
                             rows="3"
-                            class="form-control"><?= old(
-                                'alamat',
-                                $korsda['alamat'] ?? ''
-                            ) ?></textarea>
+                            class="form-control"
+                        ><?= old(
+                            'alamat',
+                            $korsda['alamat'] ?? ''
+                        ) ?></textarea>
 
                     </div>
 
 
-                    <!-- FOTO -->
+                    <!-- ==========================================
+                         FOTO
+                    =========================================== -->
+
                     <div class="mb-3">
 
                         <label class="form-label fw-semibold">
                             Foto
                         </label>
 
+
                         <input
                             type="file"
                             name="foto"
                             class="form-control"
-                            accept="image/png,image/jpeg,image/jpg">
+                            accept="image/png,image/jpeg,image/jpg"
+                        >
+
 
                         <small class="text-muted">
+
                             Kosongkan jika tidak ingin mengganti foto.
+
                         </small>
 
                     </div>
 
 
-                    <!-- FOTO SAAT INI -->
+                    <!-- ==========================================
+                         FOTO SAAT INI
+                    =========================================== -->
+
                     <?php
+
                     $foto = $korsda['foto'] ?? '';
-                    $fotoPath = FCPATH . 'uploads/korsda/' . $foto;
+
+                    $fotoPath =
+                        FCPATH .
+                        'uploads/korsda/' .
+                        $foto;
+
                     ?>
+
 
                     <?php if (
                         !empty($foto) &&
@@ -322,6 +415,7 @@
                                 Foto Saat Ini
                             </label>
 
+
                             <div>
 
                                 <img
@@ -332,7 +426,11 @@
                                     height="120"
                                     class="img-thumbnail"
                                     style="object-fit: cover;"
-                                    alt="<?= esc($korsda['nama'] ?? 'Foto KORSDA') ?>">
+                                    alt="<?= esc(
+                                        $korsda['nama'] ??
+                                        'Foto KORSDA'
+                                    ) ?>"
+                                >
 
                             </div>
 
@@ -341,27 +439,38 @@
                     <?php endif; ?>
 
 
-                    <!-- TOMBOL -->
+                    <!-- ==========================================
+                         TOMBOL
+                    =========================================== -->
+
                     <div class="text-end mt-3">
 
                         <button
-                            type="reset"
-                            class="btn btn-light">
+                            <a
+                    href="<?= base_url('admin/korsda/wilayah') ?>"
+                    class="btn btn-secondary"
+                >
 
-                            Reset
+                    <i class="bi bi-x-circle me-1"></i>
+                    Batal
+
+                </a>
 
                         </button>
 
+
                         <button
                             type="submit"
-                            class="btn btn-primary">
+                            class="btn btn-primary"
+                        >
 
-                            <i class="bi bi-save"></i>
+                            <i class="bi bi-save me-1"></i>
                             Simpan Perubahan
 
                         </button>
 
                     </div>
+
 
                 </form>
 
@@ -369,26 +478,9 @@
 
         </div>
 
-
-        <!-- KEMBALI -->
-        <div class="mt-3">
-
-            <button
-                type="button"
-                class="btn btn-kembali"
-                onclick="window.location.href='<?= base_url(
-                    'admin/korsda/dashboard'
-                ) ?>'">
-
-                <i class="bi bi-arrow-left me-2"></i>
-                Kembali
-
-            </button>
-
-        </div>
-
-    </div>
+    </main>
 
 </div>
+
 
 <?= $this->include('admin/layout/footer') ?>

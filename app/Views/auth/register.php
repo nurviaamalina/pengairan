@@ -75,6 +75,16 @@
                 required>
         </div>
 
+        <div class="form-group">
+            <label for="role">Daftar Sebagai</label>
+
+        <select name="role" id="role" class="form-control role-select" required>
+            <option value="">-- Pilih Role --</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+     </select>
+</div>
+
         <button type="submit">
             Daftar
         </button>

@@ -7,23 +7,25 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
         <div class="container-fluid">
 
             <!-- Judul -->
-            <div class="page-header">
+<div class="user-page-header">
 
-                <div>
-                    <h3>Tambah Kegiatan</h3>
-                    <p>Tambahkan kegiatan baru ke dalam website.</p>
-                </div>
+    <div>
+        <h3>
+            <i class="bi bi-plus-circle me-2"></i>
+            Tambah Kegiatan
+        </h3>
 
-                <a href="<?= base_url('admin/kegiatan') ?>" class="btn btn-kembaliberita">
-                    <i class="bi bi-arrow-left"></i> Kembali
-                </a>
+        <p>
+            Tambahkan kegiatan baru ke dalam website.
+        </p>
+    </div>
 
-            </div>
+</div>
 
             <!-- Card Form -->
             <div class="card shadow-sm border-0 rounded-4">

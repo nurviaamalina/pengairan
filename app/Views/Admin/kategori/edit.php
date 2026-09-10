@@ -1,57 +1,115 @@
 <?= $this->include('Admin/layout/header'); ?>
+
+<div class="wrapper">
+
+```
+<!-- SIDEBAR -->
 <?= $this->include('Admin/layout/sidebar'); ?>
 
-<div class="content-wrapper">
+<!-- MAIN CONTENT -->
+<main class="content-wrapper">
 
-    <div class="page-header">
+    <!-- HEADER HALAMAN -->
+    <div class="user-page-header">
 
-        <h2>Edit Kategori Dokumen</h2>
+    <div>
+        <h3>
+            <i class="bi bi-pencil-square me-2"></i>
+            Edit Kategori
+        </h3>
 
+        <p>
+            Perbarui informasi kategori dokumen.
+        </p>
     </div>
 
-    <div class="card">
 
-        <form action="<?= base_url('admin/kategori/update/'.$kategori['id']); ?>" method="post">
+</div>
 
-            <?= csrf_field(); ?>
 
-            <div class="form-group">
+    <!-- FORM EDIT -->
+    <div class="container-fluid">
 
-                <label>Nama Kategori</label>
+        <div class="card shadow">
 
-                <input
-                    type="text"
-                    name="nama_kategori"
-                    class="form-control"
-                    value="<?= esc($kategori['nama_kategori']); ?>"
-                    required>
+            <div class="card-body">
+
+                <form
+                    action="<?= base_url('admin/kategori/update/' . $kategori['id']) ?>"
+                    method="post"
+                >
+
+                    <?= csrf_field(); ?>
+
+
+                    <!-- NAMA KATEGORI -->
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nama Kategori
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nama_kategori"
+                            class="form-control"
+                            value="<?= esc($kategori['nama_kategori']); ?>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- SLUG -->
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Slug
+                        </label>
+
+                        <input
+                            type="text"
+                            name="slug"
+                            class="form-control"
+                            value="<?= esc($kategori['slug']); ?>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+                    <div class="text-end">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+
+                            <i class="fa fa-save"></i>
+                            Update
+
+                        </button>
+
+                        <a
+                            href="<?= base_url('admin/kategori'); ?>"
+                            class="btn btn-danger"
+                        >
+                            Batal
+                        </a>
+
+                    </div>
+
+                </form>
 
             </div>
 
-            <div class="form-group">
-
-                <label>Slug</label>
-
-                <input
-                    type="text"
-                    name="slug"
-                    class="form-control"
-                    value="<?= esc($kategori['slug']); ?>"
-                    required>
-
-            </div>
-
-            <button type="submit" class="btn btn-success">
-                Update
-            </button>
-
-            <a href="<?= base_url('admin/kategori'); ?>" class="btn btn-secondary">
-                Kembali
-            </a>
-
-        </form>
+        </div>
 
     </div>
+
+</main>
+```
 
 </div>
 

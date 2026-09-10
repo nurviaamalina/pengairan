@@ -4,32 +4,25 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
         <div class="container-fluid">
 
             <!-- HEADER -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="user-page-header">
 
-                <div>
-                    <h2 class="fw-bold mb-1">
-                        Tambah Profil KORSDA
-                    </h2>
+    <div>
+        <h3>
+            Tambah Profil KORSDA
+        </h3>
 
-                    <p class="text-muted mb-0">
-                        Tambahkan profil Koordinator Pengelola Sumber Daya Air
-                    </p>
-                </div>
+        <p>
+            Tambahkan profil Koordinator Pengelola Sumber Daya Air
+        </p>
+    </div>
 
-                <a
-                    href="<?= base_url('admin/korsda/profil_korsda') ?>"
-                    class="btn btn-secondary"
-                >
-                    <i class="bi bi-arrow-left"></i>
-                    Kembali
-                </a>
+</div>
 
-            </div>
 
 
             <!-- ERROR -->

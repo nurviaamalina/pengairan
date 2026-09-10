@@ -6,21 +6,23 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+   <main class="content-wrapper">
 
         <div class="container-fluid">
 
             <!-- Judul -->
-           <div class="page-header">
+           <div class="user-page-header">
 
     <div>
-        <h3>Tambah Berita</h3>
-        <p>Tambahkan berita baru ke dalam website.</p>
-    </div>
+        <h3>
+            <i class="bi bi-plus-circle me-2"></i>
+            Tambah Berita
+        </h3>
 
-    <a href="<?= base_url('admin/berita') ?>" class="btn btn-kembaliberita">
-        <i class="bi bi-arrow-left"></i> Kembali
-    </a>
+        <p>
+            Tambahkan berita baru ke dalam website.
+        </p>
+    </div>
 
 </div>
 

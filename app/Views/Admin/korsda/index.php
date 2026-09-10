@@ -4,23 +4,31 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+   <main class="content-wrapper">
+<div class="user-page-header">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3>
+            Profil KORSDA
+        </h3>
 
-            <div>
-                <h4 class="fw-bold mb-1">Data KORSDA</h4>
-                <small class="text-muted">
-                    Kelola seluruh data KORSDA yang akan ditampilkan pada website.
-                </small>
-            </div>
+        <p>
+            Kelola profil setiap KORSDA.
+        </p>
+    </div>
 
-            <a href="<?= base_url('admin/korsda/create') ?>" class="btn btn-tambah">
-                <i class="bi bi-plus-circle"></i>
-                Tambah KORSDA
-            </a>
+    <div>
+        <a href="<?= base_url('admin/korsda/profil_korsda/create') ?>"
+           class="btn btn-primary">
 
-        </div>
+            <i class="bi bi-plus-circle me-1"></i>
+            Tambah Profil
+
+        </a>
+    </div>
+
+</div>
+
 
         <?php if (session()->getFlashdata('success')) : ?>
             <div class="alert alert-success">

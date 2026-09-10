@@ -6,23 +6,26 @@
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 p-4 bg-light">
+    <main class="content-wrapper">
 
         <div class="container-fluid">
 
             <!-- Judul -->
-            <div class="page-header">
+<div class="user-page-header">
 
-                <div>
-                    <h3>Edit Feed Instagram</h3>
-                    <p>Perbarui data feed Instagram yang sudah ada.</p>
-                </div>
+    <div>
+        <h3>
+            <i class="bi bi-pencil-square me-2"></i>
+            Edit Feed Instagram
+        </h3>
 
-                <a href="<?= base_url('admin/instagram') ?>" class="btn btn-kembaliberita">
-                    <i class="bi bi-arrow-left"></i> Kembali
-                </a>
+        <p>
+            Perbarui data feed Instagram yang sudah ada.
+        </p>
+    </div>
 
-            </div>
+
+</div>
 
             <!-- Card Form -->
             <div class="card shadow-sm border-0 rounded-4">

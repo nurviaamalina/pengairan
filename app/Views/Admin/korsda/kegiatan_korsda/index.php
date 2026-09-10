@@ -1,27 +1,32 @@
 <?= $this->include('admin/layout/header') ?>
 
-<div class="d-flex min-vh-100">
+<div class="d-flex">
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 d-flex flex-column bg-light">
+    <main class="content-wrapper">
 
         <div class="container-fluid py-4">
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <!-- ==========================================
+                 HEADER HALAMAN
+            =========================================== -->
+
+            <div class="user-page-header">
 
                 <div>
-                    <h2 class="fw-bold mb-1">
+                    <h3>
                         Data Kegiatan KORSDA
-                    </h2>
+                    </h3>
 
-                    <p class="text-muted mb-0">
-                        Kelola data kegiatan dan dokumentasi KORSDA.
+                    <p>
+                        Kelola kegiatan masing-masing KORSDA
                     </p>
                 </div>
 
                 <div class="d-flex gap-2">
 
+                    <!-- IMPORT -->
                     <a
                         href="<?= base_url('admin/korsda/kegiatan/import') ?>"
                         class="btn btn-success"
@@ -30,11 +35,12 @@
                         Import
                     </a>
 
+                    <!-- TAMBAH -->
                     <a
                         href="<?= base_url('admin/korsda/kegiatan/create') ?>"
                         class="btn btn-primary"
                     >
-                        <i class="bi bi-plus-lg me-1"></i>
+                        <i class="bi bi-plus-circle me-1"></i>
                         Tambah Kegiatan
                     </a>
 
@@ -43,7 +49,9 @@
             </div>
 
 
-            <!-- FLASH SUCCESS -->
+            <!-- ==========================================
+                 FLASH MESSAGE SUCCESS
+            =========================================== -->
 
             <?php if (session()->getFlashdata('success')) : ?>
 
@@ -68,7 +76,9 @@
             <?php endif; ?>
 
 
-            <!-- FLASH ERROR -->
+            <!-- ==========================================
+                 FLASH MESSAGE ERROR
+            =========================================== -->
 
             <?php if (session()->getFlashdata('error')) : ?>
 
@@ -93,6 +103,10 @@
             <?php endif; ?>
 
 
+            <!-- ==========================================
+                 CARD DATA KEGIATAN
+            =========================================== -->
+
             <div class="card border-0 shadow-sm">
 
                 <div class="card-body">
@@ -100,6 +114,10 @@
                     <div class="table-responsive">
 
                         <table class="table align-middle">
+
+                            <!-- ============================
+                                 TABLE HEADER
+                            ============================= -->
 
                             <thead>
 
@@ -134,6 +152,10 @@
                             </thead>
 
 
+                            <!-- ============================
+                                 TABLE BODY
+                            ============================= -->
+
                             <tbody>
 
                                 <?php if (!empty($kegiatan)) : ?>
@@ -142,24 +164,38 @@
 
                                         <tr>
 
+                                            <!-- NOMOR -->
                                             <td>
                                                 <?= $no + 1 ?>
                                             </td>
 
 
+                                            <!-- GAMBAR -->
                                             <td>
 
                                                 <?php
+
+                                                /*
+                                                 * Lokasi thumbnail baru
+                                                 */
                                                 $gambarPathBaru =
                                                     FCPATH .
                                                     'uploads/Kegiatan/thumbnail/' .
                                                     ($item['gambar'] ?? '');
 
+
+                                                /*
+                                                 * Lokasi gambar lama
+                                                 */
                                                 $gambarPathLama =
                                                     FCPATH .
                                                     'uploads/kegiatan/' .
                                                     ($item['gambar'] ?? '');
 
+
+                                                /*
+                                                 * Tentukan URL gambar
+                                                 */
                                                 if (
                                                     !empty($item['gambar']) &&
                                                     file_exists($gambarPathBaru)
@@ -188,12 +224,15 @@
                                                         base_url(
                                                             'assets/img/no-image.png'
                                                         );
+
                                                 }
+
                                                 ?>
+
 
                                                 <img
                                                     src="<?= $gambarUrl ?>"
-                                                    alt="<?= esc($item['judul']) ?>"
+                                                    alt="<?= esc($item['judul'] ?? 'Kegiatan') ?>"
                                                     style="
                                                         width:75px;
                                                         height:55px;
@@ -205,48 +244,59 @@
                                             </td>
 
 
+                                            <!-- WILAYAH -->
                                             <td>
 
                                                 <strong>
+
                                                     <?= esc(
-                                                        $item['nama_wilayah']
-                                                        ?? '-'
+                                                        $item['nama_wilayah'] ?? '-'
                                                     ) ?>
+
                                                 </strong>
 
                                             </td>
 
 
+                                            <!-- JUDUL -->
                                             <td>
 
                                                 <strong>
+
                                                     <?= esc(
-                                                        $item['judul']
+                                                        $item['judul'] ?? '-'
                                                     ) ?>
+
                                                 </strong>
 
                                             </td>
 
 
+                                            <!-- TANGGAL -->
                                             <td>
 
-                                                <?= !empty($item['tanggal'])
-                                                    ? date(
+                                                <?php if (!empty($item['tanggal'])) : ?>
+
+                                                    <?= date(
                                                         'd/m/Y',
-                                                        strtotime(
-                                                            $item['tanggal']
-                                                        )
-                                                    )
-                                                    : '-'
-                                                ?>
+                                                        strtotime($item['tanggal'])
+                                                    ) ?>
+
+                                                <?php else : ?>
+
+                                                    -
+
+                                                <?php endif; ?>
 
                                             </td>
 
 
+                                            <!-- AKSI -->
                                             <td>
 
                                                 <div class="d-flex gap-1">
 
+                                                    <!-- EDIT -->
                                                     <a
                                                         href="<?= base_url(
                                                             'admin/korsda/kegiatan/edit/' .
@@ -255,10 +305,13 @@
                                                         class="btn btn-sm btn-warning"
                                                         title="Edit"
                                                     >
+
                                                         <i class="bi bi-pencil"></i>
+
                                                     </a>
 
 
+                                                    <!-- HAPUS -->
                                                     <a
                                                         href="<?= base_url(
                                                             'admin/korsda/kegiatan/delete/' .
@@ -270,7 +323,9 @@
                                                             'Yakin ingin menghapus kegiatan ini beserta seluruh dokumentasinya?'
                                                         )"
                                                     >
+
                                                         <i class="bi bi-trash"></i>
+
                                                     </a>
 
                                                 </div>
@@ -281,7 +336,12 @@
 
                                     <?php endforeach; ?>
 
+
                                 <?php else : ?>
+
+                                    <!-- ============================
+                                         DATA KOSONG
+                                    ============================= -->
 
                                     <tr>
 
@@ -289,7 +349,9 @@
                                             colspan="6"
                                             class="text-center py-5 text-muted"
                                         >
+
                                             Belum ada data kegiatan KORSDA.
+
                                         </td>
 
                                     </tr>
@@ -309,8 +371,9 @@
         </div>
 
 
-        <?= $this->include('admin/layout/footer') ?>
-
-    </div>
+    </main>
 
 </div>
+
+
+<?= $this->include('admin/layout/footer') ?>

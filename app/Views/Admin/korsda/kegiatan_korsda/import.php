@@ -1,26 +1,32 @@
 <?= $this->include('admin/layout/header') ?>
 
-<div class="d-flex min-vh-100">
+<div class="d-flex">
 
     <?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 d-flex flex-column bg-light">
+    <main class="content-wrapper">
 
         <div class="container-fluid py-4">
 
-            <div class="mb-4">
+            <!-- HEADER -->
+            <div class="user-page-header mb-4">
 
-                <h2 class="fw-bold">
-                    Import Kegiatan KORSDA
-                </h2>
+                <div>
 
-                <p class="text-muted">
-                    Import data kegiatan menggunakan Excel dan dokumentasi ZIP.
-                </p>
+                    <h3>
+                        Import Kegiatan KORSDA
+                    </h3>
+
+                    <p>
+                        Import data kegiatan menggunakan Excel dan dokumentasi ZIP.
+                    </p>
+
+                </div>
 
             </div>
 
 
+            <!-- ERROR -->
             <?php if (session()->getFlashdata('error')) : ?>
 
                 <div class="alert alert-danger alert-dismissible fade show">
@@ -44,6 +50,7 @@
             <?php endif; ?>
 
 
+            <!-- SUCCESS -->
             <?php if (session()->getFlashdata('success')) : ?>
 
                 <div class="alert alert-success alert-dismissible fade show">
@@ -67,6 +74,7 @@
             <?php endif; ?>
 
 
+            <!-- FORM IMPORT -->
             <div class="card border-0 shadow-sm">
 
                 <div class="card-body p-4">
@@ -83,12 +91,14 @@
 
 
                         <!-- KORSDA -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
+
                                 KORSDA
+
                                 <span class="text-danger">*</span>
+
                             </label>
 
                             <select
@@ -109,9 +119,11 @@
                                             ? 'selected'
                                             : '' ?>
                                     >
+
                                         <?= esc(
                                             $item['nama_wilayah']
                                         ) ?>
+
                                     </option>
 
                                 <?php endforeach; ?>
@@ -119,19 +131,24 @@
                             </select>
 
                             <small class="text-muted">
-                                Semua kegiatan dalam Excel akan dimasukkan ke KORSDA yang dipilih.
+
+                                Semua kegiatan dalam Excel akan
+                                dimasukkan ke KORSDA yang dipilih.
+
                             </small>
 
                         </div>
 
 
                         <!-- EXCEL -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
+
                                 File Excel
+
                                 <span class="text-danger">*</span>
+
                             </label>
 
                             <input
@@ -150,12 +167,14 @@
 
 
                         <!-- ZIP -->
-
                         <div class="mb-4">
 
                             <label class="form-label fw-semibold">
+
                                 File ZIP Dokumentasi
+
                                 <span class="text-danger">*</span>
+
                             </label>
 
                             <input
@@ -167,19 +186,24 @@
                             >
 
                             <small class="text-muted">
-                                ZIP dapat memiliki folder pembungkus sebelum folder Kegiatan.
+
+                                ZIP dapat memiliki folder pembungkus
+                                sebelum folder Kegiatan.
+
                             </small>
 
                         </div>
 
 
                         <!-- INFORMASI -->
-
                         <div class="alert alert-info">
 
                             <h5 class="fw-bold">
+
                                 <i class="bi bi-info-circle me-2"></i>
+
                                 Format Excel
+
                             </h5>
 
                             <p>
@@ -210,6 +234,7 @@
                             <h6 class="fw-bold mt-3">
                                 Struktur ZIP
                             </h6>
+
 
 <pre class="mb-0">GAMBAR KEGIATAN KORSDA/
 └── Kegiatan/
@@ -244,7 +269,6 @@
 
 
                         <!-- BUTTON -->
-
                         <div class="d-flex gap-2">
 
                             <a
@@ -253,8 +277,11 @@
                                 ) ?>"
                                 class="btn btn-secondary"
                             >
+
                                 <i class="bi bi-arrow-left me-1"></i>
+
                                 Kembali
+
                             </a>
 
 
@@ -265,11 +292,15 @@
                                     'Yakin ingin melakukan import?'
                                 )"
                             >
+
                                 <i class="bi bi-upload me-1"></i>
+
                                 Mulai Import
+
                             </button>
 
                         </div>
+
 
                     </form>
 
@@ -279,9 +310,8 @@
 
         </div>
 
-
-        <?= $this->include('admin/layout/footer') ?>
-
-    </div>
+    </main>
 
 </div>
+
+<?= $this->include('admin/layout/footer') ?>

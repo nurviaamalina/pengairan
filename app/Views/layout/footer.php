@@ -78,8 +78,23 @@
                         <h6>PROFIL</h6>
 
                         <ul>
-                            <li><a href="<?= site_url('tentang-kami') ?>#">Visi Misi</a></li>
-                            <li><a href="<?= site_url('tentang-kami') ?>">Struktur</a></li><li>
+                            <li>
+    <a href="<?= site_url('tentang-kami') ?>#sejarah-singkat">
+        Sejarah Singkat
+    </a>
+</li>
+
+<li>
+    <a href="<?= site_url('tentang-kami') ?>#visi-misi">
+        Visi Misi
+    </a>
+</li>
+
+<li>
+    <a href="<?= site_url('tentang-kami') ?>#struktur-organisasi">
+        Struktur
+    </a>
+</li>
 
                         </ul>
 

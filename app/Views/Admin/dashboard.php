@@ -1,10 +1,12 @@
 <?= $this->include('admin/layout/header') ?>
 
-<div class="d-flex min-vh-100">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-    <?= $this->include('admin/layout/sidebar') ?>
+<?= $this->include('admin/layout/sidebar') ?>
 
-    <div class="content flex-grow-1 d-flex flex-column bg-light">
+<main class="content-wrapper">
+
+    <div class="dashboard-content">
 
         <!-- Isi Dashboard -->
         <div class="p-4 flex-grow-1">
@@ -86,54 +88,254 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
 
-const map = L.map('map');
+    const dataGIS = <?= json_encode(
+        $gis ?? [],
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+    ) ?>;
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    attribution:'© OpenStreetMap'
-}).addTo(map);
+    const map = L.map('map', {
+        scrollWheelZoom: true,
+        touchZoom: true,
+        doubleClickZoom: true,
+        dragging: true,
+        zoomControl: true
+    }).setView(
+        [-8.2192, 114.3691],
+        10
+    );
 
-let bounds = [];
 
-<?php foreach($gis as $row): ?>
+    // =====================================================
+    // BASE MAP
+    // =====================================================
 
-    <?php if(!empty($row['latitude']) && !empty($row['longitude'])): ?>
+    L.tileLayer(
+        'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        {
+            maxZoom: 20,
+            subdomains: [
+                'mt0',
+                'mt1',
+                'mt2',
+                'mt3'
+            ],
+            attribution: 'Google Maps'
+        }
+    ).addTo(map);
 
-        var marker = L.marker([
-            <?= $row['latitude'] ?>,
-            <?= $row['longitude'] ?>
-        ]).addTo(map);
 
-        marker.bindPopup(`
-            <strong><?= esc($row['nama_lokasi']) ?></strong><br>
-            Kecamatan : <?= esc($row['nama_kecamatan']) ?><br>
+    // =====================================================
+    // SIMPAN SEMUA LAYER
+    // =====================================================
 
-            <?php if(!empty($row['keterangan'])): ?>
-                <?= esc($row['keterangan']) ?>
-            <?php endif; ?>
-        `);
+    const layers = [];
 
-        bounds.push([
-            <?= $row['latitude'] ?>,
-            <?= $row['longitude'] ?>
-        ]);
 
-    <?php endif; ?>
+    // =====================================================
+    // LOAD GEOJSON
+    // =====================================================
 
-<?php endforeach; ?>
+    const promises = dataGIS.map(function (item) {
 
-if(bounds.length > 0){
+        if (!item.file_geojson) {
+            return Promise.resolve();
+        }
 
-    map.fitBounds(bounds,{
-        padding:[30,30]
+
+        const geojsonUrl =
+            "<?= base_url('uploads/wilayah/') ?>" +
+            item.file_geojson;
+
+
+        return fetch(geojsonUrl)
+
+            .then(function (response) {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        'GeoJSON tidak ditemukan: ' +
+                        geojsonUrl
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(function (geojson) {
+
+                const layer = L.geoJSON(
+                    geojson,
+                    {
+
+                        style: function () {
+
+                            return {
+                                color: '#3388ff',
+                                weight: 4,
+                                opacity: 0.9,
+                                fillColor: '#3388ff',
+                                fillOpacity: 0.20
+                            };
+
+                        },
+
+
+                        pointToLayer:
+                            function (feature, latlng) {
+
+                                return L.circleMarker(
+                                    latlng,
+                                    {
+                                        radius: 7,
+                                        fillColor: '#3388ff',
+                                        color: '#ffffff',
+                                        weight: 2,
+                                        fillOpacity: 0.9
+                                    }
+                                );
+
+                            },
+
+
+                        onEachFeature:
+                            function (
+                                feature,
+                                layer
+                            ) {
+
+                                const properties =
+                                    feature.properties || {};
+
+
+                                const nama =
+                                    properties.nama ||
+                                    properties.nama_lokasi ||
+                                    item.nama_wilayah ||
+                                    'Infrastruktur Pengairan';
+
+
+                                const kategori =
+                                    properties.kategori ||
+                                    item.keterangan ||
+                                    '-';
+
+
+                                layer.bindPopup(`
+
+                                    <div
+                                        style="
+                                            min-width:220px;
+                                        "
+                                    >
+
+                                        <h6 class="fw-bold">
+                                            ${nama}
+                                        </h6>
+
+                                        <hr>
+
+                                        <b>
+                                            Kecamatan
+                                        </b>
+
+                                        <br>
+
+                                        ${item.nama_kecamatan ?? '-'}
+
+                                        <br><br>
+
+                                        <b>
+                                            Kategori
+                                        </b>
+
+                                        <br>
+
+                                        ${kategori}
+
+                                        <br><br>
+
+                                        <b>
+                                            Keterangan
+                                        </b>
+
+                                        <br>
+
+                                        ${item.keterangan ?? '-'}
+
+                                    </div>
+
+                                `);
+
+                            }
+
+                    }
+                );
+
+
+                layer.addTo(map);
+
+                layers.push(layer);
+
+            })
+
+            .catch(function (error) {
+
+                console.error(
+                    'Gagal memuat GeoJSON:',
+                    error
+                );
+
+            });
+
     });
 
-}else{
 
-    map.setView([-8.2192,114.3691],11);
+    // =====================================================
+    // FIT KE SEMUA DATA
+    // =====================================================
 
-}
+    Promise.all(promises)
+        .then(function () {
 
+            if (layers.length === 0) {
+                return;
+            }
+
+
+            const group =
+                L.featureGroup(layers);
+
+
+            if (group.getBounds().isValid()) {
+
+                map.fitBounds(
+                    group.getBounds(),
+                    {
+                        padding: [30, 30]
+                    }
+                );
+
+            }
+
+        });
+
+
+    // =====================================================
+    // FIX LEAFLET SIZE
+    // =====================================================
+
+    setTimeout(function () {
+
+        map.invalidateSize();
+
+    }, 500);
+
+});
 </script>
 
                 </div>
@@ -226,14 +428,10 @@ if(bounds.length > 0){
                     </div>
 
                 </div>
-
             </div>
-
+            
         </div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-        <!-- Footer -->
-        <?= $this->include('admin/layout/footer') ?>
-
-    </div>
-
-</div>
+<?= $this->include('admin/layout/footer') ?>
