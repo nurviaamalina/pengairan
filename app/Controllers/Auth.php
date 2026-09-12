@@ -15,6 +15,7 @@ class Auth extends BaseController
         $this->user = new UserModel();
     }
 
+
     /*
     |--------------------------------------------------------------------------
     | LOGIN
@@ -25,6 +26,7 @@ class Auth extends BaseController
     {
         // Jika sudah login
         if (session()->get('login')) {
+
             if (session()->get('role') === 'admin') {
                 return redirect()->to('/admin/dashboard');
             }
@@ -34,6 +36,13 @@ class Auth extends BaseController
 
         return view('auth/login');
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | PROSES LOGIN
+    |--------------------------------------------------------------------------
+    */
 
     public function prosesLogin()
     {
@@ -72,6 +81,7 @@ class Auth extends BaseController
                 ->with('error', 'Role pengguna tidak valid.');
         }
 
+
         /*
         |--------------------------------------------------------------------------
         | LOGIN BERHASIL
@@ -87,6 +97,7 @@ class Auth extends BaseController
             'role'     => $user['role'],
             'login'    => true
         ]);
+
 
         /*
         |--------------------------------------------------------------------------
@@ -110,16 +121,16 @@ class Auth extends BaseController
             set_cookie([
                 'name'     => 'remember_token',
                 'value'    => $token,
-                'expire'   => 60 * 60 * 24 * 30, // 30 hari
+                'expire'   => 60 * 60 * 24 * 30,
                 'httponly' => true,
-                'secure'   => false, // localhost
+                'secure'   => false,
                 'samesite' => 'Lax',
                 'path'     => '/'
             ]);
 
         } else {
 
-            // Hapus cookie jika Remember Me tidak dicentang
+            // Hapus cookie
             delete_cookie('remember_token');
 
             // Hapus token dari database
@@ -127,6 +138,7 @@ class Auth extends BaseController
                 'remember_token' => null
             ]);
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -156,13 +168,16 @@ class Auth extends BaseController
             return false;
         }
 
+        // Hash token dari cookie
         $tokenHash = hash('sha256', $token);
 
+        // Cari user
         $user = $this->user
             ->where('remember_token', $tokenHash)
             ->first();
 
         if (!$user) {
+
             delete_cookie('remember_token');
 
             return false;
@@ -170,11 +185,13 @@ class Auth extends BaseController
 
         // Pastikan role valid
         if (!in_array($user['role'], ['admin', 'user'])) {
+
             delete_cookie('remember_token');
 
             return false;
         }
 
+        // Regenerasi session
         session()->regenerate();
 
         session()->set([
@@ -197,7 +214,9 @@ class Auth extends BaseController
 
     public function register()
     {
+        // Jika sudah login
         if (session()->get('login')) {
+
             if (session()->get('role') === 'admin') {
                 return redirect()->to('/admin/dashboard');
             }
@@ -209,12 +228,19 @@ class Auth extends BaseController
     }
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | PROSES REGISTER
+    |--------------------------------------------------------------------------
+    */
+
     public function prosesRegister()
     {
         $username = trim($this->request->getPost('username'));
         $email    = trim($this->request->getPost('email'));
         $password = $this->request->getPost('password');
         $role     = $this->request->getPost('role');
+
 
         /*
         |--------------------------------------------------------------------------
@@ -223,34 +249,60 @@ class Auth extends BaseController
         */
 
         if (!in_array($role, ['admin', 'user'])) {
+
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Role tidak valid.');
         }
 
+
         /*
         |--------------------------------------------------------------------------
-        | VALIDASI INPUT
+        | VALIDASI USERNAME
         |--------------------------------------------------------------------------
         */
 
         if ($username === '') {
+
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Username wajib diisi.');
         }
 
-        if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+        /*
+        |--------------------------------------------------------------------------
+        | VALIDASI EMAIL
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            $email === '' ||
+            !filter_var($email, FILTER_VALIDATE_EMAIL)
+        ) {
+
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Email tidak valid.');
         }
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | VALIDASI PASSWORD
+        |--------------------------------------------------------------------------
+        */
+
         if ($password === '' || strlen($password) < 6) {
+
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Password minimal 6 karakter.');
+                ->with(
+                    'error',
+                    'Password minimal 6 karakter.'
+                );
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -263,10 +315,15 @@ class Auth extends BaseController
             ->first();
 
         if ($existingUsername) {
+
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Username sudah digunakan.');
+                ->with(
+                    'error',
+                    'Username sudah digunakan.'
+                );
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -279,10 +336,15 @@ class Auth extends BaseController
             ->first();
 
         if ($existingEmail) {
+
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Email sudah digunakan.');
+                ->with(
+                    'error',
+                    'Email sudah digunakan.'
+                );
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -297,11 +359,16 @@ class Auth extends BaseController
                 ->countAllResults();
 
             if ($jumlahAdmin >= 5) {
+
                 return redirect()->back()
                     ->withInput()
-                    ->with('error', 'Jumlah akun admin sudah mencapai batas.');
+                    ->with(
+                        'error',
+                        'Jumlah akun admin sudah mencapai batas.'
+                    );
             }
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -312,7 +379,10 @@ class Auth extends BaseController
         $this->user->insert([
             'username'       => $username,
             'email'          => $email,
-            'password'       => password_hash($password, PASSWORD_DEFAULT),
+            'password'       => password_hash(
+                $password,
+                PASSWORD_DEFAULT
+            ),
             'role'           => $role,
             'remember_token' => null,
             'reset_token'    => null,
@@ -321,8 +391,18 @@ class Auth extends BaseController
             'otp_expires'    => null
         ]);
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | REDIRECT LOGIN
+        |--------------------------------------------------------------------------
+        */
+
         return redirect()->to('/login')
-            ->with('success', 'Registrasi berhasil. Silakan login.');
+            ->with(
+                'success',
+                'Registrasi berhasil. Silakan login.'
+            );
     }
 
 
@@ -338,6 +418,7 @@ class Auth extends BaseController
 
         // Hapus remember token dari database
         if ($userId) {
+
             $this->user->update($userId, [
                 'remember_token' => null
             ]);
@@ -350,7 +431,10 @@ class Auth extends BaseController
         session()->destroy();
 
         return redirect()->to('/login')
-            ->with('success', 'Anda berhasil logout.');
+            ->with(
+                'success',
+                'Anda berhasil logout.'
+            );
     }
 
 
@@ -362,7 +446,7 @@ class Auth extends BaseController
 
     public function lupaPassword()
     {
-        // Kalau sudah login tidak perlu reset password
+        // Kalau sudah login
         if (session()->get('login')) {
             return redirect()->to('/admin/dashboard');
         }
@@ -381,6 +465,7 @@ class Auth extends BaseController
     {
         $email = trim($this->request->getPost('email'));
 
+
         /*
         |--------------------------------------------------------------------------
         | VALIDASI EMAIL
@@ -388,16 +473,25 @@ class Auth extends BaseController
         */
 
         if ($email === '') {
+
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Email wajib diisi.');
+                ->with(
+                    'error',
+                    'Email wajib diisi.'
+                );
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Format email tidak valid.');
+                ->with(
+                    'error',
+                    'Format email tidak valid.'
+                );
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -410,10 +504,15 @@ class Auth extends BaseController
             ->first();
 
         if (!$user) {
+
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Email tidak ditemukan.');
+                ->with(
+                    'error',
+                    'Email tidak ditemukan.'
+                );
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -421,7 +520,10 @@ class Auth extends BaseController
         |--------------------------------------------------------------------------
         */
 
-        $otp = (string) random_int(100000, 999999);
+        $otp = (string) random_int(
+            100000,
+            999999
+        );
 
         // OTP berlaku selama 10 menit
         $otpExpires = date(
@@ -429,55 +531,63 @@ class Auth extends BaseController
             time() + (10 * 60)
         );
 
+
         /*
         |--------------------------------------------------------------------------
-        | SIMPAN OTP
+        | SIMPAN OTP KE DATABASE
         |--------------------------------------------------------------------------
         */
 
-        $updated = $this->user->update($user['id'], [
-            'otp_code'    => $otp,
-            'otp_expires' => $otpExpires
-        ]);
+        $updated = $this->user->update(
+            $user['id'],
+            [
+                'otp_code'    => $otp,
+                'otp_expires' => $otpExpires
+            ]
+        );
 
         if (!$updated) {
+
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Kode OTP gagal dibuat.');
+                ->with(
+                    'error',
+                    'Kode OTP gagal dibuat.'
+                );
         }
+
 
         /*
         |--------------------------------------------------------------------------
-        | KIRIM EMAIL MELALUI MAILTRAP
+        | GMAIL SMTP
         |--------------------------------------------------------------------------
         */
 
         $emailService = \Config\Services::email();
 
-        $emailService->setTo($user['email']);
+        // Email penerima
+        $emailService->setTo(
+            $user['email']
+        );
 
-        /*
-        |--------------------------------------------------------------------------
-        | SET FROM
-        |--------------------------------------------------------------------------
-        |
-        | Sebaiknya email ini sesuai dengan sender yang sudah
-        | diverifikasi di Mailtrap.
-        |
-        */
-
+        // Email pengirim
         $emailService->setFrom(
             env('email.fromEmail'),
-            env('email.fromName', 'Dinas Penggairan Banyuwangi')
+            env(
+                'email.fromName',
+                'Dinas Pengairan Banyuwangi'
+            )
         );
 
+        // Subject email
         $emailService->setSubject(
-            'Kode OTP Reset Kata Sandi - Dinas Penggairan Banyuwangi'
+            'Kode OTP Reset Kata Sandi'
         );
+
 
         /*
         |--------------------------------------------------------------------------
-        | ISI EMAIL
+        | ISI EMAIL - HANYA INFORMASI OTP
         |--------------------------------------------------------------------------
         */
 
@@ -488,45 +598,37 @@ class Auth extends BaseController
             <title>Kode OTP</title>
         </head>
 
-        <body style="font-family: Arial, sans-serif;">
+        <body style="
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        ">
 
-            <h2>Reset Kata Sandi</h2>
+            <p>Kode OTP Anda:</p>
 
-            <p>Halo <strong>' . esc($user['username']) . '</strong>,</p>
-
-            <p>
-                Kami menerima permintaan untuk mereset kata sandi akun Anda.
-            </p>
-
-            <p>
-                Gunakan kode OTP berikut:
-            </p>
-
-            <h1 style="letter-spacing: 8px;">
+            <h1 style="
+                font-size: 40px;
+                letter-spacing: 10px;
+                margin: 20px 0;
+            ">
                 ' . $otp . '
             </h1>
 
             <p>
-                Kode OTP ini berlaku selama <strong>10 menit</strong>.
-            </p>
-
-            <p>
-                Jika Anda tidak meminta reset kata sandi,
-                abaikan email ini.
-            </p>
-
-            <br>
-
-            <p>
-                Salam,<br>
-                <strong>Dinas Penggairan Banyuwangi</strong>
+                Kode OTP berlaku selama
+                <strong>10 menit</strong>.
             </p>
 
         </body>
         </html>
         ';
 
+        // Gunakan format HTML
+        $emailService->setMailType('html');
+
+        // Masukkan isi email
         $emailService->setMessage($message);
+
 
         /*
         |--------------------------------------------------------------------------
@@ -536,23 +638,27 @@ class Auth extends BaseController
 
         if (!$emailService->send()) {
 
-            // Jika gagal dikirim, hapus OTP
-            $this->user->update($user['id'], [
-                'otp_code'    => null,
-                'otp_expires' => null
-            ]);
+            // Hapus OTP jika email gagal dikirim
+            $this->user->update(
+                $user['id'],
+                [
+                    'otp_code'    => null,
+                    'otp_expires' => null
+                ]
+            );
 
             return redirect()->back()
                 ->withInput()
                 ->with(
                     'error',
-                    'Email OTP gagal dikirim. Periksa konfigurasi Mailtrap.'
+                    'Email OTP gagal dikirim. Periksa konfigurasi Gmail SMTP.'
                 );
         }
 
+
         /*
         |--------------------------------------------------------------------------
-        | SIMPAN ID USER KE SESSION
+        | SIMPAN SESSION RESET PASSWORD
         |--------------------------------------------------------------------------
         */
 
@@ -560,6 +666,13 @@ class Auth extends BaseController
             'reset_user_id' => $user['id'],
             'otp_verified'  => false
         ]);
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | KE HALAMAN VERIFIKASI OTP
+        |--------------------------------------------------------------------------
+        */
 
         return redirect()->to('/verifikasi-otp')
             ->with(
@@ -577,9 +690,12 @@ class Auth extends BaseController
 
     public function verifikasiOtp()
     {
-        $resetUserId = session()->get('reset_user_id');
+        $resetUserId = session()->get(
+            'reset_user_id'
+        );
 
         if (!$resetUserId) {
+
             return redirect()->to('/lupa-password')
                 ->with(
                     'error',
@@ -599,9 +715,12 @@ class Auth extends BaseController
 
     public function prosesVerifikasiOtp()
     {
-        $resetUserId = session()->get('reset_user_id');
+        $resetUserId = session()->get(
+            'reset_user_id'
+        );
 
         if (!$resetUserId) {
+
             return redirect()->to('/lupa-password')
                 ->with(
                     'error',
@@ -609,7 +728,10 @@ class Auth extends BaseController
                 );
         }
 
-        $otp = trim($this->request->getPost('otp'));
+        $otp = trim(
+            $this->request->getPost('otp')
+        );
+
 
         /*
         |--------------------------------------------------------------------------
@@ -618,11 +740,16 @@ class Auth extends BaseController
         */
 
         if ($otp === '') {
+
             return redirect()->back()
-                ->with('error', 'Kode OTP wajib diisi.');
+                ->with(
+                    'error',
+                    'Kode OTP wajib diisi.'
+                );
         }
 
         if (!preg_match('/^[0-9]{6}$/', $otp)) {
+
             return redirect()->back()
                 ->with(
                     'error',
@@ -630,15 +757,19 @@ class Auth extends BaseController
                 );
         }
 
+
         /*
         |--------------------------------------------------------------------------
         | CARI USER
         |--------------------------------------------------------------------------
         */
 
-        $user = $this->user->find($resetUserId);
+        $user = $this->user->find(
+            $resetUserId
+        );
 
         if (!$user) {
+
             session()->remove([
                 'reset_user_id',
                 'otp_verified'
@@ -651,19 +782,22 @@ class Auth extends BaseController
                 );
         }
 
+
         /*
         |--------------------------------------------------------------------------
-        | CEK OTP
+        | CEK OTP TERSEDIA
         |--------------------------------------------------------------------------
         */
 
         if (empty($user['otp_code'])) {
+
             return redirect()->back()
                 ->with(
                     'error',
                     'Kode OTP tidak tersedia. Silakan minta OTP baru.'
                 );
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -676,10 +810,14 @@ class Auth extends BaseController
             strtotime($user['otp_expires']) < time()
         ) {
 
-            $this->user->update($user['id'], [
-                'otp_code'    => null,
-                'otp_expires' => null
-            ]);
+            // Hapus OTP yang sudah expired
+            $this->user->update(
+                $user['id'],
+                [
+                    'otp_code'    => null,
+                    'otp_expires' => null
+                ]
+            );
 
             return redirect()->to('/lupa-password')
                 ->with(
@@ -688,16 +826,27 @@ class Auth extends BaseController
                 );
         }
 
+
         /*
         |--------------------------------------------------------------------------
-        | BANDINKAN OTP
+        | BANDINGKAN OTP
         |--------------------------------------------------------------------------
         */
 
-        if (!hash_equals((string) $user['otp_code'], $otp)) {
+        if (
+            !hash_equals(
+                (string) $user['otp_code'],
+                $otp
+            )
+        ) {
+
             return redirect()->back()
-                ->with('error', 'Kode OTP salah.');
+                ->with(
+                    'error',
+                    'Kode OTP salah.'
+                );
         }
+
 
         /*
         |--------------------------------------------------------------------------
@@ -709,6 +858,13 @@ class Auth extends BaseController
             'reset_user_id' => $user['id'],
             'otp_verified'  => true
         ]);
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | KE RESET PASSWORD
+        |--------------------------------------------------------------------------
+        */
 
         return redirect()->to('/reset-password')
             ->with(
@@ -726,8 +882,14 @@ class Auth extends BaseController
 
     public function resetPassword()
     {
-        $resetUserId = session()->get('reset_user_id');
-        $otpVerified = session()->get('otp_verified');
+        $resetUserId = session()->get(
+            'reset_user_id'
+        );
+
+        $otpVerified = session()->get(
+            'otp_verified'
+        );
+
 
         /*
         |--------------------------------------------------------------------------
@@ -735,7 +897,11 @@ class Auth extends BaseController
         |--------------------------------------------------------------------------
         */
 
-        if (!$resetUserId || !$otpVerified) {
+        if (
+            !$resetUserId ||
+            !$otpVerified
+        ) {
+
             return redirect()->to('/lupa-password')
                 ->with(
                     'error',
@@ -743,7 +909,9 @@ class Auth extends BaseController
                 );
         }
 
-        return view('auth/reset-password');
+        return view(
+            'auth/reset-password'
+        );
     }
 
 
@@ -755,8 +923,14 @@ class Auth extends BaseController
 
     public function prosesResetPassword()
     {
-        $resetUserId = session()->get('reset_user_id');
-        $otpVerified = session()->get('otp_verified');
+        $resetUserId = session()->get(
+            'reset_user_id'
+        );
+
+        $otpVerified = session()->get(
+            'otp_verified'
+        );
+
 
         /*
         |--------------------------------------------------------------------------
@@ -764,7 +938,11 @@ class Auth extends BaseController
         |--------------------------------------------------------------------------
         */
 
-        if (!$resetUserId || !$otpVerified) {
+        if (
+            !$resetUserId ||
+            !$otpVerified
+        ) {
+
             return redirect()->to('/lupa-password')
                 ->with(
                     'error',
@@ -772,8 +950,21 @@ class Auth extends BaseController
                 );
         }
 
-        $password        = $this->request->getPost('password');
-        $confirmPassword = $this->request->getPost('confirm_password');
+
+        /*
+        |--------------------------------------------------------------------------
+        | AMBIL PASSWORD
+        |--------------------------------------------------------------------------
+        */
+
+        $password = $this->request->getPost(
+            'password'
+        );
+
+        $confirmPassword = $this->request->getPost(
+            'confirm_password'
+        );
+
 
         /*
         |--------------------------------------------------------------------------
@@ -782,11 +973,16 @@ class Auth extends BaseController
         */
 
         if ($password === '') {
+
             return redirect()->back()
-                ->with('error', 'Password wajib diisi.');
+                ->with(
+                    'error',
+                    'Password wajib diisi.'
+                );
         }
 
         if (strlen($password) < 6) {
+
             return redirect()->back()
                 ->with(
                     'error',
@@ -795,6 +991,7 @@ class Auth extends BaseController
         }
 
         if ($confirmPassword === '') {
+
             return redirect()->back()
                 ->with(
                     'error',
@@ -803,6 +1000,7 @@ class Auth extends BaseController
         }
 
         if ($password !== $confirmPassword) {
+
             return redirect()->back()
                 ->with(
                     'error',
@@ -810,15 +1008,19 @@ class Auth extends BaseController
                 );
         }
 
+
         /*
         |--------------------------------------------------------------------------
         | CARI USER
         |--------------------------------------------------------------------------
         */
 
-        $user = $this->user->find($resetUserId);
+        $user = $this->user->find(
+            $resetUserId
+        );
 
         if (!$user) {
+
             session()->remove([
                 'reset_user_id',
                 'otp_verified'
@@ -831,29 +1033,35 @@ class Auth extends BaseController
                 );
         }
 
+
         /*
         |--------------------------------------------------------------------------
         | UPDATE PASSWORD
         |--------------------------------------------------------------------------
         */
 
-        $updated = $this->user->update($user['id'], [
+        $updated = $this->user->update(
+            $user['id'],
+            [
 
-            'password' => password_hash(
-                $password,
-                PASSWORD_DEFAULT
-            ),
+                // Password baru
+                'password' => password_hash(
+                    $password,
+                    PASSWORD_DEFAULT
+                ),
 
-            // OTP hanya boleh digunakan sekali
-            'otp_code'    => null,
-            'otp_expires' => null,
+                // OTP hanya dapat digunakan sekali
+                'otp_code'    => null,
+                'otp_expires' => null,
 
-            // Token Remember Me lama juga dicabut
-            'remember_token' => null
+                // Cabut Remember Me lama
+                'remember_token' => null
+            ]
+        );
 
-        ]);
 
         if (!$updated) {
+
             return redirect()->back()
                 ->with(
                     'error',
@@ -861,13 +1069,17 @@ class Auth extends BaseController
                 );
         }
 
+
         /*
         |--------------------------------------------------------------------------
         | HAPUS REMEMBER ME COOKIE
         |--------------------------------------------------------------------------
         */
 
-        delete_cookie('remember_token');
+        delete_cookie(
+            'remember_token'
+        );
+
 
         /*
         |--------------------------------------------------------------------------
@@ -879,6 +1091,7 @@ class Auth extends BaseController
             'reset_user_id',
             'otp_verified'
         ]);
+
 
         /*
         |--------------------------------------------------------------------------

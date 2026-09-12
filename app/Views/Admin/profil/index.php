@@ -302,10 +302,14 @@
     </div>
 
     <div class="mb-4">
-                <a href="<?= base_url('admin/profil/create') ?>" class="btn btn-primary">
-                    <i class="bi bi-plus-circle me-2"></i>
-                    Tambah Profil
-                </a>
+
+                <a href="<?= base_url('admin/profil/create') ?>"
+           class="btn btn-tambah">
+
+            <i class="bi bi-plus-circle me-1"></i>
+            Tambah Profil
+
+        </a>
             </div>
 
 </div>

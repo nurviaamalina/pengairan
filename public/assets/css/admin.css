@@ -2268,3 +2268,1077 @@ input[type=file]{
     }
 
 }
+
+
+/* =========================================================
+   PROFESSIONAL GOVERNMENT / DINAS UI
+   Override layer — placed at the end to preserve existing
+   HTML, Bootstrap and application classes.
+   ========================================================= */
+
+:root {
+    --dinas-primary: #173f7a;
+    --dinas-primary-dark: #102f61;
+    --dinas-primary-soft: #edf4ff;
+    --dinas-accent: #f5b400;
+    --dinas-success: #198754;
+    --dinas-danger: #dc3545;
+    --dinas-text: #1f2937;
+    --dinas-muted: #6b7280;
+    --dinas-border: #e5e7eb;
+    --dinas-bg: #f4f6f9;
+    --dinas-white: #ffffff;
+    --dinas-radius: 14px;
+    --dinas-shadow: 0 4px 18px rgba(15, 38, 70, .07);
+    --dinas-shadow-hover: 0 10px 28px rgba(15, 38, 70, .12);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body,
+html {
+    background: var(--dinas-bg);
+    color: var(--dinas-text);
+    font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ---------- GLOBAL ---------- */
+
+a {
+    transition: color .2s ease, background-color .2s ease,
+                border-color .2s ease, box-shadow .2s ease,
+                transform .2s ease;
+}
+
+button,
+.btn,
+.form-control,
+.form-select {
+    transition: all .2s ease;
+}
+
+::selection {
+    background: rgba(23, 63, 122, .18);
+    color: var(--dinas-primary-dark);
+}
+
+/* ---------- TOPBAR ---------- */
+
+.topbar {
+    height: 68px;
+    padding: 0 28px;
+    background: rgba(255,255,255,.97);
+    border-bottom: 1px solid #e8ecf2;
+    box-shadow: 0 2px 14px rgba(15, 38, 70, .06);
+    backdrop-filter: blur(10px);
+}
+
+.logo-area {
+    gap: 13px;
+}
+
+.logo-area img {
+    width: 44px;
+    height: 44px;
+}
+
+.logo-text h5 {
+    color: var(--dinas-primary);
+    font-size: 15px;
+    letter-spacing: .15px;
+    line-height: 1.25;
+}
+
+.logo-text p {
+    color: #7b8491;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.topbar-right {
+    gap: 12px;
+}
+
+.logout {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 13px;
+    border-radius: 9px;
+    color: #4b5563;
+    font-weight: 600;
+}
+
+.logout:hover {
+    background: #f3f6fb;
+    color: var(--dinas-primary);
+}
+
+/* ---------- SIDEBAR ---------- */
+
+.sidebar {
+    top: 68px;
+    width: 250px;
+    height: calc(100vh - 68px);
+    padding: 22px 13px;
+    background: #fff;
+    border-right: 1px solid #e8ecf2;
+    box-shadow: 2px 0 16px rgba(15, 38, 70, .045);
+}
+
+.sidebar-menu li {
+    margin-bottom: 4px;
+}
+
+.menu-link {
+    min-height: 44px;
+    padding: 10px 14px;
+    gap: 11px;
+    color: #465064;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 550;
+}
+
+.menu-link:hover {
+    background: #f3f6fb;
+    color: var(--dinas-primary);
+    transform: translateX(2px);
+}
+
+.menu-link.active {
+    background: var(--dinas-primary);
+    color: #fff;
+    box-shadow: 0 5px 14px rgba(23,63,122,.20);
+}
+
+.menu-link.active:hover {
+    background: var(--dinas-primary-dark);
+    color: #fff;
+}
+
+.menu-link i {
+    width: 20px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.submenu {
+    margin: 2px 0;
+    padding: 8px 12px 8px 45px;
+    color: #667085;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.submenu:hover {
+    color: var(--dinas-primary);
+    background: #f6f8fb;
+}
+
+.submenu.active {
+    color: var(--dinas-primary);
+    background: var(--dinas-primary-soft);
+    border-left: 3px solid var(--dinas-primary);
+    padding-left: 42px;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+
+.content-wrapper {
+    margin-left: 250px;
+    padding-top: 68px;
+    width: calc(100% - 250px);
+    min-height: calc(100vh - 68px);
+    background: var(--dinas-bg);
+}
+
+.content,
+.main {
+    background: var(--dinas-bg);
+}
+
+.content {
+    padding: 32px;
+}
+
+.main {
+    padding: 32px;
+}
+
+/* ---------- PAGE HEADERS ---------- */
+
+.page-header,
+.user-page-header,
+.kategori-page-header {
+    margin-bottom: 24px;
+}
+
+.page-header h3,
+.user-page-header h3,
+.kategori-page-header h3,
+.page-title {
+    color: #17325f;
+    font-weight: 750;
+    letter-spacing: -.25px;
+}
+
+.page-header h3,
+.user-page-header h3 {
+    font-size: 24px;
+}
+
+.page-header p,
+.user-page-header p,
+.kategori-page-header p,
+.page-subtitle {
+    color: #7b8491;
+    font-size: 13px;
+}
+
+.user-page-header {
+    min-height: auto;
+    padding: 0 0 18px;
+    background: transparent;
+    border-bottom: 1px solid #e3e8ef;
+    box-shadow: none;
+}
+
+.kategori-page-header {
+    min-height: auto;
+    padding: 0 0 18px;
+    background: transparent;
+    border-bottom: 1px solid #e3e8ef;
+    box-shadow: none;
+}
+
+/* ---------- CARDS ---------- */
+
+.card,
+.user-card,
+.kegiatan-card,
+.kategori-container,
+.activity-card,
+.dokumen-container {
+    border: 1px solid var(--dinas-border);
+    border-radius: var(--dinas-radius);
+    box-shadow: var(--dinas-shadow);
+}
+
+.card,
+.user-card {
+    background: #fff;
+}
+
+.card:hover,
+.user-card:hover {
+    box-shadow: var(--dinas-shadow-hover);
+}
+
+.card-body {
+    padding: 28px;
+}
+
+/* ---------- BUTTONS ---------- */
+
+.btn-tambah,
+.btn-kategori-tambah,
+.btn-import-berita,
+.btn-import-kegiatan,
+.btn-kembaliberita,
+.btn-batalkegiatan {
+    min-height: 40px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.btn-tambah,
+.btn-kategori-tambah {
+    background: var(--dinas-primary);
+    color: #fff;
+    border: 1px solid var(--dinas-primary);
+}
+
+.btn-tambah:hover,
+.btn-kategori-tambah:hover {
+    background: var(--dinas-primary-dark);
+    color: #fff;
+    border-color: var(--dinas-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(23,63,122,.18);
+}
+
+.btn-import-berita,
+.btn-import-kegiatan,
+.btn-kembaliberita,
+.btn-batalkegiatan {
+    background: #fff;
+    color: var(--dinas-primary);
+    border: 1px solid #cbd5e1;
+}
+
+.btn-import-berita:hover,
+.btn-import-kegiatan:hover,
+.btn-kembaliberita:hover,
+.btn-batalkegiatan:hover {
+    background: #f5f8fc;
+    color: var(--dinas-primary-dark);
+    border-color: #aebbd0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15,38,70,.08);
+}
+
+.btn-simpanberita,
+.btn-simpankegiatan,
+.btn-import-kegiatan-submit,
+.btn-import-berita-submit {
+    background: var(--dinas-primary);
+    border-color: var(--dinas-primary);
+    border-radius: 9px;
+    font-weight: 650;
+}
+
+.btn-simpanberita:hover,
+.btn-simpankegiatan:hover,
+.btn-import-kegiatan-submit:hover,
+.btn-import-berita-submit:hover {
+    background: var(--dinas-primary-dark);
+    border-color: var(--dinas-primary-dark);
+}
+
+/* ---------- FORMS ---------- */
+
+.form-label {
+    margin-bottom: 7px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.form-control,
+.form-select {
+    min-height: 42px;
+    border: 1px solid #d5dbe5;
+    border-radius: 9px;
+    color: #273244;
+    background: #fff;
+    font-size: 14px;
+}
+
+.form-control::placeholder {
+    color: #a0a8b5;
+}
+
+.form-control:hover,
+.form-select:hover {
+    border-color: #b8c2d1;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--dinas-primary);
+    box-shadow: 0 0 0 3px rgba(23,63,122,.10);
+}
+
+textarea.form-control {
+    min-height: 120px;
+}
+
+/* ---------- TABLES ---------- */
+
+.table-responsive {
+    border-radius: 10px;
+}
+
+.kegiatan-table,
+.table-user,
+.korsda-table {
+    margin-bottom: 0;
+}
+
+.kegiatan-table thead,
+.table-user thead,
+.korsda-table thead {
+    background: #f7f9fc;
+}
+
+.kegiatan-table thead th,
+.table-user th,
+.korsda-table th {
+    padding: 13px 16px;
+    background: #f7f9fc;
+    color: #596579;
+    border-bottom: 1px solid #e3e8ef;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    white-space: nowrap;
+}
+
+.kegiatan-table td,
+.table-user td,
+.korsda-table td {
+    padding: 14px 16px;
+    color: #465064;
+    border-bottom: 1px solid #edf0f4;
+    font-size: 13px;
+}
+
+.kegiatan-table tbody tr,
+.table-user tbody tr,
+.korsda-table tbody tr {
+    transition: background .18s ease;
+}
+
+.kegiatan-table tbody tr:hover,
+.table-user tbody tr:hover,
+.korsda-table tbody tr:hover {
+    background: #f9fbfd;
+}
+
+.table-thumbnail {
+    width: 84px;
+    height: 60px;
+    border-radius: 8px;
+    border: 1px solid #e1e6ed;
+}
+
+/* ---------- USER MANAGEMENT ---------- */
+
+.user-content {
+    padding: 0;
+}
+
+.user-card {
+    padding: 22px;
+}
+
+.card-header-user {
+    margin-bottom: 18px;
+}
+
+.card-header-user h4 {
+    color: #263b65;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--dinas-primary);
+}
+
+.badge-role {
+    padding: 5px 11px;
+    border-radius: 7px;
+    font-size: 11px;
+}
+
+/* ---------- CATEGORY ---------- */
+
+.kategori-container {
+    padding: 24px;
+}
+
+.kategori-grid {
+    gap: 18px;
+}
+
+.kategori-card {
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 160px;
+    border-color: #e3e7ee;
+}
+
+.kategori-card:hover {
+    border-color: #c7d1df;
+    box-shadow: var(--dinas-shadow-hover);
+    transform: translateY(-3px);
+}
+
+.kategori-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 9px;
+    background: var(--dinas-primary-soft);
+}
+
+.kategori-icon i {
+    color: var(--dinas-primary);
+}
+
+.kategori-card-content h5 {
+    color: #243b63;
+    font-size: 16px;
+}
+
+/* ---------- KORSDA DASHBOARD ---------- */
+
+.korsda-dashboard-content {
+    padding: 32px;
+}
+
+.heading-label {
+    background: var(--dinas-primary-soft);
+    color: var(--dinas-primary);
+    border: 1px solid #dbe8fb;
+}
+
+.dashboard-heading h1 {
+    color: #17325f;
+    font-size: 30px;
+    letter-spacing: -.5px;
+}
+
+.dashboard-heading p {
+    color: #7b8491;
+}
+
+.btn-dashboard-back {
+    background: var(--dinas-primary);
+    border-radius: 9px;
+}
+
+.korsda-statistics {
+    gap: 16px;
+}
+
+.stat-card {
+    min-height: 250px;
+    padding: 24px 18px;
+    border-radius: 16px;
+    border: 1px solid var(--dinas-border);
+    box-shadow: var(--dinas-shadow);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--dinas-shadow-hover);
+}
+
+.stat-icon {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+
+.stat-title {
+    min-height: 42px;
+    color: #596579;
+    font-size: 14px;
+}
+
+.stat-number {
+    color: var(--dinas-primary);
+    font-size: 38px;
+}
+
+.activity-card {
+    border-radius: 16px;
+}
+
+.activity-header {
+    padding: 18px 22px;
+}
+
+.activity-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--dinas-primary-soft);
+    color: var(--dinas-primary);
+}
+
+.activity-title h3 {
+    font-size: 16px;
+}
+
+.korsda-table th {
+    padding: 13px 16px;
+}
+
+.korsda-table td {
+    padding: 14px 16px;
+}
+
+.status-active {
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-size: 10px;
+}
+
+/* ---------- DELETE / DANGER ---------- */
+
+.btn-delete,
+.kategori-btn-delete,
+.hapus {
+    transition: all .2s ease;
+}
+
+.btn-delete {
+    background: #fff3f3;
+}
+
+.btn-delete:hover,
+.kategori-btn-delete:hover,
+.hapus:hover {
+    box-shadow: 0 4px 10px rgba(220,53,69,.14);
+}
+
+/* ---------- INSTAGRAM ---------- */
+
+.btn-sync-instagram {
+    background: #374151;
+    padding: 8px 13px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.btn-sync-instagram:hover {
+    background: #1f2937;
+}
+
+/* ---------- FOOTER ---------- */
+
+.dashboard-footer {
+    padding: 16px 32px;
+    background: #fff;
+    border-top: 1px solid #e3e8ef;
+    color: #8a94a3;
+}
+
+/* ---------- SCROLLBAR ---------- */
+
+.sidebar,
+.table-responsive {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1200px) {
+    .content,
+    .main,
+    .korsda-dashboard-content {
+        padding: 28px;
+    }
+
+    .korsda-statistics {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .content-wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .sidebar {
+        /* Tetap aman untuk layout yang belum memiliki tombol
+           off-canvas; dapat diubah menjadi off-canvas nanti. */
+        width: 220px;
+    }
+
+    .content-wrapper {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+
+    .korsda-statistics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .topbar {
+        padding: 0 16px;
+    }
+
+    .logo-text p {
+        display: none;
+    }
+
+    .content-wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        width: 250px;
+        transition: left .25s ease;
+    }
+
+    .content,
+    .main,
+    .korsda-dashboard-content {
+        padding: 20px 16px;
+    }
+
+    .page-header,
+    .user-page-header,
+    .kategori-page-header,
+    .dashboard-heading {
+        align-items: flex-start;
+    }
+
+    .page-header h3,
+    .user-page-header h3,
+    .kategori-page-header h3 {
+        font-size: 21px;
+    }
+
+    .korsda-statistics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card {
+        min-height: 220px;
+    }
+
+    .dashboard-footer {
+        padding: 15px 20px;
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .topbar {
+        height: 62px;
+    }
+
+    .sidebar {
+        top: 62px;
+        height: calc(100vh - 62px);
+    }
+
+    .content-wrapper {
+        padding-top: 62px;
+        min-height: calc(100vh - 62px);
+    }
+
+    .topbar-right {
+        gap: 4px;
+    }
+
+    .logout {
+        padding: 8px;
+        font-size: 0;
+    }
+
+    .logout i {
+        margin: 0;
+        font-size: 17px;
+    }
+
+    .content,
+    .main,
+    .korsda-dashboard-content {
+        padding: 16px 12px;
+    }
+
+    .card-body,
+    .user-card,
+    .kategori-container {
+        padding: 18px;
+    }
+
+    .korsda-statistics {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        min-height: 205px;
+    }
+
+    .button-group,
+    .import-berita-actions,
+    .import-kegiatan-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button-group .btn,
+    .button-group a,
+    .import-berita-actions a,
+    .import-berita-actions button,
+    .import-kegiatan-actions a,
+    .import-kegiatan-actions button {
+        width: 100%;
+    }
+}
+/* =========================================
+   JARAK KONTEN DARI SIDEBAR
+   ========================================= */
+
+.content-wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.content,
+.main,
+.korsda-dashboard-content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Beri ruang tambahan pada card/container utama */
+.korsda-statistics,
+.activity-card,
+.kategori-container,
+.user-card,
+.kegiatan-card,
+.dokumen-container {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* =========================================
+   JARAK TOMBOL KEMBALI DARI FOOTER
+   ========================================= */
+
+.btn-dashboard-back,
+.btn-kembaliberita,
+.btn-batalkegiatan {
+    margin-bottom: 35px;
+}
+
+/* Jika tombol kembali berada di bagian bawah content */
+.content-wrapper {
+    padding-bottom: 45px;
+}
+
+/* Area tombol agar selalu punya ruang */
+.button-group {
+    margin-bottom: 30px;
+}
+
+/* Footer tidak terlalu menempel dengan isi halaman */
+.dashboard-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* =========================================
+   JARAK JUDUL DARI HEADER / TOPBAR
+   ========================================= */
+
+.content {
+    padding-top: 32px;
+}
+
+.main {
+    padding-top: 32px;
+}
+
+.korsda-dashboard-content {
+    padding-top: 32px;
+}
+
+/* Header/judul halaman */
+.page-header,
+.user-page-header,
+.kategori-page-header,
+.dashboard-heading {
+    margin-top: 8px;
+    margin-bottom: 28px;
+}
+
+/* Judul */
+.page-header h3,
+.user-page-header h3,
+.kategori-page-header h3,
+.dashboard-heading h1 {
+    margin-top: 0;
+}
+
+/* =========================================
+   TOMBOL TAMBAH — STANDARD ADMIN DINAS
+   ========================================= */
+
+.btn-tambah,
+.btn-kategori-tambah,
+.btn-tambahdata,
+.btn-add,
+.btn-create {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 42px;
+    padding: 10px 18px;
+
+    background: #173f7a;
+    color: #ffffff;
+
+    border: 1px solid #173f7a;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+/* ICON */
+.btn-tambah i,
+.btn-kategori-tambah i,
+.btn-tambahdata i,
+.btn-add i,
+.btn-create i {
+    font-size: 15px;
+    line-height: 1;
+}
+
+/* HOVER */
+.btn-tambah:hover,
+.btn-kategori-tambah:hover,
+.btn-tambahdata:hover,
+.btn-add:hover,
+.btn-create:hover {
+    background: #102f61;
+    border-color: #102f61;
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 14px rgba(23, 63, 122, .20);
+}
+
+/* ACTIVE */
+.btn-tambah:active,
+.btn-kategori-tambah:active,
+.btn-tambahdata:active,
+.btn-add:active,
+.btn-create:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* FOCUS */
+.btn-tambah:focus-visible,
+.btn-kategori-tambah:focus-visible,
+.btn-tambahdata:focus-visible,
+.btn-add:focus-visible,
+.btn-create:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(23, 63, 122, .15);
+}
+.btn-action {
+  height: 42px !important;
+  padding: 0 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* =========================================
+   TOMBOL SIMPAN — STANDARD ADMIN DINAS
+   ========================================= */
+
+.btn-simpanberita,
+.btn-simpankegiatan,
+.btn-simpan,
+.btn-save,
+.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 42px;
+    padding: 10px 20px;
+
+    background: #173f7a;
+    color: #ffffff;
+
+    border: 1px solid #173f7a;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+/* ICON */
+.btn-simpanberita i,
+.btn-simpankegiatan i,
+.btn-simpan i,
+.btn-save i,
+.btn-submit i {
+    font-size: 15px;
+    line-height: 1;
+}
+
+/* HOVER */
+.btn-simpanberita:hover,
+.btn-simpankegiatan:hover,
+.btn-simpan:hover,
+.btn-save:hover,
+.btn-submit:hover {
+    background: #102f61;
+    border-color: #102f61;
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 14px rgba(23, 63, 122, .20);
+}
+
+/* ACTIVE */
+.btn-simpanberita:active,
+.btn-simpankegiatan:active,
+.btn-simpan:active,
+.btn-save:active,
+.btn-submit:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* FOCUS */
+.btn-simpanberita:focus-visible,
+.btn-simpankegiatan:focus-visible,
+.btn-simpan:focus-visible,
+.btn-save:focus-visible,
+.btn-submit:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(23, 63, 122, .15);
+}
+

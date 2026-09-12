@@ -216,7 +216,7 @@ body::before {
 ===================================================== */
 
 .btn-login:hover {
-    background: #f4b400;
+    background: #c59b27;
 
     color: #fff;
 
@@ -250,7 +250,7 @@ body::before {
 
 
 .back-login a:hover {
-    color: #f4b400;
+    color: #dfb235;
 
     text-decoration: underline;
 }

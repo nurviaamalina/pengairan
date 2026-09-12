@@ -15,38 +15,35 @@
 
         <div class="search-wrapper">
 
-            <div class="search-box">
+<div class="search-box">
+    <label for="searchWilayah">CARI WILAYAH</label>
 
-                <label>Cari Wilayah</label>
+    <div class="search-input">
+        <i class="fas fa-search search-icon"></i>
 
-                <div class="input-group">
+        <input
+            type="text"
+            id="searchWilayah"
+            placeholder="Cari Nama Wilayah..."
+            autocomplete="off"
+        >
+    </div>
+</div>
 
-                    <input type="text"
-       id="searchWilayah"
-       class="form-control"
-       placeholder="Cari Nama Wilayah...">
 
-                    <button class="btn-search">
-                        <i class="fas fa-search"></i>
-                    </button>
+    <div class="gis-btn">
 
-                </div>
+        <a
+            href="<?= site_url('gis') ?>"
+            class="btn btn-primary"
+        >
+            <i class="fas fa-map-marked-alt"></i>
+            GIS Kabupaten Banyuwangi
+        </a>
 
-            </div>
+    </div>
 
-            <div class="gis-btn">
-
-                <a href="<?= site_url('gis') ?>" class="btn btn-primary">
-
-                    <i class="fas fa-map-marked-alt"></i>
-
-                    GIS Kabupaten Banyuwangi
-
-                </a>
-
-            </div>
-
-        </div>
+</div>
 
         <div class="row mt-5" id="korsdaContainer">
 

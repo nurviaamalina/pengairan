@@ -145,25 +145,12 @@
             <?php endif; ?>
 
             <!-- Tombol Kembali -->
-            <a href="<?= base_url('dokumen') ?>" class="btn-card-kembali">
-
-                <div class="dokumen-card card-kembali">
-
-                    <div class="dokumen-left">
-
-                        <div class="folder-icon">
-                            <i class="fas fa-arrow-left"></i>
-                        </div>
-
-                        <div class="dokumen-title">
-                            Kembali ke Daftar Dokumen
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </a>
+<div class="back-wrapper mt-4">
+    <a href="<?= base_url('dokumen') ?>" class="btn-kembali">
+        <i class="fas fa-arrow-left"></i>
+        Kembali
+    </a>
+</div>
 
         </div>
 

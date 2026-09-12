@@ -1,269 +1,311 @@
-/* ===========================
-   HERO TENTANG KAMI
-=========================== */
+/* ==========================================================================
+   HALAMAN TENTANG KAMI (PROFIL KEDINASAN)
+   Dinas Pekerjaan Umum Pengairan Kabupaten Banyuwangi
+   ========================================================================== */
 
-.hero-about{
-    height: 450px;
-    background: #0f2864;
+/* =====================================
+   HERO TENTANG KAMI
+   ===================================== */
+
+.hero-about {
+    background: linear-gradient(145deg, #071838 0%, #0c2657 60%, #143d75 100%);
+    padding: 100px 50px 180px; 
+    text-align: center;
+    color: #ffffff;
     position: relative;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
-
-.hero-about::before{
+.hero-about::before {
     content: "";
     position: absolute;
-    left: -80px;
-    top: 20px;
-    width: 380px;
-    height: 380px;
-    /* background: url('../images/batik.png') no-repeat center; */
+    left: -40px;
+    top: -10px;
+    width: 150px;
+    height: 150px;
     background-size: contain;
-    opacity: .12;
+    opacity: 0.05;
+    pointer-events: none;
 }
 
-.hero-about h1{
+/* Pengaturan Motif Batik agar pas di banner kecil */
+.hero-about .motif-kiri {
+    max-height: 350px; /* Dinaikkan dari 50px agar pas dengan banner yang tinggi */
+    width: auto;
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.15; /* Diturunkan opacity-nya agar tidak menutupi/mengganggu teks utama */
+}
+
+.hero-about h1 {
     color: #ffffff;
-    font-size: 72px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: 36px; /* Ukuran teks utama */
+    font-weight: 800;
+    letter-spacing: 0.5px;
     position: relative;
     z-index: 2;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.2;
 }
 
-.hero-about h1 span{
-    color: #f4b400;
+.hero-about h1 span {
+    color: #dfb235;
+    font-size: inherit; /* Menyamakan ukuran dengan h1 induknya (36px) */
+    display: inline;    /* Memastikan teks tetap sejajar secara horizontal */
 }
 
-/* ===========================
-   SEJARAH
-=========================== */
+/* =====================================
+   RESPONSIVE (UPDATE)
+   ===================================== */
 
-.sejarah-section{
-    background: #f5f5f5;
-    padding: 80px 0;
+@media (max-width: 768px) {
+    .hero-about {
+        padding: 25px 0;
+    }
+    
+    .hero-about h1 {
+        font-size: 20px;
+    }
+
+    .hero-about .motif-kiri {
+        display: none; /* Sembunyikan motif di HP agar teks tetap bersih */
+    }
+}
+/* =====================================
+   SEJARAH SINGKAT
+   ===================================== */
+
+.sejarah-section {
+    background: #f8fafc;
+    padding: 75px 0 85px;
     position: relative;
-    overflow: hidden;
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.section-title{
-    font-size: 48px;
-    font-weight: 700;
-    color: #102866;
-    margin-bottom: 30px;
-}
-
-.section-title span{
-    color: #dc8c09;
-}
-
-.content-card{
-    background: #ebebeb;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 6px 15px rgba(0,0,0,.15);
-}
-
-.content-card p{
-    text-align: justify;
-    line-height: 1.9;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-/* ===========================
-   VISI MISI
-=========================== */
-
-.visi-misi-section{
-    background: #f4b400;
-    padding: 70px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.visi-misi-section::after{
-    content: "";
-    position: absolute;
-    right: -40px;
-    bottom: -20px;
-    width: 250px;
-    height: 250px;
-    background: url('../images/batik.png') no-repeat center;
-    background-size: contain;
-    opacity: .18;
-}
-
-.vm-content{
-    position: relative;
-    z-index: 2;
-}
-
-.vm-content h3{
-    color: #102866;
-    font-size: 42px;
-    font-weight: 700;
+.section-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0a2558;
     margin-bottom: 25px;
+    letter-spacing: -0.01em;
 }
 
-.vm-content p{
+.section-title span {
+    color: #c59b27;
+}
+
+.content-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px 40px;
+    box-shadow: 0 4px 15px rgba(10, 37, 88, 0.06);
+    border: 1px solid #e2e8f0;
+}
+
+.content-card p {
+    text-align: justify;
+    line-height: 1.85;
+    margin-bottom: 15px;
+    color: #334155;
+    font-size: 15px;
+}
+
+/* =====================================
+   VISI & MISI (STANDAR RESMI)
+   ===================================== */
+
+.visi-misi-section {
+    background: #ffffff;
+    padding: 75px 0 85px;
+    position: relative;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.vm-content {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 35px;
+    height: 100%;
+    box-shadow: 0 2px 10px rgba(10, 37, 88, 0.04);
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid #0a2558;
+}
+
+.vm-content h3 {
+    color: #0a2558;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vm-content h3::after {
+    content: '';
+    display: block;
+    height: 2px;
+    flex: 1;
+    background: #e2e8f0;
+}
+
+.vm-content p {
     text-align: justify;
     line-height: 1.8;
-    color: #222;
+    color: #334155;
+    font-size: 15px;
 }
 
-.vm-content ol{
+.vm-content ol {
     padding-left: 20px;
+    margin: 0;
 }
 
-.vm-content ol li{
-    margin-bottom: 10px;
-    line-height: 1.7;
-    color: #222;
+.vm-content ol li {
+    margin-bottom: 12px;
+    line-height: 1.75;
+    color: #334155;
+    font-size: 15px;
 }
 
-/* ===========================
+/* =====================================
    STRUKTUR ORGANISASI
-=========================== */
+   ===================================== */
 
-.struktur-section{
-    background: #f5f5f5;
-    padding: 80px 0;
+.struktur-section {
+    background: #f8fafc;
+    padding: 75px 0 85px;
 }
 
-.section-title-center{
-    color: #102866;
-    font-size: 50px;
-    font-weight: 700;
-    margin-bottom: 10px;
+.section-title-center {
+    color: #0a2558;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 8px;
 }
 
-.section-title-center span{
-    color: #dc8c09;
+.section-title-center span {
+    color: #c59b27;
 }
 
-.sub-title{
-    font-size: 28px;
-    color: #333;
+.sub-title {
+    font-size: 17px;
+    color: #64748b;
     margin-bottom: 35px;
+    font-weight: 500;
 }
 
-.struktur-card{
-    background: #ebebeb;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 6px 15px rgba(0,0,0,.15);
-}
-
-.struktur-card img{
+.struktur-card {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(10, 37, 88, 0.06);
+    border: 1px solid #e2e8f0;
+    display: inline-block;
+    max-width: 1000px;
     width: 100%;
-    border-radius: 10px;
 }
 
-/* ===========================
-   BUTTON KEMBALI
-=========================== */
+.struktur-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
 
-.btn-section{
-    background: #f5f5f5;
+/* =====================================
+   TOMBOL KEMBALI
+   ===================================== */
+
+.btn-section {
+    background: #f8fafc;
     padding-bottom: 70px;
 }
 
-.btn-kembali{
-    display: inline-block;
-    background: #102866;
+.btn-kembali {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0a2558;
     color: #ffffff;
     text-decoration: none;
-    padding: 12px 30px;
+    padding: 10px 28px;
     border-radius: 8px;
     font-weight: 600;
-    transition: .3s;
+    font-size: 14.5px;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(10, 37, 88, 0.15);
 }
 
-.btn-kembali:hover{
-    background: #17377f;
+.btn-kembali:hover {
+    background: #071838;
     color: #ffffff;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10, 37, 88, 0.25);
 }
 
-/* ===========================
+/* =====================================
+   SMOOTH SCROLLING
+   ===================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+#sejarah-singkat,
+#visi-misi,
+#struktur-organisasi {
+    scroll-margin-top: 90px;
+}
+
+/* =====================================
    RESPONSIVE
-=========================== */
+   ===================================== */
+/* =====================================
+   RESPONSIVE (DESAIN RINGKAS)
+   ===================================== */
 
-@media (max-width: 992px){
-
-    .hero-about h1{
-        font-size: 56px;
+@media (max-width: 992px) {
+    .hero-about {
+        padding: 30px 0;
     }
 
-    .section-title{
-        font-size: 38px;
-    }
-
-    .section-title-center{
-        font-size: 40px;
-    }
-
-    .sub-title{
+    .hero-about h1 {
         font-size: 22px;
     }
-
-    .vm-content h3{
-        font-size: 32px;
+    
+    .section-title,
+    .section-title-center {
+        font-size: 26px;
     }
 }
 
-@media (max-width: 768px){
-
-    .hero-about{
-        height: 350px;
+@media (max-width: 768px) {
+    .hero-about {
+        min-height: auto; /* Hapus min-height 240px agar banner tetap tipis */
+        padding: 22px 0;
     }
-
-    .hero-about::before{
-        width: 250px;
-        height: 250px;
-        left: -60px;
-    }
-
-    .hero-about h1{
-        font-size: 42px;
-    }
-
-    .section-title{
-        font-size: 30px;
-        text-align: center;
-    }
-
-    .section-title-center{
-        font-size: 32px;
-    }
-
-    .sub-title{
+    
+    .hero-about h1 {
         font-size: 18px;
     }
 
-    .content-card{
-        padding: 25px;
+    .hero-about .motif-kiri {
+        display: none; /* Sembunyikan gambar motif di HP agar tidak mempertinggi banner */
     }
-
-    .vm-content h3{
-        font-size: 28px;
+    
+    .content-card,
+    .vm-content {
+        padding: 24px 20px;
     }
-
-    .visi-misi-section::after{
-        width: 180px;
-        height: 180px;
+    
+    .sub-title {
+        font-size: 15px;
     }
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-#sejarah,
-#visi-misi,
-#struktur{
-    scroll-margin-top:100px;
 }

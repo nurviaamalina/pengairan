@@ -247,7 +247,7 @@ body::before {
 
     cursor: pointer;
 
-    accent-color: #f4b400;
+    accent-color: #c59b27;
 }
 
 
@@ -266,7 +266,7 @@ body::before {
 }
 
 .login-options a:hover {
-    color: #f4b400;
+    color: #dfb235;
 
     text-decoration: underline;
 }
@@ -308,7 +308,7 @@ body::before {
 ===================================================== */
 
 .btn-login:hover {
-    background: #f4b400;
+    background: #c59b27;
 
     color: #fff;
 

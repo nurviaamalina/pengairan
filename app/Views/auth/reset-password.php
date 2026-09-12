@@ -2,99 +2,106 @@
 <html lang="id">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lupa Kata Sandi</title>
+    <title>Reset Kata Sandi - Dinas Penggairan</title>
 
-    <link rel="stylesheet"
-          href="<?= base_url('assets/css/auth.css') ?>">
-
+    <link rel="stylesheet" href="<?= base_url('assets/css/auth.css') ?>">
 </head>
 
 <body>
 
-<div class="login-box">
+    <div class="login-card">
 
-    <!-- JUDUL -->
-    <h1>LUPA KATA SANDI</h1>
+        <h1>RESET KATA SANDI</h1>
 
+        <!-- ERROR -->
+        <?php if (session()->getFlashdata('error')): ?>
 
-    <!-- PESAN ERROR -->
-    <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger">
+                <?= esc(session()->getFlashdata('error')) ?>
+            </div>
 
-        <div class="alert alert-danger">
-            <?= esc(session()->getFlashdata('error')) ?>
-        </div>
-
-    <?php endif; ?>
+        <?php endif; ?>
 
 
-    <!-- PESAN SUCCESS -->
-    <?php if (session()->getFlashdata('success')): ?>
+        <!-- SUCCESS -->
+        <?php if (session()->getFlashdata('success')): ?>
 
-        <div class="alert alert-success">
-            <?= esc(session()->getFlashdata('success')) ?>
-        </div>
+            <div class="alert alert-success">
+                <?= esc(session()->getFlashdata('success')) ?>
+            </div>
 
-    <?php endif; ?>
-
-
-    <!-- DESKRIPSI -->
-    <p class="forgot-description">
-        Masukkan email yang terdaftar pada akun Anda.
-        Kami akan mengirimkan kode OTP untuk
-        mengatur ulang kata sandi.
-    </p>
+        <?php endif; ?>
 
 
-    <!-- FORM -->
-    <form action="<?= base_url('proses-lupa-password') ?>"
-          method="post">
+        <!-- DESKRIPSI -->
+        <p class="forgot-description">
+            Silakan buat kata sandi baru untuk akun Anda.
+        </p>
 
-        <?= csrf_field() ?>
+
+        <!-- FORM RESET PASSWORD -->
+        <form
+            action="<?= base_url('proses-reset-password') ?>"
+            method="post"
+        >
+
+            <?= csrf_field() ?>
 
 
-        <!-- EMAIL -->
-        <div class="form-group">
+            <!-- PASSWORD BARU -->
+            <div class="form-group">
 
-            <label for="email">
-                Email
-            </label>
+                <label for="password">
+                    Password Baru
+                </label>
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Masukkan email"
-                value="<?= old('email') ?>"
-                required
-                autocomplete="email"
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Masukkan password baru"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- KONFIRMASI PASSWORD -->
+            <div class="form-group">
+
+                <label for="confirm_password">
+                    Konfirmasi Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirm_password"
+                    name="confirm_password"
+                    placeholder="Masukkan ulang password"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- BUTTON -->
+            <button
+                type="submit"
+                class="btn-login"
             >
+                Simpan Password
+            </button>
 
-        </div>
-
-
-        <!-- BUTTON -->
-        <button type="submit" class="btn-login">
-            Kirim Kode OTP
-        </button>
-
-    </form>
-
-
-    <!-- KEMBALI LOGIN -->
-    <div class="back-login">
-
-        <a href="<?= base_url('login') ?>">
-            ← Kembali ke Login
-        </a>
+        </form>
 
     </div>
-
-</div>
 
 </body>
 

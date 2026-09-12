@@ -30,13 +30,13 @@
         </p>
     </div>
 
-    <a href="<?= base_url('admin/dokumen/create/'.$kategori['slug']) ?>"
-       class="btn btn-primary">
+    <a href="<?= base_url('admin/dokumen/create') ?>"
+           class="btn btn-tambah">
 
-        <i class="fa fa-plus"></i>
-        Tambah Dokumen
+            <i class="bi bi-plus-circle me-1"></i>
+            Tambah Dokumen
 
-    </a>
+        </a>
 
 </div>
 

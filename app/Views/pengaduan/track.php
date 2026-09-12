@@ -11,10 +11,10 @@
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             flex-shrink: 0;
-            background: linear-gradient(135deg, #ffcf5a 0%, #f7b500 100%);
-            color: #0a1a3a;
+            background: #0a2558;
+            color: #ffffff;
             box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
@@ -28,11 +28,9 @@
             display: inline-block;
         }
 
-        /* pagination styles removed */
-
         .detail-row {
             display: none;
-            background: #f8f9fa;
+            background: #f8fafc;
         }
         .detail-row td {
             padding: 0;
@@ -43,79 +41,81 @@
             margin: 0 16px 16px;
             border-radius: 12px;
             background: #ffffff;
-            border: 1px solid #e7eaf0;
+            border: 1px solid #e2e8f0;
         }
         .detail-card h6 {
             margin-bottom: 0.75rem;
             font-size: 0.95rem;
             font-weight: 700;
+            color: #0a2558;
         }
         .detail-card p {
             margin-bottom: 0.5rem;
-            color: #495057;
+            color: #475569;
         }
         .btn-detail {
             padding: 0.35rem 0.75rem;
             font-size: 0.78rem;
         }
+
         /* ===== TOMBOL DENGAN BOX ===== */
         .btn-box {
             display: inline-block;
             padding: 8px 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 0.9rem;
             text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid #f7b500;
+            transition: all 0.25s ease;
+            border: 1px solid #0a2558;
             background: transparent;
-            color: #0a1a3a;
+            color: #0a2558;
         }
 
         .btn-box:hover {
-            background: #f7b500;
-            color: #0a1a3a;
+            background: #0a2558;
+            color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(247, 181, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(10, 37, 88, 0.2);
         }
 
         .btn-box-primary {
-            background: #f7b500;
-            border: 2px solid #f7b500;
-            color: #0a1a3a;
+            background: #0a2558;
+            border: 1px solid #0a2558;
+            color: #ffffff;
         }
 
         .btn-box-primary:hover {
-            background: #e0a200;
-            border-color: #e0a200;
-            color: #0a1a3a;
+            background: #071838;
+            border-color: #071838;
+            color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(247, 181, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(10, 37, 88, 0.2);
         }
 
         .btn-box-outline {
             background: transparent;
-            border: 2px solid #f7b500;
-            color: #0a1a3a;
+            border: 1px solid #0a2558;
+            color: #0a2558;
         }
 
         .btn-box-outline:hover {
-            background: #f7b500;
-            color: #0a1a3a;
+            background: #0a2558;
+            color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(247, 181, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(10, 37, 88, 0.2);
         }
     </style>
-    <div class="card p-4">
-        <h4>Lacak Pengaduan</h4>
+    <div class="card p-4 border-0 shadow-sm rounded-4" style="border: 1px solid #e2e8f0 !important;">
+        <h4 class="fw-bold" style="color: #0a2558;">Lacak Pengaduan</h4>
 
         <form action="<?= base_url('pengaduan/track') ?>" method="post" class="mb-4">
             <div class="mb-3">
-                <label for="query" class="form-label">Masukkan Kode Pelacakan atau Nama Pelapor</label>
-                <input type="text" name="query" id="query" class="form-control" value="<?= isset($query) ? esc($query) : '' ?>" placeholder="Contoh: AB12CD34 atau Nama Lengkap" required>
+                <label for="query" class="form-label fw-semibold text-secondary">Masukkan Kode Pelacakan atau Nama Pelapor</label>
+                <input type="text" name="query" id="query" class="form-control py-2" value="<?= isset($query) ? esc($query) : '' ?>" placeholder="Contoh: AB12CD34 atau Nama Lengkap" required>
             </div>
            <div class="mt-3">
-            <button class="btn btn-warning">Lacak</button>  <!-- Kuning -->
+            <button class="btn text-white px-4 py-2 fw-semibold" style="background: #0a2558; border-radius: 8px;">Lacak Status</button>
         </div>
         </form>
 

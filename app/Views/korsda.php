@@ -14,40 +14,22 @@
     <div class="container">
 
         <!-- Search -->
-        <div class="search-wrapper">
-
-            <div class="search-box">
-
-                <label>Cari Kecamatan</label>
-
-                <div class="input-group">
-
-                    <input type="text"
-                        id="searchKecamatan"
-                        class="form-control"
-                        placeholder="Cari Kecamatan...">
-
-                    <button class="btn-search">
-                        <i class="fas fa-search"></i>
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="gis-btn">
-
-                <a href="<?= site_url('gis') ?>" class="btn btn-primary">
-
-                    <i class="fas fa-map-marked-alt"></i>
-
-                    GIS Kabupaten Banyuwangi
-
-                </a>
-
-            </div>
-
+       <div class="search-wrapper">
+    <div class="search-box">
+        <label>Cari Kecamatan</label>
+        <div class="search-input">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchKecamatan" placeholder="Cari Kecamatan...">
         </div>
+    </div>
+
+    <div class="gis-btn">
+        <a href="<?= site_url('gis') ?>" class="btn btn-primary">
+            <i class="fas fa-map-marked-alt"></i>
+            GIS Kabupaten Banyuwangi
+        </a>
+    </div>
+</div>
 
         <!-- Card Kecamatan -->
         <div class="row g-4 mt-5" id="korsdaContainer">
@@ -94,21 +76,12 @@
     </div>
 
 <?php endif; ?>
-
-        </div>
-
-        <button
-            type="button"
-            class="btn btn-primary btn-kembali"
-            onclick="window.location.href='<?= base_url('/') ?>'">
-
-            <i class="bi bi-arrow-left me-2"></i>
-
-            Kembali
-
-        </button>
-
-    </div>
+<div class="back-wrapper mt-4">
+    <a href="<?= base_url('/') ?>" class="btn-kembali">
+        <i class="fas fa-arrow-left"></i>
+        Kembali
+    </a>
+</div>
 
 </section>
 

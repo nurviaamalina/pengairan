@@ -20,10 +20,10 @@
     </div>
 
     <div>
-        <a href="<?= base_url('admin/korsda/kecamatan/create/') ?>"
-           class="btn btn-primary">
+        <a href="<?= base_url('admin/korsda/kecamatan/create') ?>"
+           class="btn btn-tambah">
 
-            <i class="bi bi-plus-circle"></i>
+            <i class="bi bi-plus-circle me-1"></i>
             Tambah Data
 
         </a>

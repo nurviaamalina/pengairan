@@ -1,205 +1,279 @@
-/* Separator breadcrumb */
+/* ==========================================================================
+   HALAMAN BERITA RESMI KEDINASAN
+   Dinas Pekerjaan Umum Pengairan Kabupaten Banyuwangi
+   ========================================================================== */
+
+/* =====================================
+   BREADCRUMB
+   ===================================== */
+
 .breadcrumb {
     --bs-breadcrumb-divider: ">";
+    margin-bottom: 25px;
+    font-size: 14px;
 }
 
-/* Link Beranda */
 .breadcrumb-item a {
-    color: #212529;      /* Hitam */
+    color: #64748b;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
-/* Saat di-hover tetap hitam */
 .breadcrumb-item a:hover {
-    color: #212529;
-    text-decoration: none;
+    color: #0a2558;
 }
 
-/* Halaman aktif */
 .breadcrumb-item.active {
-    color: #0d6efd;      /* Biru */
-    font-weight: 600;
-}
-
-/* Section berita */
-.berita-page {
-    padding-top: 60px;
-    padding-bottom: 60px;
-}
-
-/* Judul halaman */
-.judul-beritaPage {
-     margin: 0;  
-    font-size: 40px;
+    color: #0a2558;
     font-weight: 700;
-    color: #112250;   
-    margin-top: 16px; 
-    margin-bottom: 40px;
 }
 
-.headline-card{
+/* =====================================
+   HALAMAN INDEX BERITA
+   ===================================== */
+
+.berita-page {
+    padding-top: 40px;
+    padding-bottom: 70px;
+    background-color: #f8fafc;
+}
+
+.judul-beritaPage {
+    margin: 0 0 35px;
+    font-size: 34px;
+    font-weight: 800;
+    color: #0a2558;
+    letter-spacing: -0.015em;
+}
+
+/* =====================================
+   HEADLINE CARD
+   ===================================== */
+
+.headline-card {
     position: relative;
     display: block;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     text-decoration: none;
+    box-shadow: 0 4px 15px rgba(10, 37, 88, 0.08);
+    border: 1px solid #e2e8f0;
+    background: #071838;
 }
 
-.headline-card img{
+.headline-card img {
     width: 100%;
-    height: 300px;
+    height: 320px;
     display: block;
     object-fit: cover;
+    transition: transform 0.45s ease;
 }
 
-.overlay{
+.headline-card:hover img {
+    transform: scale(1.03);
+}
+
+.headline-card .overlay {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 25px;
-    text-align: center;
-    color: white;
-    background: linear-gradient(
-        to top,
-        rgba(12,36,97,.9),
-        rgba(12,36,97,0)
-    );
+    padding: 30px 25px 20px;
+    text-align: left;
+    color: #ffffff;
+    background: linear-gradient(to top, rgba(7, 24, 57, 0.95) 0%, rgba(7, 24, 57, 0.6) 70%, transparent 100%);
 }
 
-.overlay h4{
-    font-size: 28px;
+.headline-card .overlay h4 {
+    font-size: 20px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    line-height: 1.35;
 }
 
-.overlay span{
-    font-size: 16px;
-    font-style: italic;
+.headline-card .overlay span {
+    font-size: 13px;
+    font-style: normal;
+    color: #dfb235;
+    font-weight: 500;
 }
 
-/* List berita */
-.berita-item{
-    display:flex;
-    align-items:center;
-    gap:30px;
-    margin-bottom:45px;
-}
+/* =====================================
+   LIST BERITA ITEM
+   ===================================== */
 
-.berita-image{
-    flex:0 0 360px;
-}
-
-.berita-image img{
-    width:100%;
-    height:100px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.berita-content{
-    flex:1;
-}
-
-.berita-content h2{
-    font-size:22px;
-    font-weight:700;
-    line-height:1.45;
-    margin-bottom:18px;
-    color:#111;
-}
-
-.berita-content p{
-    font-size:18px;
-    color:#555;
-    font-style:italic;
-}
-
-.berita-card{
-    background:transparent;
-}
-
-.berita-img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
-
-.berita-title{
-
-    font-size:30px;
-    font-weight:700;
-    line-height:1.35;
-    color:#111;
-
-}
-
-.berita-date{
-
-    margin-top:20px;
-
-    font-size:20px;
-
-    color:#555;
-
-    font-style:italic;
-
-}
-
-.btn-kembali{
-    background-color: #ffffff !important;
-    color: #0d6efd !important;
-    border: 2px solid #0d6efd !important;
-    margin-left: 150px;
-   
-    border-radius: 50px;
-    padding: 20px 28;
-
-    font-size: 16px;
-    font-weight: 600;
-
-    display: inline-flex;
+.berita-item {
+    display: flex;
     align-items: center;
-    gap: 8px;
-
-    transition: all .3s ease;
+    gap: 25px;
+    margin-bottom: 25px;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(10, 37, 88, 0.04);
+    text-decoration: none !important;
+    transition: all 0.3s ease;
 }
 
-.btn-kembali:hover{
-    background-color: #0d6efd !important;
-    color: #ffffff !important;
-    border-color: #0d6efd !important;
+.berita-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(10, 37, 88, 0.08);
+    border-color: #0a2558;
 }
 
-.btn-kembali:focus{
-    box-shadow: none !important;
+.berita-image {
+    flex: 0 0 260px;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
-.btn-kembali:active{
-    background-color: #0b5ed7 !important;
-    border-color: #0b5ed7 !important;
+.berita-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.35s ease;
 }
 
-.btn-kembali i{
+.berita-item:hover .berita-image img {
+    transform: scale(1.05);
+}
+
+.berita-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.berita-content h2 {
     font-size: 18px;
+    font-weight: 700;
+    line-height: 1.45;
+    margin-bottom: 10px;
+    color: #0f172a;
+    transition: color 0.2s ease;
 }
 
-.btn-kembali-detail{
-    background-color: #ffffff !important;
-    color: #0d6efd !important;
-    border: 2px solid #0d6efd !important;
-    margin-top: 50px;
+.berita-item:hover .berita-content h2 {
+    color: #0a2558;
+}
 
-    border-radius: 50px;
-    padding: 20px 28;
+.berita-content p {
+    font-size: 14px;
+    color: #64748b;
+    font-style: normal;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
 
+/* =====================================
+   DETAIL BERITA
+   ===================================== */
+
+.detailberita-page {
+    padding-top: 40px;
+    padding-bottom: 80px;
+    background-color: #ffffff;
+}
+
+.berita-card {
+    background: transparent;
+}
+
+.berita-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(10, 37, 88, 0.08);
+}
+
+.berita-title {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.35;
+    color: #0a2558;
+    margin-bottom: 15px;
+}
+
+.berita-date {
+    font-size: 14px;
+    color: #64748b;
+    font-style: normal;
+}
+
+.berita-content {
+    color: #334155;
     font-size: 16px;
-    font-weight: 600;
+    line-height: 1.85;
+    margin-top: 30px;
+    text-align: justify;
+}
 
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+/* =====================================
+   TOMBOL KEMBALI
+   ===================================== */
 
-    transition: all .3s ease;
+.btn-kembali,
+.btn-kembali-detail {
+    background-color: #0a2558 !important;
+    color: #ffffff !important;
+    border: 1px solid #0a2558 !important;
+    border-radius: 8px !important;
+    padding: 10px 24px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 30px !important;
+    margin-left: 0 !important;
+    box-shadow: 0 2px 6px rgba(10, 37, 88, 0.15) !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer;
+}
+
+.btn-kembali:hover,
+.btn-kembali-detail:hover {
+    background-color: #071838 !important;
+    border-color: #071838 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10, 37, 88, 0.25) !important;
+}
+
+/* =====================================
+   RESPONSIVE
+   ===================================== */
+
+@media (max-width: 768px) {
+    .judul-beritaPage {
+        font-size: 26px;
+    }
+    
+    .headline-card img {
+        height: 220px;
+    }
+    
+    .berita-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .berita-image {
+        width: 100%;
+        flex: auto;
+    }
+    
+    .berita-image img {
+        height: 180px;
+    }
+    
+    .berita-title {
+        font-size: 22px;
+    }
 }

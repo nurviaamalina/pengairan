@@ -18,8 +18,8 @@
     </div>
 
     <div>
-        <a href="<?= base_url('admin/korsda/profil_korsda/create') ?>"
-           class="btn btn-primary">
+        <a href="<?= base_url('admin/korsda/create') ?>"
+           class="btn btn-tambah">
 
             <i class="bi bi-plus-circle me-1"></i>
             Tambah Profil
