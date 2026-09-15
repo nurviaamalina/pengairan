@@ -112,7 +112,7 @@
 
                                                 <?php if($row['thumbnail']) : ?>
 
-                                                    <img src="<?= base_url('uploads/kegiatan/'.$row['thumbnail']) ?>"
+                                                    <img src="<?= base_url('uploads/kegiatan/thumbnail/'.$row['thumbnail']) ?>"
                                                          class="table-thumbnail">
 
                                                 <?php else : ?>
