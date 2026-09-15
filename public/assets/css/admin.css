@@ -3342,3 +3342,114 @@ textarea.form-control {
     box-shadow: 0 0 0 3px rgba(23, 63, 122, .15);
 }
 
+/* ==== Admin Theme Overrides ==== */
+:root {
+    --primary-color: #173f7a; /* default primary */
+    --primary-color-dark: #102f61; /* hover */
+    --secondary-color: #6c757d;
+    --background-color: #f5f6fa;
+    --card-bg: #fff;
+    --font-family: 'Roboto', Arial, sans-serif;
+    --border-radius: 8px;
+    --transition: 0.3s ease;
+}
+
+/* Global font and background */
+html, body {
+    font-family: var(--font-family);
+    background: var(--background-color);
+    color: #212529;
+}
+
+/* Buttons unified styling */
+.btn-tambah, .btn-import-berita, .btn-import-berita-cancel, .btn-import-berita-submit, .btn-batalberita, .btn-simpanberita, .btn-kembaliberita, .btn-batalkegiatan, .btn-create, .btn-simpan, .btn-save, .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 2px solid var(--primary-color);
+    background: #fff;
+    color: var(--primary-color);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+/* Primary button variant */
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* Hover effects */
+.btn-tambah:hover, .btn-import-berita:hover, .btn-batalberita:hover, .btn-simpanberita:hover, .btn-kembaliberita:hover, .btn-batalkegiatan:hover, .btn-primary:hover {
+    background: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(23, 63, 122, .20);
+}
+
+/* Active */
+.btn-tambah:active, .btn-import-berita:active, .btn-batalberita:active, .btn-simpanberita:active, .btn-kembaliberita:active, .btn-batalkegiatan:active, .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Focus */
+.btn-tambah:focus-visible, .btn-import-berita:focus-visible, .btn-batalberita:focus-visible, .btn-simpanberita:focus-visible, .btn-kembaliberita:focus-visible, .btn-batalkegiatan:focus-visible, .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(23, 63, 122, .15);
+}
+
+/* Tables */
+.kegiatan-table thead {
+    background: #e9ecef;
+}
+.kegiatan-table th, .kegiatan-table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+.kegiatan-table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+.kegiatan-table tbody tr:hover {
+    background: #e2e6ea;
+}
+
+/* Forms */
+.form-control, .form-label {
+    font-family: var(--font-family);
+}
+.form-control {
+    border-radius: var(--border-radius);
+    border: 1px solid #ced4da;
+    transition: var(--transition);
+}
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 .2rem rgba(23, 63, 122, .15);
+}
+
+/* Sidebar active link */
+.sidebar .menu-link.active {
+    background: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(23, 63, 122, .3);
+}
+.sidebar .menu-link:hover {
+    background: #f3f5ff;
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-wrapper {margin-left: 0; width: 100%;}
+    .sidebar {position: static; width: 100%; height:auto;}
+    .topbar {flex-wrap: wrap;}
+}
+
+/* End of Admin Theme Overrides */

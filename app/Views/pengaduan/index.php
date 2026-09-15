@@ -22,7 +22,7 @@
                 yang berlaku.
             </p>
 
-            <a href="https://www.lapor.go.id/" class="btn-lapor">
+            <a href="https://pengaduan.banyuwangikab.go.id/" class="btn-lapor">
                 LAPOR
             </a>
 
