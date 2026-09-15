@@ -2,76 +2,79 @@
 
     <div class="container">
 
-        <div class="row align-items-start">
+        <div class="row align-items-start g-4">
 
             <!-- ================= LEFT ================= -->
-            <div class="col-lg-7">
+            <div class="col-lg-6">
 
-                <div class="footer-logo d-flex">
+                <div class="footer-logo d-flex align-items-center">
 
-                    <img src="<?= base_url('assets/images/pu.png') ?>" alt="Logo">
+                    <img src="<?= base_url('assets/images/pemkab.png') ?>" alt="Pemkab Banyuwangi" class="footer-logo-img me-2">
+                    <img src="<?= base_url('assets/images/pu.png') ?>" alt="Dinas Pengairan" class="footer-logo-img">
 
                     <div class="ms-3 footer-text">
 
-                        <h5>Dinas Pengairan Banyuwangi</h5>
-
-                        <p>
-                            Dinas pengairan berkomitmen untuk mengelola sumber daya air secara
-                            berkelanjutan demi kesejahteraan masyarakat dan kelestarian lingkungan
-                        </p>
+                        <h5>Dinas Pekerjaan Umum Pengairan</h5>
+                        <h6>Pemerintah Kabupaten Banyuwangi</h6>
 
                     </div>
 
                 </div>
 
-                <div class="footer-contact mt-4">
+                <p class="footer-desc mt-3">
+                    Dinas Pekerjaan Umum Pengairan berkomitmen mengelola sumber daya air secara
+                    terpadu, berkelanjutan, dan berwawasan lingkungan demi kesejahteraan masyarakat Banyuwangi.
+                </p>
+
+                <div class="footer-contact mt-3">
 
                     <p>
                         <i class="fa-solid fa-location-dot"></i>
-                        JlK.H.Agus salim, no.85, Lingkungan Cuking Mojopangung, Kec. Giri, Kabupaten Banyuwangi,
-                        jawa timur 68425
+                        <span>Jl. K.H. Agus Salim No. 85, Lingkungan Cuking, Mojopanggung, Kec. Giri, Kabupaten Banyuwangi, Jawa Timur 68425</span>
                     </p>
 
-                    <div class="row">
+                    <div class="row g-2">
 
-                        <div class="col-md-6">
-
+                        <div class="col-sm-6">
                             <p>
                                 <i class="fa-solid fa-phone"></i>
-                                (0333) 424676
+                                <span>(0333) 424676</span>
                             </p>
-
-                            <p>
-                                <i class="fa-solid fa-print"></i>
-                                 dinaspengairan2@gmail.com
-                            </p>
-
                         </div>
 
+                        <div class="col-sm-6">
+                            <p>
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>dinaspengairan2@gmail.com</span>
+                            </p>
+                        </div>
 
                     </div>
 
                 </div>
 
-                <div class="social-media mt-4">
+                <div class="social-media mt-3">
 
-                    <span>Social Media</span>
+                    <span class="me-2">Media Sosial:</span>
 
-                    <a href="https://www.instagram.com/dinas_pengairan.bwi/" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/dinas_pengairan.bwi/" target="_blank" rel="noopener noreferrer" title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/pengairanbanyuwangi/?locale=id_ID" target="_blank" rel="noopener noreferrer""><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://x.com/PengairanBwi" target="_blank" rel="noopener noreferrer""><i class="fab fa-twitter"></i></a>
-                    
+                    <a href="https://www.facebook.com/pengairanbanyuwangi/?locale=id_ID" target="_blank" rel="noopener noreferrer" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://x.com/PengairanBwi" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                        <i class="fab fa-twitter"></i>
+                    </a>
 
                 </div>
 
             </div>
 
             <!-- ================= RIGHT ================= -->
-            <div class="col-lg-5 footer-menu">
+            <div class="col-lg-6 footer-menu">
 
-                <div class="row">
+                <div class="row g-4">
 
                     <div class="col-4">
 
@@ -79,23 +82,20 @@
 
                         <ul>
                             <li>
-    <a href="<?= site_url('tentang-kami') ?>#sejarah-singkat">
-        Sejarah Singkat
-    </a>
-</li>
-
-<li>
-    <a href="<?= site_url('tentang-kami') ?>#visi-misi">
-        Visi Misi
-    </a>
-</li>
-
-<li>
-    <a href="<?= site_url('tentang-kami') ?>#struktur-organisasi">
-        Struktur
-    </a>
-</li>
-
+                                <a href="<?= site_url('tentang-kami') ?>#sejarah-singkat">
+                                    Sejarah Singkat
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url('tentang-kami') ?>#visi-misi">
+                                    Visi &amp; Misi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url('tentang-kami') ?>#struktur-organisasi">
+                                    Struktur
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
@@ -105,32 +105,25 @@
                         <h6>LAYANAN</h6>
 
                         <ul>
-
                             <li><a href="<?= base_url('korsda') ?>">KORSDA</a></li>
-
-<li><a href="<?= base_url('pengaduan') ?>">Pengaduan</a></li>
-
-<li>
-    <a href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"
-       target="_blank">
-        Live CCTV
-    </a>
-</li>
-
+                            <li><a href="<?= base_url('pengaduan') ?>">Pengaduan</a></li>
+                            <li>
+                                <a href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI" target="_blank" rel="noopener noreferrer">
+                                    Live CCTV
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
 
                     <div class="col-4">
 
-                        <h6>Arsip</h6>
+                        <h6>INFORMASI</h6>
 
                         <ul>
-
                             <li><a href="<?= site_url('dokumen') ?>">Dokumen</a></li>
                             <li><a href="<?= site_url('berita') ?>">Berita</a></li>
                             <li><a href="<?= site_url('kegiatan') ?>">Kegiatan</a></li>
-
                         </ul>
 
                     </div>
@@ -141,11 +134,11 @@
 
         </div>
 
-        <hr>
+        <div class="footer-divider"></div>
 
         <div class="copyright">
 
-            © 2022 Dinas Pekerjaan Umum Pengairan Kabupaten Banyuwangi
+            &copy; <?= date('Y') ?> Dinas Pekerjaan Umum Pengairan Kabupaten Banyuwangi. Hak Cipta Dilindungi.
 
         </div>
 

@@ -45,81 +45,61 @@
 
     <div class="container">
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center g-3">
 
-            <div class="col-lg-4 col-md-4 col-6 text-center mb-3">
-
-            <a href="https://sekardadu.dingkoding.com/home" class="menu-link">
-                <div class="menu-circle">
-                <img src="<?= base_url('assets/images/sekardadu.png') ?>"
-                alt=""style="width: 250%; height: 250%; object-fit: contain;">
-            </div>
-        <h5>Sekardadu</h5>
-        </a>
-                
-
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-6 text-center mb-3">
-
-                <a href="https://mawasdiri.dingkoding.com/home" class="menu-link">
+            <div class="col-lg-2 col-md-4 col-6 text-center">
+                <a href="https://sekardadu.dingkoding.com/home" class="menu-link" target="_blank" rel="noopener noreferrer">
                     <div class="menu-circle">
-                       <img src="<?= base_url('assets/images/mawasdiri.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
+                        <img src="<?= base_url('assets/images/sekardadu.png') ?>" alt="Sekardadu">
+                    </div>
+                    <h5>Sekardadu</h5>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 text-center">
+                <a href="https://mawasdiri.dingkoding.com/home" class="menu-link" target="_blank" rel="noopener noreferrer">
+                    <div class="menu-circle">
+                        <img src="<?= base_url('assets/images/mawasdiri.png') ?>" alt="Mawasdiri">
                     </div>
                     <h5>Mawasdiri</h5>
                 </a>
-
             </div>
 
-            <div class="col-lg-4 col-md-4 col-6 text-center mb-3">
-
-                <a href="https://pubwi.dingkoding.com/home" class="menu-link">
+            <div class="col-lg-2 col-md-4 col-6 text-center">
+                <a href="https://pubwi.dingkoding.com/home" class="menu-link" target="_blank" rel="noopener noreferrer">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/warmsystem.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
+                        <img src="<?= base_url('assets/images/warmsystem.png') ?>" alt="Warm System">
                     </div>
                     <h5>Warm System</h5>
                 </a>
-
             </div>
 
-            <div class="col-lg-4 col-md-4 col-6 text-center">
-
-                 <a href="<?= base_url('pengaduan') ?>" class="menu-link text-decoration-none">
+            <div class="col-lg-2 col-md-4 col-6 text-center">
+                <a href="<?= base_url('pengaduan') ?>" class="menu-link">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/pengaduan.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
+                        <img src="<?= base_url('assets/images/pengaduan.png') ?>" alt="Pengaduan">
                     </div>
                     <h5>Pengaduan</h5>
                 </a>
-
             </div>
 
-            <div class="col-lg-4 col-md-4 col-6 text-center">
-
-                <a href="<?= base_url('korsda') ?>" class="menu-item text-decoration-none">
+            <div class="col-lg-2 col-md-4 col-6 text-center">
+                <a href="<?= base_url('korsda') ?>" class="menu-link">
                     <div class="menu-circle">
-                        <img src="<?= base_url('assets/images/korsda.png') ?>"alt=""style="width: 150%; height: 150%; object-fit: contain;">
+                        <img src="<?= base_url('assets/images/korsda.png') ?>" alt="KORSDA">
                     </div>
                     <h5>KORSDA</h5>
                 </a>
-
             </div>
 
-            <div class="col-lg-4 col-md-4 col-6 text-center">
-
-    <a href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"
-       class="menu-link"
-       target="_blank">
-
-        <div class="menu-circle">
-            <img src="<?= base_url('assets/images/cctv.png') ?>"
-                 alt="Live CCTV"
-                 style="width: 200%; height: 200%; object-fit: contain;">
-        </div>
-
-        <h5>Live CCTV</h5>
-    </a>
-
-</div>
+            <div class="col-lg-2 col-md-4 col-6 text-center">
+                <a href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI" class="menu-link" target="_blank" rel="noopener noreferrer">
+                    <div class="menu-circle">
+                        <img src="<?= base_url('assets/images/cctv.png') ?>" alt="Live CCTV">
+                    </div>
+                    <h5>Live CCTV</h5>
+                </a>
+            </div>
 
         </div>
 
@@ -142,12 +122,11 @@
                 Berita Terbaru
             </h2>
 
-            <p class="text-muted mt-3 mb-5">
+            <p class="text-muted mt-2 mb-4">
                 Ikuti berita terbaru sebagai sumber informasi resmi mengenai kegiatan dan kebijakan Dinas Pengairan Banyuwangi.
             </p>
 
         </div>
-    </div>
 
        
         <?php if (!empty($berita)) : ?>
@@ -247,12 +226,9 @@
 
             </div>
 
-            <a
-                href="<?= base_url('instagram') ?>"
-                class="btn btn-outline-primary"
-            >
+           
+            <a href="<?= base_url('instagram') ?>" class="btn-lihat">
                 Lihat Semua
-                <i class="bi bi-arrow-right"></i>
             </a>
 
         </div>
@@ -470,7 +446,7 @@
         <?php if (!empty($headlineKegiatan)) : ?>
 
             <!-- Headline Kegiatan -->
-            <a href="<?= base_url('kegiatan'.$headlineKegiatan['slug']) ?>" class="headline-kegiatan">
+            <a href="<?= base_url('kegiatan/'.$headlineKegiatan['slug']) ?>" class="headline-kegiatan">
 
                 <img src="<?= base_url('uploads/kegiatan/thumbnail/'.$headlineKegiatan['thumbnail']) ?>" alt="<?= esc($headlineKegiatan['judul']) ?>">
 

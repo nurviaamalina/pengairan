@@ -47,13 +47,26 @@
     padding: 22px 25px;
 }
 
+.btn-kembali, .btn-simpan {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    height: 44px !important; /* Menyamakan tinggi secara pasti */
+    padding: 0 24px !important; /* Menyamakan padding atas-bawah & kanan-kiri */
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+    vertical-align: middle !important;
+    text-decoration: none !important;
+}
+
 .btn-kembali {
     background: #0a1a3a;
     color: #fff;
     border: none;
-    padding: 10px 24px;
-    border-radius: 10px;
-    font-weight: 600;
     transition: all 0.3s ease;
 }
 
@@ -67,21 +80,46 @@
     background: #f7b500;
     color: #0a1a3a;
     border: none;
-    padding: 10px 30px;
-    border-radius: 10px;
-    font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .btn-simpan:hover {
     background: #e0a200;
+    color: #0a1a3a;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(247, 181, 0, 0.3);
 }
 
+.button-wrapper {
+  display: flex !important;
+  align-items: center !important; /* Menyejajarkan posisi tombol secara vertikal */
+  gap: 12px !important;           /* Menentukan jarak antar tombol */
+  margin-top: 15px;
+}
+
+.btn-kembali, .btn-simpan {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  height: 44px !important;
+  padding: 0 24px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+  vertical-align: middle !important;
+  text-decoration: none !important;
+  margin: 0 !important;           /* Menghilangkan margin bawaan yang tidak seimbang */
+}
 .text-danger {
     font-size: 0.85rem;
+
+
 }
+
+
 </style>
 
 <div class="d-flex min-vh-100">

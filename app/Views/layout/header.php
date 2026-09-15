@@ -14,16 +14,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- CSS -->
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
-
     <link href="<?= base_url('assets/css/dokumen.css') ?>" rel="stylesheet">
-
     <link rel="stylesheet" href="<?= base_url('assets/css/korsda.css') ?>">
 
 </head>
@@ -36,8 +36,12 @@
 
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center" href="<?= base_url('/') ?>">
-                <img src="<?= base_url('assets/images/pemkab.png') ?>" width="80" class="logo-pemkab me-2" alt="Pemkab Banyuwangi">
-                <img src="<?= base_url('assets/images/pu.png') ?>" width="80" class="logo-pu" alt="Dinas Pengairan">
+                <img src="<?= base_url('assets/images/pemkab.png') ?>" class="logo-pemkab me-2" alt="Pemkab Banyuwangi">
+                <img src="<?= base_url('assets/images/pu.png') ?>" class="logo-pu me-2" alt="Dinas Pengairan">
+                <div class="brand-text d-none d-md-flex flex-column justify-content-center">
+                    <span class="brand-sub">PEMERINTAH KABUPATEN BANYUWANGI</span>
+                    <span class="brand-main">DINAS PEKERJAAN UMUM PENGAIRAN</span>
+                </div>
             </a>
 
             <!-- Toggle -->
@@ -55,12 +59,14 @@
 
                 <ul class="navbar-nav mx-auto">
 
+                    <!-- BERANDA -->
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url('/') ?>">BERANDA</a>
+                        <a class="nav-link <?= (url_is('/') || url_is('beranda')) ? 'active' : '' ?>" href="<?= base_url('/') ?>">BERANDA</a>
                     </li>
 
+                    <!-- PROFIL -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle"
+                        <a class="nav-link dropdown-toggle <?= url_is('tentang-kami*') ? 'active' : '' ?>"
                             href="#"
                             role="button"
                             data-bs-toggle="dropdown">
@@ -68,26 +74,25 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                        <li>
-    <a class="dropdown-item" href="<?= base_url('tentang-kami#sejarah-singkat') ?>">
-        Sejarah Singkat
-    </a>
-</li>   
-                        <li>
-    <a class="dropdown-item" href="<?= base_url('tentang-kami#visi-misi') ?>">
-        Visi Misi
-    </a>
-</li>
-
-<li>
-    <a class="dropdown-item" href="<?= base_url('tentang-kami#struktur-organisasi') ?>">
-        Struktur Organisasi
-    </a>
-</li>
-                            <!-- <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li> -->
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url('tentang-kami#sejarah-singkat') ?>">
+                                    Sejarah Singkat
+                                </a>
+                            </li>   
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url('tentang-kami#visi-misi') ?>">
+                                    Visi Misi
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url('tentang-kami#struktur-organisasi') ?>">
+                                    Struktur Organisasi
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
+                    <!-- INOVASI -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle"
                             href="#"
@@ -103,30 +108,31 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown">
-                            LAYANAN
-                        </a>
+<!-- LAYANAN -->
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle <?= (url_is('pengaduan*') || url_is('korsda*')) ? 'active' : '' ?>"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown">
+        LAYANAN
+    </a>
 
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<?= base_url('pengaduan') ?>">Pengaduan</a></li>
-                            <li><a class="dropdown-item" href="<?= base_url('korsda') ?>">Korsda</a></li>
-                            <li><a class="dropdown-item"href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI"target="_blank">Live CCTV</a></li>
-                        </ul>
-                    </li>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="<?= base_url('pengaduan') ?>">Pengaduan</a></li>
+        <li><a class="dropdown-item" href="<?= base_url('korsda') ?>">Korsda</a></li>
+        <li><a class="dropdown-item" href="https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI" target="_blank">Live CCTV</a></li>
+    </ul>
+</li>
 
+                    <!-- DOKUMEN -->
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('dokumen') ?>">DOKUMEN</a>
+                        <a class="nav-link <?= url_is('dokumen*') ? 'active' : '' ?>" href="<?= base_url('dokumen') ?>">DOKUMEN</a>
                     </li>
 
                 </ul>
 
                 <!-- Search -->
                 <form action="<?= base_url('search') ?>" method="get" class="d-flex">
-                    
                     <input class="form-control form-control-sm"
                         type="search"
                         name="keyword"

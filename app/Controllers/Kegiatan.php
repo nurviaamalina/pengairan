@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\KegiatanModel;
 use App\Models\FotoKegiatanModel;
 
+
 class Kegiatan extends BaseController
 {
     protected $kegiatanModel;

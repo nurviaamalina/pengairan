@@ -17,10 +17,12 @@
 
     <div class="container text-center">
 
+        <!-- JUDUL -->
         <h1>
-            Korsda
+            KORSDA
         </h1>
 
+        <!-- KECAMATAN -->
         <h2>
             Kecamatan <?= esc($korsda['nama_kecamatan']) ?>
         </h2>
@@ -35,59 +37,38 @@
      MENU TAB
 ===================================================== -->
 
-<div class="container">
+<div class="container tab-container">
+
+    <?php
+    $currentPage = $uri->getSegment(2);
+    ?>
 
     <div class="korsda-tabs">
 
-
         <!-- PROFIL -->
-
         <a
-            href="<?= base_url(
-                'korsda/profil/' .
-                $korsda['id']
-            ) ?>"
-            class="tab-link <?= $uri->getSegment(2) == 'profil'
-                ? 'active'
-                : '' ?>"
+            href="<?= base_url('korsda/profil/' . $korsda['id']) ?>"
+            class="tab-link <?= $currentPage === 'profil' ? 'active' : '' ?>"
         >
-
             Profil
-
         </a>
 
 
         <!-- PETA -->
-
         <a
-            href="<?= base_url(
-                'korsda/peta/' .
-                $korsda['id']
-            ) ?>"
-            class="tab-link <?= $uri->getSegment(2) == 'peta'
-                ? 'active'
-                : '' ?>"
+            href="<?= base_url('korsda/peta/' . $korsda['id']) ?>"
+            class="tab-link <?= $currentPage === 'peta' ? 'active' : '' ?>"
         >
-
             Peta Wilayah Kerja
-
         </a>
 
 
         <!-- KEGIATAN -->
-
         <a
-            href="<?= base_url(
-                'korsda/kegiatan/' .
-                $korsda['id']
-            ) ?>"
-            class="tab-link <?= $uri->getSegment(2) == 'kegiatan'
-                ? 'active'
-                : '' ?>"
+            href="<?= base_url('korsda/kegiatan/' . $korsda['id']) ?>"
+            class="tab-link <?= $currentPage === 'kegiatan' ? 'active' : '' ?>"
         >
-
             Kegiatan
-
         </a>
 
     </div>
@@ -105,185 +86,169 @@
     <div class="container">
 
 
+        <!-- =================================================
+             JUDUL KEGIATAN
+        ================================================== -->
+
+        <div class="kegiatan-header">
+
+            <h2>
+                Kegiatan KORSDA Kecamatan
+                <?= esc(
+                    $korsda['nama_wilayah']
+                    ?? $korsda['nama_kecamatan']
+                ) ?>
+            </h2>
+
+            <p>
+                Daftar kegiatan KORSDA Kecamatan
+                <?= esc($korsda['nama_kecamatan']) ?>
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DATA KEGIATAN
+        ================================================== -->
+
         <?php if (!empty($kegiatan)) : ?>
 
+            <div class="kegiatan-list">
 
-            <?php foreach ($kegiatan as $row) : ?>
+                <?php foreach ($kegiatan as $row) : ?>
 
+                    <a
+                        href="<?= base_url(
+                            'korsda/detail_kegiatan/' . $row['id']
+                        ) ?>"
+                        class="kegiatan-item"
+                    >
 
-                <a
-                    href="<?= base_url(
-                        'korsda/detail_kegiatan/' .
-                        $row['id']
-                    ) ?>"
-                    class="kegiatan-item"
-                >
+                        <!-- GAMBAR -->
 
+                        <div class="kegiatan-img">
 
-                    <!-- =================================================
-                         GAMBAR UTAMA
-                    ================================================== -->
+                            <?php
 
-                    <div class="kegiatan-img">
+                            $pathBaru =
+                                FCPATH .
+                                'uploads/Kegiatan/thumbnail/' .
+                                ($row['gambar'] ?? '');
 
-                        <?php
+                            $pathLama =
+                                FCPATH .
+                                'uploads/kegiatan/' .
+                                ($row['gambar'] ?? '');
 
-                        /*
-                        |--------------------------------------------------------------------------
-                        | PATH BARU
-                        |--------------------------------------------------------------------------
-                        */
+                            if (
+                                !empty($row['gambar']) &&
+                                file_exists($pathBaru)
+                            ) {
 
-                        $pathBaru =
-                            FCPATH .
-                            'uploads/Kegiatan/thumbnail/' .
-                            ($row['gambar'] ?? '');
+                                $gambarUrl =
+                                    base_url(
+                                        'uploads/Kegiatan/thumbnail/' .
+                                        $row['gambar']
+                                    );
 
+                            } elseif (
+                                !empty($row['gambar']) &&
+                                file_exists($pathLama)
+                            ) {
 
-                        /*
-                        |--------------------------------------------------------------------------
-                        | PATH LAMA
-                        |--------------------------------------------------------------------------
-                        | Untuk data lama yang mungkin masih berada
-                        | di uploads/kegiatan/
-                        */
+                                $gambarUrl =
+                                    base_url(
+                                        'uploads/kegiatan/' .
+                                        $row['gambar']
+                                    );
 
-                        $pathLama =
-                            FCPATH .
-                            'uploads/kegiatan/' .
-                            ($row['gambar'] ?? '');
+                            } else {
 
+                                $gambarUrl =
+                                    base_url(
+                                        'assets/img/no-image.png'
+                                    );
+                            }
 
-                        /*
-                        |--------------------------------------------------------------------------
-                        | TENTUKAN URL GAMBAR
-                        |--------------------------------------------------------------------------
-                        */
+                            ?>
 
-                        if (
-                            !empty($row['gambar']) &&
-                            file_exists($pathBaru)
-                        ) {
+                            <img
+                                src="<?= $gambarUrl ?>"
+                                alt="<?= esc($row['judul']) ?>"
+                                loading="lazy"
+                            >
 
-                            $gambarUrl =
-                                base_url(
-                                    'uploads/Kegiatan/thumbnail/' .
-                                    $row['gambar']
-                                );
-
-                        } elseif (
-                            !empty($row['gambar']) &&
-                            file_exists($pathLama)
-                        ) {
-
-                            $gambarUrl =
-                                base_url(
-                                    'uploads/kegiatan/' .
-                                    $row['gambar']
-                                );
-
-                        } else {
-
-                            $gambarUrl =
-                                base_url(
-                                    'assets/img/no-image.png'
-                                );
-                        }
-
-                        ?>
-
-
-                        <img
-                            src="<?= $gambarUrl ?>"
-                            alt="<?= esc($row['judul']) ?>"
-                            loading="lazy"
-                        >
-
-                    </div>
+                        </div>
 
 
 
-                    <!-- =================================================
-                         INFORMASI KEGIATAN
-                    ================================================== -->
+                        <!-- INFORMASI -->
 
-                    <div class="kegiatan-body">
+                        <div class="kegiatan-body">
 
-                        <h3>
-                            <?= esc(
-                                $row['judul']
-                            ) ?>
-                        </h3>
+                            <h3>
+                                <?= esc($row['judul']) ?>
+                            </h3>
 
+                            <?php if (!empty($row['tanggal'])) : ?>
 
-                        <?php if (!empty($row['tanggal'])) : ?>
+                                <p class="tanggal">
 
-                            <p class="tanggal">
+                                    <i class="bi bi-calendar-event me-1"></i>
 
-                                <i class="bi bi-calendar-event me-1"></i>
+                                    <?= date(
+                                        'l, d F Y',
+                                        strtotime($row['tanggal'])
+                                    ) ?>
 
-                                <?= date(
-                                    'l, d F Y',
-                                    strtotime(
-                                        $row['tanggal']
-                                    )
-                                ) ?>
+                                </p>
 
-                            </p>
+                            <?php endif; ?>
 
-                        <?php endif; ?>
+                        </div>
 
+                    </a>
 
-                    </div>
+                <?php endforeach; ?>
 
-
-                </a>
-
-
-            <?php endforeach; ?>
+            </div>
 
 
         <?php else : ?>
-
 
             <!-- =================================================
                  BELUM ADA KEGIATAN
             ================================================== -->
 
-            <div class="alert alert-warning text-center">
+            <div class="alert alert-warning kegiatan-empty">
 
                 <h5>
                     Belum Ada Kegiatan
                 </h5>
 
                 <p class="mb-0">
-
                     Belum ada kegiatan yang diinput untuk Kecamatan
-                    <?= esc(
-                        $korsda['nama_kecamatan']
-                    ) ?>.
-
+                    <?= esc($korsda['nama_kecamatan']) ?>.
                 </p>
 
             </div>
-
 
         <?php endif; ?>
 
 
 
-        <!-- =====================================================
+        <!-- =================================================
              KEMBALI
-        ====================================================== -->
+        ================================================== -->
 
         <div class="back-wrapper">
 
             <button
                 type="button"
                 class="btn btn-outline-primary btn-kembali"
-                onclick="
-                    window.location.href='<?= base_url('korsda') ?>'
-                "
+                onclick="window.location.href='<?= base_url('korsda') ?>'"
             >
 
                 <i class="bi bi-arrow-left me-2"></i>

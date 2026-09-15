@@ -8,6 +8,8 @@ use App\Models\WilayahKerjaModel;
 use App\Models\KorsdaModel;
 use App\Models\KecamatanModel;
 use App\Models\InstagramModel;
+use App\Models\KategoriDokumenModel;
+use App\Models\DokumenModel;
 
 class Home extends BaseController
 {
@@ -16,12 +18,17 @@ class Home extends BaseController
     protected $korsdaModel;
     protected $kecamatanModel;
 
+    protected $instagramModel;
+    protected $dokumenModel;
+
     public function __construct()
     {
         $this->beritaModel    = new BeritaModel();
         $this->wilayahModel   = new WilayahKerjaModel();
         $this->korsdaModel    = new KorsdaModel();
         $this->kecamatanModel = new KecamatanModel();
+        $this->instagramModel = new InstagramModel();
+        $this->dokumenModel   = new DokumenModel();
     }
 
     public function index()

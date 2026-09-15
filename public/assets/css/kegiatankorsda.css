@@ -1,225 +1,1229 @@
-/* ==========================
-   KEGIATAN KORSDA
-========================== */
+/* ==========================================================================
+   HALAMAN KEGIATAN KORSDA
+   Dinas Pekerjaan Umum Pengairan Kabupaten Banyuwangi
 
-.kegiatan-item{
+   STYLE MENGIKUTI HALAMAN WILAYAH KERJA
+   ========================================================================== */
 
-    display:flex;
 
-    gap:45px;
+/* =====================================
+   HERO KORSDA
+   ===================================== */
 
-    align-items:center;
+.hero-korsda {
 
-    margin-bottom:65px;
+    background:
+        linear-gradient(
+            145deg,
+            #071838 0%,
+            #0c2657 60%,
+            #143d75 100%
+        );
 
-    text-decoration:none;
+    padding: 75px 20px 110px;
 
-    color:#222;
+    text-align: center;
 
-}
+    color: #ffffff;
 
-.kegiatan-item:hover{
+    position: relative;
 
-    color:#0d47a1;
-
-}
-
-.kegiatan-img{
-
-    width:330px;
-
-    flex-shrink:0;
-
-}
-
-.kegiatan-img img{
-
-    width:100%;
-
-    height:180px;
-
-    object-fit:cover;
-
-    border-radius:8px;
-
-}
-
-.kegiatan-body{
-
-    flex:1;
-
-}
-
-.kegiatan-body h3{
-
-    font-size:24px;
-
-    font-weight:700;
-
-    line-height:1.5;
-
-    margin-bottom:20px;
-
-}
-
-.kegiatan-body .tanggal{
-
-    font-size:18px;
-
-    color:#555;
-
-    font-style:italic;
-
-}
-
-/* ==========================
-   DETAIL KEGIATAN
-========================== */
-
-.detail-kegiatan{
-
-    display:flex;
-
-    gap:40px;
-
-    align-items:flex-start;
-
-}
-
-.detail-kegiatan-img{
-
-    width:380px;
-
-    flex-shrink:0;
-
-}
-
-.detail-kegiatan-img img{
-
-    width:100%;
-
-    height:250px;
-
-    border-radius:10px;
-
-    object-fit:cover;
-
-}
-
-.detail-kegiatan-info{
-
-    flex:1;
-
-}
-
-.detail-kegiatan-info h1{
-
-    font-size:42px;
-
-    font-weight:700;
-
-    line-height:1.4;
-
-    margin-bottom:20px;
-
-}
-
-.detail-kegiatan-info .tanggal{
-
-    font-size:18px;
-
-    color:#666;
-
-}
-
-.detail-isi{
-
-    font-size:20px;
-
-    line-height:2;
-
-    text-align:justify;
-
-}
-
-.breadcrumb{
-
-    background:#eef4ff;
-
-    padding:12px 18px;
-
-    border-radius:6px;
-
+    overflow: hidden;
 }
 
 
-/* =====================================================
-   GALERI DOKUMENTASI KEGIATAN
-===================================================== */
+/* BADGE WILAYAH KERJA */
 
-.dokumentasi-kegiatan {
-    margin-top: 60px;
-    margin-bottom: 50px;
-}
+.hero-korsda::before {
 
-.dokumentasi-title {
-    font-size: 30px;
+    content: 'WILAYAH KERJA';
+
+    display: inline-block;
+
+    font-size: 12px;
+
     font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: #dfb235;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    padding: 5px 16px;
+
+    border-radius: 9999px;
+
+    margin-bottom: 15px;
+
+    text-transform: uppercase;
+}
+
+
+/* JUDUL KORSDA */
+
+.hero-korsda h1 {
+
+    color: #ffffff;
+
+    font-size: 40px;
+
+    font-weight: 800;
+
+    margin-bottom: 6px;
+
+    letter-spacing: -0.01em;
+}
+
+
+/* NAMA KECAMATAN */
+
+.hero-korsda h2 {
+
+    color: #dfb235;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.01em;
+
+    margin: 0;
+}
+
+
+
+/* =====================================
+   TAB KORSDA
+   ===================================== */
+
+/*
+   Gunakan tab-container pada view:
+
+   <div class="container tab-container">
+       <div class="korsda-tabs">
+           ...
+       </div>
+   </div>
+
+   Jadi margin negatif hanya dimiliki
+   oleh tab-container.
+*/
+
+.tab-container {
+
+    position: relative;
+
+    z-index: 20;
+
+    margin-top: -45px;
+
+    margin-bottom: 60px;
+}
+
+
+/* CARD TAB */
+
+.korsda-tabs,
+.tab-korsda {
+
+    background: #ffffff;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 40px;
+
+    padding: 20px 30px;
+
+    box-shadow:
+        0 6px 18px rgba(10, 37, 88, 0.08);
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    position: relative;
+
+    z-index: 20;
+
+    /*
+       PENTING:
+       Tidak ada margin-top negatif di sini.
+    */
+
+    margin-top: 0;
+}
+
+
+/* TAB LINK */
+
+.tab-link {
+
+    position: relative;
+
+    text-decoration: none;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    padding: 0 0 8px;
+
+    border-bottom: none;
+
+    transition: all 0.2s ease;
+}
+
+
+.tab-link:hover {
+
+    color: #0a2558;
+}
+
+
+/* TAB AKTIF */
+
+.tab-link.active {
+
+    color: #0a2558;
+
+    font-weight: 700;
+
+    border-bottom: none;
+}
+
+
+/* GARIS AKTIF HANYA SATU */
+
+.tab-link.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 3px;
+
+    background: #0a2558;
+
+    border-radius: 3px;
+}
+
+
+
+/* =====================================
+   CONTENT
+   ===================================== */
+
+.korsda-content {
+
+    position: relative;
+
+    z-index: 1;
+
+    /*
+       Jangan gunakan margin-top negatif.
+       Tab sudah diatur oleh tab-container.
+    */
+
+    margin-top: 0;
+
+    padding-bottom: 80px;
+}
+
+
+/* =====================================
+   HEADER KEGIATAN
+   ===================================== */
+
+.kegiatan-header {
+
     margin-bottom: 30px;
 }
 
-.dokumentasi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+.kegiatan-header h2 {
+
+    color: #0a2558;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    margin: 0 0 8px;
+}
+
+
+.kegiatan-header p {
+
+    color: #64748b;
+
+    font-size: 16px;
+
+    margin: 0;
+}
+
+
+
+/* =====================================
+   KEGIATAN LIST
+   ===================================== */
+
+.kegiatan-list {
+
+    display: flex;
+
+    flex-direction: column;
+
     gap: 25px;
 }
 
-.dokumentasi-card {
+
+/* =====================================
+   ITEM KEGIATAN
+   ===================================== */
+
+.kegiatan-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 45px;
+
     width: 100%;
-    height: 250px;
-    overflow: hidden;
+
+    margin-bottom: 0;
+
+    padding: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
     border-radius: 14px;
+
+    overflow: hidden;
+
+    text-decoration: none;
+
+    color: #222;
+
+    box-shadow:
+        0 4px 15px rgba(10, 37, 88, 0.05);
+
+    transition: all 0.3s ease;
+}
+
+
+.kegiatan-item:hover {
+
+    color: #0d47a1;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(10, 37, 88, 0.10);
+
+    border-color:
+        rgba(10, 37, 88, 0.25);
+}
+
+
+
+/* =====================================
+   GAMBAR KEGIATAN
+   ===================================== */
+
+.kegiatan-img {
+
+    width: 330px;
+
+    min-width: 330px;
+
+    height: 180px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
     background: #f5f5f5;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
-.dokumentasi-card img {
+
+.kegiatan-img img {
+
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
+
     display: block;
-    transition: transform 0.3s ease;
+
+    border-radius: 0;
+
+    transition:
+        transform 0.3s ease;
 }
 
-.dokumentasi-card:hover img {
+
+.kegiatan-item:hover
+.kegiatan-img img {
+
     transform: scale(1.05);
 }
 
 
-/* =====================================================
+
+/* =====================================
+   INFORMASI KEGIATAN
+   ===================================== */
+
+.kegiatan-body {
+
+    flex: 1;
+
+    padding: 25px 30px;
+}
+
+
+.kegiatan-body h3 {
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+
+    color: #0a2558;
+
+    margin: 0 0 15px;
+}
+
+
+.kegiatan-body .tanggal {
+
+    font-size: 16px;
+
+    color: #555;
+
+    font-style: italic;
+
+    margin: 0;
+}
+
+
+
+/* =====================================
+   BELUM ADA KEGIATAN
+   ===================================== */
+
+.kegiatan-empty {
+
+    background: #fff3cd;
+
+    border: 1px solid #ffda6a;
+
+    border-radius: 8px;
+
+    padding: 28px;
+
+    margin: 0;
+
+    text-align: center;
+}
+
+
+.kegiatan-empty h5 {
+
+    color: #0a2558;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+
+.kegiatan-empty p {
+
+    color: #263574;
+
+    font-size: 16px;
+
+    margin: 0;
+}
+
+
+
+/* =====================================
+   SEARCH & GIS ACTION BAR
+   ===================================== */
+
+.search-wrapper {
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 24px 30px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow:
+        0 10px 25px rgba(10, 37, 88, 0.08);
+
+    border: 1px solid #e2e8f0;
+
+    gap: 20px;
+}
+
+
+.search-box {
+
+    width: 50%;
+}
+
+
+.search-box label {
+
+    font-weight: 700;
+
+    font-size: 13.5px;
+
+    color: #0a2558;
+
+    margin-bottom: 8px;
+
+    display: block;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+.search-box .input-group {
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    background: #f8fafc;
+
+    transition: all 0.25s ease;
+}
+
+
+.search-box .input-group:focus-within {
+
+    border-color: #0a2558;
+
+    box-shadow:
+        0 0 0 3px rgba(10, 37, 88, 0.12);
+
+    background: #ffffff;
+}
+
+
+.search-box input.form-control {
+
+    border: none;
+
+    background: transparent;
+
+    padding: 10px 16px;
+
+    font-size: 14.5px;
+
+    outline: none;
+
+    box-shadow: none;
+}
+
+
+.btn-search {
+
+    width: 50px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #0a2558;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: all 0.2s ease;
+}
+
+
+.btn-search:hover {
+
+    color: #c59b27;
+}
+
+
+.gis-btn .btn-primary {
+
+    background-color: #0a2558;
+
+    border-color: #0a2558;
+
+    color: #ffffff;
+
+    padding: 10px 24px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    box-shadow:
+        0 2px 6px rgba(10, 37, 88, 0.15);
+
+    transition: all 0.25s ease;
+}
+
+
+.gis-btn .btn-primary:hover {
+
+    background-color: #071838;
+
+    border-color: #071838;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 12px rgba(10, 37, 88, 0.25);
+}
+
+
+
+/* =====================================
+   KORSDA CARDS
+   ===================================== */
+
+.korsda-card {
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 4px 15px rgba(10, 37, 88, 0.05);
+
+    border: 1px solid #e2e8f0;
+
+    height: 100%;
+
+    transition: all 0.3s ease;
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: center;
+}
+
+
+.korsda-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(10, 37, 88, 0.1);
+
+    border-color:
+        rgba(10, 37, 88, 0.25);
+}
+
+
+.korsda-card .icon {
+
+    width: 72px;
+
+    height: 72px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    margin: 0 auto 15px;
+
+    border: 3px solid #f1f5f9;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.korsda-card small {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+.korsda-card h4 {
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    margin-top: 6px;
+
+    color: #0a2558;
+}
+
+
+.korsda-card .line {
+
+    width: 50px;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0a2558,
+            #c59b27
+        );
+
+    margin: 15px auto;
+
+    border-radius: 2px;
+}
+
+
+.korsda-card .info {
+
+    border-bottom: 1px solid #f1f5f9;
+
+    padding: 10px 0;
+
+    text-align: left;
+}
+
+
+.korsda-card .info:last-child {
+
+    border-bottom: none;
+}
+
+
+.korsda-card .info span {
+
+    display: block;
+
+    color: #64748b;
+
+    font-size: 12.5px;
+
+    font-weight: 500;
+}
+
+
+.korsda-card .info strong {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #1e293b;
+
+    font-size: 14px;
+}
+
+
+
+/* =====================================
+   TOMBOL KEMBALI
+   ===================================== */
+
+.btn-kembali {
+
+    background-color: #ffffff !important;
+
+    color: #0a2558 !important;
+
+    border: 1.5px solid #0a2558 !important;
+
+    border-radius: 8px;
+
+    padding: 10px 24px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: all 0.25s ease;
+
+    text-decoration: none;
+}
+
+
+.btn-kembali:hover {
+
+    background-color: #0a2558 !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 3px 10px rgba(10, 37, 88, 0.2);
+}
+
+
+
+/* =====================================
+   DETAIL KEGIATAN
+   ===================================== */
+
+.detail-kegiatan {
+
+    display: flex;
+
+    gap: 40px;
+
+    align-items: flex-start;
+}
+
+
+.detail-kegiatan-img {
+
+    width: 380px;
+
+    flex-shrink: 0;
+}
+
+
+.detail-kegiatan-img img {
+
+    width: 100%;
+
+    height: 250px;
+
+    border-radius: 10px;
+
+    object-fit: cover;
+}
+
+
+.detail-kegiatan-info {
+
+    flex: 1;
+}
+
+
+.detail-kegiatan-info h1 {
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    margin-bottom: 20px;
+
+    color: #0a2558;
+}
+
+
+.detail-kegiatan-info .tanggal {
+
+    font-size: 18px;
+
+    color: #666;
+}
+
+
+.detail-isi {
+
+    font-size: 20px;
+
+    line-height: 2;
+
+    text-align: justify;
+}
+
+
+
+/* =====================================
+   GALERI DOKUMENTASI
+   ===================================== */
+
+.dokumentasi-kegiatan {
+
+    margin-top: 60px;
+
+    margin-bottom: 50px;
+}
+
+
+.dokumentasi-title {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    margin-bottom: 30px;
+
+    color: #0a2558;
+}
+
+
+.dokumentasi-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.dokumentasi-card {
+
+    width: 100%;
+
+    height: 250px;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #f5f5f5;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.dokumentasi-card img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.dokumentasi-card:hover img {
+
+    transform: scale(1.05);
+}
+
+
+
+/* =====================================
    RESPONSIVE
-===================================================== */
+   ===================================== */
 
 @media (max-width: 992px) {
 
     .dokumentasi-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
 }
 
 
+
+/* =====================================
+   TABLET / MOBILE
+   ===================================== */
+
+@media (max-width: 768px) {
+
+    .hero-korsda {
+
+        padding: 55px 20px 85px;
+    }
+
+
+    .hero-korsda h1 {
+
+        font-size: 28px;
+    }
+
+
+    .hero-korsda h2 {
+
+        font-size: 22px;
+    }
+
+
+    /* TAB */
+
+    .tab-container {
+
+        margin-top: -45px;
+
+        margin-bottom: 45px;
+    }
+
+
+    .korsda-tabs,
+    .tab-korsda {
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+        gap: 25px;
+
+        padding: 16px 20px;
+
+        white-space: nowrap;
+    }
+
+
+    .tab-link {
+
+        white-space: nowrap;
+
+        flex-shrink: 0;
+    }
+
+
+    /* HEADER */
+
+    .kegiatan-header h2 {
+
+        font-size: 26px;
+    }
+
+
+    .kegiatan-header p {
+
+        font-size: 15px;
+    }
+
+
+    /* KEGIATAN */
+
+    .kegiatan-item {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+    }
+
+
+    .kegiatan-img {
+
+        width: 100%;
+
+        min-width: 100%;
+
+        height: 220px;
+    }
+
+
+    .kegiatan-body {
+
+        padding: 22px;
+    }
+
+
+    /* SEARCH */
+
+    .search-wrapper {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        padding: 20px;
+    }
+
+
+    .search-box {
+
+        width: 100%;
+    }
+
+
+    .gis-btn .btn-primary {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    /* DETAIL */
+
+    .detail-kegiatan {
+
+        flex-direction: column;
+    }
+
+
+    .detail-kegiatan-img {
+
+        width: 100%;
+    }
+
+}
+
+
+
+/* =====================================
+   MOBILE
+   ===================================== */
+
 @media (max-width: 576px) {
 
+    .hero-korsda {
+
+        padding: 45px 15px 75px;
+    }
+
+
+    .hero-korsda::before {
+
+        font-size: 11px;
+
+        padding: 5px 14px;
+    }
+
+
+    .hero-korsda h1 {
+
+        font-size: 28px;
+    }
+
+
+    .hero-korsda h2 {
+
+        font-size: 21px;
+    }
+
+
+    .tab-container {
+
+        margin-top: -40px;
+
+        margin-bottom: 40px;
+    }
+
+
+    .korsda-tabs,
+    .tab-korsda {
+
+        gap: 20px;
+
+        padding: 14px 16px;
+    }
+
+
+    .tab-link {
+
+        font-size: 14px;
+    }
+
+
+    .kegiatan-header h2 {
+
+        font-size: 23px;
+    }
+
+
+    .kegiatan-header p {
+
+        font-size: 14px;
+    }
+
+
+    .kegiatan-body h3 {
+
+        font-size: 20px;
+    }
+
+
+    .kegiatan-img {
+
+        height: 190px;
+    }
+
+
     .dokumentasi-grid {
+
         grid-template-columns: 1fr;
     }
 
+
     .dokumentasi-card {
+
         height: 230px;
     }
 
+
     .dokumentasi-title {
+
         font-size: 25px;
     }
 

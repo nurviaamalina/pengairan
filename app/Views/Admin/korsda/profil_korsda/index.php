@@ -22,15 +22,13 @@
         </p>
     </div>
 
-    <div>
-        <a href="<?= base_url('admin/korsda/profil_korsda/create') ?>"
-           class="btn btn-primary">
-
-            <i class="bi bi-plus-circle me-1"></i>
-            Tambah Profil
-
-        </a>
-    </div>
+<div>
+    <a href="<?= base_url('admin/korsda/profil_korsda/create') ?>"
+       class="btn btn-tambah">
+        <i class="bi bi-plus-circle me-1"></i>
+        Tambah Profil
+    </a>
+</div>
 
 </div>
 

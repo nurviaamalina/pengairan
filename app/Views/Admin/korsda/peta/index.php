@@ -19,13 +19,16 @@
     </div>
 
     <div>
-        <a href="<?= base_url('admin/wilayah/create') ?>"
-           class="btn btn-primary">
 
-            <i class="bi bi-plus-circle"></i>
+        <a href="<?= base_url('admin/wilayah/create') ?>"
+           class="btn btn-tambah">
+
+            <i class="bi bi-plus-circle me-1"></i>
             Tambah Wilayah
 
         </a>
+
+        
     </div>
 
 </div>
