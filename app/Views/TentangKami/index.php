@@ -251,34 +251,6 @@
         </div>
 
 
-        <!-- ======================================================
-             DESKRIPSI STRUKTUR
-        ====================================================== -->
-
-        <?php if (
-            !empty($profil) && 
-            !empty($profil['deskripsi_struktur'])
-        ): ?>
-
-            <div class="struktur-deskripsi mt-4">
-
-                <p 
-                    style="
-                        color: #555;
-                        line-height: 1.8;
-                        max-width: 800px;
-                        margin: 0 auto;
-                    "
-                >
-
-                    <?= $profil['deskripsi_struktur'] ?>
-
-                </p>
-
-            </div>
-
-        <?php endif; ?>
-
     </div>
 
 </section>

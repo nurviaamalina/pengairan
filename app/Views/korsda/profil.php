@@ -18,7 +18,7 @@
         </h1>
 
         <h2>
-            Kecamatan <?= esc($korsda['nama_kecamatan']) ?>
+            Wilayah <?= esc($korsda['nama_kecamatan']) ?>
         </h2>
 
     </div>
@@ -94,7 +94,7 @@
             <div class="struktur-header">
 
                 <h2>
-                    Struktur KORSDA Kecamatan
+                    Struktur Wilayah Kerja
                     <?= esc(
                         $korsda['nama_wilayah']
                         ?? $korsda['nama_kecamatan']
