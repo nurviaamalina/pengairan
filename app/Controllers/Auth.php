@@ -24,7 +24,6 @@ class Auth extends BaseController
      */
     public function login()
     {
-        // Jika sudah login, arahkan berdasarkan role
         if (session()->get('login') === true) {
             return $this->redirectByRole(
                 session()->get('role')
@@ -78,7 +77,7 @@ class Auth extends BaseController
 
         /*
         |--------------------------------------------------------------------------
-        | CEK STATUS AKUN
+        | CEK AKUN AKTIF
         |--------------------------------------------------------------------------
         */
 
@@ -96,14 +95,11 @@ class Auth extends BaseController
         |--------------------------------------------------------------------------
         | CEK PASSWORD
         |--------------------------------------------------------------------------
+        | Password menggunakan plaintext
+        |--------------------------------------------------------------------------
         */
 
-        if (
-            !password_verify(
-                $password,
-                $user['password']
-            )
-        ) {
+        if ($password !== $user['password']) {
             return redirect()
                 ->back()
                 ->withInput()
@@ -115,13 +111,14 @@ class Auth extends BaseController
 
         /*
         |--------------------------------------------------------------------------
-        | ROLE
+        | CEK ROLE
         |--------------------------------------------------------------------------
         */
 
         if (!in_array(
             $user['role'],
-            ['superadmin', 'admin', 'user']
+            ['superadmin', 'admin', 'user'],
+            true
         )) {
             return redirect()
                 ->back()
@@ -143,8 +140,9 @@ class Auth extends BaseController
         session()->set([
             'id'       => $user['id'],
             'username' => $user['username'],
-            'email'    => $user['email'] ?? null,
+            'email'    => $user['email'],
             'role'     => $user['role'],
+            'active'   => $user['active'],
             'login'    => true,
         ]);
 
@@ -161,25 +159,21 @@ class Auth extends BaseController
 
     private function redirectByRole($role)
     {
-        // Superadmin
         if ($role === 'superadmin') {
             return redirect()
                 ->to('/admin/dashboard');
         }
 
-        // Admin
         if ($role === 'admin') {
             return redirect()
                 ->to('/admin/dashboard');
         }
 
-        // User
         if ($role === 'user') {
             return redirect()
                 ->to('/admin/korsda/kegiatan');
         }
 
-        // Role tidak valid
         session()->destroy();
 
         return redirect()
