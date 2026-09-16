@@ -36,8 +36,7 @@ class Filters extends BaseFilters
         'performance'   => PerformanceMetrics::class,
         
         'auth'          => \App\Filters\AuthFilter::class,
-        'admin'  => \App\Filters\AdminFilter::class,
-        'korsda' => \App\Filters\KorsdaFilter::class,
+        'role'          => \App\Filters\RoleFilter::class,
     ];
 
     /**

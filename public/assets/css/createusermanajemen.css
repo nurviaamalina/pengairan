@@ -1,0 +1,482 @@
+/* =========================================================
+   HEADER HALAMAN
+========================================================= */
+
+.user-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.user-page-header h3 {
+    margin: 0 0 6px;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #222;
+}
+
+.user-page-header p {
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.user-content {
+    width: 100%;
+}
+
+
+/* =========================================================
+   CARD FORM
+========================================================= */
+
+.user-card {
+    width: 100%;
+
+    background: #fff;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.06);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card-header-user {
+    padding: 20px 24px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.card-header-user h4 {
+    margin: 0 0 5px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #333;
+}
+
+.card-header-user span {
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   FORM CONTAINER
+========================================================= */
+
+.user-form-container {
+    padding: 25px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.form-group-user {
+    margin-bottom: 20px;
+}
+
+.form-group-user label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+}
+
+
+/* =========================================================
+   INPUT + SELECT
+========================================================= */
+
+.form-group-user input,
+.form-group-user select {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    background: #fff;
+
+    color: #333;
+
+    font-size: 14px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    box-sizing: border-box;
+
+    transition: 0.2s ease;
+}
+
+
+.form-group-user input::placeholder {
+    color: #aaa;
+}
+
+
+.form-group-user input:hover,
+.form-group-user select:hover {
+    border-color: #c4c4c4;
+}
+
+
+.form-group-user input:focus,
+.form-group-user select:focus {
+    border-color: #0f2864;
+
+    box-shadow:
+        0 0 0 3px rgba(15, 40, 100, 0.08);
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.form-group-user input[type="text"] {
+    letter-spacing: 0.1px;
+}
+
+
+/* =========================================================
+   BANTUAN PASSWORD
+========================================================= */
+
+.form-help-user {
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   ROLE READONLY
+========================================================= */
+
+.role-readonly {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    background: #f5f5f5;
+
+    color: #666;
+
+    font-size: 14px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FORM ACTION
+========================================================= */
+
+.user-form-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   BUTTON SIMPAN
+========================================================= */
+
+.btn-save-user {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 40px;
+
+    padding: 9px 16px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #0f2864;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+
+.btn-save-user:hover {
+    background: #0b2052;
+}
+
+
+/* =========================================================
+   BUTTON BATAL
+========================================================= */
+
+.btn-cancel-user {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 40px;
+
+    padding: 9px 16px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #f1f3f5;
+
+    color: #555;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+
+.btn-cancel-user:hover {
+    background: #e2e6ea;
+
+    color: #333;
+}
+
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert {
+    width: 100%;
+
+    margin-bottom: 20px;
+
+    padding: 12px 16px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    box-sizing: border-box;
+}
+
+
+.alert-danger {
+    background: #fdeaea;
+
+    border: 1px solid #f5c2c7;
+
+    color: #dc3545;
+}
+
+
+.alert-success {
+    background: #e8f7ee;
+
+    border: 1px solid #c7ead5;
+
+    color: #198754;
+}
+
+
+/* =========================================================
+   RESPONSIVE TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .user-page-header h3 {
+        font-size: 21px;
+    }
+
+    .user-page-header p {
+        font-size: 13px;
+    }
+
+    .user-form-container {
+        padding: 20px;
+    }
+
+    .card-header-user {
+        padding: 18px 20px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE HP
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .user-page-header {
+        display: block;
+
+        margin-bottom: 18px;
+    }
+
+    .user-page-header h3 {
+        font-size: 20px;
+
+        margin-bottom: 5px;
+    }
+
+    .user-page-header p {
+        font-size: 12px;
+    }
+
+    .user-card {
+        border-radius: 9px;
+    }
+
+    .card-header-user {
+        padding: 16px;
+    }
+
+    .card-header-user h4 {
+        font-size: 16px;
+    }
+
+    .card-header-user span {
+        font-size: 12px;
+    }
+
+    .user-form-container {
+        padding: 16px;
+    }
+
+    .form-group-user {
+        margin-bottom: 17px;
+    }
+
+    .form-group-user label {
+        font-size: 13px;
+    }
+
+    .form-group-user input,
+    .form-group-user select,
+    .role-readonly {
+        height: 44px;
+
+        font-size: 13px;
+    }
+
+    .user-form-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 8px;
+    }
+
+    .btn-save-user,
+    .btn-cancel-user {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE HP KECIL
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .user-form-container {
+        padding: 14px;
+    }
+
+    .user-page-header h3 {
+        font-size: 18px;
+    }
+
+    .user-page-header p {
+        font-size: 11px;
+    }
+
+    .form-group-user input,
+    .form-group-user select,
+    .role-readonly {
+        font-size: 12px;
+    }
+
+}

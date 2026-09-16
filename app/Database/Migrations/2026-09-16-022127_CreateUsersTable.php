@@ -18,13 +18,14 @@ class CreateUsersTable extends Migration
 
             'username' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 50,
+                'constraint' => 100,
                 'unique'     => true,
             ],
 
             'email' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 100,
+                'constraint' => 150,
+                'null'       => true,
                 'unique'     => true,
             ],
 
@@ -33,11 +34,16 @@ class CreateUsersTable extends Migration
                 'constraint' => 255,
             ],
 
-            // ROLE
             'role' => [
-                'type'       => 'ENUM',
-                'constraint' => ['admin', 'user'],
+                'type'       => 'VARCHAR',
+                'constraint' => 20,
                 'default'    => 'user',
+            ],
+
+            'active' => [
+                'type'       => 'TINYINT',
+                'constraint' => 1,
+                'default'    => 1,
             ],
 
             'created_at' => [
@@ -53,11 +59,11 @@ class CreateUsersTable extends Migration
 
         $this->forge->addKey('id', true);
 
-        $this->forge->createTable('users');
+        $this->forge->createTable('users', true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('users');
+        $this->forge->dropTable('users', true);
     }
 }
