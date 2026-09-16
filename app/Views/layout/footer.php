@@ -7,68 +7,62 @@
             <!-- ================= LEFT ================= -->
             <div class="col-lg-6">
 
-              <div class="footer-logo d-flex align-items-center">
+    <!-- Logo & Judul Header Footer -->
+    <div class="footer-logo d-flex align-items-center">
+        <img src="<?= base_url('assets/images/pemkab.png') ?>" alt="Pemkab Banyuwangi" class="footer-logo-img">
+        <img src="<?= base_url('assets/images/pu.png') ?>" alt="Dinas Pengairan" class="footer-logo-img">
 
-    <!-- Ubah me-2 menjadi me-1 atau hapus me-2 -->
-    <img src="<?= base_url('assets/images/pemkab.png') ?>" alt="Pemkab Banyuwangi" class="footer-logo-img me-1">
-    <img src="<?= base_url('assets/images/pu.png') ?>" alt="Dinas Pengairan" class="footer-logo-img">
+        <div class="ms-2 footer-text">
+            <h5 class="mb-0">Dinas Pekerjaan Umum Pengairan</h5>
+            <h6 class="mb-0">Pemerintah Kabupaten Banyuwangi</h6>
+        </div>
+    </div>
 
-    <div class="ms-3 footer-text">
-        <h5>Dinas Pekerjaan Umum Pengairan</h5>
-        <h6>Pemerintah Kabupaten Banyuwangi</h6>
+    <!-- Deskripsi (Margin atas diperkecil) -->
+    <p class="footer-desc mt-2 mb-2">
+        Dinas Pekerjaan Umum Pengairan berkomitmen mengelola sumber daya air secara
+        terpadu, berkelanjutan, dan berwawasan lingkungan demi kesejahteraan masyarakat Banyuwangi.
+    </p>
+
+    <!-- Informasi Kontak -->
+    <div class="footer-contact mt-2">
+        <p class="mb-1">
+            <i class="fa-solid fa-location-dot me-1"></i>
+            <span>Jl. K.H. Agus Salim No. 85, Lingkungan Cuking, Mojopanggung, Kec. Giri, Kabupaten Banyuwangi, Jawa Timur 68425</span>
+        </p>
+
+        <div class="row g-1 mt-1">
+            <div class="col-sm-6">
+                <p class="mb-1">
+                    <i class="fa-solid fa-phone me-1"></i>
+                    <span>(0333) 424676</span>
+                </p>
+            </div>
+
+            <div class="col-sm-6">
+                <p class="mb-1">
+                    <i class="fa-solid fa-envelope me-1"></i>
+                    <span>dinaspengairan2@gmail.com</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Media Sosial -->
+    <div class="social-media mt-2">
+        <span class="me-2">Media Sosial:</span>
+        <a href="https://www.instagram.com/dinas_pengairan.bwi/" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/pengairanbanyuwangi/?locale=id_ID" target="_blank" rel="noopener noreferrer" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://x.com/PengairanBwi" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+            <i class="fab fa-twitter"></i>
+        </a>
     </div>
 
 </div>
-
-                <p class="footer-desc mt-3">
-                    Dinas Pekerjaan Umum Pengairan berkomitmen mengelola sumber daya air secara
-                    terpadu, berkelanjutan, dan berwawasan lingkungan demi kesejahteraan masyarakat Banyuwangi.
-                </p>
-
-                <div class="footer-contact mt-3">
-
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Jl. K.H. Agus Salim No. 85, Lingkungan Cuking, Mojopanggung, Kec. Giri, Kabupaten Banyuwangi, Jawa Timur 68425</span>
-                    </p>
-
-                    <div class="row g-2">
-
-                        <div class="col-sm-6">
-                            <p>
-                                <i class="fa-solid fa-phone"></i>
-                                <span>(0333) 424676</span>
-                            </p>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <p>
-                                <i class="fa-solid fa-envelope"></i>
-                                <span>dinaspengairan2@gmail.com</span>
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="social-media mt-3">
-
-                    <span class="me-2">Media Sosial:</span>
-
-                    <a href="https://www.instagram.com/dinas_pengairan.bwi/" target="_blank" rel="noopener noreferrer" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.facebook.com/pengairanbanyuwangi/?locale=id_ID" target="_blank" rel="noopener noreferrer" title="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://x.com/PengairanBwi" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-
-                </div>
-
-            </div>
 
             <!-- ================= RIGHT ================= -->
             <div class="col-lg-6 footer-menu">

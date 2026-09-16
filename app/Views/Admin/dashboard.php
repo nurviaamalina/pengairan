@@ -75,7 +75,6 @@
                             <!-- Judul di Dalam Card Peta Sendiri -->
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <div class="d-flex align-items-center gap-2">
-                                    <i class="bi bi-geo-alt-fill text-danger fs-5"></i>
                                     <h5 class="mb-0 fw-bold text-dark">Peta Jaringan Irigasi</h5>
                                 </div>
                                 <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold">
@@ -84,7 +83,7 @@
                             </div>
 
                             <!-- Area Peta Leaflet -->
-                            <div id="map" style="height: 460px; width: 100%; border-radius: 12px;"></div>
+                            <div id="map" style="height: 300px; width: 100%; border-radius: 12px;"></div>
 
                         </div>
                     </div>

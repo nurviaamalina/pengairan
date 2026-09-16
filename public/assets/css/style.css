@@ -85,10 +85,12 @@ a:hover {
 /* ==========================================================================
    NAVBAR (HEADER KEDINASAN)
    ========================================================================== */
-
+/* Navbar dipertipis tingginya */
+/* 1. Kunci tinggi background putih navbar agar tetap ramping */
 .navbar {
-    min-height: 76px;
-    padding: 10px 0;
+    height: 65px;         /* Mengunci tinggi background putih */
+    min-height: 65px;
+    padding: 0;
     background-color: #ffffff !important;
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
@@ -99,20 +101,40 @@ a:hover {
 .navbar-brand {
     padding: 0;
     margin-right: 25px;
+    display: flex;
+    align-items: center;
+    position: relative; /* Dasar penataan logo */
 }
 
+/* 2. Atur Logo Besar Tanpa Memperbesar Background Putih */
+/* Pengaturan jarak antar logo */
 .navbar-brand .logo-pemkab {
-    height: 100px;
+    height: 85px;             
     width: auto;
     object-fit: contain;
+    position: relative;
+    top: 0px;                 
+    z-index: 1060;            
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    margin-right: -25px !important; /* <--- Jarak logo Pemkab ke logo PU dibuat dekat (default 4px) */
 }
 
 .navbar-brand .logo-pu {
-    height:100px;
+    height: 85px;             
     width: auto;
     object-fit: contain;
+    position: relative;
+    top:0px;                 
+    z-index: 1060;            
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    margin-right: -10px !important; /* <--- Jarak logo PU ke garis pembatas brand-text */
 }
 
+.brand-text {
+    border-left: 2px solid var(--border-color);
+    padding-left: 12px;
+    line-height: 1.2;
+}
 .brand-text {
     border-left: 2px solid var(--border-color);
     padding-left: 12px;
@@ -1081,9 +1103,9 @@ a:hover {
     object-fit: contain;
 }
 
-/* Mengatur jarak khusus antar-logo */
+/* Mengatur spasi khusus antar logo di footer */
 .footer-logo-img:first-child {
-    margin-right: 0px !important; /* Sesuaikan angka ini (bisa coba 2px atau -5px jika ada whitespace pada PNG) */
+    margin-right: -25px !important; /* <--- Ubah ke -10px atau -12px jika ingin lebih dekat lagi */
 }
 
 .footer-text h5 {

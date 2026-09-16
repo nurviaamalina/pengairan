@@ -3429,3 +3429,39 @@ html, body {
 }
 
 /* End of Admin Theme Overrides */
+/* =====================================================
+   POSISI TOMBOL TAMBAH — SELALU DI SEBELAH KANAN
+   ===================================================== */
+
+.page-header,
+.user-page-header,
+.kategori-page-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Pastikan tombol tambah terdorong ke kanan */
+.page-header .btn-tambah,
+.user-page-header .btn-tambah,
+.kategori-page-header .btn-kategori-tambah,
+.page-header .btn-tambahdata,
+.page-header .btn-add,
+.page-header .btn-create,
+.user-page-header .btn-tambahdata,
+.user-page-header .btn-add,
+.user-page-header .btn-create {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* Jika ada wrapper khusus untuk tombol */
+.page-header .header-actions,
+.user-page-header .header-actions,
+.kategori-page-header .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

@@ -35,9 +35,9 @@
         <div class="container">
 
             <!-- Logo -->
-            <a class="navbar-brand d-flex align-items-center" href="<?= base_url('/') ?>">
-                <img src="<?= base_url('assets/images/pemkab.png') ?>" class="logo-pemkab me-2" alt="Pemkab Banyuwangi">
-                <img src="<?= base_url('assets/images/pu.png') ?>" class="logo-pu me-2" alt="Dinas Pengairan">
+           <a class="navbar-brand d-flex align-items-center" href="<?= base_url('/') ?>">
+    <img src="<?= base_url('assets/images/pemkab.png') ?>" class="logo-pemkab" alt="Pemkab Banyuwangi">
+    <img src="<?= base_url('assets/images/pu.png') ?>" class="logo-pu ms-1 me-2" alt="Dinas Pengairan">
                 <div class="brand-text d-none d-md-flex flex-column justify-content-center">
                     <span class="brand-sub">PEMERINTAH KABUPATEN BANYUWANGI</span>
                     <span class="brand-main">DINAS PEKERJAAN UMUM PENGAIRAN</span>
