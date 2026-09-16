@@ -48,15 +48,6 @@ $role = session()->get('role');
                 </a>
             </li>
 
-            <!-- Pengaduan -->
-            <li>
-                <a href="<?= base_url('admin/pengaduan') ?>"
-                   class="menu-link <?= $uri->getSegment(2) == 'pengaduan' ? 'active' : '' ?>">
-                    <i class="bi bi-envelope"></i>
-                    <span>Pengaduan</span>
-                </a>
-            </li>
-
             <!-- Berita -->
             <li>
                 <a href="<?= base_url('admin/berita') ?>"
