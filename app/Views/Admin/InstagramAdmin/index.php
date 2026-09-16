@@ -121,24 +121,58 @@
 
                                             <td class="text-center">
 
-                                                <?php if (!empty($row['thumbnail'])) : ?>
+    <?php
+    // Thumbnail lokal terlebih dahulu
+    $thumbnail = null;
 
-                                                    <img
-                                                        src="<?= base_url('uploads/instagram/' . $row['thumbnail']) ?>"
-                                                        class="img-thumbnail"
-                                                        width="100">
+    if (!empty($row['thumbnail'])) {
 
-                                                <?php else : ?>
+        $fileThumbnail =
+            FCPATH .
+            'uploads/instagram/' .
+            $row['thumbnail'];
 
-                                                    <span class="text-muted">
+        if (file_exists($fileThumbnail)) {
 
-                                                        Tidak ada gambar
+            $thumbnail =
+                base_url(
+                    'uploads/instagram/' .
+                    $row['thumbnail']
+                );
 
-                                                    </span>
+        }
+    }
 
-                                                <?php endif; ?>
+    // Jika thumbnail lokal tidak ada,
+    // gunakan thumbnail dari Instagram API
+    if (
+        empty($thumbnail) &&
+        !empty($row['thumbnail_url'])
+    ) {
 
-                                            </td>
+        $thumbnail = $row['thumbnail_url'];
+
+    }
+    ?>
+
+    <?php if (!empty($thumbnail)) : ?>
+
+        <img
+            src="<?= esc($thumbnail) ?>"
+            class="img-thumbnail"
+            width="100"
+            alt="Thumbnail Instagram"
+        >
+
+    <?php else : ?>
+
+        <span class="text-muted">
+            Tidak ada gambar
+        </span>
+
+    <?php endif; ?>
+
+</td>
 
                                             <td>
 

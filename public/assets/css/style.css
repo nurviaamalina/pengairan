@@ -102,13 +102,13 @@ a:hover {
 }
 
 .navbar-brand .logo-pemkab {
-    height: 48px;
+    height: 100px;
     width: auto;
     object-fit: contain;
 }
 
 .navbar-brand .logo-pu {
-    height: 48px;
+    height:100px;
     width: auto;
     object-fit: contain;
 }
@@ -1076,9 +1076,14 @@ a:hover {
 }
 
 .footer-logo-img {
-    height: 48px;
+    height: 100px;
     width: auto;
     object-fit: contain;
+}
+
+/* Mengatur jarak khusus antar-logo */
+.footer-logo-img:first-child {
+    margin-right: 0px !important; /* Sesuaikan angka ini (bisa coba 2px atau -5px jika ada whitespace pada PNG) */
 }
 
 .footer-text h5 {

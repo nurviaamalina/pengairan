@@ -7,19 +7,18 @@
             <!-- ================= LEFT ================= -->
             <div class="col-lg-6">
 
-                <div class="footer-logo d-flex align-items-center">
+              <div class="footer-logo d-flex align-items-center">
 
-                    <img src="<?= base_url('assets/images/pemkab.png') ?>" alt="Pemkab Banyuwangi" class="footer-logo-img me-2">
-                    <img src="<?= base_url('assets/images/pu.png') ?>" alt="Dinas Pengairan" class="footer-logo-img">
+    <!-- Ubah me-2 menjadi me-1 atau hapus me-2 -->
+    <img src="<?= base_url('assets/images/pemkab.png') ?>" alt="Pemkab Banyuwangi" class="footer-logo-img me-1">
+    <img src="<?= base_url('assets/images/pu.png') ?>" alt="Dinas Pengairan" class="footer-logo-img">
 
-                    <div class="ms-3 footer-text">
+    <div class="ms-3 footer-text">
+        <h5>Dinas Pekerjaan Umum Pengairan</h5>
+        <h6>Pemerintah Kabupaten Banyuwangi</h6>
+    </div>
 
-                        <h5>Dinas Pekerjaan Umum Pengairan</h5>
-                        <h6>Pemerintah Kabupaten Banyuwangi</h6>
-
-                    </div>
-
-                </div>
+</div>
 
                 <p class="footer-desc mt-3">
                     Dinas Pekerjaan Umum Pengairan berkomitmen mengelola sumber daya air secara
