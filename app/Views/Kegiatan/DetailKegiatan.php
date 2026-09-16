@@ -2,89 +2,133 @@
 
 <link rel="stylesheet" href="<?= base_url('assets/css/kegiatan.css') ?>">
 
-<section class="container py-5">
-    <div class="container py-5">
+<section class="detail-kegiatan-page">
 
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+    <!-- ==========================================
+         THUMBNAIL / HERO KEGIATAN
+         ========================================== -->
+    <div class="detail-hero">
+
+        <?php
+        $thumbnail = !empty($kegiatan['thumbnail'])
+            ? base_url('uploads/kegiatan/thumbnail/' . $kegiatan['thumbnail'])
+            : base_url('assets/img/default-kegiatan.jpg');
+        ?>
+
+        <img src="<?= $thumbnail ?>"
+             alt="<?= esc($kegiatan['judul']) ?>"
+             class="detail-hero-image">
+
+        <!-- ======================================
+             BREADCRUMB DI ATAS FOTO
+             ====================================== -->
+        <nav class="detail-breadcrumb" aria-label="breadcrumb">
+
+            <ol class="breadcrumb mb-0">
+
                 <li class="breadcrumb-item">
-                    <a href="<?= base_url('/') ?>">Beranda</a>
+                    <a href="<?= base_url('/') ?>">
+                        Beranda
+                    </a>
                 </li>
 
                 <li class="breadcrumb-item">
-                    <a href="<?= base_url('kegiatan') ?>">Kegiatan</a>
+                    <a href="<?= base_url('kegiatan') ?>">
+                        Kegiatan
+                    </a>
                 </li>
 
                 <li class="breadcrumb-item active">
-                    Detail Kegiatan
+                    <?= esc($kegiatan['judul']) ?>
                 </li>
+
             </ol>
+
         </nav>
 
-    <h2 class="text-center fw-bold">
+    </div>
 
-        <?= esc($kegiatan['judul']) ?>
 
-    </h2>
+    <!-- ==========================================
+         INFORMASI KEGIATAN
+         ========================================== -->
+    <div class="detail-info">
 
-    <p class="text-center text-muted">
+        <!-- JUDUL -->
+        <h1 class="detail-title">
+            <?= esc($kegiatan['judul']) ?>
+        </h1>
 
-        <?= date('d F Y', strtotime($kegiatan['tanggal'])) ?>
+        <!-- TANGGAL -->
+        <div class="detail-date">
 
-    </p>
+            <i class="bi bi-calendar3"></i>
 
-    <div class="text-center my-5">
+            <span>
+                <?= date(
+                    'd F Y',
+                    strtotime($kegiatan['created_at'] ?? $kegiatan['tanggal'])
+                ) ?>
+            </span>
 
-    <img
-        src="<?= base_url('uploads/kegiatan/thumbnail/'.$kegiatan['thumbnail']) ?>"
-        class="img-fluid rounded shadow">
-
-</div>
-
-<div class="row justify-content-center">
-
-    <div class="col-lg-10">
-
-        <?= nl2br(esc($kegiatan['deskripsi'])) ?>
+        </div>
 
     </div>
 
-</div>
 
-<hr class="my-5">
+    <!-- ==========================================
+         PEMBATAS
+         ========================================== -->
+    <div class="detail-divider"></div>
 
-<h3 class="text-center mb-4">
 
-Dokumentasi
+    <!-- ==========================================
+         DOKUMENTASI
+         ========================================== -->
+    <?php if (!empty($foto)) : ?>
 
-</h3>
+        <section class="detail-dokumentasi">
 
-<div class="row g-4">
+            <h2 class="dokumentasi-title">
+                Dokumentasi Kegiatan
+            </h2>
 
-<?php foreach($foto as $item): ?>
+            <div class="dokumentasi-grid">
 
-    <div class="col-lg-4 col-md-6">
+                <?php foreach ($foto as $item) : ?>
 
-        <img
-            src="<?= base_url('uploads/kegiatan/dokumentasi/'.$item['foto']) ?>"
-            class="img-fluid rounded shadow-sm">
+                    <div class="dokumentasi-item">
+
+                        <img
+                            src="<?= base_url('uploads/kegiatan/dokumentasi/' . $item['foto']) ?>"
+                            alt="Dokumentasi <?= esc($kegiatan['judul']) ?>"
+                        >
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            </div>
+
+        </section>
+
+    <?php endif; ?>
+
+
+    <!-- ==========================================
+         TOMBOL KEMBALI
+         ========================================== -->
+    <div class="detail-back">
+
+        <a href="javascript:history.back()" class="btn-kembali">
+
+            <i class="bi bi-arrow-left"></i>
+
+            <span>Kembali</span>
+
+        </a>
 
     </div>
-
-<?php endforeach; ?>
-
-</div>
-
- <button
-            type="button"
-            class="btn btn-primary btn-kembali"
-            onclick="window.location.href='<?= base_url('/') ?>'">
-
-            <i class="bi bi-arrow-left me-2"></i>
-            Kembali
-
-        </button>
 
 </section>
 

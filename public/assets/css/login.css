@@ -14,14 +14,15 @@ body {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
     background: #f1f5f9;
     color: #1e293b;
     line-height: 1.5;
 }
 
 /* =========================================================
-   LAYOUT UTAMA (SPLIT SCREEN)
+   LAYOUT UTAMA
 ========================================================= */
 .login-page {
     width: 100%;
@@ -31,7 +32,7 @@ body {
 }
 
 /* =========================================================
-   PANEL KIRI (BRANDING & VISUAL)
+   PANEL KIRI
 ========================================================= */
 .login-left {
     position: relative;
@@ -41,18 +42,32 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: 
-        linear-gradient(145deg, rgba(9, 27, 66, 0.92) 0%, rgba(15, 40, 100, 0.88) 50%, rgba(20, 52, 120, 0.92) 100%),
-        url('../images/bg-login.jpg') center/cover no-repeat;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(9, 27, 66, 0.92) 0%,
+            rgba(15, 40, 100, 0.88) 50%,
+            rgba(20, 52, 120, 0.92) 100%
+        ),
+        url("../images/bg-login.jpg") center/cover no-repeat;
 }
 
-/* Dekorasi Ambient Orbs */
+/* Dekorasi */
 .left-overlay {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.12), transparent 35%),
-        radial-gradient(circle at 85% 80%, rgba(59, 130, 246, 0.18), transparent 40%);
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(59, 130, 246, 0.18),
+            transparent 40%
+        );
     pointer-events: none;
 }
 
@@ -64,17 +79,20 @@ body {
     color: #ffffff;
 }
 
-/* Logo Box */
+/* Logo */
 .brand-logo-box {
     width: 90px;
     height: 90px;
     margin-bottom: 22px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 18px;
+
     backdrop-filter: blur(8px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
@@ -85,7 +103,7 @@ body {
     object-fit: contain;
 }
 
-/* Tipografi Branding */
+/* Tipografi */
 .brand-government {
     font-size: 12px;
     font-weight: 700;
@@ -118,7 +136,7 @@ body {
     color: rgba(255, 255, 255, 0.84);
 }
 
-/* Feature List Kiri */
+/* Feature List */
 .left-info {
     margin-top: 32px;
     display: flex;
@@ -131,9 +149,11 @@ body {
     align-items: flex-start;
     gap: 14px;
     padding: 13px 16px;
+
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.12);
+
     backdrop-filter: blur(4px);
 }
 
@@ -141,11 +161,14 @@ body {
     width: 38px;
     height: 38px;
     flex-shrink: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.15);
+
     color: #ffffff;
     font-size: 16px;
 }
@@ -165,14 +188,17 @@ body {
     color: rgba(255, 255, 255, 0.76);
 }
 
-/* Footer Kiri */
+/* Footer */
 .left-footer {
     display: flex;
     align-items: center;
     gap: 10px;
+
     margin-top: 34px;
     padding-top: 18px;
+
     border-top: 1px solid rgba(255, 255, 255, 0.16);
+
     font-size: 12px;
     color: rgba(255, 255, 255, 0.70);
 }
@@ -183,25 +209,30 @@ body {
 }
 
 /* =========================================================
-   PANEL KANAN (FORM LOGIN)
+   PANEL KANAN
 ========================================================= */
 .login-right {
     width: 48%;
     min-height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 40px 30px;
     background: #f8fafc;
 }
 
 .right-content {
     width: min(440px, 100%);
+
     background: #ffffff;
     padding: 40px 36px;
+
     border-radius: 16px;
-    box-shadow: 0 10px 35px rgba(15, 40, 100, 0.08);
     border: 1px solid #eef1f6;
+
+    box-shadow: 0 10px 35px rgba(15, 40, 100, 0.08);
 }
 
 /* Header Login */
@@ -214,12 +245,15 @@ body {
     width: 64px;
     height: 64px;
     margin: 0 auto 16px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-radius: 16px;
     background: #edf2ff;
     color: #0f2864;
+
     font-size: 26px;
     border: 1px solid #dbe4ff;
 }
@@ -239,16 +273,20 @@ body {
 }
 
 /* =========================================================
-   ALERT MESSAGES
+   ALERT
 ========================================================= */
 .login-alert {
     width: 100%;
+
     display: flex;
     align-items: center;
+
     gap: 10px;
     padding: 12px 14px;
     margin-bottom: 20px;
+
     border-radius: 8px;
+
     font-size: 13px;
     line-height: 1.5;
 }
@@ -271,7 +309,7 @@ body {
 }
 
 /* =========================================================
-   FORM INPUTS
+   FORM INPUT
 ========================================================= */
 .right-login-form {
     width: 100%;
@@ -284,6 +322,7 @@ body {
 .right-input-group label {
     display: block;
     margin-bottom: 6px;
+
     font-size: 13px;
     font-weight: 600;
     color: #334155;
@@ -298,24 +337,36 @@ body {
     position: absolute;
     top: 50%;
     left: 15px;
+
     transform: translateY(-50%);
+
     color: #94a3b8;
     font-size: 15px;
+
     pointer-events: none;
+
     transition: color 0.2s ease;
 }
 
 .right-input-box input {
     width: 100%;
     height: 48px;
+
     padding: 0 42px 0 42px;
+
     border: 1.5px solid #cbd5e1;
     border-radius: 8px;
+
     outline: none;
+
     background: #ffffff;
     color: #1e293b;
+
     font-size: 14px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .right-input-box input::placeholder {
@@ -331,27 +382,35 @@ body {
     box-shadow: 0 0 0 3.5px rgba(15, 40, 100, 0.12);
 }
 
-.right-input-box input:focus + i.input-icon,
 .right-input-box:focus-within i.input-icon {
     color: #0f2864;
 }
 
-/* Toggle Show/Hide Password */
+/* =========================================================
+   TOGGLE PASSWORD
+========================================================= */
 .btn-toggle-password {
     position: absolute;
     top: 50%;
     right: 12px;
+
     transform: translateY(-50%);
+
     background: none;
     border: none;
     padding: 6px;
+
     cursor: pointer;
+
     color: #94a3b8;
     font-size: 15px;
+
     border-radius: 4px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     transition: color 0.2s ease;
 }
 
@@ -360,22 +419,27 @@ body {
 }
 
 /* =========================================================
-   LOGIN OPTIONS (INGAT SAYA + LUPA PASSWORD)
+   LOGIN OPTIONS
 ========================================================= */
 .login-options {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     margin-top: 10px;
     margin-bottom: 22px;
+
     font-size: 13px;
 }
 
 .remember-me {
     display: inline-flex;
     align-items: center;
+
     gap: 7px;
+
     cursor: pointer;
+
     color: #475569;
     user-select: none;
 }
@@ -391,6 +455,7 @@ body {
     color: #0f2864;
     text-decoration: none;
     font-weight: 600;
+
     transition: color 0.2s ease;
 }
 
@@ -405,24 +470,37 @@ body {
 .right-login-button {
     width: 100%;
     min-height: 48px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 9px;
+
     border: none;
     border-radius: 8px;
+
     background: #0f2864;
     color: #ffffff;
+
     font-size: 14px;
     font-weight: 700;
+
     cursor: pointer;
+
     box-shadow: 0 4px 14px rgba(15, 40, 100, 0.22);
-    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
 }
 
 .right-login-button:hover {
     background: #0b1d4b;
+
     transform: translateY(-1px);
+
     box-shadow: 0 6px 18px rgba(15, 40, 100, 0.30);
 }
 
@@ -445,11 +523,16 @@ body {
 .auth-back-link a {
     display: inline-flex;
     align-items: center;
+
     gap: 8px;
+
     color: #64748b;
+
     font-size: 13px;
     font-weight: 600;
+
     text-decoration: none;
+
     transition: color 0.2s ease;
 }
 
@@ -508,10 +591,7 @@ body {
         margin: 14px auto;
     }
 
-    .left-info {
-        display: none;
-    }
-
+    .left-info,
     .left-footer {
         display: none;
     }

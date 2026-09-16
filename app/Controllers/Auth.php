@@ -13,7 +13,6 @@ class Auth extends BaseController
         $this->user = new UserModel();
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | LOGIN
@@ -35,7 +34,6 @@ class Auth extends BaseController
         return view('auth/login');
     }
 
-
     /**
      * Proses login
      */
@@ -47,15 +45,8 @@ class Auth extends BaseController
 
         $password = (string) $this->request->getPost('password');
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | VALIDASI INPUT
-        |--------------------------------------------------------------------------
-        */
-
+        // Validasi input
         if ($username === '' || $password === '') {
-
             return redirect()
                 ->back()
                 ->withInput()
@@ -65,34 +56,17 @@ class Auth extends BaseController
                 );
         }
 
-
         /*
         |--------------------------------------------------------------------------
         | CARI USER
         |--------------------------------------------------------------------------
-        |
-        | Login dapat menggunakan:
-        | - Username
-        | - Email
-        |
         */
 
         $user = $this->user
-            ->groupStart()
-                ->where('username', $username)
-                ->orWhere('email', $username)
-            ->groupEnd()
+            ->where('username', $username)
             ->first();
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | USER TIDAK DITEMUKAN
-        |--------------------------------------------------------------------------
-        */
-
         if (!$user) {
-
             return redirect()
                 ->back()
                 ->withInput()
@@ -102,7 +76,6 @@ class Auth extends BaseController
                 );
         }
 
-
         /*
         |--------------------------------------------------------------------------
         | CEK STATUS AKUN
@@ -110,7 +83,6 @@ class Auth extends BaseController
         */
 
         if ((int) $user['active'] !== 1) {
-
             return redirect()
                 ->back()
                 ->withInput()
@@ -120,19 +92,18 @@ class Auth extends BaseController
                 );
         }
 
-
         /*
         |--------------------------------------------------------------------------
         | CEK PASSWORD
         |--------------------------------------------------------------------------
-        |
-        | Password disimpan sebagai password asli di database.
-        | Oleh karena itu tidak menggunakan password_verify().
-        |
         */
 
-        if ($password !== $user['password']) {
-
+        if (
+            !password_verify(
+                $password,
+                $user['password']
+            )
+        ) {
             return redirect()
                 ->back()
                 ->withInput()
@@ -142,45 +113,45 @@ class Auth extends BaseController
                 );
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | ROLE
+        |--------------------------------------------------------------------------
+        */
+
+        if (!in_array(
+            $user['role'],
+            ['superadmin', 'admin', 'user']
+        )) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(
+                    'error',
+                    'Role akun tidak valid.'
+                );
+        }
 
         /*
         |--------------------------------------------------------------------------
-        | REGENERATE SESSION
+        | LOGIN BERHASIL
         |--------------------------------------------------------------------------
-        |
-        | Mencegah session fixation setelah login berhasil.
-        |
         */
 
         session()->regenerate(true);
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | SIMPAN SESSION
-        |--------------------------------------------------------------------------
-        */
-
         session()->set([
             'id'       => $user['id'],
             'username' => $user['username'],
-            'email'    => $user['email'],
+            'email'    => $user['email'] ?? null,
             'role'     => $user['role'],
             'login'    => true,
         ]);
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | REDIRECT BERDASARKAN ROLE
-        |--------------------------------------------------------------------------
-        */
 
         return $this->redirectByRole(
             $user['role']
         );
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -190,51 +161,25 @@ class Auth extends BaseController
 
     private function redirectByRole($role)
     {
-        /*
-        |--------------------------------------------------------------------------
-        | SUPERADMIN
-        |--------------------------------------------------------------------------
-        */
-
+        // Superadmin
         if ($role === 'superadmin') {
-
             return redirect()
                 ->to('/admin/dashboard');
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | ADMIN
-        |--------------------------------------------------------------------------
-        */
-
+        // Admin
         if ($role === 'admin') {
-
             return redirect()
                 ->to('/admin/dashboard');
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | USER
-        |--------------------------------------------------------------------------
-        */
-
+        // User
         if ($role === 'user') {
-
             return redirect()
                 ->to('/admin/korsda/kegiatan');
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | ROLE TIDAK VALID
-        |--------------------------------------------------------------------------
-        */
-
+        // Role tidak valid
         session()->destroy();
 
         return redirect()
@@ -244,7 +189,6 @@ class Auth extends BaseController
                 'Role akun tidak valid.'
             );
     }
-
 
     /*
     |--------------------------------------------------------------------------

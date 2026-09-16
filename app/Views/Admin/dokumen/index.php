@@ -8,17 +8,15 @@
     <main class="content-wrapper">
 
         <!-- TOPBAR -->
-        <div class="topbar">
-
-            <h3>Arsip Dokumen</h3>
-
-            <a href="<?= base_url('admin/dokumen/create') ?>"
-               class="btn btn-secondary">
-                <i class="fas fa-plus"></i>
-                Tambah Dokumen
-            </a>
-
-        </div>
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h3>Arsip Dokumen</h3>
+        <p>Kelola kategori dokumen yang tersedia di sistem.</p>
+    </div>
+    <a href="#" class="btn-tambah">
+        <i class="bi bi-plus-lg"></i> Tambah
+    </a>
+</div>
 
 
         <!-- CONTENT DOKUMEN -->

@@ -36,13 +36,14 @@
                     </a>
 
                     <!-- TAMBAH -->
-                    <a
-                        href="<?= base_url('admin/korsda/kegiatan/create') ?>"
-                        class="btn btn-primary"
-                    >
-                        <i class="bi bi-plus-circle me-1"></i>
-                        Tambah Kegiatan
-                    </a>
+
+                    <a href="<?= base_url('admin/korsda/kegiatan/create') ?>"
+           class="btn btn-tambah">
+
+            <i class="bi bi-plus-circle me-1"></i>
+            Tambah kegiatan
+
+        </a>
 
                 </div>
 
@@ -367,6 +368,19 @@
                 </div>
 
             </div>
+            <div class="mt-3">
+
+            <button
+                type="button"
+                class="btn btn-kembali"
+                onclick="window.location.href='<?= base_url('admin/korsda/dashboard') ?>'">
+
+                <i class="bi bi-arrow-left me-2"></i>
+                Kembali
+
+            </button>
+
+        </div>
 
         </div>
 

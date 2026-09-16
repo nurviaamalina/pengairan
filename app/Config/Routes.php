@@ -31,6 +31,7 @@ $routes->get('/', 'Home::index');
 $routes->get('search', 'Home::search');
 
 
+
 /*
 |--------------------------------------------------------------------------
 | FRONTEND - INSTAGRAM

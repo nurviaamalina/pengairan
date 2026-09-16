@@ -7,12 +7,10 @@ $role = session()->get('role');
 
     <ul class="sidebar-menu">
 
-
         <!-- =====================================
              MENU SUPERADMIN & ADMIN
         ====================================== -->
         <?php if (in_array($role, ['superadmin', 'admin'])): ?>
-
 
             <!-- Beranda -->
             <li>
@@ -25,7 +23,6 @@ $role = session()->get('role');
                 </a>
             </li>
 
-
             <!-- Profil -->
             <li>
                 <a
@@ -37,7 +34,6 @@ $role = session()->get('role');
                 </a>
             </li>
 
-
             <!-- KORSDA -->
             <li>
                 <a
@@ -48,7 +44,6 @@ $role = session()->get('role');
                     <span>KORSDA</span>
                 </a>
             </li>
-
 
             <!-- Dokumen -->
             <li>
@@ -64,7 +59,6 @@ $role = session()->get('role');
                 </a>
             </li>
 
-
             <!-- Pengaduan -->
             <li>
                 <a
@@ -75,7 +69,6 @@ $role = session()->get('role');
                     <span>Pengaduan</span>
                 </a>
             </li>
-
 
             <!-- Berita -->
             <li>
@@ -88,7 +81,6 @@ $role = session()->get('role');
                 </a>
             </li>
 
-
             <!-- Kegiatan -->
             <li>
                 <a
@@ -99,7 +91,6 @@ $role = session()->get('role');
                     <span>Kegiatan</span>
                 </a>
             </li>
-
 
             <!-- Instagram -->
             <li>
@@ -112,7 +103,6 @@ $role = session()->get('role');
                 </a>
             </li>
 
-
             <!-- Manajemen User -->
             <li>
                 <a
@@ -123,7 +113,6 @@ $role = session()->get('role');
                     <span>Manajemen User</span>
                 </a>
             </li>
-
 
         <?php endif; ?>
 
@@ -147,7 +136,6 @@ $role = session()->get('role');
             </li>
 
         <?php endif; ?>
-
 
     </ul>
 
