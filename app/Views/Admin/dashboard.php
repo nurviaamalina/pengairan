@@ -13,7 +13,7 @@
 
             <!-- Judul Halaman -->
             <h5 class="mb-4 fw-bold text-dark">
-                <i class="bi bi-grid-fill text-primary me-2"></i>Layanan Unggulan
+                <i class="bi bi-grid-fill me-2" style="color: #0a2558;"></i>Layanan Unggulan
             </h5>
 
             <div class="row g-4">
@@ -30,7 +30,7 @@
                         <div class="col-md-6">
                             <div class="card shadow-sm border-0 rounded-4 position-relative" style="min-height: 180px;">
                                 <div class="card-body p-4">
-                                    <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary rounded-3 p-3 mb-3">
+                                    <div class="d-inline-flex align-items-center justify-content-center rounded-3 p-3 mb-3" style="background-color: rgba(10, 37, 88, 0.1); color: #0a2558;">
                                         <i class="bi bi-people fs-2"></i>
                                     </div>
                                     <h5 class="fw-bold">
@@ -49,7 +49,7 @@
                         <div class="col-md-6">
                             <div class="card shadow-sm border-0 rounded-4 position-relative" style="min-height: 180px;">
                                 <div class="card-body p-4">
-                                    <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary rounded-3 p-3 mb-3">
+                                    <div class="d-inline-flex align-items-center justify-content-center rounded-3 p-3 mb-3" style="background-color: rgba(10, 37, 88, 0.1); color: #0a2558;">
                                         <i class="bi bi-file-earmark-text fs-2"></i>
                                     </div>
                                     <h5 class="fw-bold">
@@ -67,17 +67,17 @@
                     </div>
 
                     <!-- ==============================================
-                         CARD 3: PETA JARINGAN IRIGASI (KARTU TERPISAH SENDIRI)
+                         CARD 3: PETA JARINGAN IRIGASI
                          ============================================== -->
                     <div class="card shadow-sm border-0 rounded-4 mt-2">
                         <div class="card-body p-4">
                             
-                            <!-- Judul di Dalam Card Peta Sendiri -->
+                            <!-- Judul di Dalam Card Peta -->
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <div class="d-flex align-items-center gap-2">
                                     <h5 class="mb-0 fw-bold text-dark">Peta Jaringan Irigasi</h5>
                                 </div>
-                                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold">
+                                <span class="badge px-3 py-2 rounded-pill fw-semibold" style="background-color: rgba(10, 37, 88, 0.1); color: #0a2558;">
                                     GIS Wilayah
                                 </span>
                             </div>
@@ -198,7 +198,7 @@
                     <div class="card border-0 shadow-sm rounded-4 mb-4">
                         <div class="card-header bg-white border-bottom py-3 px-4">
                             <h5 class="mb-0 fw-bold text-dark" style="font-size: 16px;">
-                                <i class="bi bi-newspaper text-primary me-2"></i>Berita
+                                <i class="bi bi-newspaper me-2" style="color: #0a2558;"></i>Berita
                             </h5>
                         </div>
                         <div class="card-body p-4">
@@ -232,7 +232,7 @@
                     <div class="card border-0 shadow-sm rounded-4">
                         <div class="card-header bg-white border-bottom py-3 px-4">
                             <h5 class="mb-0 fw-bold text-dark" style="font-size: 16px;">
-                                <i class="bi bi-images text-primary me-2"></i>Gallery Kegiatan
+                                <i class="bi bi-images me-2" style="color: #0a2558;"></i>Gallery Kegiatan
                             </h5>
                         </div>
                         <div class="card-body p-4">

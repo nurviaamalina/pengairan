@@ -118,16 +118,18 @@
     <!-- ==========================================
          TOMBOL KEMBALI
          ========================================== -->
-    <div class="detail-back">
+    <div class="container my-4">
+        <div class="detail-back">
 
-        <a href="javascript:history.back()" class="btn-kembali">
+            <a href="javascript:history.back()" class="btn-kembali">
 
-            <i class="bi bi-arrow-left"></i>
+                <i class="bi bi-arrow-left"></i>
 
-            <span>Kembali</span>
+                <span>Kembali</span>
 
-        </a>
+            </a>
 
+        </div>
     </div>
 
 </section>

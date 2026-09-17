@@ -502,6 +502,17 @@
 /* =====================================
    TOMBOL KEMBALI
    ===================================== */
+/* =====================================
+   TOMBOL KEMBALI
+   ===================================== */
+
+.detail-back {
+    max-width: 900px; /* Menyesuaikan dengan max-width .detail-info & .detail-dokumentasi */
+    margin: 35px auto 0; /* Rata tengah secara kontainer */
+    padding: 0 10px; /* Padding sama dengan .detail-dokumentasi agar batas kirinya persis sejajar */
+    display: flex;
+    justify-content: flex-start; /* Memastikan tombol mengalir dari kiri */
+}
 
 .btn-kembali {
     background-color: #0a2558 !important;
@@ -554,3 +565,4 @@
         font-size: 20px;
     }
 }
+

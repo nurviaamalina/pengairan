@@ -7,628 +7,411 @@
     box-sizing: border-box;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, sans-serif;
-    background: #f1f5f9;
-    color: #1e293b;
-    line-height: 1.5;
-}
-
-/* =========================================================
-   LAYOUT UTAMA
-========================================================= */
-.login-page {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
+html, body {
+    width: 100vw;
+    height: 100vh;
     overflow-x: hidden;
 }
 
-/* =========================================================
-   PANEL KIRI
-========================================================= */
-.login-left {
-    position: relative;
-    width: 52%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(9, 27, 66, 0.92) 0%,
-            rgba(15, 40, 100, 0.88) 50%,
-            rgba(20, 52, 120, 0.92) 100%
-        ),
-        url("../images/bg-login.jpg") center/cover no-repeat;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #ffffff;
+    color: #334155;
 }
 
-/* Dekorasi */
+/* =========================================================
+   FULLSCREEN LAYOUT (100vw x 100vh)
+========================================================= */
+.login-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+/* =========================================================
+   PANEL KIRI (GAMBAR TERANG TANPA TERTUTUP WARNA BIRU PEKAT)
+========================================================= */
+.login-left {
+    width: 50%;
+    height: 100vh;
+    position: relative;
+    /* Menampilkan gambar asli secara terang, hanya ditambahkan sedikit gradasi hitam transparan di atas agar teks tetap terbaca */
+    background: linear-gradient(
+        180deg, 
+        rgba(0, 0, 0, 0.45) 0%, 
+        rgba(0, 0, 0, 0.1) 40%, 
+        transparent 100%
+    ),
+    url("../images/bg-login.jpg") center/cover no-repeat;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 80px;
+    color: #ffffff;
+    overflow: hidden;
+}
+
 .left-overlay {
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(255, 255, 255, 0.12),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 85% 80%,
-            rgba(59, 130, 246, 0.18),
-            transparent 40%
-        );
+    /* Dibuat sangat tipis agar tidak menutupi gambar */
+    background: rgba(0, 0, 0, 0.05);
     pointer-events: none;
 }
 
 .left-content {
     position: relative;
     z-index: 2;
-    width: min(560px, 88%);
-    padding: 50px 30px;
-    color: #ffffff;
+    margin-top: 10px;
 }
 
-/* Logo */
-.brand-logo-box {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 22px;
+/* Logo Atas Kiri */
+.brand-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 50px;
+}
 
+.brand-logo-drop {
+    width: 50px;
+    height: 50px;
+    border-left: 2px solid rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 18px;
-
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    font-size: 30px;
+    color: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-.brand-logo {
-    width: 68px;
-    height: 68px;
+.brand-text h2 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.brand-text span {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Tagline Kiri */
+.hero-tagline p {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: #ffffff;
+    font-style: italic;
+    margin-bottom: 20px;
+    max-width: 480px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.tagline-line {
+    width: 50px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Wave Effect Dekorasi Bawah (Warna Biru Hanya di Bagian Paling Bawah) */
+.wave-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1;
+}
+
+.wave-decoration svg {
+    position: relative;
+    display: block;
+    width: calc(140% + 1.3px);
+    height: 160px;
+}
+
+/* =========================================================
+   PANEL KANAN (50% LAYAR FULL HEIGHT)
+========================================================= */
+.login-right {
+    width: 50%;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.right-inner {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Logo Kanan */
+.header-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    margin-bottom: 16px;
+}
+
+.banyuwangi-logo {
+    width: 85px;
+    height: auto;
     object-fit: contain;
 }
 
-/* Tipografi */
-.brand-government {
-    font-size: 12px;
+.header-logo-text .gov-title {
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 8px;
-}
-
-.brand-title {
-    margin: 0;
-    font-size: clamp(26px, 2.8vw, 34px);
-    line-height: 1.25;
-    font-weight: 800;
-    letter-spacing: 0.3px;
-    color: #ffffff;
-}
-
-.brand-line {
-    width: 70px;
-    height: 4px;
-    margin: 18px 0;
-    border-radius: 4px;
-    background: #60a5fa;
-}
-
-.brand-description {
-    font-size: 14px;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.84);
-}
-
-/* Feature List */
-.left-info {
-    margin-top: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 13px 16px;
-
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    backdrop-filter: blur(4px);
-}
-
-.info-icon {
-    width: 38px;
-    height: 38px;
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.15);
-
-    color: #ffffff;
-    font-size: 16px;
-}
-
-.info-item strong {
-    display: block;
-    margin-bottom: 2px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #ffffff;
-}
-
-.info-item span {
-    display: block;
-    font-size: 12px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.76);
-}
-
-/* Footer */
-.left-footer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    margin-top: 34px;
-    padding-top: 18px;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
-
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.70);
-}
-
-.left-footer i {
-    font-size: 15px;
-    color: #93c5fd;
-}
-
-/* =========================================================
-   PANEL KANAN
-========================================================= */
-.login-right {
-    width: 48%;
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 40px 30px;
-    background: #f8fafc;
-}
-
-.right-content {
-    width: min(440px, 100%);
-
-    background: #ffffff;
-    padding: 40px 36px;
-
-    border-radius: 16px;
-    border: 1px solid #eef1f6;
-
-    box-shadow: 0 10px 35px rgba(15, 40, 100, 0.08);
-}
-
-/* Header Login */
-.right-login-header {
-    text-align: center;
-    margin-bottom: 26px;
-}
-
-.right-login-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 16px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 16px;
-    background: #edf2ff;
-    color: #0f2864;
-
-    font-size: 26px;
-    border: 1px solid #dbe4ff;
-}
-
-.right-login-header h2 {
-    margin-bottom: 6px;
-    font-size: 24px;
-    font-weight: 800;
-    color: #1e293b;
-    letter-spacing: -0.3px;
-}
-
-.right-login-header p {
-    font-size: 13px;
-    line-height: 1.6;
+    letter-spacing: 0.5px;
     color: #64748b;
+    display: block;
 }
 
-/* =========================================================
-   ALERT
-========================================================= */
-.login-alert {
-    width: 100%;
+.header-logo-text .dept-title {
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #0b2545;
+}
 
+.header-logo-text .motto {
+    font-size: 11px;
+    color: #64748b;
+    font-style: italic;
+    margin-top: 2px;
+    line-height: 1.3;
+}
+
+.divider-line {
+    width: 100%;
+    height: 1px;
+    background-color: #e2e8f0;
+    margin-bottom: 24px;
+}
+
+/* Header Login Text */
+.login-header h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0b2545;
+    margin-bottom: 6px;
+}
+
+.login-header p {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.45;
+    margin-bottom: 24px;
+}
+
+/* Alert */
+.login-alert {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
-
-    gap: 10px;
-    padding: 12px 14px;
-    margin-bottom: 20px;
-
-    border-radius: 8px;
-
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.login-alert i {
-    flex-shrink: 0;
-    font-size: 17px;
+    gap: 8px;
 }
 
 .alert-danger {
-    background: #fef2f2;
+    background-color: #fef2f2;
+    color: #991b1b;
     border: 1px solid #fecaca;
-    color: #b91c1c;
 }
 
 .alert-success {
-    background: #f0fdf4;
+    background-color: #f0fdf4;
+    color: #166534;
     border: 1px solid #bbf7d0;
-    color: #15803d;
 }
 
 /* =========================================================
-   FORM INPUT
+   FORM INPUT & BUTTONS
 ========================================================= */
-.right-login-form {
+.login-form {
     width: 100%;
 }
 
-.right-input-group {
-    margin-bottom: 18px;
+.form-group {
+    margin-bottom: 16px;
 }
 
-.right-input-group label {
-    display: block;
-    margin-bottom: 6px;
-
-    font-size: 13px;
-    font-weight: 600;
-    color: #334155;
-}
-
-.right-input-box {
+.input-box {
     position: relative;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.right-input-box i.input-icon {
+/* Icon Presisi di Dalam Input Box */
+.input-box i.input-icon {
     position: absolute;
-    top: 50%;
-    left: 15px;
-
-    transform: translateY(-50%);
-
-    color: #94a3b8;
-    font-size: 15px;
-
-    pointer-events: none;
-
-    transition: color 0.2s ease;
-}
-
-.right-input-box input {
-    width: 100%;
-    height: 48px;
-
-    padding: 0 42px 0 42px;
-
-    border: 1.5px solid #cbd5e1;
-    border-radius: 8px;
-
-    outline: none;
-
-    background: #ffffff;
-    color: #1e293b;
-
+    left: 14px;
     font-size: 14px;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    color: #0a2558;
+    pointer-events: none;
+    z-index: 2;
 }
 
-.right-input-box input::placeholder {
-    color: #94a3b8;
+.input-box input {
+    width: 100%;
+    height: 46px;
+    padding: 0 40px 0 42px;
+    font-size: 13.5px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    background-color: #ffffff;
+    color: #0a2558;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.right-input-box input:hover {
-    border-color: #94a3b8;
+.input-box input::placeholder {
+    color: #0a2558;
 }
 
-.right-input-box input:focus {
-    border-color: #0f2864;
-    box-shadow: 0 0 0 3.5px rgba(15, 40, 100, 0.12);
+.input-box input:focus {
+    border-color: #0a2558;
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.12);
 }
 
-.right-input-box:focus-within i.input-icon {
-    color: #0f2864;
+.input-box:focus-within i.input-icon {
+    color: #0a2558;
 }
 
-/* =========================================================
-   TOGGLE PASSWORD
-========================================================= */
+/* Toggle Password Icon */
 .btn-toggle-password {
     position: absolute;
-    top: 50%;
-    right: 12px;
-
-    transform: translateY(-50%);
-
+    right: 10px;
     background: none;
     border: none;
     padding: 6px;
-
+    color: #0a2558;
     cursor: pointer;
-
-    color: #94a3b8;
-    font-size: 15px;
-
-    border-radius: 4px;
-
+    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    transition: color 0.2s ease;
 }
 
 .btn-toggle-password:hover {
-    color: #0f2864;
+    color: #0a2558;
 }
 
-/* =========================================================
-   LOGIN OPTIONS
-========================================================= */
-.login-options {
+/* Options */
+.form-options {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    margin-top: 10px;
-    margin-bottom: 22px;
-
-    font-size: 13px;
+    font-size: 12.5px;
+    margin-bottom: 24px;
+    margin-top: 6px;
 }
 
-.remember-me {
-    display: inline-flex;
+.checkbox-container {
+    display: flex;
     align-items: center;
-
     gap: 7px;
-
-    cursor: pointer;
-
     color: #475569;
+    cursor: pointer;
     user-select: none;
 }
 
-.remember-me input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    accent-color: #0f2864;
+.checkbox-container input {
+    accent-color: #0a2558;
+    width: 15px;
+    height: 15px;
 }
 
-.forgot-password-link {
-    color: #0f2864;
-    text-decoration: none;
-    font-weight: 600;
 
-    transition: color 0.2s ease;
-}
-
-.forgot-password-link:hover {
-    color: #1e40af;
+.forgot-link:hover {
     text-decoration: underline;
 }
 
-/* =========================================================
-   LOGIN BUTTON
-========================================================= */
-.right-login-button {
+/* Submit Button */
+.btn-login {
     width: 100%;
-    min-height: 48px;
-
+    height: 46px;
+    background-color: #0a2558;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    gap: 9px;
-
-    border: none;
-    border-radius: 8px;
-
-    background: #0f2864;
-    color: #ffffff;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow: 0 4px 14px rgba(15, 40, 100, 0.22);
-
-    transition:
-        background 0.2s ease,
-        transform 0.15s ease,
-        box-shadow 0.2s ease;
+    gap: 8px;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.22);
 }
 
-.right-login-button:hover {
-    background: #0b1d4b;
-
-    transform: translateY(-1px);
-
-    box-shadow: 0 6px 18px rgba(15, 40, 100, 0.30);
+.btn-login:hover {
+    background-color: #0a2558;
 }
 
-.right-login-button:active {
-    transform: translateY(0);
+.btn-login:active {
+    transform: translateY(1px);
 }
 
-.right-login-button i {
-    font-size: 15px;
-}
-
-/* =========================================================
-   LINK KEMBALI KE BERANDA
-========================================================= */
-.auth-back-link {
-    margin-top: 24px;
+/* Footer Kanan */
+.card-right-footer {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #0a2558;
     text-align: center;
 }
 
-.auth-back-link a {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 8px;
-
-    color: #64748b;
-
+.card-right-footer i {
     font-size: 13px;
-    font-weight: 600;
-
-    text-decoration: none;
-
-    transition: color 0.2s ease;
-}
-
-.auth-back-link a:hover {
-    color: #0f2864;
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE (TABLET & MOBILE)
 ========================================================= */
-@media (max-width: 1024px) {
-    .login-left {
-        width: 46%;
-    }
-
-    .login-right {
-        width: 54%;
-        padding: 30px 20px;
-    }
-
-    .brand-title {
-        font-size: 26px;
-    }
-}
-
-@media (max-width: 860px) {
+@media (max-width: 900px) {
     .login-page {
         flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .login-left, .login-right {
+        width: 100%;
+        height: auto;
     }
 
     .login-left {
-        width: 100%;
-        min-height: auto;
-        padding: 40px 20px 30px;
-    }
-
-    .left-content {
-        width: 100%;
-        max-width: 500px;
-        padding: 0;
-        text-align: center;
-    }
-
-    .brand-logo-box {
-        margin: 0 auto 16px;
-        width: 75px;
-        height: 75px;
-    }
-
-    .brand-logo {
-        width: 56px;
-        height: 56px;
-    }
-
-    .brand-line {
-        margin: 14px auto;
-    }
-
-    .left-info,
-    .left-footer {
-        display: none;
+        min-height: 320px;
+        padding: 40px 30px;
     }
 
     .login-right {
-        width: 100%;
-        min-height: auto;
-        padding: 35px 20px 50px;
-        background: #f1f5f9;
-    }
-
-    .right-content {
-        padding: 32px 24px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    }
-}
-
-@media (max-width: 480px) {
-    .right-content {
-        padding: 26px 18px;
-        border-radius: 12px;
-    }
-
-    .right-login-icon {
-        width: 54px;
-        height: 54px;
-        font-size: 22px;
-        margin-bottom: 12px;
-    }
-
-    .right-login-header h2 {
-        font-size: 21px;
-    }
-
-    .login-options {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        padding: 40px 24px;
     }
 }
