@@ -1,0 +1,279 @@
+/* ===== PAGE HEADER ===== */
+.page-header,
+.user-page-header {
+    margin-bottom: 24px;
+    min-height: auto;
+    padding: 0 0 18px;
+    background: transparent;
+    border-bottom: 1px solid #e3e8ef;
+    box-shadow: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-header h3,
+.user-page-header h3 {
+    color: #17325f;
+    font-size: 24px;
+    font-weight: 750;
+    letter-spacing: -.25px;
+    margin-bottom: 5px;
+}
+
+.page-header h3 i,
+.user-page-header h3 i {
+    color: #17325f;
+}
+
+.page-header p,
+.user-page-header p {
+    color: #7b8491;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.btn-tambah {
+    background: #0a2558;
+    color: #ffffff;
+    border: 1px solid #0a2558;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-tambah:hover {
+    background: #163773;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== CARD STYLES ===== */
+.card-custom {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: #fff;
+    clear: both;
+}
+
+.card-custom:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.card-custom .card-header {
+    padding: 16px 22px;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 3px solid #0a2558;
+}
+
+.card-custom .card-header h5 {
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    color: #0a2558;
+}
+
+.card-custom .card-header h5 i {
+    color: #0a2558;
+}
+
+.card-custom .card-header .btn-edit {
+    border-radius: 8px;
+    padding: 6px 16px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    border: none;
+    background: #0a2558;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.card-custom .card-header .btn-edit:hover {
+    background: #163773;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(10, 37, 88, 0.25);
+}
+
+.card-custom .card-body {
+    padding: 22px 25px;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* ===== CARD VARIATION ===== */
+.card-sejarah .card-header,
+.card-visi .card-header,
+.card-misi .card-header,
+.card-struktur .card-header {
+    background: #0a2558;
+    border-bottom: 3px solid #163773;
+    border-radius: 16px 16px 0 0;
+}
+
+.card-sejarah .card-header h5,
+.card-visi .card-header h5 {
+    color: #fff;
+}
+
+.card-sejarah .card-header h5 i,
+.card-visi .card-header h5 i {
+    color: #ffffff;
+}
+
+.card-sejarah .card-header .btn-edit,
+.card-visi .card-header .btn-edit {
+    background: #ffffff;
+    color: #0a2558;
+}
+
+.card-sejarah .card-header .btn-edit:hover,
+.card-visi .card-header .btn-edit:hover {
+    background: #f0f4f9;
+    color: #0a2558;
+}
+
+.card-misi .card-header h5,
+.card-struktur .card-header h5 {
+    color: #0a2558;
+}
+
+.card-misi .card-header h5 i,
+.card-struktur .card-header h5 i {
+    color: #ffffff;
+}
+
+.card-misi .card-header .btn-edit,
+.card-struktur .card-header .btn-edit {
+    background: #ffffff;
+    color: #0a2558;
+}
+
+.card-misi .card-header .btn-edit:hover,
+.card-struktur .card-header .btn-edit:hover {
+    background: #f0f4f9;
+    color: #0a2558;
+}
+
+.card-struktur {
+    margin-top: 25px;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+    text-align: center;
+    padding: 15px 0;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 2rem;
+    color: #0a2558;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.empty-state p {
+    margin: 0;
+    font-style: italic;
+    color: #6c757d;
+}
+
+/* ===== STRUKTUR ===== */
+.struktur-description {
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #0a2558;
+}
+
+.struktur-description p {
+    margin: 0;
+    color: #333;
+    line-height: 1.8;
+}
+
+.struktur-image {
+    max-height: 500px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    width: 100%;
+    object-fit: contain;
+}
+
+.struktur-empty {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.struktur-empty i {
+    font-size: 3.5rem;
+    color: #0a2558;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.struktur-empty h5 {
+    color: #0a2558;
+    font-weight: 600;
+}
+
+.struktur-empty p {
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .card-custom .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header,
+    .user-page-header {
+        padding: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .page-header h3,
+    .user-page-header h3 {
+        font-size: 1.2rem;
+    }
+    .card-custom .card-body {
+        padding: 16px 18px;
+    }
+}
+
+/* ===== JARAK VISI/MISI KE STRUKTUR ===== */
+
+.profil-section-gap {
+    height: 30px;
+}
+
+.card-struktur {
+    margin-top: 0;
+}
+
