@@ -299,21 +299,16 @@
              KEMBALI
         ================================================== -->
 
-        <div class="back-wrapper">
-
-            <button
-                type="button"
-                class="btn btn-outline-primary btn-kembali"
-                onclick="window.location.href='<?= base_url('korsda') ?>'"
-            >
-
-                <i class="bi bi-arrow-left me-2"></i>
-
-                Kembali
-
-            </button>
-
-        </div>
+<div class="back-wrapper">
+    <button
+        type="button"
+        class="btn btn-kembali-filled"
+        onclick="window.location.href='<?= base_url('korsda') ?>'"
+    >
+        <i class="bi bi-arrow-left me-2"></i>
+        Kembali
+    </button>
+</div>
 
 
     </div>

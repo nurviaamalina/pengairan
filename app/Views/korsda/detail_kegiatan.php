@@ -282,18 +282,17 @@
 
     <div class="detail-back">
 
-        <a
-            href="<?= previous_url() ?>"
-            class="btn-kembali"
-        >
+    <a href="<?= previous_url() ?>"
+       class="btn text-white"
+       style="background-color: #0a2558 !important; color: #ffffff !important; border: 1.5px solid #0a2558 !important; border-radius: 8px; padding: 10px 24px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
 
-            <i class="bi bi-arrow-left"></i>
+        <i class="bi bi-arrow-left"></i>
 
-            <span>Kembali</span>
+        <span>Kembali</span>
 
-        </a>
+    </a>
 
-    </div>
+</div>
 
 </section>
 

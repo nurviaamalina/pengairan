@@ -243,21 +243,22 @@
              KEMBALI
         ================================================== -->
 
-        <div class="back-wrapper">
+<div class="back-wrapper">
 
-            <button
-                type="button"
-                class="btn btn-outline-primary btn-kembali"
-                onclick="window.location.href='<?= base_url('korsda') ?>'"
-            >
+    <button
+        type="button"
+        class="btn text-white"
+        style="background-color: #0a2558 !important; color: #ffffff !important; border: 1.5px solid #0a2558 !important; border-radius: 8px; padding: 10px 24px; font-weight: 600; display: inline-flex; align-items: center;"
+        onclick="window.location.href='<?= base_url('korsda') ?>'"
+    >
 
-                <i class="bi bi-arrow-left me-2"></i>
+        <i class="bi bi-arrow-left me-2"></i>
 
-                Kembali
+        Kembali
 
-            </button>
+    </button>
 
-        </div>
+</div>
 
 
     </div>
