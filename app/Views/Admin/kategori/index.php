@@ -20,7 +20,7 @@
         <a href="<?= base_url('admin/kategori/create') ?>"
            class="btn-kategori-tambah">
 
-            <i class="fas fa-plus"></i>
+            <i class="bi bi-plus-circle me-1"></i>
             <span>Tambah</span>
 
         </a>

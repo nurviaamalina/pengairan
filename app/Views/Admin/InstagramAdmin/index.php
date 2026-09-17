@@ -24,24 +24,22 @@
 
     <div class="d-flex align-items-center gap-3">
 
-        <a href="<?= base_url('admin/instagram/create') ?>"
-           class="btn btn-tambah">
+    <a href="<?= base_url('admin/instagram/create') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
+        <i class="bi bi-plus-circle me-1"></i>
+        Tambah Feed
+    </a>
 
-            <i class="bi bi-plus-circle me-1"></i>
-            Tambah Feed
+    <a href="<?= base_url('admin/instagram/sync') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;"
+       onclick="return confirm('Sinkronkan data Instagram sekarang?')">
+        <i class="bi bi-arrow-repeat me-1"></i>
+        Sync Instagram Sekarang
+    </a>
 
-        </a>
-
-        <a href="<?= base_url('admin/instagram/sync') ?>"
-           class="btn-sync-instagram"
-           onclick="return confirm('Sinkronkan data Instagram sekarang?')">
-
-            <i class="bi bi-arrow-repeat me-1"></i>
-            Sync Instagram Sekarang
-
-        </a>
-
-    </div>
+</div>
 
 </div>
 

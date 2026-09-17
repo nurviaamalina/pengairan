@@ -24,19 +24,21 @@
 
     <div class="d-flex align-items-center gap-3">
 
-        <a href="<?= base_url('admin/kegiatan/create') ?>"
-           class="btn btn-tambah">
-            <i class="bi bi-plus-circle me-1"></i>
-            Tambah Kegiatan
-        </a>
+    <a href="<?= base_url('admin/kegiatan/create') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
+        <i class="bi bi-plus-circle me-1"></i>
+        Tambah Kegiatan
+    </a>
 
-        <a href="<?= base_url('admin/kegiatan/import') ?>"
-           class="btn-import-kegiatan">
-            <i class="bi bi-file-earmark-arrow-up me-1"></i>
-            Import Data Lama
-        </a>
+    <a href="<?= base_url('admin/kegiatan/import') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
+        <i class="bi bi-file-earmark-arrow-up me-1"></i>
+        Import Data Lama
+    </a>
 
-    </div>
+</div>
 
 </div>
 

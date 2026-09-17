@@ -33,19 +33,21 @@
 
     <div class="d-flex align-items-center gap-3">
 
-        <a href="<?= base_url('admin/berita/create') ?>"
-           class="btn btn-tambah">
-            <i class="bi bi-plus-circle me-1"></i>
-            Tambah Berita
-        </a>
+    <a href="<?= base_url('admin/berita/create') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
+        <i class="bi bi-plus-circle me-1"></i>
+        Tambah Berita
+    </a>
 
-        <a href="<?= base_url('admin/berita/import') ?>"
-           class="btn-import-berita">
-            <i class="bi bi-file-earmark-excel me-1"></i>
-            Import Data Lama
-        </a>
+    <a href="<?= base_url('admin/berita/import') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
+        <i class="bi bi-file-earmark-excel me-1"></i>
+        Import Data Lama
+    </a>
 
-    </div>
+</div>
 
 </div>
 

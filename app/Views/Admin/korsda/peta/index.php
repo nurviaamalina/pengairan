@@ -18,18 +18,16 @@
         </p>
     </div>
 
-    <div>
+<div>
+    <a href="<?= base_url('admin/wilayah/create') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
 
-        <a href="<?= base_url('admin/wilayah/create') ?>"
-           class="btn btn-tambah">
+        <i class="bi bi-plus-circle me-1"></i>
+        Tambah Wilayah
 
-            <i class="bi bi-plus-circle me-1"></i>
-            Tambah Wilayah
-
-        </a>
-
-        
-    </div>
+    </a>
+</div>
 
 </div>
 
@@ -163,17 +161,18 @@
 
         <div class="mt-3">
 
-            <button
-                type="button"
-                class="btn btn-kembali"
-                onclick="window.location.href='<?= base_url('admin/korsda/dashboard') ?>'">
+    <button
+        type="button"
+        class="btn text-white"
+        style="background-color: #0a2558; border-color: #0a2558;"
+        onclick="window.location.href='<?= base_url('admin/korsda/dashboard') ?>'">
 
-                <i class="bi bi-arrow-left me-2"></i>
-                Kembali
+        <i class="bi bi-arrow-left me-2"></i>
+        Kembali
 
-            </button>
+    </button>
 
-        </div>
+</div>
 
     </div>
 

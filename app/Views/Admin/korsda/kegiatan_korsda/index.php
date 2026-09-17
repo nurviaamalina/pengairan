@@ -26,26 +26,23 @@
 
                 <div class="d-flex gap-2">
 
-                    <!-- IMPORT -->
-                    <a
-                        href="<?= base_url('admin/korsda/kegiatan/import') ?>"
-                        class="btn btn-success"
-                    >
-                        <i class="bi bi-upload me-1"></i>
-                        Import
-                    </a>
+    <!-- IMPORT -->
+    <a href="<?= base_url('admin/korsda/kegiatan/import') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
+        <i class="bi bi-upload me-1"></i>
+        Import
+    </a>
 
-                    <!-- TAMBAH -->
+    <!-- TAMBAH -->
+    <a href="<?= base_url('admin/korsda/kegiatan/create') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
+        <i class="bi bi-plus-circle me-1"></i>
+        Tambah kegiatan
+    </a>
 
-                    <a href="<?= base_url('admin/korsda/kegiatan/create') ?>"
-           class="btn btn-tambah">
-
-            <i class="bi bi-plus-circle me-1"></i>
-            Tambah kegiatan
-
-        </a>
-
-                </div>
+</div>
 
             </div>
 
@@ -370,17 +367,18 @@
             </div>
             <div class="mt-3">
 
-            <button
-                type="button"
-                class="btn btn-kembali"
-                onclick="window.location.href='<?= base_url('admin/korsda/dashboard') ?>'">
+    <button
+        type="button"
+        class="btn text-white"
+        style="background-color: #0a2558; border-color: #0a2558;"
+        onclick="window.location.href='<?= base_url('admin/korsda/dashboard') ?>'">
 
-                <i class="bi bi-arrow-left me-2"></i>
-                Kembali
+        <i class="bi bi-arrow-left me-2"></i>
+        Kembali
 
-            </button>
+    </button>
 
-        </div>
+</div>
 
         </div>
 

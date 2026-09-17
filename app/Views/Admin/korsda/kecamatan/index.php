@@ -20,14 +20,15 @@
     </div>
 
     <div>
-        <a href="<?= base_url('admin/korsda/kecamatan/create') ?>"
-           class="btn btn-tambah">
+    <a href="<?= base_url('admin/korsda/kecamatan/create') ?>"
+       class="btn text-white"
+       style="background-color: #0a2558; border-color: #0a2558;">
 
-            <i class="bi bi-plus-circle me-1"></i>
-            Tambah Data
+        <i class="bi bi-plus-circle me-1"></i>
+        Tambah Data
 
-        </a>
-    </div>
+    </a>
+</div>
 
 </div>
 
@@ -145,14 +146,15 @@
 
 
             <button
-                type="button"
-                class="btn btn-kembali"
-                onclick="window.location.href='<?= base_url('admin/korsda/dashboard') ?>'">
+    type="button"
+    class="btn text-white"
+    style="background-color: #0a2558; border-color: #0a2558;"
+    onclick="window.location.href='<?= base_url('admin/korsda/dashboard') ?>'">
 
-                <i class="bi bi-arrow-left me-2"></i>
-                Kembali
+    <i class="bi bi-arrow-left me-2"></i>
+    Kembali
 
-            </button>
+</button>
 
         </div>
     </main>

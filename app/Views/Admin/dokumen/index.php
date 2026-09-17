@@ -14,7 +14,8 @@
         <p>Kelola kategori dokumen yang tersedia di sistem.</p>
     </div>
     <a href="#" class="btn-tambah">
-        <i class="bi bi-plus-lg"></i> Tambah
+        <i class="bi bi-plus-circle me-1"></i>
+        Tambah Dokumen
     </a>
 </div>
 
