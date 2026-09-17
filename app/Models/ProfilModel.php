@@ -14,12 +14,9 @@ class ProfilModel extends Model
 
     protected $allowedFields = [
         'korsda_id',
-        'visi',
-        'misi',
-        'tugas',
-        'fungsi',
+
         'struktur_organisasi',
-        'deskripsi',
+
     ];
 
     protected $useTimestamps = true;

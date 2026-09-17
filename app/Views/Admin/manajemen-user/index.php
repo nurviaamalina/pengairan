@@ -50,7 +50,7 @@
                         class="btn-add-user"
                     >
                         <i class="bi bi-person-plus-fill"></i>
-                        <span>Tambah User</span>
+                        <span style="color: #ffffff;">Tambah User</span>
                     </a>
 
                 </div>

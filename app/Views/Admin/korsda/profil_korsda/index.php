@@ -108,18 +108,6 @@
                                 Wilayah
                             </th>
 
-                            <th>
-                                Visi
-                            </th>
-
-                            <th>
-                                Misi
-                            </th>
-
-                            <th>
-                                Tugas
-                            </th>
-
                             <th width="150">
                                 Struktur
                             </th>
@@ -188,72 +176,6 @@
                                         ) ?>
 
                                     </span>
-
-                                </td>
-
-
-                                <!-- VISI -->
-
-                                <td>
-
-                                    <?php if (!empty($row['visi'])): ?>
-
-                                        <?= word_limiter(
-                                            strip_tags($row['visi']),
-                                            10
-                                        ) ?>
-
-                                    <?php else: ?>
-
-                                        <span class="text-muted">
-                                            -
-                                        </span>
-
-                                    <?php endif; ?>
-
-                                </td>
-
-
-                                <!-- MISI -->
-
-                                <td>
-
-                                    <?php if (!empty($row['misi'])): ?>
-
-                                        <?= word_limiter(
-                                            strip_tags($row['misi']),
-                                            10
-                                        ) ?>
-
-                                    <?php else: ?>
-
-                                        <span class="text-muted">
-                                            -
-                                        </span>
-
-                                    <?php endif; ?>
-
-                                </td>
-
-
-                                <!-- TUGAS -->
-
-                                <td>
-
-                                    <?php if (!empty($row['tugas'])): ?>
-
-                                        <?= word_limiter(
-                                            strip_tags($row['tugas']),
-                                            10
-                                        ) ?>
-
-                                    <?php else: ?>
-
-                                        <span class="text-muted">
-                                            -
-                                        </span>
-
-                                    <?php endif; ?>
 
                                 </td>
 

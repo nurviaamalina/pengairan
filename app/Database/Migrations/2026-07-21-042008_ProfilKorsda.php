@@ -22,35 +22,11 @@ class ProfilKorsda extends Migration
                 'unsigned'   => true,
             ],
 
-            'visi' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
-
-            'misi' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
-
-            'tugas' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
-
-            'fungsi' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
 
             'struktur_organisasi' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
                 'null'       => true,
-            ],
-
-            'deskripsi' => [
-                'type' => 'TEXT',
-                'null' => true,
             ],
 
             'created_at' => [

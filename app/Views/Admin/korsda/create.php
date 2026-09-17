@@ -72,7 +72,7 @@
 
             <div class="card-body p-4">
 
-                <form action="<?= base_url('admin/korsda/profil_korsda/store') ?>"
+                <form action="<?= base_url('admin/korsda/store') ?>"
                       method="POST"
                       enctype="multipart/form-data">
 

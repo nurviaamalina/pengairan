@@ -150,96 +150,6 @@
                         </div>
 
 
-                        <!-- VISI -->
-                        <div class="mb-3">
-
-                            <label
-                                for="visi"
-                                class="form-label fw-semibold"
-                            >
-                                Visi
-                                <span class="text-danger">*</span>
-                            </label>
-
-                            <textarea
-                                name="visi"
-                                id="visi"
-                                rows="4"
-                                class="form-control"
-                                placeholder="Masukkan visi KORSDA..."
-                                required
-                            ><?= old('visi') ?></textarea>
-
-                        </div>
-
-
-                        <!-- MISI -->
-                        <div class="mb-3">
-
-                            <label
-                                for="misi"
-                                class="form-label fw-semibold"
-                            >
-                                Misi
-                                <span class="text-danger">*</span>
-                            </label>
-
-                            <textarea
-                                name="misi"
-                                id="misi"
-                                rows="4"
-                                class="form-control"
-                                placeholder="Masukkan misi KORSDA..."
-                                required
-                            ><?= old('misi') ?></textarea>
-
-                        </div>
-
-
-                        <!-- TUGAS -->
-                        <div class="mb-3">
-
-                            <label
-                                for="tugas"
-                                class="form-label fw-semibold"
-                            >
-                                Tugas
-                                <span class="text-danger">*</span>
-                            </label>
-
-                            <textarea
-                                name="tugas"
-                                id="tugas"
-                                rows="5"
-                                class="form-control"
-                                placeholder="Masukkan tugas KORSDA..."
-                                required
-                            ><?= old('tugas') ?></textarea>
-
-                        </div>
-
-
-                        <!-- FUNGSI -->
-                        <div class="mb-3">
-
-                            <label
-                                for="fungsi"
-                                class="form-label fw-semibold"
-                            >
-                                Fungsi
-                            </label>
-
-                            <textarea
-                                name="fungsi"
-                                id="fungsi"
-                                rows="5"
-                                class="form-control"
-                                placeholder="Masukkan fungsi KORSDA..."
-                            ><?= old('fungsi') ?></textarea>
-
-                        </div>
-
-
                         <!-- STRUKTUR -->
                         <div class="mb-3">
 
@@ -267,25 +177,6 @@
                         </div>
 
 
-                        <!-- DESKRIPSI -->
-                        <div class="mb-4">
-
-                            <label
-                                for="deskripsi"
-                                class="form-label fw-semibold"
-                            >
-                                Deskripsi
-                            </label>
-
-                            <textarea
-                                name="deskripsi"
-                                id="deskripsi"
-                                rows="4"
-                                class="form-control"
-                                placeholder="Masukkan deskripsi KORSDA..."
-                            ><?= old('deskripsi') ?></textarea>
-
-                        </div>
 
 
                         <!-- BUTTON -->
