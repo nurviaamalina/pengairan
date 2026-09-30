@@ -10,6 +10,7 @@ use App\Models\KecamatanModel;
 use App\Models\InstagramModel;
 use App\Models\KategoriDokumenModel;
 use App\Models\DokumenModel;
+use App\Models\KegiatanKorsdaAdminModel;
 
 class Home extends BaseController
 {
@@ -40,6 +41,7 @@ class Home extends BaseController
         $kegiatanModel = new KegiatanModel();
 
         $instagramModel = new InstagramModel();
+        $kegiatanKorsdaModel = new KegiatanKorsdaAdminModel();
 
         $keyword = trim($this->request->getGet('q'));
 
@@ -55,6 +57,11 @@ class Home extends BaseController
             // Tahun kegiatan
             'tahunKegiatan' => $kegiatanModel->getTahunHomepage(),
 
+            'kegiatanKorsda' => $kegiatanKorsdaModel
+        ->select('kegiatankorsda.*')
+        ->join('korsda', 'korsda.id = kegiatankorsda.korsda_id', 'left')
+        ->orderBy('kegiatankorsda.tanggal', 'DESC')
+        ->findAll(4),
             // Data GIS
            'gis' => $this->wilayahModel
     ->select('

@@ -261,16 +261,16 @@
 ============================================================ -->
 <section class="btn-section">
 
-    <div class="container text-center">
+    <div class="container text-start">
 
         <a 
             href="<?= base_url('/') ?>" 
             class="btn-kembali"
         >
 
-            <i class="bi bi-arrow-left"></i>
+            <i class="bi bi-arrow-left me-2"></i>
 
-            Kembali ke Beranda
+            Kembali
 
         </a>
 

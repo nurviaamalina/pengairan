@@ -4,17 +4,21 @@ namespace App\Controllers;
 
 use App\Models\KegiatanModel;
 use App\Models\FotoKegiatanModel;
+use App\Models\KegiatanKorsdaAdminModel;
 
 
 class Kegiatan extends BaseController
 {
     protected $kegiatanModel;
     protected $fotoModel;
+    protected $kegiatanKorsdaModel;
 
     public function __construct()
     {
         $this->kegiatanModel = new KegiatanModel();
         $this->fotoModel = new FotoKegiatanModel();
+        $this->kegiatanKorsdaModel = new KegiatanKorsdaAdminModel();
+        
     }
 
     public function index()
@@ -25,6 +29,12 @@ class Kegiatan extends BaseController
         'title' => 'Kegiatan',
         'headline' => $model->getHeadline(),
         'tahun' => $model->getTahun(),
+
+        'kegiatanKorsda' => $this->kegiatanKorsdaModel
+                ->select('kegiatankorsda.*,')
+                ->join('korsda', 'korsda.id = kegiatankorsda.korsda_id', 'left')
+                ->orderBy('kegiatankorsda.tanggal', 'DESC')
+                ->findAll(6)
     ];
 
     return view('Kegiatan/Index', $data);
