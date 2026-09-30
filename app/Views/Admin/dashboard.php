@@ -9,21 +9,25 @@
 
     <div class="dashboard-content">
 
-        <!-- Container utama dengan padding rapat (px-4 pt-3 pb-3) -->
-        <div class="px-4 pt-3 pb-3 flex-grow-1">
-
-            <!-- Hero Header (mb-2 membuat jarak ke 4 card lebih rapat) -->
-            <div class="hero-indexkegiatan mt-1 mb-2">
-                <h1 class="fw-bold text-navy mb-1 fs-3">
-                    <i class="bi bi-grid-fill me-2" style="color: #0a2558;"></i>Layanan & Informasi Utama
-                </h1>
-                <p class="text-muted mb-0">
-                    Akses layanan unggulan, dokumen resmi, berita terbaru, dan peta GIS Dinas Pengairan.
-                </p>
+            <!-- =========================================================================
+                 HERO HEADER / WELCOME BANNER (Dinamis Sesuai Session Login)
+                 ========================================================================= -->
+            <div class="card border-0 text-white mb-3 rounded-3 shadow-sm" style="background: linear-gradient(135deg, #263b78 0%, #263b78 100%);">
+                <div class="card-body p-3 px-md-4">
+                    <p class="text-white-50 fw-medium mb-1" style="font-size: 12px;">
+                        <?= date('l, d F Y') ?>
+                    </p>
+                    <h5 class="fw-bold text-white mb-1 fs-5">
+                        Selamat datang, <?= session()->get('nama') ?? session()->get('nama_lengkap') ?? session()->get('nama_user') ?? session()->get('username') ?? 'Pengguna' ?>
+                    </h5>
+                    <p class="text-white-50 mb-0" style="font-size: 12.5px;">
+                        <?= session()->get('role') ?? session()->get('jabatan') ?? 'Admin' ?> — <?= session()->get('instansi') ?? 'Dinas Pengairan Kabupaten Banyuwangi' ?>
+                    </p>
+                </div>
             </div>
 
             <!-- =========================================================================
-                 BARIS ATAS: 4 CARD COMPACT MENYAMPING (1 GARIS LURUS)
+                 BARIS ATAS: 4 CARD COMPACT MENYAMPING
                  ========================================================================= -->
             <div class="row g-3 mb-3">
 
@@ -31,16 +35,16 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="card shadow-sm border-0 rounded-3 position-relative h-100">
                         <div class="card-body p-3 d-flex align-items-center gap-3">
-                            <div class="rounded-3 p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background-color: rgba(10, 37, 88, 0.1); color: #0a2558; width: 45px; height: 45px;">
-                                <i class="bi bi-people fs-4"></i>
+                            <div class="rounded-3 p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; width: 42px; height: 42px;">
+                                <i class="bi bi-people fs-5"></i>
                             </div>
                             <div>
-                                <h6 class="fw-bold mb-1">
+                                <h6 class="fw-bold mb-1 fs-6">
                                     <a href="<?= base_url('admin/korsda/dashboard') ?>" class="stretched-link text-decoration-none text-dark">
                                         Korsda
                                     </a>
                                 </h6>
-                                <p class="text-muted mb-0" style="font-size: 11.5px; line-height: 1.2;">
+                                <p class="text-muted mb-0" style="font-size: 11px; line-height: 1.2;">
                                     Peta digital jaringan sungai & irigasi.
                                 </p>
                             </div>
@@ -52,16 +56,16 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="card shadow-sm border-0 rounded-3 position-relative h-100">
                         <div class="card-body p-3 d-flex align-items-center gap-3">
-                            <div class="rounded-3 p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background-color: rgba(10, 37, 88, 0.1); color: #0a2558; width: 45px; height: 45px;">
-                                <i class="bi bi-file-earmark-text fs-4"></i>
+                            <div class="rounded-3 p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; width: 42px; height: 42px;">
+                                <i class="bi bi-file-earmark-text fs-5"></i>
                             </div>
                             <div>
-                                <h6 class="fw-bold mb-1">
+                                <h6 class="fw-bold mb-1 fs-6">
                                     <a href="<?= base_url('admin/dokumen') ?>" class="stretched-link text-decoration-none text-dark">
                                         Dokumen
                                     </a>
                                 </h6>
-                                <p class="text-muted mb-0" style="font-size: 11.5px; line-height: 1.2;">
+                                <p class="text-muted mb-0" style="font-size: 11px; line-height: 1.2;">
                                     Akses dan kelola dokumen pengairan.
                                 </p>
                             </div>
@@ -73,16 +77,16 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="card shadow-sm border-0 rounded-3 position-relative h-100">
                         <div class="card-body p-3 d-flex align-items-center gap-3">
-                            <div class="rounded-3 p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background-color: rgba(10, 37, 88, 0.1); color: #0a2558; width: 45px; height: 45px;">
-                                <i class="bi bi-newspaper fs-4"></i>
+                            <div class="rounded-3 p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; width: 42px; height: 42px;">
+                                <i class="bi bi-newspaper fs-5"></i>
                             </div>
                             <div>
-                                <h6 class="fw-bold mb-1">
+                                <h6 class="fw-bold mb-1 fs-6">
                                     <a href="<?= base_url('admin/berita') ?>" class="stretched-link text-decoration-none text-dark">
                                         Berita
                                     </a>
                                 </h6>
-                                <p class="text-muted mb-0" style="font-size: 11.5px; line-height: 1.2;">
+                                <p class="text-muted mb-0" style="font-size: 11px; line-height: 1.2;">
                                     <?= !empty($berita) ? count($berita) . ' kabar terbaru dipublikasi.' : 'Informasi dan berita terbaru.' ?>
                                 </p>
                             </div>
@@ -94,16 +98,16 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="card shadow-sm border-0 rounded-3 position-relative h-100">
                         <div class="card-body p-3 d-flex align-items-center gap-3">
-                            <div class="rounded-3 p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background-color: rgba(10, 37, 88, 0.1); color: #0a2558; width: 45px; height: 45px;">
-                                <i class="bi bi-images fs-4"></i>
+                            <div class="rounded-3 p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; width: 42px; height: 42px;">
+                                <i class="bi bi-images fs-5"></i>
                             </div>
                             <div>
-                                <h6 class="fw-bold mb-1">
+                                <h6 class="fw-bold mb-1 fs-6">
                                     <a href="<?= base_url('admin/kegiatan') ?>" class="stretched-link text-decoration-none text-dark">
                                         Kegiatan
                                     </a>
                                 </h6>
-                                <p class="text-muted mb-0" style="font-size: 11.5px; line-height: 1.2;">
+                                <p class="text-muted mb-0" style="font-size: 11px; line-height: 1.2;">
                                     Galeri & dokumentasi lapangan.
                                 </p>
                             </div>
@@ -111,7 +115,7 @@
                     </div>
                 </div>
 
-            </div> <!-- /.row (4 Card Menyamping) -->
+            </div> <!-- /.row -->
 
 
             <!-- =========================================================================
@@ -119,23 +123,23 @@
                  ========================================================================= -->
             <div class="row">
                 <div class="col-12">
-                    <div class="card shadow-sm border-0 rounded-4">
+                    <div class="card shadow-sm border-0 rounded-3">
                         <div class="card-body p-3">
                             
                             <!-- Header Card Peta -->
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <div class="d-flex align-items-center gap-2">
                                     <h6 class="mb-0 fw-bold text-dark fs-6">
-                                        <i class="bi bi-geo-alt-fill me-2" style="color: #0a2558;"></i>Peta Jaringan Irigasi (GIS)
+                                        <i class="bi bi-geo-alt-fill me-2" style="color: #263b78;"></i>Peta Jaringan Irigasi (GIS)
                                     </h6>
                                 </div>
-                                <span class="badge px-3 py-1 rounded-pill fw-semibold" style="background-color: rgba(10, 37, 88, 0.1); color: #0a2558; font-size: 11px;">
+                                <span class="badge px-3 py-1 rounded-pill fw-semibold" style="background-color: rgba(13, 110, 253, 0.1); color: #263b78; font-size: 11px;">
                                     GIS Wilayah
                                 </span>
                             </div>
 
                             <!-- Map Container -->
-                            <div id="map" style="height: 360px; width: 100%; border-radius: 10px;"></div>
+                            <div id="map" style="height: 320px; width: 100%; border-radius: 8px;"></div>
 
                         </div>
                     </div>
@@ -191,17 +195,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 const layer = L.geoJSON(geojson, {
                     style: function () {
                         return {
-                            color: '#3388ff',
+                            color: '#263b78',
                             weight: 4,
                             opacity: 0.9,
-                            fillColor: '#3388ff',
+                            fillColor: '#263b78',
                             fillOpacity: 0.20
                         };
                     },
                     pointToLayer: function (feature, latlng) {
                         return L.circleMarker(latlng, {
-                            radius: 7,
-                            fillColor: '#3388ff',
+                            radius: 6,
+                            fillColor: '#263b78',
                             color: '#ffffff',
                             weight: 2,
                             fillOpacity: 0.9
@@ -213,9 +217,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         const kategori = properties.kategori || item.keterangan || '-';
 
                         layer.bindPopup(`
-                            <div style="min-width:220px;">
-                                <h6 class="fw-bold">${nama}</h6>
-                                <hr class="my-2">
+                            <div style="min-width:200px; font-size:12px;">
+                                <h6 class="fw-bold mb-1" style="font-size:13px;">${nama}</h6>
+                                <hr class="my-1">
                                 <b>Kecamatan:</b> ${item.nama_kecamatan ?? '-'}<br>
                                 <b>Kategori:</b> ${kategori}<br>
                                 <b>Keterangan:</b> ${item.keterangan ?? '-'}
@@ -237,14 +241,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (layers.length === 0) return;
         const group = L.featureGroup(layers);
         if (group.getBounds().isValid()) {
-            map.fitBounds(group.getBounds(), { padding: [30, 30] });
+            map.fitBounds(group.getBounds(), { padding: [20, 20] });
         }
     });
 
     // Fix ukuran render Leaflet
     setTimeout(function () {
         map.invalidateSize();
-    }, 500);
+    }, 300);
 
 });
 </script>

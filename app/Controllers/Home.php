@@ -143,96 +143,209 @@ class Home extends BaseController
     }
 
     public function search()
-{
-    $keyword = trim($this->request->getGet('keyword'));
+    {
+        $keyword = trim($this->request->getGet('keyword') ?? $this->request->getGet('q') ?? '');
 
-    if (empty($keyword)) {
-        return redirect()->to('/');
+        if (empty($keyword)) {
+            return redirect()->to(base_url('/'));
+        }
+
+        $keywordLower = strtolower($keyword);
+
+        // =========================================================================
+        // 1. PENCOCOKAN DENGAN MENU & RUTE SISTEM (Config/Routes.php)
+        // =========================================================================
+        switch ($keywordLower) {
+            // Beranda
+            case 'beranda':
+            case 'home':
+                return redirect()->to(base_url('/'));
+
+            // Profil / Tentang Kami
+            case 'profil':
+            case 'profile':
+            case 'tentang kami':
+            case 'tentang-kami':
+                return redirect()->to(base_url('tentang-kami'));
+
+            case 'sejarah':
+            case 'sejarah singkat':
+                return redirect()->to(base_url('tentang-kami#sejarah-singkat'));
+
+            case 'visi':
+            case 'misi':
+            case 'visi misi':
+            case 'visi dan misi':
+                return redirect()->to(base_url('tentang-kami#visi-misi'));
+
+            case 'struktur':
+            case 'struktur organisasi':
+            case 'organisasi':
+                return redirect()->to(base_url('tentang-kami#struktur-organisasi'));
+
+            // Inovasi
+            case 'sekardadu':
+            case 'sekar dadu':
+                return redirect()->to('https://sekardadu.dingkoding.com/home');
+
+            case 'mawasdiri':
+            case 'mawas diri':
+                return redirect()->to('https://mawasdiri.dingkoding.com/home');
+
+            case 'warm':
+            case 'warm system':
+            case 'warmsystem':
+                return redirect()->to('https://pubwi.dingkoding.com/home');
+
+            // Layanan
+            case 'pengaduan':
+            case 'lapor':
+            case 'keluhan':
+                return redirect()->to(base_url('pengaduan'));
+
+            case 'lacak pengaduan':
+            case 'track pengaduan':
+            case 'lacak':
+            case 'track':
+            case 'tracking':
+                return redirect()->to(base_url('pengaduan/track'));
+
+            case 'korsda':
+            case 'korwil':
+            case 'wilayah kerja':
+                return redirect()->to(base_url('korsda'));
+
+            case 'live cctv':
+            case 'cctv':
+            case 'pantau sungai':
+            case 'kamera':
+                return redirect()->to('https://live.banyuwangikab.go.id/page/cctv?area=PANTAU%20SUNGAI');
+
+            // Dokumen
+            case 'dokumen':
+            case 'dokumen resmi':
+            case 'regulasi':
+            case 'peraturan':
+                return redirect()->to(base_url('dokumen'));
+
+            // Berita
+            case 'berita':
+            case 'kabar':
+            case 'artikel':
+            case 'news':
+                return redirect()->to(base_url('berita'));
+
+            // Kegiatan
+            case 'kegiatan':
+            case 'agenda':
+            case 'program':
+                return redirect()->to(base_url('kegiatan'));
+
+            // GIS
+            case 'gis':
+            case 'peta':
+            case 'peta gis':
+            case 'map':
+            case 'maps':
+                return redirect()->to(base_url('gis'));
+
+            // Instagram
+            case 'instagram':
+            case 'sosmed':
+            case 'media sosial':
+                return redirect()->to(base_url('instagram'));
+
+            // Kontak
+            case 'kontak':
+            case 'hubungi kami':
+            case 'alamat':
+            case 'telepon':
+            case 'email':
+                return redirect()->to(base_url('/#kontak'));
+
+            // Login Admin
+            case 'login':
+            case 'admin':
+            case 'masuk':
+                return redirect()->to(base_url('login'));
+        }
+
+        // =========================================================================
+        // 2. PENCARIAN DINAMIS DI DATABASE SESUAI RUTE YANG TERSEDIA
+        // =========================================================================
+
+        // A. Kategori Dokumen -> /dokumen/detail/(:num)
+        $kategoriModel = new KategoriDokumenModel();
+        $kategori = $kategoriModel
+            ->like('nama_kategori', $keyword)
+            ->first();
+
+        if ($kategori) {
+            return redirect()->to(base_url('dokumen/detail/' . $kategori['id']));
+        }
+
+        // B. Dokumen Spesifik -> /dokumen/detail/(:num)?keyword=...
+        $dokumenModel = new DokumenModel();
+        $dokumen = $dokumenModel
+            ->like('judul', $keyword)
+            ->first();
+
+        if ($dokumen) {
+            return redirect()->to(base_url('dokumen/detail/' . $dokumen['kategori_id'] . '?keyword=' . urlencode($keyword)));
+        }
+
+        // C. Berita -> /berita/(:segment)
+        $berita = $this->beritaModel
+            ->groupStart()
+                ->like('judul', $keyword)
+                ->orLike('isi', $keyword)
+            ->groupEnd()
+            ->first();
+
+        if ($berita) {
+            return redirect()->to(base_url('berita/' . $berita['slug']));
+        }
+
+        // D. Kegiatan -> /kegiatan/(:segment)
+        $kegiatanModel = new \App\Models\KegiatanModel();
+        $kegiatan = $kegiatanModel
+            ->groupStart()
+                ->like('judul', $keyword)
+                ->orLike('deskripsi', $keyword)
+            ->groupEnd()
+            ->first();
+
+        if ($kegiatan) {
+            return redirect()->to(base_url('kegiatan/' . $kegiatan['slug']));
+        }
+
+        // E. Kecamatan (Korsda) -> /korsda/korsdawilayah/(:num)
+        $kecamatanModel = new \App\Models\KecamatanModel();
+        $kecamatan = $kecamatanModel
+            ->like('nama_kecamatan', $keyword)
+            ->first();
+
+        if ($kecamatan) {
+            return redirect()->to(base_url('korsda/korsdawilayah/' . $kecamatan['id']));
+        }
+
+        // F. Petugas Korsda / Wilayah Korsda -> /korsda/profil/(:num)
+        $korsda = $this->korsdaModel
+            ->groupStart()
+                ->like('nama', $keyword)
+                ->orLike('nama_wilayah', $keyword)
+                ->orLike('jabatan', $keyword)
+                ->orLike('alamat', $keyword)
+            ->groupEnd()
+            ->first();
+
+        if ($korsda) {
+            return redirect()->to(base_url('korsda/profil/' . $korsda['id']));
+        }
+
+        // =========================================================================
+        // 3. JIKA TIDAK DITEMUKAN, KEMBALI KE BERANDA DENGAN NOTIFIKASI
+        // =========================================================================
+        return redirect()->to(base_url('/'))->with('error', 'Data tidak ditemukan untuk kata kunci: "' . esc($keyword) . '"');
     }
-
-    switch (strtolower($keyword)) {
-
-    // Menu utama
-    case 'beranda':
-    case 'home':
-        return redirect()->to('/');
-
-    case 'dokumen':
-        return redirect()->to('/dokumen');
-
-    case 'berita':
-        return redirect()->to('/berita');
-
-    case 'kontak':
-        return redirect()->to('/kontak');
-
-    // PROFIL
-    case 'profil':
-        return redirect()->to('/tentang-kami');
-
-    case 'visi misi':
-    case 'visi':
-    case 'misi':
-        return redirect()->to('/tentang-kami#visi-misi');
-
-    case 'struktur':
-    case 'struktur organisasi':
-        return redirect()->to('/tentang-kami#struktur-organisasi');
-
-    // INOVASI
-    case 'sekardadu':
-        return redirect()->to('/sekardadu');
-
-    case 'mawasdiri':
-        return redirect()->to('/https://mawasdiri.dingkoding.com/home');
-
-    case 'warm':
-    case 'warm system':
-        return redirect()->to('/warm-system');
-
-    // LAYANAN
-    case 'pengaduan':
-        return redirect()->to('/pengaduan');
-
-    case 'korsda':
-        return redirect()->to('/korsda');
-
-    case 'live cctv':
-    case 'cctv':
-        return redirect()->to('/live-cctv');
-}
-
-    // ===== KATEGORI DOKUMEN =====
-    $kategoriModel = new KategoriDokumenModel();
-
-    $kategori = $kategoriModel
-        ->like('nama_kategori', $keyword)
-        ->first();
-
-    if ($kategori) {
-        return redirect()->to('/dokumen/detail/' . $kategori['id']);
-    }
-
-    // ===== DOKUMEN =====
-    $dokumenModel = new DokumenModel();
-
-    $dokumen = $dokumenModel
-        ->like('judul', $keyword)
-        ->first();
-
-    if ($dokumen) {
-        return redirect()->to('/dokumen/detail/' . $dokumen['kategori_id']);
-    }
-
-    // ===== BERITA =====
-    $berita = $this->beritaModel
-        ->like('judul', $keyword)
-        ->first();
-
-    if ($berita) {
-        return redirect()->to('/berita/detail/' . $berita['slug']);
-    }
-
-    return redirect()->back()->with('error', 'Data tidak ditemukan.');
-}
 }
