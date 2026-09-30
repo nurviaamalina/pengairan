@@ -113,15 +113,6 @@
                         </div>
                     </div>
 
-                    <!-- OPTIONS -->
-                    <div class="form-options">
-                        <label class="checkbox-container">
-                            <input type="checkbox" name="remember" id="remember">
-                            <span class="checkmark"></span>
-                            Ingat Saya
-                        </label>
-                    </div>
-
                     <!-- BUTTON SUBMIT -->
                     <button type="submit" class="btn-login">
                         <i class="fa-solid fa-right-to-bracket"></i>

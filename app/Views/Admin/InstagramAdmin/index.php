@@ -24,13 +24,6 @@
 
     <div class="d-flex align-items-center gap-3">
 
-    <a href="<?= base_url('admin/instagram/create') ?>"
-       class="btn text-white"
-       style="background-color: #0a2558; border-color: #0a2558;">
-        <i class="bi bi-plus-circle me-1"></i>
-        Tambah Feed
-    </a>
-
     <a href="<?= base_url('admin/instagram/sync') ?>"
        class="btn text-white"
        style="background-color: #0a2558; border-color: #0a2558;"
@@ -83,7 +76,6 @@
 
                                     <th width="140">Tanggal</th>
 
-                                    <th width="180">Aksi</th>
 
                                 </tr>
 
@@ -194,28 +186,6 @@
 
                                             </td>
 
-                                            <td class="text-center">
-
-                                                <a href="<?= base_url('admin/instagram/edit/' . $row['id']) ?>"
-                                                    class="btn btn-warning btn-sm">
-
-                                                    <i class="bi bi-pencil-square"></i>
-
-                                                    Edit
-
-                                                </a>
-
-                                                <a href="<?= base_url('admin/instagram/delete/' . $row['id']) ?>"
-                                                    class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus feed ini?')">
-
-                                                    <i class="bi bi-trash"></i>
-
-                                                    Hapus
-
-                                                </a>
-
-                                            </td>
 
                                         </tr>
 
