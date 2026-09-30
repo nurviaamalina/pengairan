@@ -22,21 +22,44 @@
             berkelanjutan demi kesejahteraan masyarakat dan kelestarian lingkungan
         </p>
 
-        <form action="<?= base_url('search') ?>" method="get">
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-warning alert-dismissible fade show text-center mt-3 mb-2 mx-auto shadow-sm" style="max-width: 520px; border-radius: 25px;" role="alert">
+                <i class="bi bi-exclamation-circle me-1"></i>
+                <?= esc(session()->getFlashdata('error')) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
 
-    <div class="search-box">
-
-        <input
-            type="text"
-            name="keyword"
-            class="search-input"
-            placeholder="Apa yang perlu anda cari?"
-            autocomplete="off"
-             required>
-
-    </div>
-
-</form>
+        <form action="<?= base_url('search') ?>" method="get" class="hero-search-form">
+            <div class="search-box">
+                <input
+                    type="text"
+                    name="keyword"
+                    class="search-input"
+                    placeholder="Apa yang perlu anda cari?"
+                    autocomplete="off"
+                    list="searchSuggestions"
+                    required>
+                <button type="submit" class="search-btn" title="Cari">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+            <datalist id="searchSuggestions">
+                <option value="Profil">
+                <option value="Visi Misi">
+                <option value="Struktur Organisasi">
+                <option value="Sekardadu">
+                <option value="Mawasdiri">
+                <option value="Warm System">
+                <option value="Pengaduan">
+                <option value="KORSDA">
+                <option value="Live CCTV">
+                <option value="GIS">
+                <option value="Dokumen">
+                <option value="Berita">
+                <option value="Kegiatan">
+            </datalist>
+        </form>
 
         <div class="row justify-content-center mt-5">
 
