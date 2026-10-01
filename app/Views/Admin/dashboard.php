@@ -195,17 +195,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 const layer = L.geoJSON(geojson, {
                     style: function () {
                         return {
-                            color: '#263b78',
+                            color: '#3388ff',
                             weight: 4,
                             opacity: 0.9,
-                            fillColor: '#263b78',
+                            fillColor: '#3388ff',
                             fillOpacity: 0.20
                         };
                     },
                     pointToLayer: function (feature, latlng) {
                         return L.circleMarker(latlng, {
                             radius: 6,
-                            fillColor: '#263b78',
+                            fillColor: '#3388ff',
                             color: '#ffffff',
                             weight: 2,
                             fillOpacity: 0.9
